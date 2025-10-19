@@ -37,13 +37,15 @@
   });
 
   //btn traduction
-  const langSelect = document.getElementById('langSelect');
+const btnLang = document.getElementById('btnLang');
+const flagIcon = document.getElementById('flagIcon');
 
-langSelect.addEventListener('change', () => {
-  const lang = langSelect.value;
-  if(lang === 'en'){
-    window.location.href = '/en/index.html'; // page anglaise
-  } else {
+btnLang.addEventListener('click', () => {
+  if(flagIcon.src.includes('uk.png')){
+    flagIcon.src = 'img/flag-francais.png';   // drapeau français
     window.location.href = '/index.html';   // page française
+  } else {
+    flagIcon.src = 'img/flag-anglais.png';   // drapeau anglais
+    window.location.href = '/en/index.html'; // page anglaise
   }
 });
