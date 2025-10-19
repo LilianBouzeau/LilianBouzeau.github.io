@@ -1,21 +1,41 @@
-  //menu humburger
-  
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+  // Menu hamburger
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
+
+// Fermer le menu quand on clique sur un lien
+document.querySelectorAll("#nav-menu a").forEach(link =>
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  })
+);
+
+// Gestion des sous-menus sur mobile
+const deroulants = document.querySelectorAll(".deroulant > a");
+
+deroulants.forEach(item => {
+  item.addEventListener("click", (e) => {
+    // Empêche le lien de naviguer si on est en mobile
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+
+      // Toggle le sous-menu
+      const sousMenu = item.nextElementSibling;
+      sousMenu.classList.toggle("active");
+
+      // Fermer les autres sous-menus ouverts
+      document.querySelectorAll(".deroulant .sous").forEach(menu => {
+        if (menu !== sousMenu) menu.classList.remove("active");
+      });
+    }
   });
-
-  // Fermer le menu quand on clique sur un lien
-  document.querySelectorAll("#nav-menu a").forEach(link =>
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-    })
-  );
-
+});
   // BTN TOP 
     const btnTop = document.getElementById("btnTop");
 

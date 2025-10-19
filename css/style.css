@@ -584,6 +584,10 @@ footer {
     margin:auto;
  width: 100%;  
     padding: 0;
+    display: none;
+  }
+  .sous.active{
+    display: block;
   }
 
   .sous li a {
