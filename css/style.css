@@ -24,7 +24,9 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   color: var(--vert);
 }
 
@@ -38,6 +40,7 @@ a:hover {
   color: var(--vert);
 }
 
+/*HEADER*/
 .hero {
   position: relative;
   width: 100%;
@@ -89,7 +92,7 @@ a:hover {
   font-weight: 600;
 }
 
-
+/*Nav*/
 nav {
   position: sticky;
   top: 0;
@@ -139,13 +142,15 @@ nav ul li {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--blanc);
   border-radius: var(--radius);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   list-style: none;
   padding: 0.5rem 0;
   min-width: 180px;
   z-index: 5;
+  text-align: center;
+  width: auto;
+  background-color: var(--beige);
 }
 
 .deroulant:hover .sous {
@@ -158,6 +163,7 @@ nav ul li {
     opacity: 0;
     transform: translate(-50%, -10px);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, 0);
@@ -173,8 +179,12 @@ nav ul li {
 
 .sous li a:hover {
   color: var(--vert);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+  transform: translateY(-5px);
 }
 
+/*page*/
 #presentation,
 #Export,
 #contactExport {
@@ -228,6 +238,8 @@ nav ul li {
   margin-bottom: 1rem;
   text-align: center;
 }
+
+/*barre de recherche*/
 .search-wrapper {
   width: 80%;
   max-width: 800px;
@@ -239,10 +251,10 @@ nav ul li {
 
 .search-container {
   display: flex;
-  width: 100%;  
+  width: 100%;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
 }
 
 #searchCatalog {
@@ -281,7 +293,7 @@ nav ul li {
   background-color: var(--accent);
 }
 
-/* 🔹 Boutons de filtre */
+/*Boutons de filtre*/
 .filter-buttons {
   display: flex;
   justify-content: center;
@@ -306,7 +318,7 @@ nav ul li {
   color: var(--blanc);
 }
 
-
+/*footer*/
 h1#contact {
   text-align: center;
   font-size: 2.2rem;
@@ -337,7 +349,7 @@ h1#contact {
 
 .contactCase {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -350,8 +362,8 @@ h1#contact {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem; 
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  gap: 0.6rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: var(--blanc);
   border-radius: var(--radius);
   padding: 0.8rem 1.2rem;
@@ -363,7 +375,7 @@ h1#contact {
 
 .ligneContact:hover {
   background-color: var(--accent);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
 
@@ -396,6 +408,7 @@ footer {
   font-size: 0.9rem;
 }
 
+/*btn top*/
 #btnTop {
   position: fixed;
   bottom: 25px;
@@ -408,7 +421,7 @@ footer {
   border-radius: 50%;
   font-size: 1.5rem;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: var(--transition);
   z-index: 10;
   opacity: 0;
@@ -425,6 +438,8 @@ footer {
   opacity: 1;
   visibility: visible;
 }
+
+/*btn lang*/
 #btnLang {
   position: fixed;
   bottom: 25px;
@@ -435,7 +450,7 @@ footer {
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: var(--transition);
   z-index: 10;
   overflow: hidden;
@@ -448,22 +463,23 @@ footer {
 
 #btnLang:hover {
   background-color: var(--blanc);
-   transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 
 #btnLang img {
-  width: 100%;             
+  width: 100%;
   height: 100%;
-  object-fit: cover;  
+  object-fit: cover;
   display: block;
 }
 
-
-
 @media (max-width: 1024px) {
+
+  /*HEADER*/
   .hero-overlay h1 {
     font-size: 4.5rem;
   }
+
   .hero-overlay p {
     font-size: 1.8rem;
   }
@@ -473,8 +489,7 @@ footer {
   }
 }
 
-
-
+/*nav*/
 .hamburger {
   display: none;
   flex-direction: column;
@@ -497,15 +512,19 @@ footer {
 .hamburger.active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
+
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
-    .search-wrapper {
+
+  /*barre de recherche*/
+  .search-wrapper {
     width: 95%;
   }
 
@@ -513,16 +532,17 @@ footer {
     margin: auto;
     flex-wrap: wrap;
     gap: 0.5rem;
-      width: 95%;
+    width: 95%;
   }
 
   .filter-btn {
     flex: 1;
     text-align: center;
   }
-    .search-container {
+
+  .search-container {
     width: 95%;
-      margin: auto;
+    margin: auto;
   }
 
   #searchCatalog {
@@ -533,6 +553,8 @@ footer {
   #searchBtn {
     padding: 0 0.8rem;
   }
+
+  /*nav*/
   .hamburger {
     display: flex;
   }
@@ -562,6 +584,7 @@ footer {
       opacity: 0;
       transform: translateY(-10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -572,32 +595,35 @@ footer {
     width: 100%;
   }
 
-   nav ul li a {
+  nav ul li a {
     display: block;
     width: 100%;
     text-align: center;
   }
+
   .sous {
     transform: none;
     background: var(--beige);
     box-shadow: none;
-    margin:auto;
- width: 100%;  
+    margin: auto;
+    width: 100%;
     padding: 0;
     display: none;
   }
-  .sous.active{
+
+  .sous.active {
     display: block;
   }
 
   .sous li a {
-display: block;
+    display: block;
     width: 100%;
-    text-align: center;  
+    text-align: center;
     padding: 0.7rem 1.5rem;
     box-sizing: border-box;
   }
 
+  /*HEADER*/
   .hero-overlay h1 {
     font-size: 3.2rem;
   }
@@ -606,6 +632,7 @@ display: block;
     font-size: 1.4rem;
   }
 
+  /*page*/
   #presentation,
   #Export,
   #contactExport {
@@ -631,6 +658,7 @@ display: block;
     font-size: 2rem;
   }
 
+  /*footer*/
   .groupeContact {
     flex-direction: column;
     padding: 1rem;
@@ -651,6 +679,8 @@ display: block;
 }
 
 @media (max-width: 480px) {
+
+  /*HEADER*/
   .hero-overlay h1 {
     font-size: 2.2rem;
   }
@@ -663,6 +693,7 @@ display: block;
     font-size: 1.1rem;
   }
 
+  /*page*/
   .TitreBio,
   .paragrapheBio {
     font-size: 0.95rem;
@@ -672,10 +703,12 @@ display: block;
     max-width: 100%;
   }
 
+  /*footer*/
   footer {
     font-size: 0.8rem;
   }
-    .ligneContact {
+
+  .ligneContact {
     width: 90%;
   }
 
