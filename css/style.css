@@ -1,0 +1,534 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --vert: #6ab04c;
+  --beige: #f5f1e6;
+  --blanc: #ffffff;
+  --gris: #444;
+  --noir: #222;
+  --accent: #95c11f;
+  --transition: all 0.3s ease;
+  --radius: 12px;
+  --font: "Poppins", sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--beige);
+  color: var(--noir);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  color: var(--vert);
+}
+
+a {
+  text-decoration: none;
+  color: var(--noir);
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--vert);
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.45);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-overlay h1 {
+  font-size: 7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.hero-overlay p {
+  font-size: 2.5rem;
+  line-height: 1.5;
+}
+
+.Rungis {
+  color: var(--vert);
+  font-weight: 600;
+}
+
+
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(6px);
+  box-shadow: none;
+  z-index: 3;
+}
+
+.nav-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--noir);
+}
+
+nav ul {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  padding: 1rem 0;
+}
+
+nav ul li {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.sous {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 180px;
+  z-index: 5;
+}
+
+.deroulant:hover .sous {
+  display: block;
+  animation: fadeIn 0.25s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.sous li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: var(--noir);
+  white-space: nowrap;
+}
+
+.sous li a:hover {
+  color: var(--vert);
+}
+
+#presentation,
+#Export,
+#contactExport {
+  padding: 4rem 2rem;
+  width: 80vw;
+  margin: auto;
+}
+
+.alignement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: var(--blanc);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.TitreBio {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--vert);
+  line-height: 1.7;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.paragrapheBio {
+  font-size: 1.1rem;
+  color: var(--gris);
+  line-height: 1.7;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.imgEntreprise {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+}
+
+.nom {
+  font-size: 2.5rem;
+  color: var(--vert);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+h1#contact {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-top: 3rem;
+  color: #fff;
+}
+
+.groupeContact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.groupeContact div {
+  text-align: center;
+  width: 280px;
+}
+
+.contactCase2 {
+  width: 100%;
+  border: none;
+  border-radius: var(--radius);
+  height: 280px;
+}
+
+.contactCase {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 280px;
+  border: none;
+  gap: 1rem;
+}
+
+.ligneContact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  padding: 0.8rem 1.2rem;
+  width: fit-content;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+/* ✅ Effet au survol */
+.ligneContact:hover {
+  background-color: var(--vert);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+}
+
+.ligneContact:hover .icone,
+.ligneContact:hover .paraContact {
+  color: var(--blanc);
+}
+
+.icone {
+  font-size: 1.6rem;
+  color: var(--vert);
+  transition: var(--transition);
+}
+
+.paraContact {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--gris);
+  margin: 0;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+footer {
+  background-color: var(--vert);
+  color: var(--blanc);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+#btnTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 45px;
+  height: 45px;
+  background-color: var(--vert);
+  color: var(--blanc);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: var(--transition);
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#btnTop:hover {
+  background-color: var(--blanc);
+  color: var(--vert);
+  transform: translateY(-3px);
+}
+
+#btnTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+@media (max-width: 1024px) {
+  .hero-overlay h1 {
+    font-size: 4.5rem;
+  }
+  .hero-overlay p {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    width: 90%;
+  }
+}
+
+
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--noir);
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+  }
+
+  nav ul.active {
+    display: flex;
+    animation: slideDown 0.3s ease forwards;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .sous {
+    position: static;
+    transform: none;
+    background: var(--beige);
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .sous li a {
+    padding: 0.7rem;
+  }
+
+  .hero-overlay h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1.4rem;
+  }
+
+  #presentation,
+  #Export,
+  #contactExport {
+    width: 90vw;
+    padding: 2rem 1rem;
+  }
+
+  .alignement {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .imgEntreprise {
+    max-width: 90%;
+  }
+
+  .TitreBio,
+  .paragrapheBio {
+    font-size: 1rem;
+  }
+
+  .nom {
+    font-size: 2rem;
+  }
+
+  .groupeContact {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .groupeContact div {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .contactCase {
+    height: 220px;
+  }
+
+  h1#contact {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1.1rem;
+  }
+
+  nav ul li {
+    font-size: 1.1rem;
+  }
+
+  .TitreBio,
+  .paragrapheBio {
+    font-size: 0.95rem;
+  }
+
+  .imgEntreprise {
+    max-width: 100%;
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+    .ligneContact {
+    width: 90%;
+  }
+
+  .paraContact {
+    font-size: 1rem;
+  }
+}
