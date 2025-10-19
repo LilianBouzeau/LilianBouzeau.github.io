@@ -426,6 +426,7 @@ footer {
   z-index: 10;
   opacity: 0;
   visibility: hidden;
+  border: 1px solid var(--blanc);
 }
 
 #btnTop:hover {
@@ -459,6 +460,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid var(--blanc);
 }
 
 #btnLang:hover {
