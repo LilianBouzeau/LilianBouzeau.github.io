@@ -347,7 +347,33 @@ footer {
   opacity: 1;
   visibility: visible;
 }
+/* Bouton traduction */
+.btn-traduction {
+  position: fixed;
+  bottom: 25px; 
+  right: 85px;  
+  z-index: 10;
+  background-color: var(--vert);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
+.btn-traduction select {
+  border: none;
+  background: var(--vert);
+  color: var(--blanc);
+  padding: 0.4rem 0.6rem;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.btn-traduction select:hover {
+  background-color: var(--accent);
+}
 
 
 @media (max-width: 1024px) {
@@ -412,8 +438,6 @@ footer {
     display: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 9;
-    justify-content: center;
-    text-align: center;
   }
 
   nav ul.active {
@@ -434,24 +458,28 @@ footer {
 
   nav ul li {
     width: 100%;
-    text-align: center;
   }
 
    nav ul li a {
-    display: inline-block;
-    width: auto;
-    margin: 0 auto;
+    display: block;
+    width: 100%;
+    text-align: center;
   }
   .sous {
-    position: static;
     transform: none;
     background: var(--beige);
     box-shadow: none;
+    margin:auto;
+ width: 100%;  
     padding: 0;
   }
 
   .sous li a {
-    padding: 0.7rem;
+display: block;
+    width: 100%;
+    text-align: center;  
+    padding: 0.7rem 1.5rem;
+    box-sizing: border-box;
   }
 
   .hero-overlay h1 {

@@ -35,3 +35,15 @@
       behavior: "smooth"
     });
   });
+
+  //btn traduction
+  const langSelect = document.getElementById('langSelect');
+
+langSelect.addEventListener('change', () => {
+  const lang = langSelect.value;
+  if(lang === 'en'){
+    window.location.href = '/en/index.html'; // page anglaise
+  } else {
+    window.location.href = '/index.html';   // page française
+  }
+});
