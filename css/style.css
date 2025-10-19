@@ -282,7 +282,7 @@ h1#contact {
   cursor: pointer;
 }
 
-/* ✅ Effet au survol */
+
 .ligneContact:hover {
   background-color: var(--vert);
   box-shadow: 0 4px 14px rgba(0,0,0,0.2);
@@ -412,6 +412,8 @@ footer {
     display: none;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 9;
+    justify-content: center;
+    text-align: center;
   }
 
   nav ul.active {
@@ -435,6 +437,11 @@ footer {
     text-align: center;
   }
 
+   nav ul li a {
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+  }
   .sous {
     position: static;
     transform: none;
