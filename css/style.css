@@ -228,11 +228,18 @@ nav ul li {
   margin-bottom: 1rem;
   text-align: center;
 }
+.search-wrapper {
+  width: 80%;
+  max-width: 800px;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .search-container {
   display: flex;
-  width: 80%;    
-  max-width: 800px;   
-  margin: 1rem auto;
+  width: 100%;  
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: 0 3px 12px rgba(0,0,0,0.1);
@@ -251,7 +258,7 @@ nav ul li {
 }
 
 #searchCatalog:focus {
-  background-color: var(--beige);
+  color: var(--accent);
 }
 
 #searchCatalog::placeholder {
@@ -273,6 +280,32 @@ nav ul li {
 #searchBtn:hover {
   background-color: var(--accent);
 }
+
+/* 🔹 Boutons de filtre */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  background-color: var(--vert);
+  color: var(--blanc);
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font);
+  font-weight: 500;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--accent);
+  color: var(--blanc);
+}
+
 
 h1#contact {
   text-align: center;
@@ -472,8 +505,24 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .search-wrapper {
+    width: 95%;
+  }
+
+  .filter-buttons {
+    margin: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+      width: 95%;
+  }
+
+  .filter-btn {
+    flex: 1;
+    text-align: center;
+  }
     .search-container {
     width: 95%;
+      margin: auto;
   }
 
   #searchCatalog {

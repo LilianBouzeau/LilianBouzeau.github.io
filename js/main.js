@@ -49,3 +49,18 @@ btnLang.addEventListener('click', () => {
     window.location.href = '/en/index.html'; // page anglaise
   }
 });
+//BARRE DE RECHERCHE + FILTRE
+const filterButtons = document.querySelectorAll('.filter-btn');
+const searchInput = document.getElementById('searchCatalog');
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Supprime la classe active sur tous
+    filterButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Ici tu peux filtrer ton catalogue selon btn.dataset.type
+    console.log("Filtre appliqué:", btn.dataset.type);
+    // Exemple: filterCatalog(btn.dataset.type);
+  });
+});

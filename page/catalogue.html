@@ -48,10 +48,21 @@
             </ul>
         </div>
         </nav>
-        <div class="search-container">
-  <input type="text" placeholder="Rechercher dans le catalogue..." id="searchCatalog">
-  <button id="searchBtn"><i class="bi bi-search"></i></button>
+<div class="search-wrapper">
+  <!-- Barre de recherche -->
+  <div class="search-container">
+    <input type="text" placeholder="Rechercher dans le catalogue..." id="searchCatalog">
+    <button id="searchBtn"><i class="bi bi-search"></i></button>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filter-buttons">
+    <button class="filter-btn" data-type="legumes">Légumes</button>
+    <button class="filter-btn" data-type="fruits">Fruits</button>
+    <button class="filter-btn" data-type="exotic">Exotic</button>
+  </div>
 </div>
+
     </body>
     <footer>
         <h1 id="contact">Contact</h1>
