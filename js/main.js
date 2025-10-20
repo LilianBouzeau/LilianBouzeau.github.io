@@ -1,4 +1,3 @@
-// Menu hamburger
 // --- MENU BURGER ---
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
@@ -15,7 +14,6 @@ document.querySelectorAll("#nav-menu a:not(.deroulant > a)").forEach(link =>
   })
 );
 
-// --- SOUS-MENUS ---
 const deroulants = document.querySelectorAll(".deroulant > a");
 
 deroulants.forEach(link => {
@@ -25,15 +23,12 @@ deroulants.forEach(link => {
     if (window.innerWidth <= 768 && sousMenu && sousMenu.classList.contains("sous")) {
       if (!sousMenu.classList.contains("active")) {
         e.preventDefault();
-
         document.querySelectorAll(".sous.active").forEach(openSous => {
           if (openSous !== sousMenu) openSous.classList.remove("active");
         });
-
         sousMenu.classList.add("active");
       } else {
-        hamburger.classList.remove("active");
-        navMenu.classList.remove("active");
+        sousMenu.classList.remove("active");
       }
     }
   });
@@ -49,6 +44,7 @@ menuLinks.forEach(link => {
     link.classList.add("active");
   }
 });
+
 // BTN TOP 
 const btnTop = document.getElementById("btnTop");
 

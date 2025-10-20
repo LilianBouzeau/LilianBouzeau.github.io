@@ -563,7 +563,7 @@ footer {
     display: flex;
   }
 
-  nav ul {
+ nav ul {
     position: absolute;
     top: 65px;
     left: 0;
@@ -605,27 +605,34 @@ footer {
     text-align: center;
   }
   .sous {
+    position: static;
     transform: none;
-    background: var(--beige);
+    background: transparent;
     box-shadow: none;
-    margin: auto;
     width: 100%;
     padding: 0;
-    display: none;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
   }
 
-  .sous.active {
+.sous.active {
     display: block;
+    max-height: 500px; /* ajustable */
+    opacity: 1;
   }
 
-  .sous li a {
-    display: block;
+ .sous li a {
+    padding: 0.7rem 1rem;
     width: 100%;
+    display: block;
     text-align: center;
-    padding: 0.7rem 1.5rem;
-    box-sizing: border-box;
+    background-color: var(--beige);
   }
-
+  .deroulant > a {
+      position: relative;
+    }
   /*HEADER*/
   .hero-overlay h1 {
     font-size: 3.2rem;
