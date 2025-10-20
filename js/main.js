@@ -1,4 +1,4 @@
-// === MENU HAMBURGER ===
+//MENU HUMBURGER
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Fermer si clic extérieur ---
   document.addEventListener("click", (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      closeAllMenus();
     }
   });
 
@@ -28,46 +26,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const li = link.closest(".deroulant");
     const sous = li ? li.querySelector(".sous") : null;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.innerWidth <= 768;
 
     if (isMobile && sous) {
-      e.preventDefault(); // empêche la navigation immédiate
-
-      // Si ce sous-menu est déjà ouvert → on navigue
-      if (sous.classList.contains("active")) {
-        window.location.href = link.href;
-        return;
+      if (!sous.classList.contains("active")) {
+        e.preventDefault();
+        document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+        sous.classList.add("active");
       }
-
-      // Sinon on ferme les autres et on ouvre celui-ci
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
-      sous.classList.add("active");
     } else {
-      // Clic sur un lien normal → fermeture du menu
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      closeAllMenus();
     }
   });
 
   // --- Fermer le menu si on repasse en grand écran ---
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+    if (window.innerWidth > 768) closeAllMenus();
+  });
+
+  // --- Lien actif selon la page ---
+  const currentPath = window.location.pathname;
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    const linkUrl = new URL(link.href, window.location.origin);
+    const linkPath = linkUrl.pathname;
+
+    // ✅ Lien actif sur la page ou si c'est le parent d'un sous-menu
+    if (linkPath === currentPath || linkPath === currentPath.replace(/\/$/, "")) {
+      link.classList.add("active");
+
     }
   });
-});
 
-// === LIEN ACTIF SELON LA PAGE ===
-const currentUrl = window.location.pathname;
-document.querySelectorAll("#nav-menu a").forEach(link => {
-  const linkUrl = new URL(link.href);
-  if (linkUrl.pathname === currentUrl) {
-    link.classList.add("active");
+  // --- Fonction pour fermer tout ---
+  function closeAllMenus() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
 });
+
 
 // BTN TOP 
 const btnTop = document.getElementById("btnTop");
