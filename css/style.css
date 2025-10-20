@@ -611,14 +611,10 @@ footer {
     width: 100%;
     padding: 0;
     display: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
   }
 
   .sous.active {
     display: block;
-    max-height: 500px; 
   }
 
   .sous li a {
