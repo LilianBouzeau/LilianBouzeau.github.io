@@ -5,21 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!hamburger || !navMenu) return;
 
-  // --- Toggle principal ---
+  // Toggle principal
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
   });
 
-  // --- Fermer si clic extérieur ---
+  // Fermer si clic extérieur
   document.addEventListener("click", (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
       closeAllMenus();
     }
   });
 
-  // --- Gestion du clic dans le menu ---
+  // Gestion du clic dans le menu
   navMenu.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (!link) return;
@@ -37,11 +37,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // ✅ Fermer tous les autres sous-menus avant d'ouvrir le nouveau
+      // ✅ Fermer tous les autres sous-menus immédiatement
       document.querySelectorAll("#nav-menu .sous.active").forEach(s => {
-        if (s !== sous) s.classList.remove("active");
+        s.classList.remove("active");
       });
 
+      // ✅ Ensuite ouvrir le nouveau sous-menu
       sous.classList.add("active");
     } else {
       // Clic sur un lien normal → tout fermer
@@ -49,14 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- Fermer le menu si on repasse en grand écran ---
+  // Fermer le menu si on repasse en grand écran
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
       closeAllMenus();
     }
   });
 
-  // --- Fonction utilitaire : fermer tout ---
   function closeAllMenus() {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
