@@ -119,6 +119,11 @@ nav {
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--noir);
+  text-decoration: none;
+}
+
+.logo a:hover {
+  color: var(--vert);
 }
 
 nav ul {
@@ -136,9 +141,11 @@ nav ul li {
   text-align: center;
   font-size: 1.5rem;
 }
+
 nav ul li a.active {
   color: var(--vert);
 }
+
 .sous {
   display: none;
   position: absolute;
@@ -565,7 +572,7 @@ footer {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
- nav ul {
+  nav ul {
     position: absolute;
     top: 100%;
     left: 0;
@@ -605,6 +612,7 @@ footer {
     width: 100%;
     text-align: center;
   }
+
   .sous {
     position: static !important;
     left: auto !important;
@@ -623,13 +631,13 @@ footer {
 
   }
 
-.sous.active {
+  .sous.active {
     display: block;
     max-height: 500px;
     opacity: 1;
   }
 
- .sous li a {
+  .sous li a {
     display: block;
     width: 100%;
     background-color: var(--beige);
@@ -637,13 +645,16 @@ footer {
     padding: 0.7rem 1rem;
     box-sizing: border-box;
   }
+
   .sous li a:hover {
     background-color: var(--vert);
     color: var(--blanc);
   }
-  .deroulant > a {
-      position: relative;
-    }
+
+  .deroulant>a {
+    position: relative;
+  }
+
   /*HEADER*/
   .hero-overlay h1 {
     font-size: 3.2rem;
