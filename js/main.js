@@ -1,18 +1,42 @@
 // Menu hamburger
+// Sélecteurs principaux
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
+// Ouvre / ferme le menu principal
 hamburger.addEventListener("click", () => {
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
 });
 
-document.querySelectorAll("#nav-menu a").forEach(link =>
+// Ferme le menu quand on clique sur un lien simple
+document.querySelectorAll("#nav-menu a:not(.deroulant > a)").forEach(link =>
     link.addEventListener("click", () => {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
     })
 );
+
+// Gestion des sous-menus sur mobile
+const deroulants = document.querySelectorAll(".deroulant > a");
+
+deroulants.forEach(link => {
+    link.addEventListener("click", (e) => {
+        // Empêche la redirection si un sous-menu existe
+        const sousMenu = link.nextElementSibling;
+        if (sousMenu && sousMenu.classList.contains("sous")) {
+            e.preventDefault();
+
+            // Ferme les autres sous-menus
+            document.querySelectorAll(".sous.active").forEach(openSous => {
+                if (openSous !== sousMenu) openSous.classList.remove("active");
+            });
+
+            // Bascule le sous-menu cliqué
+            sousMenu.classList.toggle("active");
+        }
+    });
+});
 // BTN TOP 
 const btnTop = document.getElementById("btnTop");
 
