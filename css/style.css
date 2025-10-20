@@ -135,7 +135,9 @@ nav ul li {
   text-align: center;
   font-size: 1.5rem;
 }
-
+nav ul li a.active {
+  color: var(--vert);
+}
 .sous {
   display: none;
   position: absolute;
@@ -602,7 +604,6 @@ footer {
     width: 100%;
     text-align: center;
   }
-
   .sous {
     transform: none;
     background: var(--beige);

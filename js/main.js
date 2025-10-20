@@ -1,18 +1,54 @@
 // Menu hamburger
+// --- MENU BURGER ---
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
 hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
 });
 
-document.querySelectorAll("#nav-menu a").forEach(link =>
-    link.addEventListener("click", () => {
+document.querySelectorAll("#nav-menu a:not(.deroulant > a)").forEach(link =>
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  })
+);
+
+// --- SOUS-MENUS ---
+const deroulants = document.querySelectorAll(".deroulant > a");
+
+deroulants.forEach(link => {
+  link.addEventListener("click", (e) => {
+    const sousMenu = link.nextElementSibling;
+
+    if (window.innerWidth <= 768 && sousMenu && sousMenu.classList.contains("sous")) {
+      if (!sousMenu.classList.contains("active")) {
+        e.preventDefault();
+
+        document.querySelectorAll(".sous.active").forEach(openSous => {
+          if (openSous !== sousMenu) openSous.classList.remove("active");
+        });
+
+        sousMenu.classList.add("active");
+      } else {
         hamburger.classList.remove("active");
         navMenu.classList.remove("active");
-    })
-);
+      }
+    }
+  });
+});
+
+// --- LIEN ACTIF ---
+const currentUrl = window.location.pathname;
+const menuLinks = document.querySelectorAll("#nav-menu a");
+
+menuLinks.forEach(link => {
+  const linkUrl = new URL(link.href);
+  if (linkUrl.pathname === currentUrl) {
+    link.classList.add("active");
+  }
+});
 // BTN TOP 
 const btnTop = document.getElementById("btnTop");
 
