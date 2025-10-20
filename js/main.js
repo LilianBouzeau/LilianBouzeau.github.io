@@ -5,64 +5,72 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!hamburger || !navMenu) return;
 
-  // Toggle principal
+  // --- Toggle principal ---
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
   });
 
-  // Fermer si clic extérieur
+  // --- Fermer si clic extérieur ---
   document.addEventListener("click", (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
       closeAllMenus();
     }
   });
 
-  // Gestion du clic dans le menu
+  // --- Gestion du clic dans le menu ---
   navMenu.addEventListener("click", (e) => {
     const link = e.target.closest("a");
     if (!link) return;
 
     const li = link.closest(".deroulant");
     const sous = li ? li.querySelector(".sous") : null;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const isMobile = window.innerWidth <= 768;
 
     if (isMobile && sous) {
       e.preventDefault(); // empêche la navigation immédiate
 
-      // Si le sous-menu cliqué est déjà ouvert → on navigue
+      // --- Si le sous-menu est déjà ouvert, on navigue directement ---
       if (sous.classList.contains("active")) {
         window.location.href = link.href;
         return;
       }
 
-      // ✅ Fermer tous les autres sous-menus immédiatement
+      // --- Fermer tous les autres sous-menus immédiatement ---
       document.querySelectorAll("#nav-menu .sous.active").forEach(s => {
         s.classList.remove("active");
       });
 
-      // ✅ Ensuite ouvrir le nouveau sous-menu
+      // --- Ouvrir le sous-menu cliqué ---
       sous.classList.add("active");
     } else {
-      // Clic sur un lien normal → tout fermer
+      // Clic sur lien normal → fermer menu hamburger et sous-menus
       closeAllMenus();
     }
   });
 
-  // Fermer le menu si on repasse en grand écran
+  // --- Fermer le menu si resize écran large ---
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
       closeAllMenus();
     }
   });
 
+  // --- Lien actif selon page/ancres ---
+  const currentPath = window.location.pathname + window.location.hash;
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    if (link.href.includes(currentPath)) link.classList.add("active");
+  });
+
+  // --- Fonction utilitaire pour tout fermer ---
   function closeAllMenus() {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
     document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
 });
+
 
 
 // === LIEN ACTIF SELON LA PAGE ===
