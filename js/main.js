@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Fermer si clic extérieur ---
   document.addEventListener("click", (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeAllMenus();
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
     }
   });
 
@@ -26,52 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const li = link.closest(".deroulant");
     const sous = li ? li.querySelector(".sous") : null;
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     if (isMobile && sous) {
       e.preventDefault(); // empêche la navigation immédiate
 
-      // --- Si le sous-menu est déjà ouvert, on navigue directement ---
+      // Si ce sous-menu est déjà ouvert → on navigue
       if (sous.classList.contains("active")) {
         window.location.href = link.href;
         return;
       }
 
-      // --- Fermer tous les autres sous-menus immédiatement ---
-      document.querySelectorAll("#nav-menu .sous.active").forEach(s => {
-        s.classList.remove("active");
-      });
-
-      // --- Ouvrir le sous-menu cliqué ---
+      // Sinon on ferme les autres et on ouvre celui-ci
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
       sous.classList.add("active");
     } else {
-      // Clic sur lien normal → fermer menu hamburger et sous-menus
-      closeAllMenus();
+      // Clic sur un lien normal → fermeture du menu
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
     }
   });
 
-  // --- Fermer le menu si resize écran large ---
+  // --- Fermer le menu si on repasse en grand écran ---
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
-      closeAllMenus();
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
     }
   });
-
-  // --- Lien actif selon page/ancres ---
-  const currentPath = window.location.pathname + window.location.hash;
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    if (link.href.includes(currentPath)) link.classList.add("active");
-  });
-
-  // --- Fonction utilitaire pour tout fermer ---
-  function closeAllMenus() {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-  }
 });
-
-
 
 // === LIEN ACTIF SELON LA PAGE ===
 const currentUrl = window.location.pathname;
@@ -86,18 +73,18 @@ document.querySelectorAll("#nav-menu a").forEach(link => {
 const btnTop = document.getElementById("btnTop");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btnTop.classList.add("show");
-  } else {
-    btnTop.classList.remove("show");
-  }
+    if (window.scrollY > 300) {
+        btnTop.classList.add("show");
+    } else {
+        btnTop.classList.remove("show");
+    }
 });
 
 btnTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 });
 
 //btn traduction
@@ -105,13 +92,13 @@ const btnLang = document.getElementById('btnLang');
 const flagIcon = document.getElementById('flagIcon');
 
 btnLang.addEventListener('click', () => {
-  if (flagIcon.src.includes('uk.png')) {
-    flagIcon.src = 'img/flag-francais.png';   // drapeau français
-    window.location.href = '/index.html';   // page française
-  } else {
-    flagIcon.src = 'img/flag-anglais.png';   // drapeau anglais
-    window.location.href = '/en/index.html'; // page anglaise
-  }
+    if (flagIcon.src.includes('uk.png')) {
+        flagIcon.src = 'img/flag-francais.png';   // drapeau français
+        window.location.href = '/index.html';   // page française
+    } else {
+        flagIcon.src = 'img/flag-anglais.png';   // drapeau anglais
+        window.location.href = '/en/index.html'; // page anglaise
+    }
 });
 
 //BARRE DE RECHERCHE + FILTRE
@@ -119,13 +106,13 @@ const filterButtons = document.querySelectorAll('.filter-btn');
 const searchInput = document.getElementById('searchCatalog');
 
 filterButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Supprime la classe active sur tous
-    filterButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    btn.addEventListener('click', () => {
+        // Supprime la classe active sur tous
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-    // Ici tu peux filtrer ton catalogue selon btn.dataset.type
-    console.log("Filtre appliqué:", btn.dataset.type);
-    // Exemple: filterCatalog(btn.dataset.type);
-  });
+        // Ici tu peux filtrer ton catalogue selon btn.dataset.type
+        console.log("Filtre appliqué:", btn.dataset.type);
+        // Exemple: filterCatalog(btn.dataset.type);
+    });
 });
