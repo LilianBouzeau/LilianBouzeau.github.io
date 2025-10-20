@@ -573,23 +573,20 @@ footer {
   }
 
   nav ul {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 2rem 0;
-    display: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  nav ul.active {
-    display: flex;
-    animation: slideDown 0.3s ease forwards;
-  }
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      background: rgba(255,255,255,0.95);
+      padding: 1rem 0;
+      z-index: 50;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    nav ul.active {
+      display: flex;
+    }
 
   @keyframes slideDown {
     from {
@@ -605,6 +602,7 @@ footer {
 
   nav ul li {
     width: 100%;
+    padding: 1rem;
   }
 
   nav ul li a {
@@ -622,16 +620,16 @@ footer {
     overflow: hidden;
     opacity: 0;
     transition: max-height 0.32s ease, opacity 0.24s ease;
-    text-align: center; /* ✅ Centre le contenu */
+    text-align: center;
     transform: translateY(-5px);
   }
 
   .sous.active {
-    max-height: 600px; /* hauteur d’ouverture */
+    max-height: 600px;
     opacity: 1;
     display: block;
-      transform: translateY(0);
-  transition: transform 0.3s ease, max-height 0.32s ease, opacity 0.24s ease;
+    transform: translateY(0);
+    transition: transform 0.3s ease, max-height 0.32s ease, opacity 0.24s ease;
   }
 
   .sous li {
@@ -639,7 +637,7 @@ footer {
   }
 
   .sous li a {
-    display: inline-block; /* ✅ Centre le lien horizontalement */
+    display: inline-block;
     padding: 0.7rem 1rem;
     text-align: center;
   }
