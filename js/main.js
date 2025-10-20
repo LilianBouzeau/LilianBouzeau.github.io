@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Fermer si clic extérieur ---
   document.addEventListener("click", (e) => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      closeAllMenus();
     }
   });
 
@@ -33,32 +31,39 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isMobile && sous) {
       e.preventDefault(); // empêche la navigation immédiate
 
-      // Si ce sous-menu est déjà ouvert → on navigue
+      // Si le sous-menu cliqué est déjà ouvert → on navigue
       if (sous.classList.contains("active")) {
         window.location.href = link.href;
         return;
       }
 
-      // Sinon on ferme les autres et on ouvre celui-ci
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      // ✅ Fermer tous les autres sous-menus avant d'ouvrir le nouveau
+      document.querySelectorAll("#nav-menu .sous.active").forEach(s => {
+        if (s !== sous) s.classList.remove("active");
+      });
+
       sous.classList.add("active");
     } else {
-      // Clic sur un lien normal → fermeture du menu
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      // Clic sur un lien normal → tout fermer
+      closeAllMenus();
     }
   });
 
   // --- Fermer le menu si on repasse en grand écran ---
   window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      closeAllMenus();
     }
   });
+
+  // --- Fonction utilitaire : fermer tout ---
+  function closeAllMenus() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+  }
 });
+
 
 // === LIEN ACTIF SELON LA PAGE ===
 const currentUrl = window.location.pathname;
