@@ -329,6 +329,41 @@ nav ul li a.active {
 }
 
 /*footer*/
+.reseauxSociaux {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.icone2 {
+  font-size: 1.6rem;
+  color: var(--vert);
+  transition: var(--transition);
+}
+
+.icone2:hover {
+  color: white;
+}
+
+.reseauxSociaux a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--blanc);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.reseauxSociaux a:hover {
+  background-color: var(--accent);
+  transform: translateY(-3px)
+}
+
 h1#contact {
   text-align: center;
   font-size: 2.2rem;
@@ -573,20 +608,21 @@ footer {
   }
 
   nav ul {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      display: none;
-      flex-direction: column;
-      background: rgba(255,255,255,0.95);
-      padding: 1rem 0;
-      z-index: 50;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    nav ul.active {
-      display: flex;
-    }
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    z-index: 50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  nav ul.active {
+    display: flex;
+  }
 
   @keyframes slideDown {
     from {
@@ -641,6 +677,7 @@ footer {
     padding: 0.7rem 1rem;
     text-align: center;
   }
+
   .sous li a:hover {
     background-color: var(--vert);
     color: var(--blanc);
