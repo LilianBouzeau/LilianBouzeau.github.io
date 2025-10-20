@@ -1,44 +1,68 @@
-// --- MENU BURGER ---
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
+// === MENU HAMBURGER ===
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
 
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navMenu.classList.toggle("active");
-});
+  if (!hamburger || !navMenu) return;
 
-document.querySelectorAll("#nav-menu a:not(.deroulant > a)").forEach(link =>
-  link.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-  })
-);
+  // --- Toggle principal ---
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
 
-const deroulants = document.querySelectorAll(".deroulant > a");
+  // --- Fermer si clic extérieur ---
+  document.addEventListener("click", (e) => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+    }
+  });
 
-deroulants.forEach(link => {
-  link.addEventListener("click", (e) => {
-    const sousMenu = link.nextElementSibling;
+  // --- Gestion du clic dans le menu ---
+  navMenu.addEventListener("click", (e) => {
+    const link = e.target.closest("a");
+    if (!link) return;
 
-    if (window.innerWidth <= 768 && sousMenu && sousMenu.classList.contains("sous")) {
-      if (!sousMenu.classList.contains("active")) {
-        e.preventDefault();
-        document.querySelectorAll(".sous.active").forEach(openSous => {
-          if (openSous !== sousMenu) openSous.classList.remove("active");
-        });
-        sousMenu.classList.add("active");
-      } else {
-        sousMenu.classList.remove("active");
+    const li = link.closest(".deroulant");
+    const sous = li ? li.querySelector(".sous") : null;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile && sous) {
+      e.preventDefault(); // empêche la navigation immédiate
+
+      // Si ce sous-menu est déjà ouvert → on navigue
+      if (sous.classList.contains("active")) {
+        window.location.href = link.href;
+        return;
       }
+
+      // Sinon on ferme les autres et on ouvre celui-ci
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+      sous.classList.add("active");
+    } else {
+      // Clic sur un lien normal → fermeture du menu
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
+    }
+  });
+
+  // --- Fermer le menu si on repasse en grand écran ---
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll(".sous.active").forEach(s => s.classList.remove("active"));
     }
   });
 });
 
-// --- LIEN ACTIF ---
+// === LIEN ACTIF SELON LA PAGE ===
 const currentUrl = window.location.pathname;
-const menuLinks = document.querySelectorAll("#nav-menu a");
-
-menuLinks.forEach(link => {
+document.querySelectorAll("#nav-menu a").forEach(link => {
   const linkUrl = new URL(link.href);
   if (linkUrl.pathname === currentUrl) {
     link.classList.add("active");
