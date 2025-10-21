@@ -65,6 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
 });
+//ANIMATION AU SCROLL
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+});
+
 
 
 // BTN TOP 
