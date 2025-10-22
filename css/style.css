@@ -131,9 +131,6 @@ nav {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#nav-menu a.active-link {
-  color: green; /* ou la couleur que tu veux */
-}
 .nav-container {
   width: 90%;
   max-width: 1200px;
@@ -355,27 +352,42 @@ textarea {
   background-color: var(--accent);
   transform: translateY(-2px);
 }
+
+
+.error-msg {
+  display: block;
+  color: #c62828;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+input.error,
+textarea.error {
+  border-color: #c62828;
+}
+
 #formMsg {
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.3s ease;
-  text-align: center;
   margin-top: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1rem;
-}
-
-#formMsg.success {
-  color: #2ecc71; /* vert */
-}
-
-#formMsg.error {
-  color: #e74c3c; /* rouge */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
 }
 
 #formMsg.show {
   opacity: 1;
-  transform: translateY(-5px);
 }
+
+#formMsg.success {
+  color: #2e7d32;
+}
+
+#formMsg.error {
+  color: #c62828;
+}
+
+
 
 /* --- Bouton --- */
 #submitBtn {
@@ -671,15 +683,15 @@ footer iframe {
 /* Boutons de langue */
 /* Conteneur des boutons langues */
 #langButtons {
-  position: fixed;
-  bottom: 85px;
-  right: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 10;
+   position: fixed;
+   bottom: 25px;
+   left: 25px;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;   
+   z-index: 1000; 
+   transform: none; 
 }
-
 /* Boutons */
 .btnLang {
   width: 45px;
@@ -806,15 +818,15 @@ footer iframe {
   }
 
   nav ul {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    display: none;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1rem 0;
-    z-index: 50;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem 0; /* padding vertical du menu principal */
+  z-index: 50;
   }
 
   nav ul.active {
@@ -833,10 +845,10 @@ footer iframe {
     }
   }
 
-  nav ul li {
-    width: 100%;
-    padding: 1rem;
-  }
+ nav ul li {
+  width: 100%;
+  padding: 1rem;
+}
 
   nav ul li a {
     display: block;
@@ -844,20 +856,18 @@ footer iframe {
     text-align: center;
   }
 
-  .sous {
-    position: relative !important;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.32s ease, opacity 0.24s ease;
-    text-align: center;
-    transform: translateY(-5px);
-    background-color: var(--vert);
-    color: var(--blanc);
-  }
+.sous {
+  position: relative !important;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.32s ease, opacity 0.24s ease;
+  text-align: center;
+  transform: translateY(-5px);
+}
 
   .sous.active {
     max-height: 600px;
@@ -867,21 +877,13 @@ footer iframe {
     transition: transform 0.3s ease, max-height 0.32s ease, opacity 0.24s ease;
   }
 
-  .sous li {
-    width: 100%;
-    background-color: var(--beige);
-  }
 
-  .sous li:hover {
-    background-color: var(--vert);
-    color: var(--blanc);
-  }
-
-  .sous li a {
-    display: inline-block;
-    text-align: center;
-    background-color: var(--beige);
-  }
+ .sous li a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: var(--beige);
+}
 
   .sous li a:hover {
     background-color: var(--vert);
@@ -892,7 +894,23 @@ footer iframe {
   .deroulant>a {
     position: relative;
   }
+  nav ul li,
+  nav ul li .sous li {
+    height: 60px; 
+    line-height: 60px;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
 
+  nav ul li a,
+  nav ul li .sous li a {
+    display: block;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    padding: 0 1rem;
+  }
   /*HEADER*/
   .hero-overlay h1 {
     font-size: 3.2rem;

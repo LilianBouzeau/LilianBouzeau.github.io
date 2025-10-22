@@ -5,59 +5,65 @@ const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
 if (hamburger && navMenu) {
-
-  // --- AJOUT: garder le lien actif en vert ---
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    if (link.href === window.location.href) {
-      link.classList.add("active-link");
-
-      // Si le lien est dans un sous-menu, ouvrir le sous-menu
-      const li = link.closest(".deroulant");
-      const sous = li ? li.querySelector(".sous") : null;
-      if (sous) {
-        sous.classList.add("active");
-      }
-    }
-  });
-  // --- FIN ajout ---
-
+  // Ouvrir / fermer le menu principal
   hamburger.addEventListener("click", e => {
     e.stopPropagation();
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
-  });
 
-  document.addEventListener("click", e => {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeAllMenus();
+    // Réinitialiser les sous-menus si on ferme le menu
+    if (!navMenu.classList.contains("active")) {
+      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
   });
 
+  // Fermer le menu si on clique en dehors
+  document.addEventListener("click", e => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeResponsiveMenus();
+    }
+  });
+
+  // Gestion des sous-menus
   navMenu.addEventListener("click", e => {
     const link = e.target.closest("a");
     if (!link) return;
+
     const li = link.closest(".deroulant");
     const sous = li ? li.querySelector(".sous") : null;
+
     if (window.innerWidth <= 768 && sous) {
       if (!sous.classList.contains("active")) {
         e.preventDefault();
+        // Fermer tous les autres sous-menus
         document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
         sous.classList.add("active");
       }
-    } else {
-      closeAllMenus();
     }
+    // Ne pas fermer la page active, on laisse le lien fonctionner
   });
 
+  // Réinitialiser si on agrandit la fenêtre
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) closeAllMenus();
+    if (window.innerWidth > 768) closeResponsiveMenus();
   });
 
-  function closeAllMenus() {
+  // Fonction pour fermer **seulement le menu responsive**, pas la page active
+  function closeResponsiveMenus() {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
     document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
+
+  // --- Gestion de la page active ---
+  const currentPath = window.location.pathname;
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    if (link.getAttribute("href") === currentPath || currentPath.includes(link.getAttribute("href"))) {
+      link.classList.add("active");
+      const parentSous = link.closest(".sous");
+      if (parentSous) parentSous.classList.add("active"); // ouvrir le sous-menu si actif
+    }
+  });
 }
 
 
@@ -84,291 +90,286 @@ if (hamburger && navMenu) {
   });
 
   // ==================== TRADUCTIONS ====================
-// ==================== TRADUCTIONS ====================
-const translations = {
-  FR: {
-    navHistory: "L'histoire",
-    navExport: "Export",
-    navContactExport: "Prise de contact",
-    navCatalogue: "Catalogue",
-    navLegumes: "Légumes",
-    navFruits: "Fruits",
-    navExotic: "Exotique",
-    navContact: "Contact",
-
-    titre: "Cruchaudet",
-    phrase1: "Des fruits et légumes frais, chaque jour.",
-    phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
-
-    contact: "Contact",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
-
-    contactFormTitle: "Contact Export",
-    nom: "Nom *",
-    prenom: "Prénom *",
-    email: "Email *",
-    telephone: "Téléphone *",
-    objet: "Objet *",
-    message: "Votre message *",
-    submitBtn: "Envoyer",
-
-    formErrors: {
-      allFields: "Veuillez remplir tous les champs obligatoires.",
-      email: "Veuillez entrer une adresse email valide.",
-      phone: "Veuillez entrer un numéro de téléphone valide.",
-      noTags: "Les balises HTML ne sont pas autorisées.",
-      success: "Votre message a bien été envoyé ✅"
+  const translations = {
+    FR: {
+      navHistory: "L'histoire",
+      navExport: "Export",
+      navContactExport: "Prise de contact",
+      navCatalogue: "Catalogue",
+      navLegumes: "Légumes",
+      navFruits: "Fruits",
+      navExotic: "Exotique",
+      navContact: "Contact",
+      titre: "Cruchaudet",
+      phrase1: "Des fruits et légumes frais, chaque jour.",
+      phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
+      contact: "Contact",
+      footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
+      contactFormTitle: "Contact Export",
+      nom: "Nom *",
+      prenom: "Prénom *",
+      email: "Email *",
+      telephone: "Téléphone *",
+      objet: "Objet *",
+      message: "Votre message *",
+      submitBtn: "Envoyer",
+      formErrors: {
+        allFields: "Veuillez remplir tous les champs obligatoires.",
+        email: "Veuillez entrer une adresse email valide.",
+        phone: "Veuillez entrer un numéro de téléphone valide.",
+        noTags: "Les balises HTML ne sont pas autorisées.",
+        errorSend: "Une erreur est survenue lors de l'envoi du message.",
+        success: "Votre message a bien été envoyé ✅"
+      }
+    },
+    EN: {
+      navHistory: "Our Story",
+      navExport: "Export",
+      navContactExport: "Contact Form",
+      navCatalogue: "Catalog",
+      navLegumes: "Vegetables",
+      navFruits: "Fruits",
+      navExotic: "Exotic",
+      navContact: "Contact",
+      titre: "Cruchaudet",
+      phrase1: "Fresh fruits and vegetables, every day.",
+      phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
+      contact: "Contact",
+      footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
+      contactFormTitle: "Export Contact",
+      nom: "Last Name *",
+      prenom: "First Name *",
+      email: "Email *",
+      telephone: "Phone *",
+      objet: "Subject *",
+      message: "Your message *",
+      submitBtn: "Send",
+      formErrors: {
+        allFields: "Please fill in all required fields.",
+        email: "Please enter a valid email address.",
+        phone: "Please enter a valid phone number.",
+        noTags: "HTML tags are not allowed.",
+        errorSend: "An error occurred while sending your message.",
+        success: "Your message has been sent successfully ✅"
+      }
+    },
+    ES: {
+      navHistory: "Nuestra historia",
+      navExport: "Exportación",
+      navContactExport: "Formulario de contacto",
+      navCatalogue: "Catálogo",
+      navLegumes: "Verduras",
+      navFruits: "Frutas",
+      navExotic: "Exóticas",
+      navContact: "Contacto",
+      titre: "Cruchaudet",
+      phrase1: "Frutas y verduras frescas, cada día.",
+      phrase2: "Desde <span class='Rungis'>Rungis</span>.",
+      contact: "Contacto",
+      footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
+      contactFormTitle: "Contacto Exportación",
+      nom: "Apellido *",
+      prenom: "Nombre *",
+      email: "Correo electrónico *",
+      telephone: "Teléfono *",
+      objet: "Asunto *",
+      message: "Su mensaje *",
+      submitBtn: "Enviar",
+      formErrors: {
+        allFields: "Por favor, rellene todos los campos obligatorios.",
+        email: "Por favor, introduzca una dirección de correo válida.",
+        phone: "Por favor, introduzca un número de teléfono válido.",
+        noTags: "No se permiten etiquetas HTML.",
+        errorSend: "Se ha producido un error al enviar el mensaje.",
+        success: "Su mensaje ha sido enviado correctamente ✅"
+      }
+    },
+    IT: {
+      navHistory: "La nostra storia",
+      navExport: "Esportazione",
+      navContactExport: "Modulo di contatto",
+      navCatalogue: "Catalogo",
+      navLegumes: "Verdure",
+      navFruits: "Frutta",
+      navExotic: "Esotici",
+      navContact: "Contatto",
+      titre: "Cruchaudet",
+      phrase1: "Frutta e verdura fresca, ogni giorno.",
+      phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
+      contact: "Contatto",
+      footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
+      contactFormTitle: "Contatto Export",
+      nom: "Cognome *",
+      prenom: "Nome *",
+      email: "Email *",
+      telephone: "Telefono *",
+      objet: "Oggetto *",
+      message: "Il tuo messaggio *",
+      submitBtn: "Invia",
+      formErrors: {
+        allFields: "Compila tutti i campi obbligatori.",
+        email: "Inserisci un indirizzo email valido.",
+        phone: "Inserisci un numero di telefono valido.",
+        noTags: "I tag HTML non sono consentiti.",
+        errorSend: "Si è verificato un errore durante l'invio del messaggio.",
+        success: "Il tuo messaggio è stato inviato con successo ✅"
+      }
     }
-  },
+  };
 
-  EN: {
-    navHistory: "Our Story",
-    navExport: "Export",
-    navContactExport: "Contact Form",
-    navCatalogue: "Catalog",
-    navLegumes: "Vegetables",
-    navFruits: "Fruits",
-    navExotic: "Exotic",
-    navContact: "Contact",
+  let currentLang = "FR";
 
-    titre: "Cruchaudet",
-    phrase1: "Fresh fruits and vegetables, every day.",
-    phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
-
-    contact: "Contact",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
-
-    contactFormTitle: "Export Contact",
-    nom: "Last Name *",
-    prenom: "First Name *",
-    email: "Email *",
-    telephone: "Phone *",
-    objet: "Subject *",
-    message: "Your message *",
-    submitBtn: "Send",
-
-    formErrors: {
-      allFields: "Please fill in all required fields.",
-      email: "Please enter a valid email address.",
-      phone: "Please enter a valid phone number.",
-      noTags: "HTML tags are not allowed.",
-      success: "Your message has been sent successfully ✅"
+  // ==================== CHANGEMENT DE LANGUE ====================
+  function setLanguage(lang) {
+    currentLang = lang;
+    for (const [id, text] of Object.entries(translations[lang])) {
+      if (id === "formErrors") continue;
+      const el = document.getElementById(id);
+      if (el) el.innerHTML = text;
     }
-  },
-
-  ES: {
-    navHistory: "Nuestra historia",
-    navExport: "Exportación",
-    navContactExport: "Formulario de contacto",
-    navCatalogue: "Catálogo",
-    navLegumes: "Verduras",
-    navFruits: "Frutas",
-    navExotic: "Exóticas",
-    navContact: "Contacto",
-
-    titre: "Cruchaudet",
-    phrase1: "Frutas y verduras frescas, cada día.",
-    phrase2: "Desde <span class='Rungis'>Rungis</span>.",
-
-    contact: "Contacto",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
-
-    contactFormTitle: "Contacto Exportación",
-    nom: "Apellido *",
-    prenom: "Nombre *",
-    email: "Correo electrónico *",
-    telephone: "Teléfono *",
-    objet: "Asunto *",
-    message: "Su mensaje *",
-    submitBtn: "Enviar",
-
-    formErrors: {
-      allFields: "Por favor, rellene todos los campos obligatorios.",
-      email: "Por favor, introduzca una dirección de correo válida.",
-      phone: "Por favor, introduzca un número de teléfono válido.",
-      noTags: "No se permiten etiquetas HTML.",
-      success: "Su mensaje ha sido enviado correctamente ✅"
-    }
-  },
-
-  IT: {
-    navHistory: "La nostra storia",
-    navExport: "Esportazione",
-    navContactExport: "Modulo di contatto",
-    navCatalogue: "Catalogo",
-    navLegumes: "Verdure",
-    navFruits: "Frutta",
-    navExotic: "Esotici",
-    navContact: "Contatto",
-
-    titre: "Cruchaudet",
-    phrase1: "Frutta e verdura fresca, ogni giorno.",
-    phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
-
-    contact: "Contatto",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
-
-    contactFormTitle: "Contatto Export",
-    nom: "Cognome *",
-    prenom: "Nome *",
-    email: "Email *",
-    telephone: "Telefono *",
-    objet: "Oggetto *",
-    message: "Il tuo messaggio *",
-    submitBtn: "Invia",
-
-    formErrors: {
-      allFields: "Compila tutti i campi obbligatori.",
-      email: "Inserisci un indirizzo email valido.",
-      phone: "Inserisci un numero di telefono valido.",
-      noTags: "I tag HTML non sono consentiti.",
-      success: "Il tuo messaggio è stato inviato con successo ✅"
-    }
-  }
-};
-
-let currentLang = "FR";
-
-// ==================== FONCTIONS ====================
-
-function setLanguage(lang) {
-  currentLang = lang;
-
-  // Traduction des éléments par ID
-  for (const [id, text] of Object.entries(translations[lang])) {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = text;
+    setFormLanguage(lang);
+    document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
+    const currentBtn = document.getElementById(`lang${lang}`);
+    if (currentBtn) currentBtn.style.display = "none";
+    updateVisibleMessages();
   }
 
-  setFormLanguage(lang);
+  function setFormLanguage(lang) {
+    const t = translations[lang];
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    document.getElementById("contactFormTitle").innerText = t.contactFormTitle;
+    document.getElementById("nom").placeholder = t.nom;
+    document.getElementById("prenom").placeholder = t.prenom;
+    document.getElementById("email").placeholder = t.email;
+    document.getElementById("telephone").placeholder = t.telephone;
+    document.getElementById("objet").placeholder = t.objet;
+    document.getElementById("message").placeholder = t.message;
+    document.getElementById("submitBtn").innerText = t.submitBtn;
+  }
 
-  // Masquer le bouton langue actuelle
-  document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
-  const currentBtn = document.getElementById(`lang${lang}`);
-  if (currentBtn) currentBtn.style.display = "none";
-
-  // Traduire le message du formulaire existant
-  updateFormMessage();
-
-  // Sauvegarder la langue choisie dans localStorage
-  localStorage.setItem("selectedLang", lang);
-}
-
-function setFormLanguage(lang) {
-  const form = document.getElementById("contactForm");
-  if (!form) return;
-  document.getElementById("contactFormTitle").innerText = translations[lang].contactFormTitle;
-  document.getElementById("nom").placeholder = translations[lang].nom;
-  document.getElementById("prenom").placeholder = translations[lang].prenom;
-  document.getElementById("email").placeholder = translations[lang].email;
-  document.getElementById("telephone").placeholder = translations[lang].telephone;
-  document.getElementById("objet").placeholder = translations[lang].objet;
-  const messageField = document.getElementById("message");
-  messageField.placeholder = translations[lang].message;
-  document.getElementById("submitBtn").innerText = translations[lang].submitBtn;
-}
-
-// Boutons de langue
-document.querySelectorAll(".btnLang").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const lang = btn.id.replace("lang", "");
-    setLanguage(lang);
+  document.querySelectorAll(".btnLang").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lang = btn.id.replace("lang", "");
+      setLanguage(lang);
+    });
   });
-});
-
-// ==================== CHARGEMENT INITIAL ====================
-
-// Vérifie si une langue est déjà stockée dans le localStorage
-const storedLang = localStorage.getItem("selectedLang");
-if (storedLang && translations[storedLang]) {
-  setLanguage(storedLang);
-} else {
-  setLanguage(currentLang); // langue par défaut
-}
-
 
   // ==================== FORMULAIRE ====================
   const contactForm = document.getElementById("contactForm");
   const formMsg = document.getElementById("formMsg");
 
   if (contactForm) {
-    const fields = [
-      document.getElementById("nom"),
-      document.getElementById("prenom"),
-      document.getElementById("email"),
-      document.getElementById("telephone"),
-      document.getElementById("objet"),
-      document.getElementById("message")
-    ];
+    const fields = {
+      nom: document.getElementById("nom"),
+      prenom: document.getElementById("prenom"),
+      email: document.getElementById("email"),
+      telephone: document.getElementById("telephone"),
+      objet: document.getElementById("objet"),
+      message: document.getElementById("message")
+    };
 
-    // Auto resize textarea
+    function setFieldError(field, key = "") {
+      let errorEl = field.parentElement.querySelector(".error-msg");
+      if (!errorEl) {
+        errorEl = document.createElement("div");
+        errorEl.classList.add("error-msg");
+        field.parentElement.appendChild(errorEl);
+      }
+      if (key) {
+        const t = translations[currentLang].formErrors;
+        errorEl.setAttribute("data-key", key);
+        errorEl.textContent = t[key] || "";
+      } else {
+        errorEl.textContent = "";
+        errorEl.removeAttribute("data-key");
+      }
+    }
+
     const autoResize = el => {
       el.style.height = "auto";
       el.style.height = el.scrollHeight + "px";
     };
-    const messageField = document.getElementById("message");
-    messageField.addEventListener("input", () => autoResize(messageField));
+    fields.message.addEventListener("input", () => autoResize(fields.message));
 
-    contactForm.addEventListener("submit", e => {
+    contactForm.addEventListener("submit", async e => {
       e.preventDefault();
+      Object.values(fields).forEach(f => {
+        f.classList.remove("error");
+        setFieldError(f, "");
+      });
+      formMsg.textContent = "";
+      formMsg.className = "";
 
-      // Reset erreurs
-      fields.forEach(f => f.classList.remove("error"));
-
+      const t = translations[currentLang].formErrors;
       let hasError = false;
 
-      // Champs vides
-      fields.forEach(f => {
-        if (!f.value.trim()) {
-          f.classList.add("error");
+      for (const [key, field] of Object.entries(fields)) {
+        if (!field.value.trim()) {
+          field.classList.add("error");
+          setFieldError(field, "allFields");
           hasError = true;
         }
-      });
-      if (hasError) return;
+      }
+      if (hasError) return showFormMessage("allFields", "error");
 
-      // Email
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const emailField = document.getElementById("email");
-      if (!emailRegex.test(emailField.value.trim())) {
-        emailField.classList.add("error");
-        return;
+      if (!emailRegex.test(fields.email.value.trim())) {
+        fields.email.classList.add("error");
+        return showFormMessage("email", "error");
       }
 
-      // Téléphone
       const phoneRegex = /^(\+?\d{1,3}[-.\s]?)?\d{9,13}$/;
-      const phoneField = document.getElementById("telephone");
-      if (!phoneRegex.test(phoneField.value.trim())) {
-        phoneField.classList.add("error");
-        return;
+      if (!phoneRegex.test(fields.telephone.value.trim())) {
+        fields.telephone.classList.add("error");
+        return showFormMessage("phone", "error");
       }
 
-      // Balises HTML interdites
       const noTagsRegex = /<[^>]*>/;
-      fields.forEach(f => {
-        if (noTagsRegex.test(f.value)) {
-          f.classList.add("error");
+      for (const field of Object.values(fields)) {
+        if (noTagsRegex.test(field.value)) {
+          field.classList.add("error");
           hasError = true;
         }
-      });
-      if (hasError) return;
+      }
+      if (hasError) return showFormMessage("noTags", "error");
 
-      // Tout OK
-      contactForm.reset();
-      autoResize(messageField);
-      alert(translations[currentLang].formErrors.success);
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        contactForm.reset();
+        autoResize(fields.message);
+        showFormMessage("success", "success");
+      } catch {
+        showFormMessage("errorSend", "error");
+      }
     });
 
-    // Supprime le contour rouge dès que l'utilisateur tape
-    fields.forEach(f => f.addEventListener("input", () => f.classList.remove("error")));
+    Object.values(fields).forEach(f =>
+      f.addEventListener("input", () => {
+        f.classList.remove("error");
+        setFieldError(f, "");
+      })
+    );
   }
 
-  function updateFormMessage() {
-    if (!formMsg.dataset.key) return;
-    const key = formMsg.dataset.key;
-    const type = formMsg.classList.contains("success") ? "success" : "error";
+  // ==================== MESSAGES GLOBAUX ====================
+  function showFormMessage(key, type) {
     const t = translations[currentLang].formErrors;
-    formMsg.textContent = t[key];
+    formMsg.textContent = t[key] || "Message inconnu";
+    formMsg.setAttribute("data-key", key);
     formMsg.className = type + " show";
+    setTimeout(() => formMsg.classList.remove("show"), 5000);
+  }
+
+  // ==================== TRADUCTION DES MESSAGES VISIBLES ====================
+  function updateVisibleMessages() {
+    const t = translations[currentLang].formErrors;
+    document.querySelectorAll(".error-msg[data-key]").forEach(el => {
+      const key = el.getAttribute("data-key");
+      el.textContent = t[key] || "";
+    });
+    const key = formMsg.getAttribute("data-key");
+    if (key) formMsg.textContent = t[key] || "";
   }
 
   // ==================== FILTRE CATALOGUE ====================
@@ -378,11 +379,9 @@ if (storedLang && translations[storedLang]) {
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       console.log("Filtre appliqué:", btn.dataset.type);
-      // TODO: filtrage réel du catalogue
     });
   });
 
   // ==================== INITIALISATION ====================
   setLanguage(currentLang);
-
 });

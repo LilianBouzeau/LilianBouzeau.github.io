@@ -23,16 +23,16 @@
     <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
     <!-- Boutons de langue -->
     <div id="langButtons">
-        <button class="btnLang scroll-animateD" id="langEN" title="Anglais">
+        <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
             <img src="../img/flag-anglais.png" alt="EN">
         </button>
-        <button class="btnLang scroll-animateD" id="langFR" title="Français">
+        <button class="btnLang scroll-animateG" id="langFR" title="Français">
             <img src="../img/flag-francais.png" alt="FR">
         </button>
-        <button class="btnLang scroll-animateD" id="langES" title="Espagnol">
+        <button class="btnLang scroll-animateG" id="langES" title="Espagnol">
             <img src="../img/flag-espagnol.png" alt="ES">
         </button>
-        <button class="btnLang scroll-animateD" id="langIT" title="Italien">
+        <button class="btnLang scroll-animateG" id="langIT" title="Italien">
             <img src="../img/flag-italien.png" alt="IT">
         </button>
     </div>
@@ -56,9 +56,9 @@
                 </li>
 
                 <li class="deroulant">
-                    <a id="navExport" href="#Export">Export</a>
+                    <a id="navExport" href="/page/export.html">Export</a>
                     <ul class="sous">
-                        <li><a id="navContactExport" href="export.html#contactExport">Prise de contact</a></li>
+                        <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
                     </ul>
                 </li>
 
@@ -96,36 +96,37 @@
     <div class="contact-wrapper">
         <form id="contactForm" novalidate>
             <div class="form-row">
-                <div class="form-group half scroll-animateG">
+                <div class="form-group half">
                     <input type="text" id="nom" name="nom" placeholder="Nom *" required />
                 </div>
-                <div class="form-group half scroll-animateD">
+                <div class="form-group half">
                     <input type="text" id="prenom" name="prenom" placeholder="Prénom *" required />
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group half scroll-animateG">
+                <div class="form-group half">
                     <input type="email" id="email" name="email" placeholder="Email *" required />
                 </div>
-                <div class="form-group half scroll-animateD">
-                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *"
-                        pattern="^(\+?\d{1,3}[-.\s]?)?\d{9,13}$" required />
+                <div class="form-group half">
+                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required />
                 </div>
             </div>
 
-            <div class="form-group scroll-animateG">
+            <div class="form-group">
                 <input type="text" id="objet" name="objet" placeholder="Objet *" required />
             </div>
 
-            <div class="form-group scroll-animateG">
+            <div class="form-group">
                 <textarea id="message" name="message" placeholder="Votre message *" required></textarea>
             </div>
 
-            <button type="submit" id="submitBtn" class="scroll-animate">Envoyer</button>
+            <button type="submit" id="submitBtn">Envoyer</button>
         </form>
-    </div>
 
+        <!-- Message global -->
+        <div id="formMsg"></div>
+    </div>
 
 </body>
 <footer>
