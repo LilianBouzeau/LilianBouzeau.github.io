@@ -282,6 +282,7 @@ nav ul li a.active {
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
   font-family: var(--font);
 }
+
 #contactFormTitle {
   text-align: center;
   color: var(--vert);
@@ -324,15 +325,19 @@ nav ul li a.active {
 }
 
 /* Contour rouge pour les champs invalides */
-input.error, textarea.error {
+input.error,
+textarea.error {
   border: 1px solid red;
   box-sizing: border-box;
 }
 
 textarea {
-  min-height: 80px; /* taille de base */
-  overflow: hidden;  /* pour l'auto-resize */
-  resize: none;      /* désactiver le resize manuel */
+  min-height: 80px;
+  /* taille de base */
+  overflow: hidden;
+  /* pour l'auto-resize */
+  resize: none;
+  /* désactiver le resize manuel */
 }
 
 /* Bouton */
@@ -683,15 +688,16 @@ footer iframe {
 /* Boutons de langue */
 /* Conteneur des boutons langues */
 #langButtons {
-   position: fixed;
-   bottom: 25px;
-   left: 25px;
-   display: flex;
-   flex-direction: column;
-   gap: 5px;   
-   z-index: 1000; 
-   transform: none; 
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 1000;
+  transform: none;
 }
+
 /* Boutons */
 .btnLang {
   width: 45px;
@@ -776,10 +782,12 @@ footer iframe {
 }
 
 @media (max-width: 768px) {
+
   /*FORMULAIRE CONTACT EXPORT*/
   .form-row {
     flex-direction: column;
   }
+
   /*barre de recherche*/
   .search-wrapper {
     width: 95%;
@@ -818,15 +826,16 @@ footer iframe {
   }
 
   nav ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  display: none;
-  flex-direction: column;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 1rem 0; /* padding vertical du menu principal */
-  z-index: 50;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    /* padding vertical du menu principal */
+    z-index: 50;
   }
 
   nav ul.active {
@@ -845,10 +854,10 @@ footer iframe {
     }
   }
 
- nav ul li {
-  width: 100%;
-  padding: 1rem;
-}
+  nav ul li {
+    width: 100%;
+    padding: 1rem;
+  }
 
   nav ul li a {
     display: block;
@@ -856,18 +865,18 @@ footer iframe {
     text-align: center;
   }
 
-.sous {
-  position: relative !important;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.32s ease, opacity 0.24s ease;
-  text-align: center;
-  transform: translateY(-5px);
-}
+  .sous {
+    position: relative !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.32s ease, opacity 0.24s ease;
+    text-align: center;
+    transform: translateY(-5px);
+  }
 
   .sous.active {
     max-height: 600px;
@@ -878,12 +887,12 @@ footer iframe {
   }
 
 
- .sous li a {
-  display: block;
-  width: 100%;
-  text-align: center;
-  background-color: var(--beige);
-}
+  .sous li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--beige);
+  }
 
   .sous li a:hover {
     background-color: var(--vert);
@@ -894,9 +903,10 @@ footer iframe {
   .deroulant>a {
     position: relative;
   }
+
   nav ul li,
   nav ul li .sous li {
-    height: 60px; 
+    height: 60px;
     line-height: 60px;
     padding: 0 1rem;
     box-sizing: border-box;
@@ -911,6 +921,7 @@ footer iframe {
     text-align: center;
     padding: 0 1rem;
   }
+
   /*HEADER*/
   .hero-overlay h1 {
     font-size: 3.2rem;

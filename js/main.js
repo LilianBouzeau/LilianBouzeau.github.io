@@ -1,70 +1,103 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ==================== MENU HAMBURGER ====================
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
 
-if (hamburger && navMenu) {
-  // Ouvrir / fermer le menu principal
-  hamburger.addEventListener("click", e => {
-    e.stopPropagation();
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+  if (hamburger && navMenu) {
+    // Ouvrir / fermer le menu principal
+    hamburger.addEventListener("click", e => {
+      e.stopPropagation();
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
 
-    // Réinitialiser les sous-menus si on ferme le menu
-    if (!navMenu.classList.contains("active")) {
+      // Réinitialiser les sous-menus si on ferme le menu
+      if (!navMenu.classList.contains("active")) {
+        document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+      }
+    });
+
+    // Fermer le menu si on clique en dehors
+    document.addEventListener("click", e => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeResponsiveMenus();
+      }
+    });
+
+    // Gestion des sous-menus
+    navMenu.addEventListener("click", e => {
+      const link = e.target.closest("a");
+      if (!link) return;
+
+      const li = link.closest(".deroulant");
+      const sous = li ? li.querySelector(".sous") : null;
+
+      if (window.innerWidth <= 768 && sous) {
+        if (!sous.classList.contains("active")) {
+          e.preventDefault();
+          // Fermer tous les autres sous-menus
+          document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+          sous.classList.add("active");
+        }
+      }
+      // Ne pas fermer la page active, on laisse le lien fonctionner
+    });
+
+    // Réinitialiser si on agrandit la fenêtre
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) closeResponsiveMenus();
+    });
+
+    // Fonction pour fermer **seulement le menu responsive**, pas la page active
+    function closeResponsiveMenus() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
       document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
-  });
 
-  // Fermer le menu si on clique en dehors
-  document.addEventListener("click", e => {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeResponsiveMenus();
-    }
-  });
+    // --- Gestion de la page active ---
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
-  // Gestion des sous-menus
-  navMenu.addEventListener("click", e => {
-    const link = e.target.closest("a");
-    if (!link) return;
+    document.querySelectorAll("#nav-menu a").forEach(link => {
+      const href = link.getAttribute("href");
 
-    const li = link.closest(".deroulant");
-    const sous = li ? li.querySelector(".sous") : null;
+      // enlever toute classe active avant de réappliquer
+      link.classList.remove("active");
+    });
 
-    if (window.innerWidth <= 768 && sous) {
-      if (!sous.classList.contains("active")) {
-        e.preventDefault();
-        // Fermer tous les autres sous-menus
-        document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-        sous.classList.add("active");
+    document.querySelectorAll("#nav-menu .sous").forEach(s => {
+      s.classList.remove("active");
+    });
+
+    document.querySelectorAll("#nav-menu a").forEach(link => {
+      const href = link.getAttribute("href");
+
+      if (href.startsWith("#")) {
+        // lien interne sur la même page
+        if (currentPath === "index.html") {
+          link.classList.add("active");
+
+          const parentSous = link.closest(".sous");
+          if (parentSous) parentSous.classList.add("active"); // seul sous-menu du lien actif s'ouvre
+        }
+      } else {
+        // lien vers une autre page
+        const linkFile = href.split("/").pop().split("#")[0];
+        if (linkFile === currentPath) {
+          link.classList.add("active");
+
+          // ouvrir seulement le sous-menu contenant ce lien actif
+          const parentSous = link.closest(".sous");
+          if (parentSous) parentSous.classList.add("active");
+
+          // optionnel : mettre aussi le li deroulant en active pour le style
+          const parentDeroulant = link.closest(".deroulant");
+          if (parentDeroulant) parentDeroulant.classList.add("active");
+        }
       }
-    }
-    // Ne pas fermer la page active, on laisse le lien fonctionner
-  });
+    });
 
-  // Réinitialiser si on agrandit la fenêtre
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) closeResponsiveMenus();
-  });
-
-  // Fonction pour fermer **seulement le menu responsive**, pas la page active
-  function closeResponsiveMenus() {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
-
-  // --- Gestion de la page active ---
-  const currentPath = window.location.pathname;
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    if (link.getAttribute("href") === currentPath || currentPath.includes(link.getAttribute("href"))) {
-      link.classList.add("active");
-      const parentSous = link.closest(".sous");
-      if (parentSous) parentSous.classList.add("active"); // ouvrir le sous-menu si actif
-    }
-  });
-}
 
 
   // ==================== ANIMATIONS AU SCROLL ====================
@@ -105,6 +138,7 @@ if (hamburger && navMenu) {
       phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
+      TitreExport: "Export",
       contactFormTitle: "Contact Export",
       nom: "Nom *",
       prenom: "Prénom *",
@@ -136,6 +170,7 @@ if (hamburger && navMenu) {
       phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
+      TitreExport: "Export",
       contactFormTitle: "Export Contact",
       nom: "Last Name *",
       prenom: "First Name *",
@@ -167,6 +202,7 @@ if (hamburger && navMenu) {
       phrase2: "Desde <span class='Rungis'>Rungis</span>.",
       contact: "Contacto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
+      TitreExport: "Exportación",
       contactFormTitle: "Contacto Exportación",
       nom: "Apellido *",
       prenom: "Nombre *",
@@ -198,6 +234,7 @@ if (hamburger && navMenu) {
       phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
       contact: "Contatto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
+      TitreExport: "Esportazione",
       contactFormTitle: "Contatto Export",
       nom: "Cognome *",
       prenom: "Nome *",
@@ -217,23 +254,31 @@ if (hamburger && navMenu) {
     }
   };
 
-  let currentLang = "FR";
+  let currentLang = localStorage.getItem("lang") || "FR"; // récupérer la langue depuis localStorage ou FR par défaut
 
   // ==================== CHANGEMENT DE LANGUE ====================
   function setLanguage(lang) {
     currentLang = lang;
+
+    // Stocker la langue sélectionnée dans localStorage
+    localStorage.setItem("lang", lang);
+
     for (const [id, text] of Object.entries(translations[lang])) {
       if (id === "formErrors") continue;
       const el = document.getElementById(id);
       if (el) el.innerHTML = text;
     }
+
     setFormLanguage(lang);
+
     document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
     const currentBtn = document.getElementById(`lang${lang}`);
     if (currentBtn) currentBtn.style.display = "none";
+
     updateVisibleMessages();
   }
 
+  // ==================== Formulaire ====================
   function setFormLanguage(lang) {
     const t = translations[lang];
     const form = document.getElementById("contactForm");
@@ -248,12 +293,19 @@ if (hamburger && navMenu) {
     document.getElementById("submitBtn").innerText = t.submitBtn;
   }
 
+  // ==================== Boutons langue ====================
   document.querySelectorAll(".btnLang").forEach(btn => {
     btn.addEventListener("click", () => {
       const lang = btn.id.replace("lang", "");
       setLanguage(lang);
     });
   });
+
+  // ==================== Au chargement de la page ====================
+  document.addEventListener("DOMContentLoaded", () => {
+    setLanguage(currentLang); // appliquer la langue sauvegardée
+  });
+
 
   // ==================== FORMULAIRE ====================
   const contactForm = document.getElementById("contactForm");
