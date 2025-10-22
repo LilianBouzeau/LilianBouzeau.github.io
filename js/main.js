@@ -1,48 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ==================== MENU HAMBURGER ====================
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", e => {
-      e.stopPropagation();
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
+if (hamburger && navMenu) {
 
-    document.addEventListener("click", e => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        closeAllMenus();
-      }
-    });
+  // --- AJOUT: garder le lien actif en vert ---
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    if (link.href === window.location.href) {
+      link.classList.add("active-link");
 
-    navMenu.addEventListener("click", e => {
-      const link = e.target.closest("a");
-      if (!link) return;
+      // Si le lien est dans un sous-menu, ouvrir le sous-menu
       const li = link.closest(".deroulant");
       const sous = li ? li.querySelector(".sous") : null;
-      if (window.innerWidth <= 768 && sous) {
-        if (!sous.classList.contains("active")) {
-          e.preventDefault();
-          document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-          sous.classList.add("active");
-        }
-      } else {
-        closeAllMenus();
+      if (sous) {
+        sous.classList.add("active");
       }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) closeAllMenus();
-    });
-
-    function closeAllMenus() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
+  });
+  // --- FIN ajout ---
+
+  hamburger.addEventListener("click", e => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  document.addEventListener("click", e => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeAllMenus();
+    }
+  });
+
+  navMenu.addEventListener("click", e => {
+    const link = e.target.closest("a");
+    if (!link) return;
+    const li = link.closest(".deroulant");
+    const sous = li ? li.querySelector(".sous") : null;
+    if (window.innerWidth <= 768 && sous) {
+      if (!sous.classList.contains("active")) {
+        e.preventDefault();
+        document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+        sous.classList.add("active");
+      }
+    } else {
+      closeAllMenus();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeAllMenus();
+  });
+
+  function closeAllMenus() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
+}
+
 
   // ==================== ANIMATIONS AU SCROLL ====================
   const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
@@ -67,8 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==================== TRADUCTIONS ====================
-  const translations = {
-   FR: {
+// ==================== TRADUCTIONS ====================
+const translations = {
+  FR: {
     navHistory: "L'histoire",
     navExport: "Export",
     navContactExport: "Prise de contact",
@@ -209,44 +227,65 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 };
 
-  let currentLang = "FR";
+let currentLang = "FR";
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    // Traduction des éléments par ID
-    for (const [id, text] of Object.entries(translations[lang])) {
-      const el = document.getElementById(id);
-      if (el) el.innerHTML = text;
-    }
-    setFormLanguage(lang);
-    // Masquer le bouton langue actuelle
-    document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
-    const currentBtn = document.getElementById(`lang${lang}`);
-    if (currentBtn) currentBtn.style.display = "none";
-    // Traduire le message du formulaire existant
-    updateFormMessage();
+// ==================== FONCTIONS ====================
+
+function setLanguage(lang) {
+  currentLang = lang;
+
+  // Traduction des éléments par ID
+  for (const [id, text] of Object.entries(translations[lang])) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = text;
   }
 
-  function setFormLanguage(lang) {
-    const form = document.getElementById("contactForm");
-    if (!form) return;
-    document.getElementById("contactFormTitle").innerText = translations[lang].contactFormTitle;
-    document.getElementById("nom").placeholder = translations[lang].nom;
-    document.getElementById("prenom").placeholder = translations[lang].prenom;
-    document.getElementById("email").placeholder = translations[lang].email;
-    document.getElementById("telephone").placeholder = translations[lang].telephone;
-    document.getElementById("objet").placeholder = translations[lang].objet;
-    const messageField = document.getElementById("message");
-    messageField.placeholder = translations[lang].message;
-    document.getElementById("submitBtn").innerText = translations[lang].submitBtn;
-  }
+  setFormLanguage(lang);
 
-  document.querySelectorAll(".btnLang").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const lang = btn.id.replace("lang", "");
-      setLanguage(lang);
-    });
+  // Masquer le bouton langue actuelle
+  document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
+  const currentBtn = document.getElementById(`lang${lang}`);
+  if (currentBtn) currentBtn.style.display = "none";
+
+  // Traduire le message du formulaire existant
+  updateFormMessage();
+
+  // Sauvegarder la langue choisie dans localStorage
+  localStorage.setItem("selectedLang", lang);
+}
+
+function setFormLanguage(lang) {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+  document.getElementById("contactFormTitle").innerText = translations[lang].contactFormTitle;
+  document.getElementById("nom").placeholder = translations[lang].nom;
+  document.getElementById("prenom").placeholder = translations[lang].prenom;
+  document.getElementById("email").placeholder = translations[lang].email;
+  document.getElementById("telephone").placeholder = translations[lang].telephone;
+  document.getElementById("objet").placeholder = translations[lang].objet;
+  const messageField = document.getElementById("message");
+  messageField.placeholder = translations[lang].message;
+  document.getElementById("submitBtn").innerText = translations[lang].submitBtn;
+}
+
+// Boutons de langue
+document.querySelectorAll(".btnLang").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.id.replace("lang", "");
+    setLanguage(lang);
   });
+});
+
+// ==================== CHARGEMENT INITIAL ====================
+
+// Vérifie si une langue est déjà stockée dans le localStorage
+const storedLang = localStorage.getItem("selectedLang");
+if (storedLang && translations[storedLang]) {
+  setLanguage(storedLang);
+} else {
+  setLanguage(currentLang); // langue par défaut
+}
+
 
   // ==================== FORMULAIRE ====================
   const contactForm = document.getElementById("contactForm");
