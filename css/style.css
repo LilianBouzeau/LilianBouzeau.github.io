@@ -878,27 +878,6 @@ footer iframe {
     transform: translateY(-5px);
   }
 
-  .sous.active {
-    max-height: 600px;
-    opacity: 1;
-    display: block;
-    transform: translateY(0);
-    transition: transform 0.3s ease, max-height 0.32s ease, opacity 0.24s ease;
-  }
-
-
-  .sous li a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background-color: var(--beige);
-  }
-
-  .sous li a:hover {
-    background-color: var(--vert);
-    color: var(--blanc);
-    box-shadow: none;
-  }
 
   .deroulant>a {
     position: relative;
@@ -908,18 +887,65 @@ footer iframe {
   nav ul li .sous li {
     height: 60px;
     line-height: 60px;
-    padding: 0 1rem;
+    padding: 0;
+    /* supprime le padding */
+    margin: 0;
+    /* supprime tout margin */
     box-sizing: border-box;
     text-align: center;
   }
 
+  /* Liens à l'intérieur */
   nav ul li a,
   nav ul li .sous li a {
     display: block;
+    width: 100%;
     height: 100%;
     line-height: 60px;
-    text-align: center;
     padding: 0 1rem;
+    /* padding horizontal uniquement */
+    margin: 0;
+    /* supprime margin */
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  /* Sous-menu */
+  .sous {
+    position: relative !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.32s ease, opacity 0.24s ease, transform 0.3s ease;
+    text-align: center;
+    transform: translateY(0);
+    /* plus de décalage vertical */
+  }
+
+  .sous.active {
+    max-height: 600px;
+    opacity: 1;
+    display: block;
+  }
+
+  /* Liens sous-menu */
+  .sous li a {
+    display: block;
+    width: 100%;
+    padding: 0 1rem;
+    /* uniquement horizontal */
+    line-height: 60px;
+    /* même hauteur que li parent */
+    background-color: var(--beige);
+  }
+
+  .sous li a:hover {
+    background-color: var(--vert);
+    color: var(--blanc);
+    box-shadow: none;
   }
 
   /*HEADER*/
