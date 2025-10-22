@@ -9,7 +9,7 @@
     <!--Description-->
     <meta name="Description" content="" Description="" />
     <!--Favicon-->
-    <link rel="icon" type="image/png" href="../img/flag-francais.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
     <!--police d'écriture-->
     <!--icons Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -21,10 +21,21 @@
 <body>
     <!-- Bouton retour en haut -->
     <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
-    <!-- Bouton traduction -->
-    <button id="btnLang" class="scroll-animateD" title="Changer langue">
-        <img id="flagIcon" src="../img/flag-anglais.png" alt="EN">
-    </button>
+    <!-- Boutons de langue -->
+    <div id="langButtons">
+        <button class="btnLang scroll-animateD" id="langEN" title="Anglais">
+            <img src="../img/flag-anglais.png" alt="EN">
+        </button>
+        <button class="btnLang scroll-animateD" id="langFR" title="Français">
+            <img src="../img/flag-francais.png" alt="FR">
+        </button>
+        <button class="btnLang scroll-animateD" id="langES" title="Espagnol">
+            <img src="../img/flag-espagnol.png" alt="ES">
+        </button>
+        <button class="btnLang scroll-animateD" id="langIT" title="Italien">
+            <img src="../img/flag-italien.png" alt="IT">
+        </button>
+    </div>
     <nav>
         <div class="nav-container">
             <div class="nav-logo">
@@ -41,25 +52,32 @@
 
             <ul id="nav-menu">
                 <li>
-                    <a href="../index.html#quiSommeNous">L'histoire</a>
+                    <a id="navHistory" href="../index.html#quiSommeNous">L'histoire</a>
                 </li>
+
                 <li class="deroulant">
-                    <a href="/page/export.html">Export</a>
+                    <a id="navExport" href="/page/export.html">Export</a>
                     <ul class="sous">
-                        <li><a href="/page/export.html#contactExport">Prise de contact</a></li>
+                        <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
                     </ul>
                 </li>
-                <li class="deroulant"><a href="/page/catalogue.html">Catalogue</a>
+
+                <li class="deroulant">
+                    <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
                     <ul class="sous">
-                        <li><a href="/page/catalogue.html#catalogueL">Légumes</a></li>
-                        <li><a href="/page/catalogue.html#catalogueF">Fruits</a></li>
-                        <li><a href="/page/catalogue.html#catalogueE">Exotic</a></li>
+                        <li><a id="navLegumes" href="catalogue.html#catalogueL">Légumes</a></li>
+                        <li><a id="navFruits" href="catalogue.html#catalogueF">Fruits</a></li>
+                        <li><a id="navExotic" href="catalogue.html#catalogueE">Exotic</a></li>
                     </ul>
                 </li>
-                <li><a href="#contact">Contact</a></li>
+
+                <li>
+                    <a id="navContact" href="#contact">Contact</a>
+                </li>
             </ul>
         </div>
     </nav>
+
     <div class="search-wrapper">
         <!-- Barre de recherche -->
         <div class="search-container scroll-animateG">
@@ -110,7 +128,7 @@
         </div>
     </div>
 
-    <p>Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
+    <p id="footerCopy">Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
 
     <!-- script -->
     <script type="text/javascript" src="/js/main.js"></script>

@@ -23,29 +23,32 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
 }
+
 /*ANIMATION AU SCROLL*/
 .scroll-animateG,
 .scroll-animateD,
 .scroll-animate {
-    opacity: 0;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 /* Animations directionnelles */
 .scroll-animateG {
-    transform: translateX(-40px);
+  transform: translateX(-40px);
 }
+
 .scroll-animateD {
-    transform: translateX(40px);
+  transform: translateX(40px);
 }
+
 .scroll-animate {
-    transform: translateY(40px);
+  transform: translateY(40px);
 }
 
 /* Apparition */
 .scroll-visible {
-    opacity: 1;
-    transform: translate(0, 0);
+  opacity: 1;
+  transform: translate(0, 0);
 }
 
 h1,
@@ -269,6 +272,147 @@ nav ul li a.active {
   text-align: center;
 }
 
+/*Formulaire Export*/
+.contact-wrapper {
+  width: 77vw;
+  margin: auto;
+  padding: 4rem 2rem;
+  background-color: var(--blanc);
+  border-radius: var(--radius);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  font-family: var(--font);
+}
+#contactFormTitle {
+  text-align: center;
+  color: var(--vert);
+  margin-bottom: 1rem;
+}
+
+/* Organisation des rangées */
+.form-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Deux champs côte à côte */
+.form-group.half {
+  flex: 1;
+}
+
+/* Espacement entre les champs */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: var(--font);
+  transition: var(--transition);
+}
+
+/* Effet focus */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Contour rouge pour les champs invalides */
+input.error, textarea.error {
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 80px; /* taille de base */
+  overflow: hidden;  /* pour l'auto-resize */
+  resize: none;      /* désactiver le resize manuel */
+}
+
+/* Bouton */
+#submitBtn {
+  background-color: var(--vert);
+  color: var(--blanc);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: block;
+  margin: 0 auto;
+}
+
+#submitBtn:hover {
+  background-color: var(--accent);
+  transform: translateY(-2px);
+}
+#formMsg {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+#formMsg.success {
+  color: #2ecc71; /* vert */
+}
+
+#formMsg.error {
+  color: #e74c3c; /* rouge */
+}
+
+#formMsg.show {
+  opacity: 1;
+  transform: translateY(-5px);
+}
+
+/* --- Bouton --- */
+#submitBtn {
+  width: 100%;
+  background-color: var(--vert);
+  color: var(--blanc);
+  border: none;
+  padding: 0.9rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#submitBtn:hover {
+  background-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* --- Messages --- */
+#formMsg {
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+#formMsg.hidden {
+  display: none;
+}
+
+#formMsg.success {
+  color: var(--vert);
+}
+
+#formMsg.error {
+  color: red;
+}
+
 /*barre de recherche*/
 .search-wrapper {
   width: 80%;
@@ -480,7 +624,7 @@ footer {
 /* Style pour la carte Google Maps */
 iframe {
   border: none;
-  border-radius: 15px; 
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -521,40 +665,52 @@ footer iframe {
   visibility: visible;
 }
 
-/*btn lang*/
-#btnLang {
+/* Boutons de langue */
+/* Conteneur des boutons langues */
+#langButtons {
   position: fixed;
-  bottom: 25px;
+  bottom: 85px;
   right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Boutons */
+.btnLang {
   width: 45px;
   height: 45px;
   background-color: var(--vert);
-  border: none;
+  border: 1px solid var(--blanc);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: var(--transition);
-  z-index: 10;
   overflow: hidden;
-  margin-bottom: 85px;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--blanc);
 }
 
-#btnLang:hover {
+.btnLang:not(:last-child) {
+  margin-bottom: 5px;
+  /* petit espace optionnel (mets 0 si tu veux vraiment collé) */
+}
+
+.btnLang:hover {
   background-color: var(--blanc);
   transform: translateY(-3px);
 }
 
-#btnLang img {
+.btnLang img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
 
 @media (max-width: 1024px) {
 
@@ -605,7 +761,10 @@ footer iframe {
 }
 
 @media (max-width: 768px) {
-
+  /*FORMULAIRE CONTACT EXPORT*/
+  .form-row {
+    flex-direction: column;
+  }
   /*barre de recherche*/
   .search-wrapper {
     width: 95%;
@@ -709,6 +868,7 @@ footer iframe {
     width: 100%;
     background-color: var(--beige);
   }
+
   .sous li:hover {
     background-color: var(--vert);
     color: var(--blanc);
