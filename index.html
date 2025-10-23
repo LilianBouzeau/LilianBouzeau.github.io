@@ -48,44 +48,37 @@
     <!-- ==================== NAVIGATION PRINCIPALE ==================== -->
     <nav>
         <div class="nav-container">
-            <!-- Logo du site -->
             <div class="nav-logo">
-                <a href="index.html">
-                    <img src="img/logo.png" alt="Logo Cruchaudet" />
-                </a>
+                <a href="index.html"><img src="img/logo.png" alt="Logo" /></a>
             </div>
-
-            <!-- Menu hamburger (mobile) -->
             <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
+        </div>
+        <ul id="nav-menu">
+            <li><a id="navHistory" href="#presentation">L'histoire</a></li>
 
-            <!-- Menu principal -->
-            <ul id="nav-menu">
-                <li><a id="navHistory" href="#presentation">L'histoire</a></li>
+            <!-- Sous-menu Export -->
+            <li class="deroulant">
+                <a id="navExport" href="/page/export.html">Export</a>
+                <ul class="sous">
+                    <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
+                </ul>
+            </li>
 
-                <!-- Sous-menu Export -->
-                <li class="deroulant">
-                    <a id="navExport" href="/page/export.html">Export</a>
-                    <ul class="sous">
-                        <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
-                    </ul>
-                </li>
+            <!-- Sous-menu Catalogue -->
+            <li class="deroulant">
+                <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
+                <ul class="sous">
+                    <li><a id="navLegumes" href="/page/catalogue.html#catalogueL">Légumes</a></li>
+                    <li><a id="navFruits" href="/page/catalogue.html#catalogueF">Fruits</a></li>
+                    <li><a id="navExotic" href="/page/catalogue.html#catalogueE">Exotic</a></li>
+                    <li><a id="navPDT" href="/page/catalogue.html#cataloguePDT">Pomme de terre et condiments</a></li>
+                </ul>
+            </li>
 
-                <!-- Sous-menu Catalogue -->
-                <li class="deroulant">
-                    <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
-                    <ul class="sous">
-                        <li><a id="navLegumes" href="/page/catalogue.html#catalogueL">Légumes</a></li>
-                        <li><a id="navFruits" href="/page/catalogue.html#catalogueF">Fruits</a></li>
-                        <li><a id="navExotic" href="/page/catalogue.html#catalogueE">Exotic</a></li>
-                    </ul>
-                </li>
-
-                <li><a id="navContact" href="#contact">Contact</a></li>
-            </ul>
+            <li><a id="navContact" href="#contact">Contact</a></li>
+        </ul>
         </div>
     </nav>
 

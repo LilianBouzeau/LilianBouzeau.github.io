@@ -1,72 +1,80 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // ==================== MENU HAMBURGER ====================
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("nav-menu");
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", e => {
-      e.stopPropagation();
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-      if (!navMenu.classList.contains("active")) {
-        document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-      }
-    });
-
-    document.addEventListener("click", e => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeResponsiveMenus();
-    });
-
-    navMenu.addEventListener("click", e => {
-      const link = e.target.closest("a");
-      if (!link) return;
-      const li = link.closest(".deroulant");
-      const sous = li ? li.querySelector(".sous") : null;
-      if (window.innerWidth <= 768 && sous) {
-        if (!sous.classList.contains("active")) {
-          e.preventDefault();
-          document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-          sous.classList.add("active");
-        }
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) closeResponsiveMenus();
-    });
-
-    function closeResponsiveMenus() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
+if (hamburger && navMenu) {
+  // Ouvrir/fermer menu
+  hamburger.addEventListener("click", e => {
+    e.stopPropagation();
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+    if (!navMenu.classList.contains("active")) {
       document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
+  });
 
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll("#nav-menu a").forEach(link => {
-      link.classList.remove("active");
+  // Fermer menu si clic en dehors
+  document.addEventListener("click", e => {
+    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      closeResponsiveMenus();
+    }
+  });
+
+  // Gestion des sous-menus (desktop + mobile)
+  const deroulants = document.querySelectorAll("#nav-menu .deroulant > a");
+
+  deroulants.forEach(link => {
+    link.addEventListener("click", e => {
+      const li = link.parentElement;
+      const sous = li.querySelector(".sous");
+      if (!sous) return;
+
+      e.preventDefault(); // empêche le lien parent de naviguer
+
+      // Fermer tous les autres sous-menus
+      document.querySelectorAll("#nav-menu .sous.active").forEach(other => {
+        if (other !== sous) other.classList.remove("active");
+      });
+
+      // Toggle sous-menu actuel
+      sous.classList.toggle("active");
     });
-    document.querySelectorAll("#nav-menu .sous").forEach(s => s.classList.remove("active"));
-    document.querySelectorAll("#nav-menu a").forEach(link => {
-      const href = link.getAttribute("href");
-      if (href.startsWith("#")) {
-        if (currentPath === "index.html") {
-          link.classList.add("active");
-          const parentSous = link.closest(".sous");
-          if (parentSous) parentSous.classList.add("active");
-        }
-      } else {
-        const linkFile = href.split("/").pop().split("#")[0];
-        if (linkFile === currentPath) {
-          link.classList.add("active");
-          const parentSous = link.closest(".sous");
-          if (parentSous) parentSous.classList.add("active");
-          const parentDeroulant = link.closest(".deroulant");
-          if (parentDeroulant) parentDeroulant.classList.add("active");
-        }
-      }
-    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeResponsiveMenus();
+  });
+
+  function closeResponsiveMenus() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
+
+  // === Page active ===
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
+  document.querySelectorAll("#nav-menu .sous").forEach(s => s.classList.remove("active"));
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    const href = link.getAttribute("href");
+    if (href.startsWith("#") && currentPath === "index.html") {
+      link.classList.add("active");
+      const parentSous = link.closest(".sous");
+      if (parentSous) parentSous.classList.add("active");
+    } else {
+      const linkFile = href.split("/").pop().split("#")[0];
+      if (linkFile === currentPath) {
+        link.classList.add("active");
+        const parentSous = link.closest(".sous");
+        if (parentSous) parentSous.classList.add("active");
+        const parentDeroulant = link.closest(".deroulant");
+        if (parentDeroulant) parentDeroulant.classList.add("active");
+      }
+    }
+  });
+}
 
   // ==================== ANIMATIONS AU SCROLL ====================
   const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
@@ -101,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLegumes: "Légumes",
       navFruits: "Fruits",
       navExotic: "Exotique",
+      navPDT: "Pomme de terre et condiments",
       navContact: "Contact",
       //INDEX
       titre: "Cruchaudet",
@@ -147,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLegumes: "Vegetables",
       navFruits: "Fruits",
       navExotic: "Exotic",
+      navPDT: "Potatoes & condiments",
       navContact: "Contact",
       //INDEX
       titre: "Cruchaudet",
@@ -193,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLegumes: "Verduras",
       navFruits: "Frutas",
       navExotic: "Exóticas",
+      navPDT: "Patatas y condimentos",
       navContact: "Contacto",
       //INDEX
       titre: "Cruchaudet",
@@ -239,6 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLegumes: "Verdure",
       navFruits: "Frutta",
       navExotic: "Esotici",
+      navPDT: "Patate & condimenti",
       navContact: "Contatto",
       //INDEX
       titre: "Cruchaudet",

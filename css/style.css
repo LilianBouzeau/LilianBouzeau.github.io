@@ -132,108 +132,184 @@ a:hover {
   font-weight: 600;
 }
 
-/* ================================
-   NAVIGATION PRINCIPALE
-=================================*/
+/* ==================== NAVBAR ==================== */
 nav {
+  background-color: rgba(255, 255, 255, 0.8); /* opacité légère */
+  backdrop-filter: blur(8px); /* flou léger */
+  -webkit-backdrop-filter: blur(8px); /* pour Safari */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(6px);
-  z-index: 3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  transition: background-color 0.3s, backdrop-filter 0.3s;
 }
 
+/* Container */
 .nav-container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  position: relative;
+  font:var(--font);
 }
 
 /* Logo */
 .nav-logo img {
-  transform: scale(1.3);
-  height: 75px;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  height: 100px;
 }
 
-.nav-logo:hover img {
+.nav-logo img:hover {
+  transition: 0.3s;
   transform: scale(1.5);
 }
-
-/* Menu principal */
-nav ul {
-  width: 80%;
+/* Menu principal centré */
+#nav-menu {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   list-style: none;
-  padding: 1rem 0;
+  margin: 0 auto;
+  padding: 0;
+  gap: 100px;
 }
 
-nav ul li {
+#nav-menu li {
   position: relative;
-  flex: 1;
-  text-align: center;
-  font-size: 1.5rem;
 }
 
-nav ul li a.active {
-  color: var(--vert);
+#nav-menu a {
+  text-decoration: none;
+  padding: 10px 5px;
+  display: block;
+  transition: color 0.3s;
 }
 
-/* Sous-menu */
+#nav-menu a:hover,
+#nav-menu a.active {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Sous-menus */
 .sous {
   display: none;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: var(--radius);
   list-style: none;
-  padding: 0.5rem 0;
-  min-width: 180px;
-  z-index: 5;
-  text-align: center;
-  width: auto;
-}
-
-.deroulant:hover .sous {
-  display: block;
-  animation: fadeIn 0.25s ease-in-out forwards;
-}
-
-/* Animation du sous-menu */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+  padding-left: 0;
+  margin: 0;
+  border-radius: 5px;
+  position: relative;
 }
 
 .sous li a {
-  display: block;
-  padding: 0.6rem 1rem;
-  color: var(--noir);
-  white-space: nowrap;
-  background-color: var(--beige);
-  border-radius: var(--radius);
+  padding: 8px 15px;
 }
 
 .sous li a:hover {
-  color: var(--vert);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
+  color: #fff;
+}
+
+.sous.active {
+  display: block;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
+
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Quand le hamburger est actif */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+/* ==================== MEDIA QUERIES ==================== */
+
+/* Tablette */
+@media (max-width: 1024px) {
+  #nav-menu {
+    gap: 15px;
+  }
+  .nav-container {
+    padding: 10px 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  /* Menu principal en dessous de la navbar */
+  #nav-menu {
+    display: none; /* caché par défaut */
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative; /* important pour qu'il reste dans le flux */
+    z-index: 1;
+  }
+
+  #nav-menu.active {
+    display: flex;
+  }
+
+  #nav-menu li {
+    width: 100%;
+  }
+
+  #nav-menu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .sous {
+    padding-left: 20px;
+    background-color: #f9f9f9;
+  }
+
+  /* Navbar sticky */
+  .nav-container {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999;
+    padding: 10px 20px;
+  }
 }
 
 /* ================================
@@ -721,74 +797,13 @@ footer iframe {
     font-size: 1.8rem;
   }
 
-  nav ul {
-    width: 90%;
-  }
 }
 
 /* Smartphones */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  cursor: pointer;
-  z-index: 10;
-}
 
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: var(--noir);
-  border-radius: 10px;
-  transition: var(--transition);
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
 
 /* Adaptations mobiles */
 @media (max-width: 768px) {
-  .nav-container {
-    flex-wrap: wrap;
-  }
-
-  nav ul {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(6px);
-    display: none;
-    text-align: center;
-    padding: 1rem 0;
-  }
-
-  nav ul.active {
-    display: flex;
-  }
-
-  nav ul li {
-    font-size: 1.4rem;
-    padding: 0.6rem 0;
-  }
-
-  .hamburger {
-    display: flex;
-  }
 
   .alignement {
     flex-direction: column;
