@@ -1,69 +1,69 @@
 document.addEventListener("DOMContentLoaded", () => {
-// ==================== MENU HAMBURGER ====================
-const hamburger = document.getElementById("hamburger");
-const navMenu = document.getElementById("nav-menu");
+  // ==================== MENU HAMBURGER ====================
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
 
-if (hamburger && navMenu) {
-  // Ouvrir / fermer menu principal (mobile)
-  hamburger.addEventListener("click", e => {
-    e.stopPropagation();
-    hamburger.classList.toggle("active");
-    navMenu.classList.toggle("active");
+  if (hamburger && navMenu) {
+    // Ouvrir / fermer menu principal (mobile)
+    hamburger.addEventListener("click", e => {
+      e.stopPropagation();
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
 
-    if (!navMenu.classList.contains("active")) {
-      closeAllSousMenus();
-    }
-  });
-
-  // Fermer menu si clic en dehors
-  document.addEventListener("click", e => {
-    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeAllSousMenus();
-    }
-  });
-
-  // Gestion des sous-menus au clic (desktop + mobile)
-  const deroulants = document.querySelectorAll("#nav-menu .deroulant > a");
-
-  deroulants.forEach(link => {
-    link.addEventListener("click", e => {
-      const li = link.parentElement;
-      const sous = li.querySelector(".sous");
-      if (!sous) return;
-
-      e.preventDefault(); // empêche la navigation immédiate
-
-      // Fermer les autres sous-menus
-      document.querySelectorAll("#nav-menu .sous.active").forEach(other => {
-        if (other !== sous) other.classList.remove("active");
-      });
-
-      // Toggle du sous-menu actuel
-      sous.classList.toggle("active");
+      if (!navMenu.classList.contains("active")) {
+        closeAllSousMenus();
+      }
     });
-  });
 
-  // Fonction pour fermer tous les sous-menus
-  function closeAllSousMenus() {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-  }
+    // Fermer menu si clic en dehors
+    document.addEventListener("click", e => {
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+        closeAllSousMenus();
+      }
+    });
 
-  // Gestion des liens actifs
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
+    // Gestion des sous-menus au clic (desktop + mobile)
+    const deroulants = document.querySelectorAll("#nav-menu .deroulant > a");
 
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    const href = link.getAttribute("href");
-    if (href.startsWith("#") && currentPath === "index.html") {
-      link.classList.add("active");
-    } else {
-      const linkFile = href.split("/").pop().split("#")[0];
-      if (linkFile === currentPath) link.classList.add("active");
+    deroulants.forEach(link => {
+      link.addEventListener("click", e => {
+        const li = link.parentElement;
+        const sous = li.querySelector(".sous");
+        if (!sous) return;
+
+        e.preventDefault(); // empêche la navigation immédiate
+
+        // Fermer les autres sous-menus
+        document.querySelectorAll("#nav-menu .sous.active").forEach(other => {
+          if (other !== sous) other.classList.remove("active");
+        });
+
+        // Toggle du sous-menu actuel
+        sous.classList.toggle("active");
+      });
+    });
+
+    // Fonction pour fermer tous les sous-menus
+    function closeAllSousMenus() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
-  });
-}
+
+    // Gestion des liens actifs
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
+
+    document.querySelectorAll("#nav-menu a").forEach(link => {
+      const href = link.getAttribute("href");
+      if (href.startsWith("#") && currentPath === "index.html") {
+        link.classList.add("active");
+      } else {
+        const linkFile = href.split("/").pop().split("#")[0];
+        if (linkFile === currentPath) link.classList.add("active");
+      }
+    });
+  }
 
 
 

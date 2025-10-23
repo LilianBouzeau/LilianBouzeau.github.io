@@ -135,10 +135,13 @@ a:hover {
 /* ==================== NAVBAR ==================== */
 /* ==================== NAVBAR ==================== */
 nav {
-  background-color: rgba(255, 255, 255, 0.8); /* opacité légère */
-  backdrop-filter: blur(4px); /* flou léger */
-  -webkit-backdrop-filter: blur(4px); /* pour Safari */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.8);
+  /* opacité légère */
+  backdrop-filter: blur(4px);
+  /* flou léger */
+  -webkit-backdrop-filter: blur(4px);
+  /* pour Safari */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 999;
@@ -201,7 +204,7 @@ nav {
   margin: 0;
   border-radius: 5px;
   position: relative;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -241,9 +244,11 @@ nav {
 .hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .hamburger.active span:nth-child(2) {
   opacity: 0;
 }
+
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
@@ -255,6 +260,7 @@ nav {
   #nav-menu {
     gap: 15px;
   }
+
   .nav-container {
     padding: 0px 15px;
   }
@@ -268,7 +274,8 @@ nav {
 
   /* Menu principal en dessous de la navbar */
   #nav-menu {
-    display: none; /* caché par défaut */
+    display: none;
+    /* caché par défaut */
     flex-direction: column;
     width: 100%;
     padding: 0;
@@ -299,11 +306,13 @@ nav {
   .sous {
     padding-left: 20px;
   }
+
   #nav-menu .sous li a:hover {
     background-color: var(--accent);
     color: #fff;
     border-radius: 4px;
   }
+
   /* Navbar sticky mobile (même couleur partout) */
   .nav-container {
     position: relative;
@@ -312,56 +321,59 @@ nav {
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-    padding: 10px 20px;
+    padding: 0px 20px;
   }
 }
 
 /* ==================== SOUS-MENUS CENTRÉS SOUS LE LI PARENT (DESKTOP) ==================== */
 @media (min-width: 769px) {
-#nav-menu .deroulant {
-  position: relative;
-}
+  #nav-menu .deroulant {
+    position: relative;
+  }
 
-#nav-menu .sous {
-  position: absolute;
-  top: 100%; 
-  left: 50%;
-  transform: translateX(-50%) scaleY(0); /* fermé par défaut */
-  transform-origin: top center;
-  display: block; /* on contrôle la visibilité avec scaleY */
-  opacity: 0;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-  border-radius: 8px;
-  z-index: 998;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-width: 180px;
-}
+  #nav-menu .sous {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    /* fermé par défaut */
+    transform-origin: top center;
+    display: block;
+    /* on contrôle la visibilité avec scaleY */
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    border-radius: 8px;
+    z-index: 998;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+  }
 
-#nav-menu .sous.active {
-  transform: translateX(-50%) scaleY(1); /* ouvert */
-  opacity: 1;
-}
+  #nav-menu .sous.active {
+    transform: translateX(-50%) scaleY(1);
+    /* ouvert */
+    opacity: 1;
+  }
 
-#nav-menu .sous li {
-  display: block;
-  text-align: left;
-}
+  #nav-menu .sous li {
+    display: block;
+    text-align: left;
+  }
 
-#nav-menu .sous li a {
-  display: block;
-  padding: 10px 20px;
-  white-space: nowrap;
-  transition: background-color 0.2s, color 0.2s;
-}
+  #nav-menu .sous li a {
+    display: block;
+    padding: 10px 20px;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+  }
 
-#nav-menu .sous li a:hover {
-  background-color: var(--accent);
-  color: #fff;
-  border-radius: 4px;
-}
+  #nav-menu .sous li a:hover {
+    background-color: var(--accent);
+    color: #fff;
+    border-radius: 4px;
+  }
 }
 
 
