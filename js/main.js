@@ -100,7 +100,7 @@ if (hamburger && navMenu) {
       navLegumes: "Légumes",
       navFruits: "Fruits",
       navExotic: "Exotique",
-      navPDT: "Pomme de terre et condiments",
+      navPDT: "Pomme de terre & condiments",
       navContact: "Contact",
       //INDEX
       titre: "Cruchaudet",
