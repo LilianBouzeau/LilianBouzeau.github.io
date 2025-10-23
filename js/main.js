@@ -5,100 +5,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.getElementById("nav-menu");
 
   if (hamburger && navMenu) {
-    // Ouvrir / fermer le menu principal
     hamburger.addEventListener("click", e => {
       e.stopPropagation();
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-
-      // Réinitialiser les sous-menus si on ferme le menu
       if (!navMenu.classList.contains("active")) {
         document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
       }
     });
 
-    // Fermer le menu si on clique en dehors
     document.addEventListener("click", e => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        closeResponsiveMenus();
-      }
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeResponsiveMenus();
     });
 
-    // Gestion des sous-menus
     navMenu.addEventListener("click", e => {
       const link = e.target.closest("a");
       if (!link) return;
-
       const li = link.closest(".deroulant");
       const sous = li ? li.querySelector(".sous") : null;
-
       if (window.innerWidth <= 768 && sous) {
         if (!sous.classList.contains("active")) {
           e.preventDefault();
-          // Fermer tous les autres sous-menus
           document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
           sous.classList.add("active");
         }
       }
-      // Ne pas fermer la page active, on laisse le lien fonctionner
     });
 
-    // Réinitialiser si on agrandit la fenêtre
     window.addEventListener("resize", () => {
       if (window.innerWidth > 768) closeResponsiveMenus();
     });
 
-    // Fonction pour fermer **seulement le menu responsive**, pas la page active
     function closeResponsiveMenus() {
       hamburger.classList.remove("active");
       navMenu.classList.remove("active");
       document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
     }
 
-    // --- Gestion de la page active ---
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
-
     document.querySelectorAll("#nav-menu a").forEach(link => {
-      const href = link.getAttribute("href");
-
-      // enlever toute classe active avant de réappliquer
       link.classList.remove("active");
     });
-
-    document.querySelectorAll("#nav-menu .sous").forEach(s => {
-      s.classList.remove("active");
-    });
-
+    document.querySelectorAll("#nav-menu .sous").forEach(s => s.classList.remove("active"));
     document.querySelectorAll("#nav-menu a").forEach(link => {
       const href = link.getAttribute("href");
-
       if (href.startsWith("#")) {
-        // lien interne sur la même page
         if (currentPath === "index.html") {
           link.classList.add("active");
-
           const parentSous = link.closest(".sous");
-          if (parentSous) parentSous.classList.add("active"); // seul sous-menu du lien actif s'ouvre
+          if (parentSous) parentSous.classList.add("active");
         }
       } else {
-        // lien vers une autre page
         const linkFile = href.split("/").pop().split("#")[0];
         if (linkFile === currentPath) {
           link.classList.add("active");
-
-          // ouvrir seulement le sous-menu contenant ce lien actif
           const parentSous = link.closest(".sous");
           if (parentSous) parentSous.classList.add("active");
-
-          // optionnel : mettre aussi le li deroulant en active pour le style
           const parentDeroulant = link.closest(".deroulant");
           if (parentDeroulant) parentDeroulant.classList.add("active");
         }
       }
     });
-
   }
-
 
   // ==================== ANIMATIONS AU SCROLL ====================
   const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
@@ -112,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.2 });
   scrollElements.forEach(el => observer.observe(el));
 
-  // ==================== BOUTON TOP ====================
+  // ==================== BOUTON RETOUR EN HAUT ====================
   const btnTop = document.getElementById("btnTop");
   window.addEventListener("scroll", () => {
     if (window.scrollY > 300) btnTop.classList.add("show");
@@ -122,9 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // ==================== TRADUCTIONS ====================
+  // ==================== TRADUCTIONS MULTILINGUES ====================
   const translations = {
     FR: {
+      //NAV
       navHistory: "L'histoire",
       navExport: "Export",
       navContactExport: "Prise de contact",
@@ -133,11 +102,18 @@ document.addEventListener("DOMContentLoaded", () => {
       navFruits: "Fruits",
       navExotic: "Exotique",
       navContact: "Contact",
+      //INDEX
       titre: "Cruchaudet",
       phrase1: "Des fruits et légumes frais, chaque jour.",
       phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
+      titrepageHistoire: "L'histoire",
+      titreBio1: 'Début',
+      titreBio2: 'Evolution',
+      titreBio3: 'Maintenant',
+      //FOOTER
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
+      //EXPORT
       TitreExport: "Export",
       contactFormTitle: "Contact Export",
       nom: "Nom *",
@@ -154,9 +130,16 @@ document.addEventListener("DOMContentLoaded", () => {
         noTags: "Les balises HTML ne sont pas autorisées.",
         errorSend: "Une erreur est survenue lors de l'envoi du message.",
         success: "Votre message a bien été envoyé ✅"
-      }
+      },
+      //CATALOGUE
+      btnLegumes: 'Légumes',
+      btnFruits: 'Fruits',
+      btnExotic: 'Exotic',
+      btnPDT: 'Pomme de terre & condiments',
+      searchPlaceholder: "Rechercher dans le catalogue...",
     },
     EN: {
+      //NAV
       navHistory: "Our Story",
       navExport: "Export",
       navContactExport: "Contact Form",
@@ -165,11 +148,18 @@ document.addEventListener("DOMContentLoaded", () => {
       navFruits: "Fruits",
       navExotic: "Exotic",
       navContact: "Contact",
+      //INDEX
       titre: "Cruchaudet",
       phrase1: "Fresh fruits and vegetables, every day.",
       phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
+      titrepageHistoire: "History",
+      titreBio1: 'Beginning',
+      titreBio2: 'Evolution',
+      titreBio3: 'Now',
+      //FOOTER
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
+      //EXPORT
       TitreExport: "Export",
       contactFormTitle: "Export Contact",
       nom: "Last Name *",
@@ -186,9 +176,16 @@ document.addEventListener("DOMContentLoaded", () => {
         noTags: "HTML tags are not allowed.",
         errorSend: "An error occurred while sending your message.",
         success: "Your message has been sent successfully ✅"
-      }
+      },
+      //CATALOGUE
+      btnLegumes: 'Vegetables',
+      btnFruits: 'Fruits',
+      btnExotic: 'Exotic',
+      btnPDT: 'Potatoes & condiments',
+      searchPlaceholder: "Search in the catalog...",
     },
     ES: {
+      //NAV
       navHistory: "Nuestra historia",
       navExport: "Exportación",
       navContactExport: "Formulario de contacto",
@@ -197,11 +194,18 @@ document.addEventListener("DOMContentLoaded", () => {
       navFruits: "Frutas",
       navExotic: "Exóticas",
       navContact: "Contacto",
+      //INDEX
       titre: "Cruchaudet",
       phrase1: "Frutas y verduras frescas, cada día.",
       phrase2: "Desde <span class='Rungis'>Rungis</span>.",
+      titrepageHistoire: "Historia",
+      titreBio1: 'Comienzo',
+      titreBio2: 'Evolución',
+      titreBio3: 'Ahora',
+      //FOOTER
       contact: "Contacto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
+      //EXPORT
       TitreExport: "Exportación",
       contactFormTitle: "Contacto Exportación",
       nom: "Apellido *",
@@ -218,9 +222,16 @@ document.addEventListener("DOMContentLoaded", () => {
         noTags: "No se permiten etiquetas HTML.",
         errorSend: "Se ha producido un error al enviar el mensaje.",
         success: "Su mensaje ha sido enviado correctamente ✅"
-      }
+      },
+      //CATALOGUE
+      btnLegumes: 'Verduras',
+      btnFruits: 'Frutas',
+      btnExotic: 'Exóticas',
+      btnPDT: 'Patatas y condimentos',
+      searchPlaceholder: "Buscar en el catálogo...",
     },
     IT: {
+      //NAV
       navHistory: "La nostra storia",
       navExport: "Esportazione",
       navContactExport: "Modulo di contatto",
@@ -229,11 +240,18 @@ document.addEventListener("DOMContentLoaded", () => {
       navFruits: "Frutta",
       navExotic: "Esotici",
       navContact: "Contatto",
+      //INDEX
       titre: "Cruchaudet",
       phrase1: "Frutta e verdura fresca, ogni giorno.",
       phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
+      titrepageHistoire: "La storia",
+      titreBio1: 'Inizio',
+      titreBio2: 'Evoluzione',
+      titreBio3: 'Adesso',
+      //FOOTER
       contact: "Contatto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
+      //EXPORT
       TitreExport: "Esportazione",
       contactFormTitle: "Contatto Export",
       nom: "Cognome *",
@@ -250,17 +268,21 @@ document.addEventListener("DOMContentLoaded", () => {
         noTags: "I tag HTML non sono consentiti.",
         errorSend: "Si è verificato un errore durante l'invio del messaggio.",
         success: "Il tuo messaggio è stato inviato con successo ✅"
-      }
-    }
+      },
+      //CATALOGUE
+      btnLegumes: 'Verdure',
+      btnFruits: 'Frutta',
+      btnExotic: 'Esotici',
+      btnPDT: 'Patate & condimenti',
+      searchPlaceholder: "Cerca nel catalogo...",
+    },
   };
 
-  let currentLang = localStorage.getItem("lang") || "FR"; // récupérer la langue depuis localStorage ou FR par défaut
 
-  // ==================== CHANGEMENT DE LANGUE ====================
+  let currentLang = localStorage.getItem("lang") || "FR";
+
   function setLanguage(lang) {
     currentLang = lang;
-
-    // Stocker la langue sélectionnée dans localStorage
     localStorage.setItem("lang", lang);
 
     for (const [id, text] of Object.entries(translations[lang])) {
@@ -271,6 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setFormLanguage(lang);
 
+    // --- Traduction du placeholder de la barre de recherche ---
+    const searchInput = document.getElementById("searchCatalog");
+    if (searchInput) searchInput.placeholder = translations[lang].searchPlaceholder;
+
     document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
     const currentBtn = document.getElementById(`lang${lang}`);
     if (currentBtn) currentBtn.style.display = "none";
@@ -278,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateVisibleMessages();
   }
 
-  // ==================== Formulaire ====================
   function setFormLanguage(lang) {
     const t = translations[lang];
     const form = document.getElementById("contactForm");
@@ -293,136 +318,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("submitBtn").innerText = t.submitBtn;
   }
 
-  // ==================== Boutons langue ====================
   document.querySelectorAll(".btnLang").forEach(btn => {
     btn.addEventListener("click", () => {
       const lang = btn.id.replace("lang", "");
       setLanguage(lang);
     });
   });
-
-  // ==================== Au chargement de la page ====================
-  document.addEventListener("DOMContentLoaded", () => {
-    setLanguage(currentLang); // appliquer la langue sauvegardée
-  });
-
-
-  // ==================== FORMULAIRE ====================
-  const contactForm = document.getElementById("contactForm");
-  const formMsg = document.getElementById("formMsg");
-
-  if (contactForm) {
-    const fields = {
-      nom: document.getElementById("nom"),
-      prenom: document.getElementById("prenom"),
-      email: document.getElementById("email"),
-      telephone: document.getElementById("telephone"),
-      objet: document.getElementById("objet"),
-      message: document.getElementById("message")
-    };
-
-    function setFieldError(field, key = "") {
-      let errorEl = field.parentElement.querySelector(".error-msg");
-      if (!errorEl) {
-        errorEl = document.createElement("div");
-        errorEl.classList.add("error-msg");
-        field.parentElement.appendChild(errorEl);
-      }
-      if (key) {
-        const t = translations[currentLang].formErrors;
-        errorEl.setAttribute("data-key", key);
-        errorEl.textContent = t[key] || "";
-      } else {
-        errorEl.textContent = "";
-        errorEl.removeAttribute("data-key");
-      }
-    }
-
-    const autoResize = el => {
-      el.style.height = "auto";
-      el.style.height = el.scrollHeight + "px";
-    };
-    fields.message.addEventListener("input", () => autoResize(fields.message));
-
-    contactForm.addEventListener("submit", async e => {
-      e.preventDefault();
-      Object.values(fields).forEach(f => {
-        f.classList.remove("error");
-        setFieldError(f, "");
-      });
-      formMsg.textContent = "";
-      formMsg.className = "";
-
-      const t = translations[currentLang].formErrors;
-      let hasError = false;
-
-      for (const [key, field] of Object.entries(fields)) {
-        if (!field.value.trim()) {
-          field.classList.add("error");
-          setFieldError(field, "allFields");
-          hasError = true;
-        }
-      }
-      if (hasError) return showFormMessage("allFields", "error");
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(fields.email.value.trim())) {
-        fields.email.classList.add("error");
-        return showFormMessage("email", "error");
-      }
-
-      const phoneRegex = /^(\+?\d{1,3}[-.\s]?)?\d{9,13}$/;
-      if (!phoneRegex.test(fields.telephone.value.trim())) {
-        fields.telephone.classList.add("error");
-        return showFormMessage("phone", "error");
-      }
-
-      const noTagsRegex = /<[^>]*>/;
-      for (const field of Object.values(fields)) {
-        if (noTagsRegex.test(field.value)) {
-          field.classList.add("error");
-          hasError = true;
-        }
-      }
-      if (hasError) return showFormMessage("noTags", "error");
-
-      try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        contactForm.reset();
-        autoResize(fields.message);
-        showFormMessage("success", "success");
-      } catch {
-        showFormMessage("errorSend", "error");
-      }
-    });
-
-    Object.values(fields).forEach(f =>
-      f.addEventListener("input", () => {
-        f.classList.remove("error");
-        setFieldError(f, "");
-      })
-    );
-  }
-
-  // ==================== MESSAGES GLOBAUX ====================
-  function showFormMessage(key, type) {
-    const t = translations[currentLang].formErrors;
-    formMsg.textContent = t[key] || "Message inconnu";
-    formMsg.setAttribute("data-key", key);
-    formMsg.className = type + " show";
-    setTimeout(() => formMsg.classList.remove("show"), 5000);
-  }
-
-  // ==================== TRADUCTION DES MESSAGES VISIBLES ====================
-  function updateVisibleMessages() {
-    const t = translations[currentLang].formErrors;
-    document.querySelectorAll(".error-msg[data-key]").forEach(el => {
-      const key = el.getAttribute("data-key");
-      el.textContent = t[key] || "";
-    });
-    const key = formMsg.getAttribute("data-key");
-    if (key) formMsg.textContent = t[key] || "";
-  }
 
   // ==================== FILTRE CATALOGUE ====================
   const filterButtons = document.querySelectorAll('.filter-btn');
@@ -434,6 +335,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ==================== INITIALISATION ====================
   setLanguage(currentLang);
 });

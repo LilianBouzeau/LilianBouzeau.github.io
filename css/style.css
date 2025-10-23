@@ -1,3 +1,6 @@
+/* ================================
+   RESET ET VARIABLES GLOBALES
+=================================*/
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +19,9 @@
   --font: "Poppins", sans-serif;
 }
 
+/* ================================
+   STYLE GLOBAL DU SITE
+=================================*/
 body {
   font-family: var(--font);
   background-color: var(--beige);
@@ -24,7 +30,9 @@ body {
   overflow-x: hidden;
 }
 
-/*ANIMATION AU SCROLL*/
+/* ================================
+   ANIMATIONS AU SCROLL
+=================================*/
 .scroll-animateG,
 .scroll-animateD,
 .scroll-animate {
@@ -45,12 +53,15 @@ body {
   transform: translateY(40px);
 }
 
-/* Apparition */
+/* Apparition au scroll */
 .scroll-visible {
   opacity: 1;
   transform: translate(0, 0);
 }
 
+/* ================================
+   TITRES ET LIENS
+=================================*/
 h1,
 h2,
 h3 {
@@ -67,7 +78,9 @@ a:hover {
   color: var(--vert);
 }
 
-/*HEADER*/
+/* ================================
+   SECTION HERO / HEADER VIDEO
+=================================*/
 .hero {
   position: relative;
   width: 100%;
@@ -119,7 +132,9 @@ a:hover {
   font-weight: 600;
 }
 
-/*Nav*/
+/* ================================
+   NAVIGATION PRINCIPALE
+=================================*/
 nav {
   position: sticky;
   top: 0;
@@ -140,6 +155,7 @@ nav {
   align-items: center;
 }
 
+/* Logo */
 .nav-logo img {
   transform: scale(1.3);
   height: 75px;
@@ -150,6 +166,7 @@ nav {
   transform: scale(1.5);
 }
 
+/* Menu principal */
 nav ul {
   width: 80%;
   display: flex;
@@ -170,6 +187,7 @@ nav ul li a.active {
   color: var(--vert);
 }
 
+/* Sous-menu */
 .sous {
   display: none;
   position: absolute;
@@ -190,6 +208,7 @@ nav ul li a.active {
   animation: fadeIn 0.25s ease-in-out forwards;
 }
 
+/* Animation du sous-menu */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -217,7 +236,9 @@ nav ul li a.active {
   transform: translateY(-5px);
 }
 
-/*page*/
+/* ================================
+   SECTIONS DE PAGE (Présentation, Export, Contact)
+=================================*/
 #presentation,
 #Export,
 #contactExport {
@@ -272,7 +293,9 @@ nav ul li a.active {
   text-align: center;
 }
 
-/*Formulaire Export*/
+/* ================================
+   FORMULAIRE EXPORT / CONTACT
+=================================*/
 .contact-wrapper {
   width: 77vw;
   margin: auto;
@@ -289,23 +312,22 @@ nav ul li a.active {
   margin-bottom: 1rem;
 }
 
-/* Organisation des rangées */
+/* Organisation des champs */
 .form-row {
   display: flex;
   gap: 1rem;
   width: 100%;
 }
 
-/* Deux champs côte à côte */
 .form-group.half {
   flex: 1;
 }
 
-/* Espacement entre les champs */
 .form-group {
   margin-bottom: 1rem;
 }
 
+/* Champs de saisie */
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -317,14 +339,13 @@ nav ul li a.active {
   transition: var(--transition);
 }
 
-/* Effet focus */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--accent);
   outline: none;
 }
 
-/* Contour rouge pour les champs invalides */
+/* Champs invalides */
 input.error,
 textarea.error {
   border: 1px solid red;
@@ -333,14 +354,11 @@ textarea.error {
 
 textarea {
   min-height: 80px;
-  /* taille de base */
   overflow: hidden;
-  /* pour l'auto-resize */
   resize: none;
-  /* désactiver le resize manuel */
 }
 
-/* Bouton */
+/* Bouton d’envoi */
 #submitBtn {
   background-color: var(--vert);
   color: var(--blanc);
@@ -358,17 +376,12 @@ textarea {
   transform: translateY(-2px);
 }
 
-
+/* Messages d’erreur et de succès */
 .error-msg {
   display: block;
   color: #c62828;
   font-size: 0.9rem;
   margin-top: 4px;
-}
-
-input.error,
-textarea.error {
-  border-color: #c62828;
 }
 
 #formMsg {
@@ -392,48 +405,9 @@ textarea.error {
   color: #c62828;
 }
 
-
-
-/* --- Bouton --- */
-#submitBtn {
-  width: 100%;
-  background-color: var(--vert);
-  color: var(--blanc);
-  border: none;
-  padding: 0.9rem;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-#submitBtn:hover {
-  background-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* --- Messages --- */
-#formMsg {
-  text-align: center;
-  margin-top: 1rem;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-#formMsg.hidden {
-  display: none;
-}
-
-#formMsg.success {
-  color: var(--vert);
-}
-
-#formMsg.error {
-  color: red;
-}
-
-/*barre de recherche*/
+/* ================================
+   BARRE DE RECHERCHE ET FILTRES
+=================================*/
 .search-wrapper {
   width: 80%;
   max-width: 800px;
@@ -487,7 +461,7 @@ textarea.error {
   background-color: var(--accent);
 }
 
-/*Boutons de filtre*/
+/* Boutons de filtre */
 .filter-buttons {
   display: flex;
   justify-content: center;
@@ -513,11 +487,9 @@ textarea.error {
   transform: scale(1.07);
 }
 
-.filter-btn:not(:hover):not(.active) {
-  transform: scale(1);
-}
-
-/*footer*/
+/* ================================
+   FOOTER ET CONTACT
+=================================*/
 .reseauxSociaux {
   margin-top: 1rem;
   display: flex;
@@ -550,7 +522,7 @@ textarea.error {
 
 .reseauxSociaux a:hover {
   background-color: var(--accent);
-  transform: translateY(-3px)
+  transform: translateY(-3px);
 }
 
 h1#contact {
@@ -592,6 +564,7 @@ h1#contact {
   gap: 1rem;
 }
 
+/* Lignes de contact */
 .ligneContact {
   display: flex;
   align-items: center;
@@ -632,6 +605,7 @@ h1#contact {
   transition: var(--transition);
 }
 
+/* Pied de page */
 footer {
   background-color: var(--vert);
   color: var(--blanc);
@@ -641,7 +615,7 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Style pour la carte Google Maps */
+/* Carte Google Maps */
 iframe {
   border: none;
   border-radius: 15px;
@@ -653,7 +627,9 @@ footer iframe {
   border-radius: 15px;
 }
 
-/*btn top*/
+/* ================================
+   BOUTON RETOUR EN HAUT
+=================================*/
 #btnTop {
   position: fixed;
   bottom: 25px;
@@ -685,8 +661,9 @@ footer iframe {
   visibility: visible;
 }
 
-/* Boutons de langue */
-/* Conteneur des boutons langues */
+/* ================================
+   BOUTONS DE LANGUE
+=================================*/
 #langButtons {
   position: fixed;
   bottom: 25px;
@@ -698,7 +675,6 @@ footer iframe {
   transform: none;
 }
 
-/* Boutons */
 .btnLang {
   width: 45px;
   height: 45px;
@@ -717,7 +693,6 @@ footer iframe {
 
 .btnLang:not(:last-child) {
   margin-bottom: 5px;
-  /* petit espace optionnel (mets 0 si tu veux vraiment collé) */
 }
 
 .btnLang:hover {
@@ -732,10 +707,12 @@ footer iframe {
   display: block;
 }
 
+/* ================================
+   MEDIA QUERIES (Responsive)
+=================================*/
 
+/* Tablettes */
 @media (max-width: 1024px) {
-
-  /*HEADER*/
   .hero-overlay h1 {
     font-size: 4.5rem;
   }
@@ -749,7 +726,7 @@ footer iframe {
   }
 }
 
-/*nav*/
+/* Smartphones */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -781,263 +758,64 @@ footer iframe {
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* Adaptations mobiles */
 @media (max-width: 768px) {
-
-  /*FORMULAIRE CONTACT EXPORT*/
-  .form-row {
-    flex-direction: column;
-  }
-
-  /*barre de recherche*/
-  .search-wrapper {
-    width: 95%;
-  }
-
-  .filter-buttons {
-    margin: auto;
+  .nav-container {
     flex-wrap: wrap;
-    gap: 0.5rem;
-    width: 95%;
-  }
-
-  .filter-btn {
-    flex: 1;
-    text-align: center;
-  }
-
-  .search-container {
-    width: 95%;
-    margin: auto;
-  }
-
-  #searchCatalog {
-    font-size: 0.95rem;
-    padding: 0.5rem 0.8rem;
-  }
-
-  #searchBtn {
-    padding: 0 0.8rem;
-  }
-
-  /*nav*/
-  .hamburger {
-    display: flex;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   nav ul {
     position: absolute;
-    top: 100%;
+    top: 70px;
     left: 0;
     width: 100%;
-    display: none;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(6px);
+    display: none;
+    text-align: center;
     padding: 1rem 0;
-    /* padding vertical du menu principal */
-    z-index: 50;
   }
 
   nav ul.active {
     display: flex;
   }
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   nav ul li {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  nav ul li a {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
-
-  .sous {
-    position: relative !important;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.32s ease, opacity 0.24s ease;
-    text-align: center;
-    transform: translateY(-5px);
-  }
-
-
-  .deroulant>a {
-    position: relative;
-  }
-
-  nav ul li,
-  nav ul li .sous li {
-    height: 60px;
-    line-height: 60px;
-    padding: 0;
-    /* supprime le padding */
-    margin: 0;
-    /* supprime tout margin */
-    box-sizing: border-box;
-    text-align: center;
-  }
-
-  /* Liens à l'intérieur */
-  nav ul li a,
-  nav ul li .sous li a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    line-height: 60px;
-    padding: 0 1rem;
-    /* padding horizontal uniquement */
-    margin: 0;
-    /* supprime margin */
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  /* Sous-menu */
-  .sous {
-    position: relative !important;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.32s ease, opacity 0.24s ease, transform 0.3s ease;
-    text-align: center;
-    transform: translateY(0);
-    /* plus de décalage vertical */
-  }
-
-  .sous.active {
-    max-height: 600px;
-    opacity: 1;
-    display: block;
-  }
-
-  /* Liens sous-menu */
-  .sous li a {
-    display: block;
-    width: 100%;
-    padding: 0 1rem;
-    /* uniquement horizontal */
-    line-height: 60px;
-    /* même hauteur que li parent */
-    background-color: var(--beige);
-  }
-
-  .sous li a:hover {
-    background-color: var(--vert);
-    color: var(--blanc);
-    box-shadow: none;
-  }
-
-  /*HEADER*/
-  .hero-overlay h1 {
-    font-size: 3.2rem;
-  }
-
-  .hero-overlay p {
     font-size: 1.4rem;
+    padding: 0.6rem 0;
   }
 
-  /*page*/
-  #presentation,
-  #Export,
-  #contactExport {
-    width: 90vw;
-    padding: 2rem 1rem;
+  .hamburger {
+    display: flex;
   }
 
   .alignement {
     flex-direction: column;
-    text-align: center;
   }
 
   .imgEntreprise {
     max-width: 90%;
   }
 
-  .TitreBio,
-  .paragrapheBio {
-    font-size: 1rem;
-  }
-
-  .nom {
-    font-size: 2rem;
-  }
-
-  /*footer*/
-  .groupeContact {
+  .form-row {
     flex-direction: column;
-    padding: 1rem;
   }
 
-  .groupeContact div {
-    width: 100%;
-    max-width: 350px;
+  .search-wrapper {
+    width: 95%;
   }
 
-  .contactCase {
-    height: 220px;
-  }
-
-  h1#contact {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-
-  /*HEADER*/
   .hero-overlay h1 {
-    font-size: 2.2rem;
+    font-size: 3rem;
   }
 
   .hero-overlay p {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
-  nav ul li {
-    font-size: 1.1rem;
-  }
-
-  /*page*/
-  .TitreBio,
-  .paragrapheBio {
-    font-size: 0.95rem;
-  }
-
-  .imgEntreprise {
-    max-width: 100%;
-  }
-
-  /*footer*/
-  footer {
-    font-size: 0.8rem;
-  }
-
-  .ligneContact {
-    width: 90%;
-  }
-
-  .paraContact {
-    font-size: 1rem;
+  #btnTop,
+  #langButtons {
+    bottom: 15px;
   }
 }
