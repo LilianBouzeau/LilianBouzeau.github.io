@@ -162,12 +162,12 @@ nav {
 
 /* Logo */
 .nav-logo img {
-  height: 100px;
+  height: 75px;
 }
 
 .nav-logo img:hover {
   transition: 0.3s;
-  transform: scale(1.3);
+  transform: scale(1.5);
 }
 
 /* Menu principal centré */
@@ -812,7 +812,7 @@ footer iframe {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 1000;
+  z-index: 900;
   transform: none;
 }
 
