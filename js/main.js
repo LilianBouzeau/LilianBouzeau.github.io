@@ -1,27 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==================== MENU HAMBURGER ====================
+// ==================== MENU HAMBURGER ====================
 const hamburger = document.getElementById("hamburger");
 const navMenu = document.getElementById("nav-menu");
 
 if (hamburger && navMenu) {
-  // Ouvrir/fermer menu
+  // Ouvrir / fermer menu principal (mobile)
   hamburger.addEventListener("click", e => {
     e.stopPropagation();
     hamburger.classList.toggle("active");
     navMenu.classList.toggle("active");
+
     if (!navMenu.classList.contains("active")) {
-      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+      closeAllSousMenus();
     }
   });
 
   // Fermer menu si clic en dehors
   document.addEventListener("click", e => {
     if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-      closeResponsiveMenus();
+      closeAllSousMenus();
     }
   });
 
-  // Gestion des sous-menus (desktop + mobile)
+  // Gestion des sous-menus au clic (desktop + mobile)
   const deroulants = document.querySelectorAll("#nav-menu .deroulant > a");
 
   deroulants.forEach(link => {
@@ -30,51 +31,41 @@ if (hamburger && navMenu) {
       const sous = li.querySelector(".sous");
       if (!sous) return;
 
-      e.preventDefault(); // empêche le lien parent de naviguer
+      e.preventDefault(); // empêche la navigation immédiate
 
-      // Fermer tous les autres sous-menus
+      // Fermer les autres sous-menus
       document.querySelectorAll("#nav-menu .sous.active").forEach(other => {
         if (other !== sous) other.classList.remove("active");
       });
 
-      // Toggle sous-menu actuel
+      // Toggle du sous-menu actuel
       sous.classList.toggle("active");
     });
   });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) closeResponsiveMenus();
-  });
-
-  function closeResponsiveMenus() {
+  // Fonction pour fermer tous les sous-menus
+  function closeAllSousMenus() {
     hamburger.classList.remove("active");
     navMenu.classList.remove("active");
     document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
   }
 
-  // === Page active ===
+  // Gestion des liens actifs
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
-  document.querySelectorAll("#nav-menu .sous").forEach(s => s.classList.remove("active"));
 
   document.querySelectorAll("#nav-menu a").forEach(link => {
     const href = link.getAttribute("href");
     if (href.startsWith("#") && currentPath === "index.html") {
       link.classList.add("active");
-      const parentSous = link.closest(".sous");
-      if (parentSous) parentSous.classList.add("active");
     } else {
       const linkFile = href.split("/").pop().split("#")[0];
-      if (linkFile === currentPath) {
-        link.classList.add("active");
-        const parentSous = link.closest(".sous");
-        if (parentSous) parentSous.classList.add("active");
-        const parentDeroulant = link.closest(".deroulant");
-        if (parentDeroulant) parentDeroulant.classList.add("active");
-      }
+      if (linkFile === currentPath) link.classList.add("active");
     }
   });
 }
+
+
 
   // ==================== ANIMATIONS AU SCROLL ====================
   const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
