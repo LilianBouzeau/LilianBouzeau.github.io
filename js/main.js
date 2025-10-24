@@ -1,124 +1,144 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==================== MENU HAMBURGER ====================
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
+  const loader = document.getElementById("loader");
+  const mainContent = document.getElementById("mainContent");
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", e => {
-      e.stopPropagation();
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-      if (!navMenu.classList.contains("active")) closeAllSousMenus();
-    });
+  // Masquer le contenu principal
+  if (mainContent) mainContent.style.display = "none";
 
-    document.addEventListener("click", e => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeAllSousMenus();
-    });
-  }
+  // Noter le temps de départ pour le loader
+  const startTime = Date.now();
 
-  // ==================== INITIALISATION DES ICÔNES ====================
-  document.querySelectorAll("#nav-menu .deroulant > a").forEach(link => {
-    if (!link.querySelector("i.caret")) {
-      const icon = document.createElement("i");
-      icon.classList.add("bi", "bi-caret-down-fill", "caret");
-      link.appendChild(icon);
-    }
+  window.addEventListener("load", () => {
+    const elapsed = Date.now() - startTime;
+    const minDelay = 500; // 0,5 seconde minimum
+    const remaining = Math.max(minDelay - elapsed, 0);
+
+    setTimeout(() => {
+      if (loader) loader.style.display = "none";
+      if (mainContent) mainContent.style.display = "block";
+
+      // Appel de la fonction principale après le chargement
+      initMenusEtTraductions();
+    }, remaining);
   });
 
-  // ==================== GESTION DES SOUS-MENUS ====================
-  const deroulants = document.querySelectorAll("#nav-menu .deroulant");
+  // ==================== FONCTION PRINCIPALE ====================
+  function initMenusEtTraductions() {
+    // ==================== MENU HAMBURGER ====================
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("nav-menu");
 
-  deroulants.forEach(li => {
-    const link = li.querySelector(":scope > a");
-    if (!link) return;
-
-    const icon = link.querySelector("i.caret");
-    const sous = li.querySelector(".sous");
-
-    link.addEventListener("click", e => {
-      if (!sous) return;
-      e.preventDefault();
-
-      // Fermer tous les autres sous-menus
-      deroulants.forEach(otherLi => {
-        if (otherLi !== li) {
-          const otherSous = otherLi.querySelector(".sous");
-          const otherIcon = otherLi.querySelector("i.caret");
-          otherLi.classList.remove("open");
-          if (otherSous) otherSous.classList.remove("active");
-          if (otherIcon) {
-            otherIcon.classList.remove("bi-caret-up-fill");
-            otherIcon.classList.add("bi-caret-down-fill");
-          }
-        }
+    if (hamburger && navMenu) {
+      hamburger.addEventListener("click", e => {
+        e.stopPropagation();
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        if (!navMenu.classList.contains("active")) closeAllSousMenus();
       });
 
-      // Toggle du sous-menu actuel
-      sous.classList.toggle("active");
-      li.classList.toggle("open");
+      document.addEventListener("click", e => {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeAllSousMenus();
+      });
+    }
 
-      // Mettre à jour l'icône
-      if (sous.classList.contains("active")) {
-        icon.classList.remove("bi-caret-down-fill");
-        icon.classList.add("bi-caret-up-fill");
-      } else {
+    // ==================== INITIALISATION DES ICÔNES ====================
+    document.querySelectorAll("#nav-menu .deroulant > a").forEach(link => {
+      if (!link.querySelector("i.caret")) {
+        const icon = document.createElement("i");
+        icon.classList.add("bi", "bi-caret-down-fill", "caret");
+        link.appendChild(icon);
+      }
+    });
+
+    // ==================== GESTION DES SOUS-MENUS ====================
+    const deroulants = document.querySelectorAll("#nav-menu .deroulant");
+
+    deroulants.forEach(li => {
+      const link = li.querySelector(":scope > a");
+      if (!link) return;
+
+      const icon = link.querySelector("i.caret");
+      const sous = li.querySelector(".sous");
+
+      link.addEventListener("click", e => {
+        if (!sous) return;
+        e.preventDefault();
+
+        deroulants.forEach(otherLi => {
+          if (otherLi !== li) {
+            const otherSous = otherLi.querySelector(".sous");
+            const otherIcon = otherLi.querySelector("i.caret");
+            otherLi.classList.remove("open");
+            if (otherSous) otherSous.classList.remove("active");
+            if (otherIcon) {
+              otherIcon.classList.remove("bi-caret-up-fill");
+              otherIcon.classList.add("bi-caret-down-fill");
+            }
+          }
+        });
+
+        sous.classList.toggle("active");
+        li.classList.toggle("open");
+
+        if (sous.classList.contains("active")) {
+          icon.classList.remove("bi-caret-down-fill");
+          icon.classList.add("bi-caret-up-fill");
+        } else {
+          icon.classList.remove("bi-caret-up-fill");
+          icon.classList.add("bi-caret-down-fill");
+        }
+      });
+    });
+
+    // ==================== FONCTION FERMETURE ====================
+    function closeAllSousMenus() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+      document.querySelectorAll("#nav-menu .deroulant").forEach(li => li.classList.remove("open"));
+      document.querySelectorAll("#nav-menu .deroulant i.caret").forEach(icon => {
         icon.classList.remove("bi-caret-up-fill");
         icon.classList.add("bi-caret-down-fill");
-      }
-    });
-  });
-
-  // ==================== FONCTION FERMETURE ====================
-  function closeAllSousMenus() {
-    hamburger.classList.remove("active");
-    navMenu.classList.remove("active");
-
-    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-    document.querySelectorAll("#nav-menu .deroulant").forEach(li => li.classList.remove("open"));
-    document.querySelectorAll("#nav-menu .deroulant i.caret").forEach(icon => {
-      icon.classList.remove("bi-caret-up-fill");
-      icon.classList.add("bi-caret-down-fill");
-    });
-  }
-
-  // ==================== GESTION DES LIENS ACTIFS ====================
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
-
-  document.querySelectorAll("#nav-menu a").forEach(link => {
-    const href = link.getAttribute("href");
-    if (!href) return;
-    if (href.startsWith("#") && currentPath === "index.html") {
-      link.classList.add("active");
-    } else {
-      const linkFile = href.split("/").pop().split("#")[0];
-      if (linkFile === currentPath) link.classList.add("active");
+      });
     }
-  });
 
-  // ==================== ANIMATIONS AU SCROLL ====================
-  const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('scroll-visible');
-        observer.unobserve(entry.target);
+    // ==================== GESTION DES LIENS ACTIFS ====================
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
+
+    document.querySelectorAll("#nav-menu a").forEach(link => {
+      const href = link.getAttribute("href");
+      if (!href) return;
+      if (href.startsWith("#") && currentPath === "index.html") link.classList.add("active");
+      else {
+        const linkFile = href.split("/").pop().split("#")[0];
+        if (linkFile === currentPath) link.classList.add("active");
       }
     });
-  }, { threshold: 0.2 });
-  scrollElements.forEach(el => observer.observe(el));
 
-  // ==================== BOUTON RETOUR EN HAUT ====================
-  const btnTop = document.getElementById("btnTop");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) btnTop.classList.add("show");
-    else btnTop.classList.remove("show");
-  });
-  btnTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    // ==================== ANIMATIONS AU SCROLL ====================
+    const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('scroll-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    scrollElements.forEach(el => observer.observe(el));
 
-  // ==================== TRADUCTIONS MULTILINGUES ====================
+    // ==================== BOUTON RETOUR EN HAUT ====================
+    const btnTop = document.getElementById("btnTop");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) btnTop.classList.add("show");
+      else btnTop.classList.remove("show");
+    });
+    btnTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // ==================== TRADUCTIONS MULTILINGUES ====================
   const translations = {
     FR: {
       TitrePage1:"Cruchaudet | L'histoire",
@@ -346,72 +366,70 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  let currentLang = localStorage.getItem("lang") || "FR";
+    let currentLang = localStorage.getItem("lang") || "FR";
 
-  function setLanguage(lang) {
-    currentLang = lang;
-    localStorage.setItem("lang", lang);
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
 
-    for (const [id, text] of Object.entries(translations[lang])) {
-      if (id === "formErrors") continue;
-      const el = document.getElementById(id);
-      if (!el) continue;
+      for (const [id, text] of Object.entries(translations[lang])) {
+        if (id === "formErrors") continue;
+        const el = document.getElementById(id);
+        if (!el) continue;
 
-      // Ignorer les champs input et textarea
-      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
 
-      // Cas des liens avec icône caret
-      if (el.tagName === "A" && el.querySelector("i.caret")) {
-        const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-        if (textNode) textNode.nodeValue = text;
-      } else {
-        el.innerHTML = text;
+        if (el.tagName === "A" && el.querySelector("i.caret")) {
+          const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+          if (textNode) textNode.nodeValue = text;
+        } else {
+          el.innerHTML = text;
+        }
       }
+
+      setFormLanguage(lang);
+
+      const searchInput = document.getElementById("searchCatalog");
+      if (searchInput) searchInput.placeholder = translations[lang].searchPlaceholder;
+
+      document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
+      const currentBtn = document.getElementById(`lang${lang}`);
+      if (currentBtn) currentBtn.style.display = "none";
+
+      if (typeof updateVisibleMessages === "function") updateVisibleMessages();
     }
 
-    setFormLanguage(lang);
+    function setFormLanguage(lang) {
+      const t = translations[lang];
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+      document.getElementById("contactFormTitle").innerText = t.contactFormTitle;
+      document.getElementById("nom").placeholder = t.nom;
+      document.getElementById("prenom").placeholder = t.prenom;
+      document.getElementById("email").placeholder = t.email;
+      document.getElementById("telephone").placeholder = t.telephone;
+      document.getElementById("objet").placeholder = t.objet;
+      document.getElementById("message").placeholder = t.message;
+      document.getElementById("submitBtn").innerText = t.submitBtn;
+    }
 
-    const searchInput = document.getElementById("searchCatalog");
-    if (searchInput) searchInput.placeholder = translations[lang].searchPlaceholder;
-
-    document.querySelectorAll(".btnLang").forEach(btn => btn.style.display = "flex");
-    const currentBtn = document.getElementById(`lang${lang}`);
-    if (currentBtn) currentBtn.style.display = "none";
-
-    if (typeof updateVisibleMessages === "function") updateVisibleMessages();
-  }
-  // ==================== FORMULAIRE ====================
-
-  function setFormLanguage(lang) {
-    const t = translations[lang];
-    const form = document.getElementById("contactForm");
-    if (!form) return;
-    document.getElementById("contactFormTitle").innerText = t.contactFormTitle;
-    document.getElementById("nom").placeholder = t.nom;
-    document.getElementById("prenom").placeholder = t.prenom;
-    document.getElementById("email").placeholder = t.email;
-    document.getElementById("telephone").placeholder = t.telephone;
-    document.getElementById("objet").placeholder = t.objet;
-    document.getElementById("message").placeholder = t.message;
-    document.getElementById("submitBtn").innerText = t.submitBtn;
-  }
-
-  document.querySelectorAll(".btnLang").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const lang = btn.id.replace("lang", "");
-      setLanguage(lang);
+    document.querySelectorAll(".btnLang").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.id.replace("lang", "");
+        setLanguage(lang);
+      });
     });
-  });
 
-  // ==================== FILTRE CATALOGUE ====================
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      console.log("Filtre appliqué:", btn.dataset.type);
+    // ==================== FILTRE CATALOGUE ====================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        console.log("Filtre appliqué:", btn.dataset.type);
+      });
     });
-  });
 
-  setLanguage(currentLang);
+    setLanguage(currentLang);
+  }
 });
