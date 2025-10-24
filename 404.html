@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Cruchaudet" content="" />
+    <!-- Description -->
+    <meta name="Description" content="" Description="" />
+     <!-- ==================== FAVICON ==================== -->
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <!-- Icons Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="/css/style.css">
+    <title id="TitrePage404">Cruchaudet | Page 404</title>
+</head>
+
+<body>
+    <!-- ==================== LOADER ==================== -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
+<div id="mainContent" style="display:none;">
+    <!-- ==================== BOUTON RETOUR EN HAUT ==================== -->
+    <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
+
+    <!-- ==================== BOUTONS DE LANGUE ==================== -->
+    <div id="langButtons">
+        <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
+            <img src="../img/flag-anglais.png" alt="EN">
+        </button>
+        <button class="btnLang scroll-animateG" id="langFR" title="Français">
+            <img src="../img/flag-francais.png" alt="FR">
+        </button>
+        <button class="btnLang scroll-animateG" id="langES" title="Espagnol">
+            <img src="../img/flag-espagnol.png" alt="ES">
+        </button>
+        <button class="btnLang scroll-animateG" id="langIT" title="Italien">
+            <img src="../img/flag-italien.png" alt="IT">
+        </button>
+    </div>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html"><img src="../img/logo.png" alt="Logo" /></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        <ul id="nav-menu">
+            <li>
+                <a id="navHistory" href="../index.html#quiSommeNous">L'histoire</a>
+            </li>
+            <!-- Sous-menu Rayon -->
+            <li class="deroulant">
+                <a id="navRayon" href="/page/Rayon.html">Les rayons</a>
+                <ul class="sous">
+                    <li><a id="navRayonLegumes" href="/page/Rayon.html#RayonL">Légumes</a></li>
+                    <li><a id="navRayonFruits" href="/page/Rayon.html#RayonF">Fruits</a></li>
+                    <li><a id="navRayonExotic" href="/page/Rayon.html#RayonE">Exotic</a></li>
+                    <li><a id="navRayonPDT" href="/page/Rayon.html#RayonPDT">Pomme de terre & condiments</a></li>
+                </ul>
+            </li>
+                <!-- Sous-menu Export -->
+                <li class="deroulant">
+                    <a id="navExport" href="/page/export.html">Les Rayons</a>
+                    <ul class="sous">
+                        <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
+                    </ul>
+                </li>
+                <!-- Sous-menu Catalogue -->
+                <li class="deroulant">
+                    <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
+                    <ul class="sous">
+                    <li><a id="navLegumes" href="/page/catalogue.html#catalogueL">Légumes</a></li>
+                    <li><a id="navFruits" href="/page/catalogue.html#catalogueF">Fruits</a></li>
+                    <li><a id="navExotic" href="/page/catalogue.html#catalogueE">Exotic</a></li>
+                    <li><a id="navPDT" href="/page/catalogue.html#cataloguePDT">Pomme de terre & condiments</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a id="navContact" href="#contact">Contact</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    <div class="error-container">
+        <h1>404</h1>
+        <p id="text404">Oups ! La page que vous recherchez n'existe pas.</p>
+        <a id="btn404" href="../index.html" class="btn-home scroll-animate">Retour à l'accueil</a>
+    </div>
+
+</body>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <h1 id="contact">Contact</h1>
+    <div class="groupeContact">
+        <!-- Contact direct (téléphone / email) -->
+        <div class="contactCase">
+            <div class="ligneContact scroll-animateG">
+                <i class="bi bi-telephone icone"></i>
+                <a href="tel:0145122472" class="paraContact">01 45 12 24 72</a>
+            </div>
+            <div class="ligneContact scroll-animateG">
+                <i class="bi bi-envelope icone"></i>
+                <a href="mailto:contact@Cruchaudet.com" class="paraContact">contact@Cruchaudet.com</a>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="reseauxSociaux scroll-animate">
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-facebook icone2"></i>
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-instagram icone2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Carte Google Maps -->
+        <div class="contactCase2 scroll-animateD">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2630.017558207428!2d2.3506933000000005!3d48.762460999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e676a4fd71ef69%3A0xc15fd110c2326d78!2sCruchaudet%20Grandjean!5e0!3m2!1sfr!2sfr!4v1760706927926!5m2!1sfr!2sfr"
+                width="100%" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <p id="footerCopy">Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
+
+    <!-- Script principal -->
+    <script type="text/javascript" src="/js/main.js"></script>
+</footer>
+
+</html>
