@@ -4,68 +4,97 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.getElementById("nav-menu");
 
   if (hamburger && navMenu) {
-    // Ouvrir / fermer menu principal (mobile)
     hamburger.addEventListener("click", e => {
       e.stopPropagation();
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-
-      if (!navMenu.classList.contains("active")) {
-        closeAllSousMenus();
-      }
+      if (!navMenu.classList.contains("active")) closeAllSousMenus();
     });
 
-    // Fermer menu si clic en dehors
     document.addEventListener("click", e => {
-      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        closeAllSousMenus();
-      }
-    });
-
-    // Gestion des sous-menus au clic (desktop + mobile)
-    const deroulants = document.querySelectorAll("#nav-menu .deroulant > a");
-
-    deroulants.forEach(link => {
-      link.addEventListener("click", e => {
-        const li = link.parentElement;
-        const sous = li.querySelector(".sous");
-        if (!sous) return;
-
-        e.preventDefault(); // empêche la navigation immédiate
-
-        // Fermer les autres sous-menus
-        document.querySelectorAll("#nav-menu .sous.active").forEach(other => {
-          if (other !== sous) other.classList.remove("active");
-        });
-
-        // Toggle du sous-menu actuel
-        sous.classList.toggle("active");
-      });
-    });
-
-    // Fonction pour fermer tous les sous-menus
-    function closeAllSousMenus() {
-      hamburger.classList.remove("active");
-      navMenu.classList.remove("active");
-      document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
-    }
-
-    // Gestion des liens actifs
-    const currentPath = window.location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
-
-    document.querySelectorAll("#nav-menu a").forEach(link => {
-      const href = link.getAttribute("href");
-      if (href.startsWith("#") && currentPath === "index.html") {
-        link.classList.add("active");
-      } else {
-        const linkFile = href.split("/").pop().split("#")[0];
-        if (linkFile === currentPath) link.classList.add("active");
-      }
+      if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) closeAllSousMenus();
     });
   }
 
+  // ==================== INITIALISATION DES ICÔNES ====================
+  document.querySelectorAll("#nav-menu .deroulant > a").forEach(link => {
+    if (!link.querySelector("i.caret")) {
+      const icon = document.createElement("i");
+      icon.classList.add("bi", "bi-caret-down-fill", "caret");
+      link.appendChild(icon);
+    }
+  });
 
+  // ==================== GESTION DES SOUS-MENUS ====================
+  const deroulants = document.querySelectorAll("#nav-menu .deroulant");
+
+  deroulants.forEach(li => {
+    const link = li.querySelector(":scope > a");
+    if (!link) return;
+
+    const icon = link.querySelector("i.caret");
+    const sous = li.querySelector(".sous");
+
+    link.addEventListener("click", e => {
+      if (!sous) return;
+      e.preventDefault();
+
+      // Fermer tous les autres sous-menus
+      deroulants.forEach(otherLi => {
+        if (otherLi !== li) {
+          const otherSous = otherLi.querySelector(".sous");
+          const otherIcon = otherLi.querySelector("i.caret");
+          otherLi.classList.remove("open");
+          if (otherSous) otherSous.classList.remove("active");
+          if (otherIcon) {
+            otherIcon.classList.remove("bi-caret-up-fill");
+            otherIcon.classList.add("bi-caret-down-fill");
+          }
+        }
+      });
+
+      // Toggle du sous-menu actuel
+      sous.classList.toggle("active");
+      li.classList.toggle("open");
+
+      // Mettre à jour l'icône
+      if (sous.classList.contains("active")) {
+        icon.classList.remove("bi-caret-down-fill");
+        icon.classList.add("bi-caret-up-fill");
+      } else {
+        icon.classList.remove("bi-caret-up-fill");
+        icon.classList.add("bi-caret-down-fill");
+      }
+    });
+  });
+
+  // ==================== FONCTION FERMETURE ====================
+  function closeAllSousMenus() {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+
+    document.querySelectorAll("#nav-menu .sous.active").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll("#nav-menu .deroulant").forEach(li => li.classList.remove("open"));
+    document.querySelectorAll("#nav-menu .deroulant i.caret").forEach(icon => {
+      icon.classList.remove("bi-caret-up-fill");
+      icon.classList.add("bi-caret-down-fill");
+    });
+  }
+
+  // ==================== GESTION DES LIENS ACTIFS ====================
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
+
+  document.querySelectorAll("#nav-menu a").forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+    if (href.startsWith("#") && currentPath === "index.html") {
+      link.classList.add("active");
+    } else {
+      const linkFile = href.split("/").pop().split("#")[0];
+      if (linkFile === currentPath) link.classList.add("active");
+    }
+  });
 
   // ==================== ANIMATIONS AU SCROLL ====================
   const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
@@ -92,9 +121,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================== TRADUCTIONS MULTILINGUES ====================
   const translations = {
     FR: {
+      //TITRE
+      TitrePage1:"Cruchaudet | L'histoire",
+      TitrePage2:"Cruchaudet | Export",
+      TitrePage3:"Cruchaudet | Catalogue",
+      TitrePage404:"Cruchaudet | Page 404",
       //NAV
       navHistory: "L'histoire",
       navExport: "Export",
+      navRayon:"Rayon",
+      navRayonLegumes: "Légumes",
+      navRayonFruits: "Fruits",
+      navRayonExotic: "Exotique",
+      navRayonPDT: "Pomme de terre & condiments",
       navContactExport: "Prise de contact",
       navCatalogue: "Catalogue",
       navLegumes: "Légumes",
@@ -110,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Début',
       titreBio2: 'Evolution',
       titreBio3: 'Maintenant',
+      //
       //FOOTER
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
@@ -139,9 +179,19 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Rechercher dans le catalogue...",
     },
     EN: {
+      //TITRE
+      TitrePage1:"Cruchaudet | The Story",
+      TitrePage2:"Cruchaudet | Export",
+      TitrePage3:"Cruchaudet | Catalog",
+      TitrePage404:"Cruchaudet | Page 404",
       //NAV
       navHistory: "Our Story",
       navExport: "Export",
+      navRayon: "Department",
+      navRayonLegumes: "Vegetables",
+      navRayonFruits: "Fruits",
+      navRayonExotic: "Exotic",
+      navRayonPDT: "Potatoes & condiments",
       navContactExport: "Contact Form",
       navCatalogue: "Catalog",
       navLegumes: "Vegetables",
@@ -157,6 +207,8 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Beginning',
       titreBio2: 'Evolution',
       titreBio3: 'Now',
+      //RAYONS
+
       //FOOTER
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
@@ -186,9 +238,19 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Search in the catalog...",
     },
     ES: {
+      //TITRE
+      TitrePage1:"Cruchaudet | La historia",
+      TitrePage2:"Cruchaudet | Exportación",
+      TitrePage3:"Cruchaudet | Catálogo",
+      TitrePage404:"Cruchaudet | Página 404",
       //NAV
       navHistory: "Nuestra historia",
       navExport: "Exportación",
+      navRayon: "Sección",
+      navRayonLegumes: "Verduras",
+      navRayonFruits: "Frutas",
+      navRayonExotic: "Exótico",
+      navRayonPDT: "Patatas y condimentos",
       navContactExport: "Formulario de contacto",
       navCatalogue: "Catálogo",
       navLegumes: "Verduras",
@@ -233,9 +295,19 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Buscar en el catálogo...",
     },
     IT: {
+      //TITRE
+      TitrePage1:"Cruchaudet | La storia",
+      TitrePage2:"Cruchaudet | Esportazione",
+      TitrePage3:"Cruchaudet | Catalogo",
+      TitrePage404:"Cruchaudet | Pagina 404",
       //NAV
       navHistory: "La nostra storia",
       navExport: "Esportazione",
+      navRayon: "Reparto",
+      navRayonLegumes: "Verdure",
+      navRayonFruits: "Frutta",
+      navRayonExotic: "Esotico",
+      navRayonPDT: "Patate e condimenti",
       navContactExport: "Modulo di contatto",
       navCatalogue: "Catalogo",
       navLegumes: "Verdure",
@@ -281,8 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-
-  let currentLang = localStorage.getItem("lang") || "FR";
+let currentLang = localStorage.getItem("lang") || "FR";
 
   function setLanguage(lang) {
     currentLang = lang;
@@ -291,12 +362,19 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const [id, text] of Object.entries(translations[lang])) {
       if (id === "formErrors") continue;
       const el = document.getElementById(id);
-      if (el) el.innerHTML = text;
+      if (!el) continue;
+
+      // ⚡ Pour liens avec flèche, modifier uniquement le texte sans toucher à l'icône
+      if (el.tagName === "A" && el.querySelector("i.caret")) {
+        const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+        if (textNode) textNode.nodeValue = text;
+      } else {
+        el.innerHTML = text;
+      }
     }
 
     setFormLanguage(lang);
 
-    // --- Traduction du placeholder de la barre de recherche ---
     const searchInput = document.getElementById("searchCatalog");
     if (searchInput) searchInput.placeholder = translations[lang].searchPlaceholder;
 
@@ -304,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentBtn = document.getElementById(`lang${lang}`);
     if (currentBtn) currentBtn.style.display = "none";
 
-    updateVisibleMessages();
+    if (typeof updateVisibleMessages === "function") updateVisibleMessages();
   }
 
   function setFormLanguage(lang) {

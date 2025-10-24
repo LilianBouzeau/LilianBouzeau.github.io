@@ -133,7 +133,6 @@ a:hover {
 }
 
 /* ==================== NAVBAR ==================== */
-/* ==================== NAVBAR ==================== */
 nav {
   background-color: rgba(255, 255, 255, 0.8);
   /* opacité légère */
@@ -170,6 +169,17 @@ nav {
   transform: scale(1.5);
 }
 
+.deroulant > a .caret {
+  margin-left: 6px;
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Changement de couleur si ouvert */
+.deroulant.open > a .caret {
+  color: var(--accent);
+}
 /* Menu principal centré */
 #nav-menu {
   display: flex;
