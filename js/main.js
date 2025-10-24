@@ -121,27 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==================== TRADUCTIONS MULTILINGUES ====================
   const translations = {
     FR: {
-      //TITRE
       TitrePage1:"Cruchaudet | L'histoire",
       TitrePage2:"Cruchaudet | Export",
       TitrePage3:"Cruchaudet | Catalogue",
-      TitrePage404:"Cruchaudet | Page 404",
-      //NAV
+      TitrePage4:"Cruchaudet | Les rayons",
       navHistory: "L'histoire",
       navExport: "Export",
-      navRayon:"Rayon",
+      navRayon:'Les rayons',
       navRayonLegumes: "Légumes",
       navRayonFruits: "Fruits",
-      navRayonExotic: "Exotique",
+      navRayonExotic: "Exotic",
       navRayonPDT: "Pomme de terre & condiments",
       navContactExport: "Prise de contact",
       navCatalogue: "Catalogue",
       navLegumes: "Légumes",
       navFruits: "Fruits",
-      navExotic: "Exotique",
+      navExotic: "Exotic",
       navPDT: "Pomme de terre & condiments",
       navContact: "Contact",
-      //INDEX
       titre: "Cruchaudet",
       phrase1: "Des fruits et légumes frais, chaque jour.",
       phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
@@ -149,11 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Début',
       titreBio2: 'Evolution',
       titreBio3: 'Maintenant',
-      //
-      //FOOTER
+      titrepageRayons:'Les rayons',
+      titreRayon1: "Légumes",
+      titreRayon2: "Fruits",
+      titreRayon3: "Exotic",
+      titreRayon4: "Pomme de terre & condiments",
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
-      //EXPORT
       TitreExport: "Export",
       contactFormTitle: "Contact Export",
       nom: "Nom *",
@@ -171,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errorSend: "Une erreur est survenue lors de l'envoi du message.",
         success: "Votre message a bien été envoyé ✅"
       },
-      //CATALOGUE
       btnLegumes: 'Légumes',
       btnFruits: 'Fruits',
       btnExotic: 'Exotic',
@@ -179,12 +177,10 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Rechercher dans le catalogue...",
     },
     EN: {
-      //TITRE
       TitrePage1:"Cruchaudet | The Story",
       TitrePage2:"Cruchaudet | Export",
       TitrePage3:"Cruchaudet | Catalog",
-      TitrePage404:"Cruchaudet | Page 404",
-      //NAV
+      TitrePage4:"Cruchaudet | Departments",
       navHistory: "Our Story",
       navExport: "Export",
       navRayon: "Department",
@@ -199,7 +195,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navExotic: "Exotic",
       navPDT: "Potatoes & condiments",
       navContact: "Contact",
-      //INDEX
       titre: "Cruchaudet",
       phrase1: "Fresh fruits and vegetables, every day.",
       phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
@@ -207,12 +202,13 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Beginning',
       titreBio2: 'Evolution',
       titreBio3: 'Now',
-      //RAYONS
-
-      //FOOTER
+      titrepageRayons: "Departments",
+      titreRayon1: "Vegetables",
+      titreRayon2: "Fruits",
+      titreRayon3: "Exotic",
+      titreRayon4: "Potatoes & condiments",
       contact: "Contact",
       footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
-      //EXPORT
       TitreExport: "Export",
       contactFormTitle: "Export Contact",
       nom: "Last Name *",
@@ -230,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errorSend: "An error occurred while sending your message.",
         success: "Your message has been sent successfully ✅"
       },
-      //CATALOGUE
       btnLegumes: 'Vegetables',
       btnFruits: 'Fruits',
       btnExotic: 'Exotic',
@@ -238,12 +233,10 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Search in the catalog...",
     },
     ES: {
-      //TITRE
       TitrePage1:"Cruchaudet | La historia",
       TitrePage2:"Cruchaudet | Exportación",
       TitrePage3:"Cruchaudet | Catálogo",
-      TitrePage404:"Cruchaudet | Página 404",
-      //NAV
+      TitrePage4:"Cruchaudet | Secciones",
       navHistory: "Nuestra historia",
       navExport: "Exportación",
       navRayon: "Sección",
@@ -258,7 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navExotic: "Exóticas",
       navPDT: "Patatas y condimentos",
       navContact: "Contacto",
-      //INDEX
       titre: "Cruchaudet",
       phrase1: "Frutas y verduras frescas, cada día.",
       phrase2: "Desde <span class='Rungis'>Rungis</span>.",
@@ -266,10 +258,13 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Comienzo',
       titreBio2: 'Evolución',
       titreBio3: 'Ahora',
-      //FOOTER
+      titrepageRayons: "Secciones",
+      titreRayon1: "Verduras",
+      titreRayon2: "Frutas",
+      titreRayon3: "Exótico",
+      titreRayon4: "Patatas y condimentos",
       contact: "Contacto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
-      //EXPORT
       TitreExport: "Exportación",
       contactFormTitle: "Contacto Exportación",
       nom: "Apellido *",
@@ -287,7 +282,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errorSend: "Se ha producido un error al enviar el mensaje.",
         success: "Su mensaje ha sido enviado correctamente ✅"
       },
-      //CATALOGUE
       btnLegumes: 'Verduras',
       btnFruits: 'Frutas',
       btnExotic: 'Exóticas',
@@ -295,12 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
       searchPlaceholder: "Buscar en el catálogo...",
     },
     IT: {
-      //TITRE
       TitrePage1:"Cruchaudet | La storia",
       TitrePage2:"Cruchaudet | Esportazione",
       TitrePage3:"Cruchaudet | Catalogo",
-      TitrePage404:"Cruchaudet | Pagina 404",
-      //NAV
+      TitrePage4:"Cruchaudet | Reparti",
       navHistory: "La nostra storia",
       navExport: "Esportazione",
       navRayon: "Reparto",
@@ -315,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navExotic: "Esotici",
       navPDT: "Patate & condimenti",
       navContact: "Contatto",
-      //INDEX
       titre: "Cruchaudet",
       phrase1: "Frutta e verdura fresca, ogni giorno.",
       phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
@@ -323,10 +314,13 @@ document.addEventListener("DOMContentLoaded", () => {
       titreBio1: 'Inizio',
       titreBio2: 'Evoluzione',
       titreBio3: 'Adesso',
-      //FOOTER
+      titrepageRayons: "Reparti",
+      titreRayon1: "Verdure",
+      titreRayon2: "Frutta",
+      titreRayon3: "Esotici",
+      titreRayon4: "Patate & condimenti",
       contact: "Contatto",
       footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
-      //EXPORT
       TitreExport: "Esportazione",
       contactFormTitle: "Contatto Export",
       nom: "Cognome *",
@@ -344,7 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
         errorSend: "Si è verificato un errore durante l'invio del messaggio.",
         success: "Il tuo messaggio è stato inviato con successo ✅"
       },
-      //CATALOGUE
       btnLegumes: 'Verdure',
       btnFruits: 'Frutta',
       btnExotic: 'Esotici',
@@ -353,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-let currentLang = localStorage.getItem("lang") || "FR";
+  let currentLang = localStorage.getItem("lang") || "FR";
 
   function setLanguage(lang) {
     currentLang = lang;
@@ -364,7 +357,10 @@ let currentLang = localStorage.getItem("lang") || "FR";
       const el = document.getElementById(id);
       if (!el) continue;
 
-      // ⚡ Pour liens avec flèche, modifier uniquement le texte sans toucher à l'icône
+      // Ignorer les champs input et textarea
+      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
+
+      // Cas des liens avec icône caret
       if (el.tagName === "A" && el.querySelector("i.caret")) {
         const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
         if (textNode) textNode.nodeValue = text;
