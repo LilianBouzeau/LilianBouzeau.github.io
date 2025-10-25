@@ -1004,6 +1004,13 @@ footer iframe {
 
 
 /* Adaptations mobiles */
+#presentation,
+#Export,
+#contactExport {
+  padding: 4rem 2rem;
+  width: 95vw;
+  margin: auto;
+}
 @media (max-width: 768px) {
   .containerCGU {
     margin: 25px;
