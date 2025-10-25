@@ -828,7 +828,7 @@ footer iframe {
 
   .containerCGU {
     max-width: 800px;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
     background-color: var(--blanc);
     border-radius: var(--radius);
@@ -1008,7 +1008,7 @@ footer iframe {
 /* Adaptations mobiles */
 @media (max-width: 768px) {
   .containerCGU {
-    margin: 50px;}
+    margin: 25px;}
 
   .alignement {
     flex-direction: column;
