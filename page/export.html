@@ -26,182 +26,186 @@
 </head>
 
 <body>
-<!-- ==================== LOADER ==================== -->
-<div id="loader">
-  <div class="spinner"></div>
-</div>
-<div id="mainContent" style="display:none;">
-    <!-- ==================== BOUTON RETOUR EN HAUT ==================== -->
-    <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
-
-    <!-- ==================== BOUTONS DE LANGUE ==================== -->
-    <div id="langButtons">
-        <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
-            <img src="../img/flag-anglais.png" alt="EN">
-        </button>
-        <button class="btnLang scroll-animateG" id="langFR" title="Français">
-            <img src="../img/flag-francais.png" alt="FR">
-        </button>
-        <button class="btnLang scroll-animateG" id="langES" title="Espagnol">
-            <img src="../img/flag-espagnol.png" alt="ES">
-        </button>
-        <button class="btnLang scroll-animateG" id="langIT" title="Italien">
-            <img src="../img/flag-italien.png" alt="IT">
-        </button>
+    <!-- ==================== LOADER ==================== -->
+    <div id="loader">
+        <div class="spinner"></div>
     </div>
+    <div id="mainContent" style="display:none;">
+        <!-- ==================== BOUTON RETOUR EN HAUT ==================== -->
+        <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
 
-    <!-- ==================== BARRE DE NAVIGATION ==================== -->
-    <nav>
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html"><img src="../img/logo.png" alt="Logo" /></a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span><span></span><span></span>
-            </div>
-            <ul id="nav-menu">
-                <li>
-                    <a id="navHistory" href="../index.html#quiSommeNous">L'histoire</a>
-                </li>
-
-                <!-- Sous-menu Rayon -->
-                <li class="deroulant">
-                    <a id="navRayon" href="/page/Rayon.html">Les rayons</a>
-                    <ul class="sous">
-                        <li><a id="navRayonLegumes" href="/page/Rayon.html#RayonL">Légumes</a></li>
-                        <li><a id="navRayonFruits" href="/page/Rayon.html#RayonF">Fruits</a></li>
-                        <li><a id="navRayonExotic" href="/page/Rayon.html#RayonE">Exotic</a></li>
-                        <li><a id="navRayonPDT" href="/page/Rayon.html#RayonPDT">Pomme de terre & condiments</a></li>
-                    </ul>
-                </li>
-
-                <!-- Sous-menu Export -->
-                <li class="deroulant">
-                    <a id="navExport" href="/page/export.html">Export</a>
-                    <ul class="sous">
-                        <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a></li>
-                    </ul>
-                </li>
-                <!-- Sous-menu Catalogue -->
-                <li class="deroulant">
-                    <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
-                    <ul class="sous">
-                        <li><a id="navLegumes" href="/page/catalogue.html#catalogueL">Légumes</a></li>
-                        <li><a id="navFruits" href="/page/catalogue.html#catalogueF">Fruits</a></li>
-                        <li><a id="navExotic" href="/page/catalogue.html#catalogueE">Exotic</a></li>
-                        <li><a id="navPDT" href="/page/catalogue.html#cataloguePDT">Pomme de terre & condiments</a></li>
-                    </ul>
-                </li>
-
-                <li><a id="navContact" href="#contact">Contact</a></li>
-            </ul>
+        <!-- ==================== BOUTONS DE LANGUE ==================== -->
+        <div id="langButtons">
+            <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
+                <img src="../img/flag-anglais.png" alt="EN">
+            </button>
+            <button class="btnLang scroll-animateG" id="langFR" title="Français">
+                <img src="../img/flag-francais.png" alt="FR">
+            </button>
+            <button class="btnLang scroll-animateG" id="langES" title="Espagnol">
+                <img src="../img/flag-espagnol.png" alt="ES">
+            </button>
+            <button class="btnLang scroll-animateG" id="langIT" title="Italien">
+                <img src="../img/flag-italien.png" alt="IT">
+            </button>
         </div>
-    </nav>
 
-    <!-- ==================== SECTION EXPORT ==================== -->
-    <div id="Export">
-        <div id="quiSommeNous">
-            <h2 class="nom" id="TitreExport">Export</h2>
+        <!-- ==================== BARRE DE NAVIGATION ==================== -->
+        <nav>
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="../index.html"><img src="../img/logo.png" alt="Logo" /></a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+                <ul id="nav-menu">
+                    <li>
+                        <a id="navHistory" href="../index.html#quiSommeNous">L'histoire</a>
+                    </li>
 
-            <!-- Texte descriptif + image -->
-            <div class="alignement scroll-animateG">
-                <p class="paragrapheBio">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
-                    sequi mollitia saepe fuga id quisquam rerum asperiores atque, ex repellendus
-                    a doloremque, possimus perspiciatis! Veniam necessitatibus accusantium numquam facere.
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
-                    sequi mollitia saepe fuga id quisquam rerum asperiores atque, ex repellendus
-                    a doloremque, possimus perspiciatis! Veniam necessitatibus accusantium numquam facere.
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
-                </p>
-                <img class="imgEntreprise" src="/img/export.jpg" alt="Logo de l'Entreprise" />
+                    <!-- Sous-menu Rayon -->
+                    <li class="deroulant">
+                        <a id="navRayon" href="/page/Rayon.html">Les rayons</a>
+                        <ul class="sous">
+                            <li><a id="navRayonLegumes" href="/page/Rayon.html#RayonL">Légumes</a></li>
+                            <li><a id="navRayonFruits" href="/page/Rayon.html#RayonF">Fruits</a></li>
+                            <li><a id="navRayonExotic" href="/page/Rayon.html#RayonE">Exotic</a></li>
+                            <li><a id="navRayonPDT" href="/page/Rayon.html#RayonPDT">Pomme de terre & condiments</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Sous-menu Export -->
+                    <li class="deroulant">
+                        <a id="navExport" href="/page/export.html">Export</a>
+                        <ul class="sous">
+                            <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Sous-menu Catalogue -->
+                    <li class="deroulant">
+                        <a id="navCatalogue" href="/page/catalogue.html">Catalogue</a>
+                        <ul class="sous">
+                            <li><a id="navLegumes" href="/page/catalogue.html#catalogueL">Légumes</a></li>
+                            <li><a id="navFruits" href="/page/catalogue.html#catalogueF">Fruits</a></li>
+                            <li><a id="navExotic" href="/page/catalogue.html#catalogueE">Exotic</a></li>
+                            <li><a id="navPDT" href="/page/catalogue.html#cataloguePDT">Pomme de terre & condiments</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li><a id="navContact" href="#contact">Contact</a></li>
+                </ul>
             </div>
-        </div>
-    </div>
+        </nav>
 
-    <!-- ==================== FORMULAIRE DE CONTACT EXPORT ==================== -->
-    <h2 id="contactFormTitle" class="nom">Contact Export</h2>
+        <!-- ==================== SECTION EXPORT ==================== -->
+        <div id="Export">
+            <div id="quiSommeNous">
+                <h2 class="nom" id="TitreExport">Export</h2>
 
-    <div class="contact-wrapper">
-        <form id="contactForm" novalidate>
-            <!-- Ligne nom et prénom -->
-            <div class="form-row">
-                <div class="form-group half scroll-animateG">
-                    <input type="text" id="nom" name="nom" placeholder="Nom *" required />
+                <!-- Texte descriptif + image -->
+                <div class="alignement scroll-animateG">
+                    <p class="paragrapheBio">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
+                        sequi mollitia saepe fuga id quisquam rerum asperiores atque, ex repellendus
+                        a doloremque, possimus perspiciatis! Veniam necessitatibus accusantium numquam facere.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
+                        sequi mollitia saepe fuga id quisquam rerum asperiores atque, ex repellendus
+                        a doloremque, possimus perspiciatis! Veniam necessitatibus accusantium numquam facere.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt, incidunt
+                    </p>
+                    <img class="imgEntreprise" src="/img/export.jpg" alt="Logo de l'Entreprise" />
                 </div>
-                <div class="form-group half scroll-animateD">
-                    <input type="text" id="prenom" name="prenom" placeholder="Prénom *" required />
-                </div>
-            </div>
-
-            <!-- Ligne email et téléphone -->
-            <div class="form-row">
-                <div class="form-group half scroll-animateG">
-                    <input type="email" id="email" name="email" placeholder="Email *" required />
-                </div>
-                <div class="form-group half scroll-animateD">
-                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required />
-                </div>
-            </div>
-
-            <!-- Objet du message -->
-            <div class="form-group scroll-animateG">
-                <input type="text" id="objet" name="objet" placeholder="Objet *" required />
-            </div>
-
-            <!-- Message -->
-            <div class="form-group scroll-animateD">
-                <textarea id="message" name="message" placeholder="Votre message *" required></textarea>
-            </div>
-
-            <!-- Bouton d’envoi -->
-            <button type="submit" id="submitBtn" class="scroll-animate">Envoyer</button>
-        </form>
-
-        <!-- Message de confirmation/erreur -->
-        <div id="formMsg"></div>
-    </div>
-
-    <!-- ==================== PIED DE PAGE ==================== -->
-    <footer>
-        <h1 id="contact">Contact</h1>
-        <div class="groupeContact">
-            <!-- Bloc contact direct -->
-            <div class="contactCase">
-                <div class="ligneContact scroll-animateG">
-                    <i class="bi bi-telephone icone"></i>
-                    <a href="tel:0145122472" class="paraContact">01 45 12 24 72</a>
-                </div>
-                <div class="ligneContact scroll-animateG">
-                    <i class="bi bi-envelope icone"></i>
-                    <a href="mailto:contact@Cruchaudet.com" class="paraContact">contact@Cruchaudet.com</a>
-                </div>
-
-                <!-- Liens vers les réseaux sociaux -->
-                <div class="reseauxSociaux scroll-animate">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-                        <i class="bi bi-facebook icone2"></i>
-                    </a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                        <i class="bi bi-instagram icone2"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Carte Google Maps -->
-            <div class="contactCase2 scroll-animateD">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2630.017558207428!2d2.3506933000000005!3d48.762460999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e676a4fd71ef69%3A0xc15fd110c2326d78!2sCruchaudet%20Grandjean!5e0!3m2!1sfr!2sfr!4v1760706927926!5m2!1sfr!2sfr"
-                    width="100%" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
             </div>
         </div>
-        <!-- Copyright -->
-        <p id="footerCopy">Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
 
-        <!-- ==================== SCRIPT PRINCIPAL ==================== -->
-        <script type="text/javascript" src="/js/main.js"></script>
-    </footer>
+        <!-- ==================== FORMULAIRE DE CONTACT EXPORT ==================== -->
+        <h2 id="contactFormTitle" class="nom">Contact Export</h2>
+
+        <div class="contact-wrapper">
+            <form id="contactForm" novalidate>
+                <!-- Ligne nom et prénom -->
+                <div class="form-row">
+                    <div class="form-group half scroll-animateG">
+                        <input type="text" id="nom" name="nom" placeholder="Nom *" required />
+                    </div>
+                    <div class="form-group half scroll-animateD">
+                        <input type="text" id="prenom" name="prenom" placeholder="Prénom *" required />
+                    </div>
+                </div>
+
+                <!-- Ligne email et téléphone -->
+                <div class="form-row">
+                    <div class="form-group half scroll-animateG">
+                        <input type="email" id="email" name="email" placeholder="Email *" required />
+                    </div>
+                    <div class="form-group half scroll-animateD">
+                        <input type="tel" id="telephone" name="telephone" placeholder="Téléphone *" required />
+                    </div>
+                </div>
+
+                <!-- Objet du message -->
+                <div class="form-group scroll-animateG">
+                    <input type="text" id="objet" name="objet" placeholder="Objet *" required />
+                </div>
+
+                <!-- Message -->
+                <div class="form-group scroll-animateD">
+                    <textarea id="message" name="message" placeholder="Votre message *" required></textarea>
+                </div>
+
+                <!-- Bouton d’envoi -->
+                <button type="submit" id="submitBtn" class="scroll-animate">Envoyer</button>
+            </form>
+
+            <!-- Message de confirmation/erreur -->
+            <div id="formMsg"></div>
+        </div>
+
+        <!-- ==================== PIED DE PAGE ==================== -->
+        <footer>
+            <h1 id="contact">Contact</h1>
+            <div class="groupeContact">
+                <!-- Bloc contact direct -->
+                <div class="contactCase">
+                    <div class="ligneContact scroll-animateG">
+                        <i class="bi bi-telephone icone"></i>
+                        <a href="tel:0145122472" class="paraContact">01 45 12 24 72</a>
+                    </div>
+                    <div class="ligneContact scroll-animateG">
+                        <i class="bi bi-envelope icone"></i>
+                        <a href="mailto:contact@Cruchaudet.com" class="paraContact">contact@Cruchaudet.com</a>
+                    </div>
+
+                    <!-- Liens vers les réseaux sociaux -->
+                    <div class="reseauxSociaux scroll-animate">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-facebook icone2"></i>
+                        </a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-instagram icone2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Carte Google Maps -->
+                <div class="contactCase2 scroll-animateD">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2630.017558207428!2d2.3506933000000005!3d48.762460999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e676a4fd71ef69%3A0xc15fd110c2326d78!2sCruchaudet%20Grandjean!5e0!3m2!1sfr!2sfr!4v1760706927926!5m2!1sfr!2sfr"
+                        width="100%" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <p id="footerCopy">Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
+
+            <!-- ==================== SCRIPT PRINCIPAL ==================== -->
+            <script type="text/javascript" src="/js/main.js"></script>
+        </footer>
+    </div>
 </body>
 
 </html>
