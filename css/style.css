@@ -1002,13 +1002,14 @@ footer iframe {
 
 }
 
-/* Smartphones */
-
 
 /* Adaptations mobiles */
 @media (max-width: 768px) {
   .containerCGU {
-    margin: 25px;}
+    margin: 25px;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 
   .alignement {
     flex-direction: column;
