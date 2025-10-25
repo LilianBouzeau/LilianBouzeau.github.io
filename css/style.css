@@ -816,6 +816,42 @@ iframe {
 footer iframe {
   border-radius: 15px;
 }
+#cguFooter{
+  color: black;
+}
+#cguFooter:hover{
+  color: var(--blanc);
+}
+/* ================================
+   Page CGU
+=================================*/
+
+
+  .containerCGU {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--blanc);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .titreCgu {
+    color: var(--vert);
+  }
+
+  .pCgu {
+    line-height: 1.6;
+  }
+
+  .lienCgu {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .lienCgu {
+    text-decoration: underline;
+  }
 /* ================================
   Page Erreur 404
 =================================*/
