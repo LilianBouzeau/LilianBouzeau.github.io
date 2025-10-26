@@ -318,7 +318,10 @@ nav {
   .hamburger {
     display: flex;
   }
-
+  .product-card {
+    flex: 1 1 calc(50% - 0.5rem); /* 2 produits par ligne avec un petit gap */
+    max-width: calc(50% - 0.5rem);
+  }
   /* Menu principal en dessous de la navbar */
   #nav-menu {
     display: none;
@@ -672,7 +675,81 @@ textarea {
   color: var(--blanc);
   transform: scale(1.07);
 }
+.catalogue-wrapper {
+  width: 90%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
+.catalogue-section h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--vert);
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Produit */
+.product-card {
+  flex: 1 1 200px; /* largeur par défaut */
+  max-width: 200px;
+  border-radius: var(--radius);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  background: var(--blanc);
+  text-align: center;
+  padding: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+/* Conteneur des filtres actifs */
+.active-filters {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.8rem auto;
+  flex-wrap: wrap;
+}
+
+/* Badge de filtre actif */
+.active-filter {
+  background-color: var(--vert);
+  color: var(--blanc);
+  padding: 0.3rem 0.6rem;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: default;
+  font-size: 0.9rem;
+}
+
+/* Crois pour enlever le filtre */
+.active-filter span {
+  cursor: pointer;
+  font-weight: bold;
+}
+.active-filter span:hover {
+  color: var(--accent);
+}
 /* ================================
    FOOTER ET CONTACT
 =================================*/
