@@ -431,7 +431,7 @@ nav {
 #Export,
 #contactExport {
   padding: 4rem 2rem;
-  width: 80vw;
+  width: 90vw;
   margin: auto;
 }
 
@@ -485,13 +485,12 @@ nav {
    FORMULAIRE EXPORT / CONTACT
 =================================*/
 .contact-wrapper {
-  width: 77vw;
-  margin: auto;
   padding: 4rem 2rem;
+  width: 85vw;
+  margin: auto;
   background-color: var(--blanc);
   border-radius: var(--radius);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-  font-family: var(--font);
 }
 
 #contactFormTitle {
@@ -539,7 +538,6 @@ textarea.error {
   border: 1px solid red;
   box-sizing: border-box;
 }
-
 textarea {
   min-height: 80px;
   overflow: hidden;
@@ -1003,7 +1001,8 @@ footer iframe {
 }
 
 
-/* Adaptations mobiles */
+@media (max-width: 768px) {
+  /* Adaptations mobiles */
 #presentation,
 #Export,
 #contactExport {
@@ -1011,7 +1010,11 @@ footer iframe {
   width: 95vw;
   margin: auto;
 }
-@media (max-width: 768px) {
+  .contact-wrapper {
+  padding: 4rem 2rem;
+  width: 80vw;
+  margin: auto;
+}
   .containerCGU {
     margin: 25px;
     overflow-wrap: break-word;

@@ -186,12 +186,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message: "Votre message *",
         submitBtn: "Envoyer",
         formErrors: {
-          allFields: "Veuillez remplir tous les champs obligatoires.",
-          email: "Veuillez entrer une adresse email valide.",
-          phone: "Veuillez entrer un numéro de téléphone valide.",
+          nom: "Veuillez entrer un nom valide (2 à 30 lettres).",
+          prenom: "Veuillez entrer un prénom valide (2 à 30 lettres).",
+          email: "Veuillez entrer une adresse e-mail valide.",
+          telephone: "Veuillez entrer un numéro de téléphone valide.",
+          objet: "Veuillez indiquer un objet (minimum 2 caractères).",
+          messageVide: "Le message ne peut pas être vide.",
+          messageCourt: "Le message doit contenir au moins 20 caractères.",
           noTags: "Les balises HTML ne sont pas autorisées.",
-          errorSend: "Une erreur est survenue lors de l'envoi du message.",
-          success: "Votre message a bien été envoyé ✅"
+          noScript: "Les balises <script> sont strictement interdites.",
+          success: "Votre message a bien été envoyé ✅",
+          errorSend: "Veuillez corriger les erreurs avant d'envoyer.",
         },
         btnLegumes: 'Légumes',
         btnFruits: 'Fruits',
@@ -262,12 +267,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message: "Your message *",
         submitBtn: "Send",
         formErrors: {
-          allFields: "Please fill in all required fields.",
+          nom: "Please enter a valid last name (2 to 30 letters).",
+          prenom: "Please enter a valid first name (2 to 30 letters).",
           email: "Please enter a valid email address.",
-          phone: "Please enter a valid phone number.",
+          telephone: "Please enter a valid phone number.",
+          objet: "Please enter a subject (at least 2 characters).",
+          messageVide: "Message cannot be empty.",
+          messageCourt: "Message must be at least 20 characters long.",
           noTags: "HTML tags are not allowed.",
-          errorSend: "An error occurred while sending your message.",
-          success: "Your message has been sent successfully ✅"
+          noScript: "<script> tags are strictly forbidden.",
+          success: "Your message has been sent successfully ✅",
+          errorSend: "Please fix the errors before sending.",
         },
         btnLegumes: 'Vegetables',
         btnFruits: 'Fruits',
@@ -338,12 +348,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message: "Su mensaje *",
         submitBtn: "Enviar",
         formErrors: {
-          allFields: "Por favor, rellene todos los campos obligatorios.",
-          email: "Por favor, introduzca una dirección de correo válida.",
-          phone: "Por favor, introduzca un número de teléfono válido.",
+          nom: "Por favor, introduzca un apellido válido (2 a 30 letras).",
+          prenom: "Por favor, introduzca un nombre válido (2 a 30 letras).",
+          email: "Por favor, introduzca un correo electrónico válido.",
+          telephone: "Por favor, introduzca un número de teléfono válido.",
+          objet: "Por favor, introduzca un asunto (mínimo 2 caracteres).",
+          messageVide: "El mensaje no puede estar vacío.",
+          messageCourt: "El mensaje debe tener al menos 20 caracteres.",
           noTags: "No se permiten etiquetas HTML.",
-          errorSend: "Se ha producido un error al enviar el mensaje.",
-          success: "Su mensaje ha sido enviado correctamente ✅"
+          noScript: "Las etiquetas <script> están estrictamente prohibidas.",
+          success: "Su mensaje se ha enviado correctamente ✅",
+          errorSend: "Por favor, corrija los errores antes de enviar.",
         },
         btnLegumes: 'Verduras',
         btnFruits: 'Frutas',
@@ -414,12 +429,17 @@ document.addEventListener("DOMContentLoaded", () => {
         message: "Il tuo messaggio *",
         submitBtn: "Invia",
         formErrors: {
-          allFields: "Compila tutti i campi obbligatori.",
-          email: "Inserisci un indirizzo email valido.",
-          phone: "Inserisci un numero di telefono valido.",
+          nom: "Inserisci un cognome valido (da 2 a 30 lettere).",
+          prenom: "Inserisci un nome valido (da 2 a 30 lettere).",
+          email: "Inserisci un indirizzo e-mail valido.",
+          telephone: "Inserisci un numero di telefono valido.",
+          objet: "Inserisci un oggetto (minimo 2 caratteri).",
+          messageVide: "Il messaggio non può essere vuoto.",
+          messageCourt: "Il messaggio deve contenere almeno 20 caratteri.",
           noTags: "I tag HTML non sono consentiti.",
-          errorSend: "Si è verificato un errore durante l'invio del messaggio.",
-          success: "Il tuo messaggio è stato inviato con successo ✅"
+          noScript: "I tag <script> sono severamente vietati.",
+          success: "Il tuo messaggio è stato inviato con successo ✅",
+          errorSend: "Correggi gli errori prima di inviare.",
         },
         btnLegumes: 'Verdure',
         btnFruits: 'Frutta',
@@ -427,22 +447,22 @@ document.addEventListener("DOMContentLoaded", () => {
         btnPDT: 'Patate & condimenti',
         searchPlaceholder: "Cerca nel catalogo...",
         cguFooter: "Condizioni generali d'utilizzo",
-      TitrePageCGU: "Cruchaudet | Condizioni generali d'utilizzo",
-      TitreCgu1: "Condizioni generali d'utilizzo",
-      paragrapheCgu1: "Benvenuto su Cruchaudet. Accedendo a questo sito (https://lilianbouzeau.github.io/index.html), accetti di rispettare queste condizioni generali d'utilizzo (CGU). Se non accetti queste condizioni, ti preghiamo di non utilizzare il sito.",
-      TitreCgu2: "1. Proprietà del sito",
-      paragrapheCgu2: "Il contenuto, la struttura e gli elementi grafici del sito sono di proprietà esclusiva di Cruchaudet. È vietata qualsiasi riproduzione totale o parziale senza autorizzazione preventiva.",
-      TitreCgu3: "2. Uso del sito",
-      paragrapheCgu3: "Ti impegni a utilizzare questo sito solo per scopi legali. Qualsiasi uso improprio, modifica o tentativo di hacking è severamente vietato.",
-      TitreCgu4: "3. Responsabilità",
-      paragrapheCgu4: "Cruchaudet si impegna a garantire l'accuratezza delle informazioni, ma non può garantire l'assenza di errori. L'uso del sito avviene sotto la tua piena responsabilità.",
-      TitreCgu5: "4. Dati personali",
-      paragrapheCgu5: "Non vengono raccolti dati personali a tua insaputa. Per ulteriori informazioni, puoi contattarci all'indirizzo contact@cruchaudet.com.",
-      TitreCgu6: "5. Modifiche alle CGU",
-      paragrapheCgu6: "Cruchaudet si riserva il diritto di modificare queste CGU in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.",
-      TitreCgu7: "6. Contatto",
-      paragrapheCgu7: "Per qualsiasi domanda riguardante le CGU, puoi contattarci all'indirizzo contact@cruchaudet.com.",
-      paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
+        TitrePageCGU: "Cruchaudet | Condizioni generali d'utilizzo",
+        TitreCgu1: "Condizioni generali d'utilizzo",
+        paragrapheCgu1: "Benvenuto su Cruchaudet. Accedendo a questo sito (https://lilianbouzeau.github.io/index.html), accetti di rispettare queste condizioni generali d'utilizzo (CGU). Se non accetti queste condizioni, ti preghiamo di non utilizzare il sito.",
+        TitreCgu2: "1. Proprietà del sito",
+        paragrapheCgu2: "Il contenuto, la struttura e gli elementi grafici del sito sono di proprietà esclusiva di Cruchaudet. È vietata qualsiasi riproduzione totale o parziale senza autorizzazione preventiva.",
+        TitreCgu3: "2. Uso del sito",
+        paragrapheCgu3: "Ti impegni a utilizzare questo sito solo per scopi legali. Qualsiasi uso improprio, modifica o tentativo di hacking è severamente vietato.",
+        TitreCgu4: "3. Responsabilità",
+        paragrapheCgu4: "Cruchaudet si impegna a garantire l'accuratezza delle informazioni, ma non può garantire l'assenza di errori. L'uso del sito avviene sotto la tua piena responsabilità.",
+        TitreCgu5: "4. Dati personali",
+        paragrapheCgu5: "Non vengono raccolti dati personali a tua insaputa. Per ulteriori informazioni, puoi contattarci all'indirizzo contact@cruchaudet.com.",
+        TitreCgu6: "5. Modifiche alle CGU",
+        paragrapheCgu6: "Cruchaudet si riserva il diritto di modificare queste CGU in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.",
+        TitreCgu7: "6. Contatto",
+        paragrapheCgu7: "Per qualsiasi domanda riguardante le CGU, puoi contattarci all'indirizzo contact@cruchaudet.com.",
+        paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
       },
     };
 
@@ -468,7 +488,109 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       setFormLanguage(lang);
+      // ==================== VALIDATION DU FORMULAIRE DE CONTACT ====================
+      let currentErrors = []; // stocke les erreurs actives pour mise à jour dynamique
 
+      const contactForm = document.getElementById("contactForm");
+      const formMsg = document.getElementById("formMsg");
+
+      if (contactForm) {
+        const validateForm = () => {
+          // Nettoyer anciens messages
+          document.querySelectorAll(".error-msg").forEach(msg => msg.remove());
+          formMsg.classList.remove("show", "success", "error");
+
+          const t = translations[currentLang].formErrors;
+          currentErrors = []; // reset
+
+          // Champs
+          const nom = document.getElementById("nom");
+          const prenom = document.getElementById("prenom");
+          const email = document.getElementById("email");
+          const tel = document.getElementById("telephone");
+          const objet = document.getElementById("objet");
+          const message = document.getElementById("message");
+
+          let valid = true;
+
+          const addError = (input, msgKey) => {
+            input.classList.add("error");
+            const error = document.createElement("span");
+            error.className = "error-msg";
+            error.dataset.key = msgKey;
+            error.textContent = t[msgKey];
+            input.parentElement.appendChild(error);
+            currentErrors.push(error);
+            valid = false;
+          };
+
+          const clearError = input => input.classList.remove("error");
+
+          // Regex
+          const nameRegex = /^[A-Za-zÀ-ÿ'\-\s]{2,30}$/;
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const phoneRegex = /^[+0-9\s().-]{6,20}$/;
+          const htmlTagRegex = /<[^>]*>/;
+          const scriptTagRegex = /<\s*script.*?>.*?<\s*\/\s*script\s*>/i;
+
+          // Nettoyage avant validation
+          [nom, prenom, email, tel, objet, message].forEach(clearError);
+
+          // Vérification des champs
+          if (!nom.value.trim() || !nameRegex.test(nom.value.trim())) addError(nom, "nom");
+          if (!prenom.value.trim() || !nameRegex.test(prenom.value.trim())) addError(prenom, "prenom");
+          if (!email.value.trim() || !emailRegex.test(email.value.trim())) addError(email, "email");
+          if (!tel.value.trim() || !phoneRegex.test(tel.value.trim())) addError(tel, "telephone");
+          if (!objet.value.trim() || objet.value.trim().length < 2) addError(objet, "objet");
+
+          if (!message.value.trim()) addError(message, "messageVide");
+          else if (message.value.trim().length < 20) addError(message, "messageCourt");
+          else if (htmlTagRegex.test(message.value)) addError(message, "noTags");
+          else if (scriptTagRegex.test(message.value)) addError(message, "noScript");
+
+          if (!valid) {
+            formMsg.textContent = t.errorSend;
+            formMsg.classList.add("show", "error");
+            return false;
+          }
+
+          // Simulation d'envoi réussi
+          formMsg.textContent = "⏳ ...";
+          formMsg.classList.add("show");
+
+          setTimeout(() => {
+            formMsg.textContent = t.success;
+            formMsg.classList.remove("error");
+            formMsg.classList.add("show", "success");
+            contactForm.reset();
+          }, 800);
+
+          return true;
+        };
+
+        // Événement submit
+        contactForm.addEventListener("submit", e => {
+          e.preventDefault();
+          validateForm();
+        });
+
+        // 🔁 Mise à jour dynamique lors du changement de langue
+        document.querySelectorAll(".btnLang").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const t = translations[currentLang].formErrors;
+            currentErrors.forEach(err => {
+              const key = err.dataset.key;
+              if (t[key]) err.textContent = t[key];
+            });
+
+            if (formMsg.classList.contains("show")) {
+              if (formMsg.classList.contains("error")) formMsg.textContent = t.errorSend;
+              else if (formMsg.classList.contains("success")) formMsg.textContent = t.success;
+            }
+          });
+        });
+      }
+      // ==================== Recherche Catalog ====================
       const searchInput = document.getElementById("searchCatalog");
       if (searchInput) searchInput.placeholder = translations[lang].searchPlaceholder;
 
