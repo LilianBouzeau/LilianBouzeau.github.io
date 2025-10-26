@@ -99,20 +99,22 @@
                 <input type="text" id="searchCatalog" placeholder="Rechercher un produit...">
                 <button id="searchBtn"><i class="bi bi-search"></i></button>
             </div>
-
+        <p id="pFiltre1" class="pFiltre">Filtre :</p>
             <div class="filter-buttons scroll-animateD">
                 <button class="filter-btn" data-type="legumes" id="btnFiltreL">Légumes</button>
                 <button class="filter-btn" data-type="fruits" id="btnFiltreF">Fruits</button>
                 <button class="filter-btn" data-type="exotic" id="btnFiltreE">Exotic</button>
                 <button class="filter-btn" data-type="PDTC" id="btnFiltrePDT">Pomme de terre & condiments</button>
             </div>
-            <div class="active-filters" style="display: none;"></div>
+            <p id="pFiltre2" class="pFiltre">Filtre Active :</p>
+            <div class="active-filters" style="display: none;">
+            </div>
         </div>
      <!-- ==================== CATALOGUE ==================== -->
 <div id="catalogue" class="catalogue-wrapper scroll-animate">
 
   <!-- LÉGUMES -->
-  <div class="catalogue-section" data-type="legumes">
+  <div class="catalogue-section" data-type="legumes" id="catalogueL">
     <h2 id="titreCatL">Légumes</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="L001" data-title="Tomate" data-type="legumes">
@@ -127,11 +129,12 @@
         <img src="../img/produits/concombre.jpg" alt="Concombre">
         <h3 id="catConcombre">Concombre</h3>
       </div>
+      
     </div>
   </div>
 
   <!-- FRUITS -->
-  <div class="catalogue-section" data-type="fruits">
+  <div class="catalogue-section" data-type="fruits" id="catalogueF">
     <h2 id="titreCatF">Fruits</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="F001" data-title="Pomme" data-type="fruits">
@@ -150,7 +153,7 @@
   </div>
 
   <!-- EXOTIC -->
-  <div class="catalogue-section" data-type="exotic">
+  <div class="catalogue-section" data-type="exotic" id="catalogueE">
     <h2 id="titreCatE">Exotic</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="E001" data-title="Ananas" data-type="exotic">
@@ -169,7 +172,7 @@
   </div>
 
   <!-- PDT & CONDIMENTS -->
-  <div class="catalogue-section" data-type="PDTC">
+  <div class="catalogue-section" data-type="PDTC" id="cataloguePDT">
     <h2 id="titreCatPDT">Pomme de terre & condiments</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="P001" data-title="Pomme de terre" data-type="PDTC">

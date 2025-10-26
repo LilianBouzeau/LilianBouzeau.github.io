@@ -322,6 +322,7 @@ nav {
     flex: 1 1 calc(50% - 0.5rem); /* 2 produits par ligne avec un petit gap */
     max-width: calc(50% - 0.5rem);
   }
+
   /* Menu principal en dessous de la navbar */
   #nav-menu {
     display: none;
@@ -674,6 +675,16 @@ textarea {
   background-color: var(--accent);
   color: var(--blanc);
   transform: scale(1.07);
+}
+.pFiltre{
+  font-family: var(--font);
+  font-size: 1rem;
+  color: var(--vert);
+  font-weight: 600;
+  text-align: center;
+  margin: 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 .catalogue-wrapper {
   width: 90%;

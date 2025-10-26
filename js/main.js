@@ -243,6 +243,8 @@ document.addEventListener("DOMContentLoaded", () => {
         titreCatF: 'Fruits',
         titreCatE: 'Exotic',
         titreCatPDT: 'Pomme de terre & condiments',
+        pFiltre1: 'Filtre :',
+        pFiltre2: 'Filtre Active :',
         catTomate: 'Tomate',
         catCarotte: 'Carotte',
         catConcombre: 'Concombre',
@@ -348,7 +350,9 @@ document.addEventListener("DOMContentLoaded", () => {
         titreCatF: 'Fruits',
         titreCatE: 'Exotic',
         titreCatPDT: 'Potatoes & Condiments',
-        catTomate:'Tomato',
+        pFiltre1: 'Filter:',
+        pFiltre2: 'Active Filter:',
+        catTomate: 'Tomato',
         catCarotte: 'Carrot',
         catConcombre: 'Cucumber',
         catPomme: 'Apple',
@@ -453,7 +457,9 @@ document.addEventListener("DOMContentLoaded", () => {
         titreCatF: 'Frutas',
         titreCatE: 'Exóticos',
         titreCatPDT: 'Patatas y condimentos',
-        catTomate:'Tomate',
+        pFiltre1: 'Filtro:',
+        pFiltre2: 'Filtro Activo:',
+        catTomate: 'Tomate',
         catCarotte: 'Zanahoria',
         catConcombre: 'Pepino',
         catPomme: 'Manzana',
@@ -558,7 +564,9 @@ document.addEventListener("DOMContentLoaded", () => {
         titreCatF: 'Frutta',
         titreCatE: 'Esotici',
         titreCatPDT: 'Patate e condimenti',
-        catTomate:'Pomodoro',
+        pFiltre1: 'Filtro:',
+        pFiltre2: 'Filtro Attivo:',
+        catTomate: 'Pomodoro',
         catCarotte: 'Carota',
         catConcombre: 'Cetriolo',
         catPomme: 'Mela',
@@ -592,76 +600,76 @@ document.addEventListener("DOMContentLoaded", () => {
       if (safeGet("submitBtn")) safeGet("submitBtn").innerText = t.submitBtn || "";
     }
 
-// ---------- setLanguage : applique toutes les traductions ----------
-function setLanguage(lang, retry = 0) {
-  currentLang = lang;
-  localStorage.setItem("lang", lang);
+    // ---------- setLanguage : applique toutes les traductions ----------
+    function setLanguage(lang, retry = 0) {
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
 
-  // Met à jour tous les éléments dont l'id correspond à une clé de translations[lang]
-  const tObj = translations[lang] || {};
-  for (const [id, text] of Object.entries(tObj)) {
-    if (id === "formErrors") continue; // messages d'erreur gérés séparément
-    const el = document.getElementById(id);
-    if (!el) continue;
-    // On ne touche pas aux inputs/textareas ici : ils sont gérés par setFormLanguage
-    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
-    // Cas particulier : lien avec caret -> ne pas écraser l'icône
-    if (el.tagName === "A" && el.querySelector("i.caret")) {
-      const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-      if (textNode) textNode.nodeValue = text;
-    } else {
-      el.innerHTML = text;
-    }
-  }
-
-  // Met à jour le formulaire (placeholders & bouton)
-  setFormLanguage(lang);
-
-  // Placeholder de la recherche
-  const searchInput = document.getElementById("searchCatalog");
-  if (searchInput) {
-    searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
-  }
-
-  // ----- Gestion des boutons de langue (.btnLang) -----
-  const langButtons = document.querySelectorAll(".btnLang");
-  if (langButtons.length > 0) {
-    // Affiche tous puis masque le bouton actif
-    langButtons.forEach(btn => btn.style.display = "flex");
-    const activeBtn = document.getElementById(`lang${lang}`);
-    if (activeBtn) activeBtn.style.display = "none";
-  } else if (retry < 6) {
-    // Si les boutons ne sont pas encore présents (ex : menu injecté plus tard),
-    // on retente quelques fois (100ms) puis on abandonne
-    setTimeout(() => setLanguage(lang, retry + 1), 100);
-    return; // on sort maintenant pour éviter d'initFormValidation trop tôt
-  }
-
-  // ✅ Ré-initialise la validation (pour rafraîchir messages, si présents)
-  initFormValidation();
-
-  // ✅ Traduit les messages d'erreur déjà affichés dans le formulaire
-  const currentErrors = document.querySelectorAll(".error-msg");
-  if (currentErrors.length > 0) {
-    const t = translations[currentLang].formErrors || {};
-    currentErrors.forEach(err => {
-      const key = err.dataset.key; // clé du message d’erreur
-      if (key && t[key]) {
-        err.textContent = t[key];
+      // Met à jour tous les éléments dont l'id correspond à une clé de translations[lang]
+      const tObj = translations[lang] || {};
+      for (const [id, text] of Object.entries(tObj)) {
+        if (id === "formErrors") continue; // messages d'erreur gérés séparément
+        const el = document.getElementById(id);
+        if (!el) continue;
+        // On ne touche pas aux inputs/textareas ici : ils sont gérés par setFormLanguage
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
+        // Cas particulier : lien avec caret -> ne pas écraser l'icône
+        if (el.tagName === "A" && el.querySelector("i.caret")) {
+          const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+          if (textNode) textNode.nodeValue = text;
+        } else {
+          el.innerHTML = text;
+        }
       }
-    });
-  }
 
-  // ✅ Traduit aussi le message global du formulaire (si affiché)
-  const formMsg = document.getElementById("formMsg");
-  if (formMsg && formMsg.dataset.key) {
-    const formMessages = translations[currentLang].formMessages || {};
-    const key = formMsg.dataset.key;
-    if (key && formMessages[key]) {
-      formMsg.textContent = formMessages[key];
+      // Met à jour le formulaire (placeholders & bouton)
+      setFormLanguage(lang);
+
+      // Placeholder de la recherche
+      const searchInput = document.getElementById("searchCatalog");
+      if (searchInput) {
+        searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
+      }
+
+      // ----- Gestion des boutons de langue (.btnLang) -----
+      const langButtons = document.querySelectorAll(".btnLang");
+      if (langButtons.length > 0) {
+        // Affiche tous puis masque le bouton actif
+        langButtons.forEach(btn => btn.style.display = "flex");
+        const activeBtn = document.getElementById(`lang${lang}`);
+        if (activeBtn) activeBtn.style.display = "none";
+      } else if (retry < 6) {
+        // Si les boutons ne sont pas encore présents (ex : menu injecté plus tard),
+        // on retente quelques fois (100ms) puis on abandonne
+        setTimeout(() => setLanguage(lang, retry + 1), 100);
+        return; // on sort maintenant pour éviter d'initFormValidation trop tôt
+      }
+
+      // ✅ Ré-initialise la validation (pour rafraîchir messages, si présents)
+      initFormValidation();
+
+      // ✅ Traduit les messages d'erreur déjà affichés dans le formulaire
+      const currentErrors = document.querySelectorAll(".error-msg");
+      if (currentErrors.length > 0) {
+        const t = translations[currentLang].formErrors || {};
+        currentErrors.forEach(err => {
+          const key = err.dataset.key; // clé du message d’erreur
+          if (key && t[key]) {
+            err.textContent = t[key];
+          }
+        });
+      }
+
+      // ✅ Traduit aussi le message global du formulaire (si affiché)
+      const formMsg = document.getElementById("formMsg");
+      if (formMsg && formMsg.dataset.key) {
+        const formMessages = translations[currentLang].formMessages || {};
+        const key = formMsg.dataset.key;
+        if (key && formMessages[key]) {
+          formMsg.textContent = formMessages[key];
+        }
+      }
     }
-  }
-}
     // ---------- Écouteurs pour changement de langue (après qu'on appelle setLanguage une première fois) ----------
     // On attache des listeners génériques : s'ils n'existent pas encore, on retentera après setLanguage
     function attachLangButtonsListeners() {
@@ -712,7 +720,7 @@ function setLanguage(lang, retry = 0) {
         }
       }
 
-      function noop() {}
+      function noop() { }
 
       function validateForm() {
         // Supprime anciens messages
