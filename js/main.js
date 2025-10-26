@@ -220,6 +220,30 @@ document.addEventListener("DOMContentLoaded", () => {
         TitreCgu7: "6. Contact",
         paragrapheCgu7: "Pour toute question concernant les CGU, vous pouvez nous contacter via contact@cruchaudet.com.",
         paragrapheCgu8: "© 2025 Cruchaudet. Tous droits réservés.",
+        btnFiltreL: 'Légumes',
+        btnFiltreF: 'Fruits',
+        btnFiltreE: 'Exotic',
+        btnFiltrePDT: 'Pomme de terre & condiments',
+        btnFiltreL: 'Légumes',
+        btnFiltreF: 'Fruits',
+        btnFiltreE: 'Exotic',
+        btnFiltrePDT: 'Pomme de terre & condiments',
+        titreCatL: 'Légumes',
+        titreCatF: 'Fruits',
+        titreCatE: 'Exotic',
+        titreCatPDT: 'Pomme de terre & condiments',
+        catTomate: 'Tomate',
+        catCarotte: 'Carotte',
+        catConcombre: 'Concombre',
+        catPomme: 'Pomme',
+        catBanane: 'Banane',
+        catFraise: 'Fraise',
+        catAnanas: 'Ananas',
+        catMangue: 'Mangue',
+        catPapaye: 'Papaye',
+        catPdt: 'Pomme de terre',
+        catAil: 'Ail',
+        catOignon: 'Oignon',
       },
       EN: {
         TitrePage1: "Cruchaudet | The Story",
@@ -301,6 +325,30 @@ document.addEventListener("DOMContentLoaded", () => {
         TitreCgu7: "6. Contact",
         paragrapheCgu7: "For any questions regarding the CGU, you can contact us at contact@cruchaudet.com.",
         paragrapheCgu8: "© 2025 Cruchaudet. All rights reserved.",
+        btnFiltreL: 'Vegetables',
+        btnFiltreF: 'Fruits',
+        btnFiltreE: 'Exotic',
+        btnFiltrePDT: 'Potatoes & Condiments',
+        btnFiltreL: 'Vegetables',
+        btnFiltreF: 'Fruits',
+        btnFiltreE: 'Exotic',
+        btnFiltrePDT: 'Potatoes & Condiments',
+        titreCatL: 'Vegetables',
+        titreCatF: 'Fruits',
+        titreCatE: 'Exotic',
+        titreCatPDT: 'Potatoes & Condiments',
+        catTomate:'Tomato',
+        catCarotte: 'Carrot',
+        catConcombre: 'Cucumber',
+        catPomme: 'Apple',
+        catBanane: 'Banana',
+        catFraise: 'Strawberry',
+        catAnanas: 'Pineapple',
+        catMangue: 'Mango',
+        catPapaye: 'Papaya',
+        catPdt: 'Potato',
+        catAil: 'Garlic',
+        catOignon: 'Onion',
       },
       ES: {
         TitrePage1: "Cruchaudet | La historia",
@@ -382,6 +430,30 @@ document.addEventListener("DOMContentLoaded", () => {
         TitreCgu7: "6. Contacto",
         paragrapheCgu7: "Para cualquier pregunta sobre los CGU, puede contactarnos en contact@cruchaudet.com.",
         paragrapheCgu8: "© 2025 Cruchaudet. Todos los derechos reservados.",
+        btnFiltreL: 'Verduras',
+        btnFiltreF: 'Frutas',
+        btnFiltreE: 'Exóticos',
+        btnFiltrePDT: 'Patatas y condimentos',
+        btnFiltreL: 'Verduras',
+        btnFiltreF: 'Frutas',
+        btnFiltreE: 'Exóticos',
+        btnFiltrePDT: 'Patatas y condimentos',
+        titreCatL: 'Verduras',
+        titreCatF: 'Frutas',
+        titreCatE: 'Exóticos',
+        titreCatPDT: 'Patatas y condimentos',
+        catTomate:'Tomate',
+        catCarotte: 'Zanahoria',
+        catConcombre: 'Pepino',
+        catPomme: 'Manzana',
+        catBanane: 'Banana',
+        catFraise: 'Fresa',
+        catAnanas: 'Piña',
+        catMangue: 'Mango',
+        catPapaye: 'Papaya',
+        catPdt: 'Patata',
+        catAil: 'Ajo',
+        catOignon: 'Cebolla',
       },
       IT: {
         TitrePage1: "Cruchaudet | La storia",
@@ -463,6 +535,30 @@ document.addEventListener("DOMContentLoaded", () => {
         TitreCgu7: "6. Contatto",
         paragrapheCgu7: "Per qualsiasi domanda riguardante le CGU, puoi contattarci all'indirizzo contact@cruchaudet.com.",
         paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
+        btnFiltreL: 'Verdure',
+        btnFiltreF: 'Frutta',
+        btnFiltreE: 'Esotici',
+        btnFiltrePDT: 'Patate e condimenti',
+        btnFiltreL: 'Verdure',
+        btnFiltreF: 'Frutta',
+        btnFiltreE: 'Esotici',
+        btnFiltrePDT: 'Patate e condimenti',
+        titreCatL: 'Verdure',
+        titreCatF: 'Frutta',
+        titreCatE: 'Esotici',
+        titreCatPDT: 'Patate e condimenti',
+        catTomate:'Pomodoro',
+        catCarotte: 'Carota',
+        catConcombre: 'Cetriolo',
+        catPomme: 'Mela',
+        catBanane: 'Banana',
+        catFraise: 'Fragola',
+        catAnanas: 'Ananas',
+        catMangue: 'Mango',
+        catPapaye: 'Papaya',
+        catPdt: 'Patata',
+        catAil: 'Aglio',
+        catOignon: 'Cipolla',
       },
     };
 
@@ -622,6 +718,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
     // ==================== Catalogue Filtre ====================
+    // ==================== Catalogue Filtre ====================
     const filterButtons = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('searchCatalog');
     const sections = document.querySelectorAll('.catalogue-section');
@@ -629,6 +726,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ensemble de filtres actifs (vide au démarrage)
     let activeFilters = new Set();
+
+    // Met à jour l'affichage des filtres actifs
+    function updateActiveFiltersUI() {
+      if (activeFilters.size === 0) {
+        activeFiltersContainer.style.display = 'none';
+        activeFiltersContainer.innerHTML = '';
+        return;
+      }
+
+      activeFiltersContainer.style.display = 'flex';
+      activeFiltersContainer.innerHTML = '';
+
+      activeFilters.forEach(type => {
+        const btn = document.querySelector(`.filter-btn[data-type="${type}"]`);
+        const badge = document.createElement('div');
+        badge.className = 'active-filter';
+
+        // Récupération de la traduction selon la langue
+        let translationKey = '';
+        switch (type) {
+          case 'legumes': translationKey = 'btnFiltreL'; break;
+          case 'fruits': translationKey = 'btnFiltreF'; break;
+          case 'exotic': translationKey = 'btnFiltreE'; break;
+          case 'PDTC': translationKey = 'btnFiltrePDT'; break;
+        }
+        badge.textContent = translations[currentLang][translationKey] || btn.textContent;
+
+        const close = document.createElement('span');
+        close.textContent = '✖';
+        close.addEventListener('click', () => {
+          activeFilters.delete(type);
+          btn.classList.remove('active');
+          updateCatalogue();
+        });
+
+        badge.appendChild(close);
+        activeFiltersContainer.appendChild(badge);
+      });
+    }
 
     // Met à jour l'affichage du catalogue
     function updateCatalogue() {
@@ -660,35 +796,6 @@ document.addEventListener("DOMContentLoaded", () => {
       updateActiveFiltersUI();
     }
 
-    // Met à jour l'affichage des filtres actifs
-    function updateActiveFiltersUI() {
-      if (activeFilters.size === 0) {
-        activeFiltersContainer.style.display = 'none';
-        activeFiltersContainer.innerHTML = '';
-        return;
-      }
-
-      activeFiltersContainer.style.display = 'flex';
-      activeFiltersContainer.innerHTML = '';
-      activeFilters.forEach(type => {
-        const btn = document.querySelector(`.filter-btn[data-type="${type}"]`);
-        const badge = document.createElement('div');
-        badge.className = 'active-filter';
-        badge.textContent = btn.textContent;
-
-        const close = document.createElement('span');
-        close.textContent = '✖';
-        close.addEventListener('click', () => {
-          activeFilters.delete(type);
-          btn.classList.remove('active');
-          updateCatalogue();
-        });
-
-        badge.appendChild(close);
-        activeFiltersContainer.appendChild(badge);
-      });
-    }
-
     // Gestion des clics sur les filtres
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -712,7 +819,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Premier affichage
     updateCatalogue();
 
-    
+    // 🔁 Mise à jour des badges de filtres à chaque changement de langue
+    document.querySelectorAll(".btnLang").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const lang = btn.id.replace("lang", "");
+        setLanguage(lang);
+        updateActiveFiltersUI(); // 🔁 rafraîchit les badges traduits
+      });
+    });
+
     setLanguage(currentLang);
   }
 });

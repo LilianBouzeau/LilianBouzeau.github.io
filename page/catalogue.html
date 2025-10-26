@@ -101,10 +101,10 @@
             </div>
 
             <div class="filter-buttons scroll-animateD">
-                <button class="filter-btn" data-type="legumes">Légumes</button>
-                <button class="filter-btn" data-type="fruits">Fruits</button>
-                <button class="filter-btn" data-type="exotic">Exotic</button>
-                <button class="filter-btn" data-type="PDTC">Pomme de terre & condiments</button>
+                <button class="filter-btn" data-type="legumes" id="btnFiltreL">Légumes</button>
+                <button class="filter-btn" data-type="fruits" id="btnFiltreF">Fruits</button>
+                <button class="filter-btn" data-type="exotic" id="btnFiltreE">Exotic</button>
+                <button class="filter-btn" data-type="PDTC" id="btnFiltrePDT">Pomme de terre & condiments</button>
             </div>
             <div class="active-filters" style="display: none;"></div>
         </div>
@@ -113,76 +113,76 @@
 
   <!-- LÉGUMES -->
   <div class="catalogue-section" data-type="legumes">
-    <h2>Légumes</h2>
+    <h2 id="titreCatL">Légumes</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="L001" data-title="Tomate" data-type="legumes">
         <img src="../img/produits/tomate.jpg" alt="Tomate">
-        <h3>Tomate</h3>
+        <h3 id="catTomate">Tomate</h3>
       </div>
       <div class="product-card scroll-animate" data-id="L002" data-title="Carotte" data-type="legumes">
         <img src="../img/produits/carotte.jpg" alt="Carotte">
-        <h3>Carotte</h3>
+        <h3 id="catCarotte">Carotte</h3>
       </div>
       <div class="product-card scroll-animateD" data-id="L003" data-title="Concombre" data-type="legumes">
         <img src="../img/produits/concombre.jpg" alt="Concombre">
-        <h3>Concombre</h3>
+        <h3 id="catConcombre">Concombre</h3>
       </div>
     </div>
   </div>
 
   <!-- FRUITS -->
   <div class="catalogue-section" data-type="fruits">
-    <h2>Fruits</h2>
+    <h2 id="titreCatF">Fruits</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="F001" data-title="Pomme" data-type="fruits">
         <img src="../img/produits/pomme.jpg" alt="Pomme">
-        <h3>Pomme</h3>
+        <h3 id="catPomme">Pomme</h3>
       </div>
       <div class="product-card scroll-animate" data-id="F002" data-title="Banane" data-type="fruits">
         <img src="../img/produits/banane.jpg" alt="Banane">
-        <h3>Banane</h3>
+        <h3 id="catBanane">Banane</h3>
       </div>
       <div class="product-card scroll-animateD" data-id="F003" data-title="Fraise" data-type="fruits">
         <img src="../img/produits/fraise.jpg" alt="Fraise">
-        <h3>Fraise</h3>
+        <h3 id="catFraise">Fraise</h3>
       </div>
     </div>
   </div>
 
   <!-- EXOTIC -->
   <div class="catalogue-section" data-type="exotic">
-    <h2>Exotic</h2>
+    <h2 id="titreCatE">Exotic</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="E001" data-title="Ananas" data-type="exotic">
         <img src="../img/produits/ananas.jpg" alt="Ananas">
-        <h3>Ananas</h3>
+        <h3 id="catAnanas">Ananas</h3>
       </div>
       <div class="product-card scroll-animate" data-id="E002" data-title="Mangue" data-type="exotic">
         <img src="../img/produits/mangue.jpg" alt="Mangue">
-        <h3>Mangue</h3>
+        <h3 id="catMangue">Mangue</h3>
       </div>
       <div class="product-card scroll-animateD" data-id="E003" data-title="Papaye" data-type="exotic">
         <img src="../img/produits/papaye.jpg" alt="Papaye">
-        <h3>Papaye</h3>
+        <h3 id="catPapaye">Papaye</h3>
       </div>
     </div>
   </div>
 
   <!-- PDT & CONDIMENTS -->
   <div class="catalogue-section" data-type="PDTC">
-    <h2>Pomme de terre & condiments</h2>
+    <h2 id="titreCatPDT">Pomme de terre & condiments</h2>
     <div class="product-grid">
       <div class="product-card scroll-animateG" data-id="P001" data-title="Pomme de terre" data-type="PDTC">
         <img src="../img/produits/pdt.jpg" alt="Pomme de terre">
-        <h3>Pomme de terre</h3>
+        <h3 id="catPdt">Pomme de terre</h3>
       </div>
       <div class="product-card scroll-animate" data-id="P002" data-title="Ail" data-type="PDTC">
         <img src="../img/produits/ail.jpg" alt="Ail">
-        <h3>Ail</h3>
+        <h3 id="catAil">Ail</h3>
       </div>
       <div class="product-card scroll-animate" data-id="P003" data-title="Oignon" data-type="PDTC">
         <img src="../img/produits/oignon.jpg" alt="Oignon">
-        <h3>Oignon</h3>
+        <h3 id="catOignon">Oignon</h3>
       </div>
     </div>
   </div>
