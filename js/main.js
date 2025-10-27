@@ -155,7 +155,7 @@ const translations = {
     //TITRE
     TitrePage1: "Cruchaudet | L'histoire",
     TitrePage2: "Cruchaudet | Service de Livraison",
-    TitrePage3: "Cruchaudet | Catalogue",
+    TitrePage3: "Cruchaudet | Nos partenaires",
     TitrePage4: "Cruchaudet | Les rayons",
     TitrePage5: "Cruchaudet | Nos engagements",
     TitrePage404: 'Cruchaudet | Page 404',
@@ -168,16 +168,14 @@ const translations = {
     navRayonLegumes: "Légumes",
     navRayonFruits: "Fruits",
     navRayonExotic: "Exotic",
-    navRayonC: "Condiments",
-    navContactExport: "Prise de contact",
-    navCatalogue: "Catalogue",
-    navLegumes: "Légumes",
-    navFruits: "Fruits",
     navRayonMiniLegumes:'Mini-légumes',
     navRayonJP:'Jeunes Pousses',
     navRayonG:'Germes',
-    navExotic: "Exotic",
-    navC: "Condiments",
+    navRayonC: "Condiments",
+    navContactExport: "Prise de contact",
+    navNosPartenaires: "Nos partenaires",
+    navClients: "Clients",
+    navFournisseurs: "Fournisseurs",
     navContact: "Contact",
 
     //PAGE INDEX
@@ -232,13 +230,6 @@ const translations = {
       errorSend: "Veuillez corriger les erreurs avant d'envoyer.",
     },
 
-    //CATALOGUE
-    btnLegumes: 'Légumes',
-    btnFruits: 'Fruits',
-    btnExotic: 'Exotic',
-    btnC: 'Pomme de terre & condiments',
-    searchPlaceholder: "Rechercher dans le catalogue...",
-
     //CGU
     TitrePageCGU: "Cruchaudet | Conditions générales d'utilisation",
     TitreCgu1: "Conditions Générales d'Utilisation",
@@ -257,31 +248,11 @@ const translations = {
     paragrapheCgu7: "Pour toute question concernant...",
     paragrapheCgu8: "© 2025 Cruchaudet. Tous droits réservés.",
 
-    //BTN FILTRE CATALOGUE
-    btnFiltreL: 'Légumes',
-    btnFiltreF: 'Fruits',
-    btnFiltreE: 'Exotic',
-    btnFiltreC: 'Pomme de terre & condiments',
-    titreCatL: 'Légumes',
-    titreCatF: 'Fruits',
-    titreCatE: 'Exotic',
-    titreCatC: 'Pomme de terre & condiments',
-    pFiltre1: 'Filtre :',
-    pFiltre2: 'Filtre Actif :',
-    catTomate: 'Tomate',
-    catCarotte: 'Carotte',
-    catConcombre: 'Concombre',
-    catPomme: 'Pomme',
-    catBanane: 'Banane',
-    catFraise: 'Fraise',
-    catAnanas: 'Ananas',
-    catMangue: 'Mangue',
-    catPapaye: 'Papaye',
-    catPdt: 'Pomme de terre',
-    catAil: 'Ail',
-    catOignon: 'Oignon',
+    //PAGE PARTENAIRES
+    titrePClients:"Clients",
+    titrePFournisseurs:"Fournisseurs",
 
-    //PAGE ENGAGEMENT
+  //PAGE ENGAGEMENT
     titrepageEngagement: 'Nos engagements',
     titreEngagements1: 'Qualité',
     titreEngagements2: 'Service',
@@ -291,7 +262,7 @@ const translations = {
     //TITRE
     TitrePage1: "Cruchaudet | The Story",
     TitrePage2: "Cruchaudet | Delivery Service",
-    TitrePage3: "Cruchaudet | Catalog",
+    TitrePage3: "Cruchaudet | Our Partners",
     TitrePage4: "Cruchaudet | Departments",
     TitrePage5: "Cruchaudet | Our Commitments",
     TitrePage404: "Cruchaudet | Page 404",
@@ -309,11 +280,9 @@ const translations = {
     navRayonExotic: "Exotic",
     navRayonC: "Condiments",
     navContactExport: "Contact Form",
-    navCatalogue: "Catalog",
-    navLegumes: "Vegetables",
-    navFruits: "Fruits",
-    navExotic: "Exotic",
-    navC: "Condiments",
+    navNosPartenaires: "Our Partners",
+    navClients: "Clients",
+    navFournisseurs: "Suppliers",
     navContact: "Contact",
 
     //PAGE INDEX
@@ -368,13 +337,6 @@ const translations = {
       errorSend: "Please fix the errors before sending.",
     },
 
-    //CATALOGUE
-    btnLegumes: "Vegetables",
-    btnFruits: "Fruits",
-    btnExotic: "Exotic",
-    btnC: "Potatoes & Condiments",
-    searchPlaceholder: "Search in the catalog...",
-
     //CGU
     TitrePageCGU: "Cruchaudet | Terms and Conditions of Use",
     TitreCgu1: "Terms and Conditions of Use",
@@ -393,29 +355,9 @@ const translations = {
     paragrapheCgu7: "For any questions regarding the CGU...",
     paragrapheCgu8: "© 2025 Cruchaudet. All rights reserved.",
 
-    //BTN FILTRE CATALOGUE
-    btnFiltreL: "Vegetables",
-    btnFiltreF: "Fruits",
-    btnFiltreE: "Exotic",
-    btnFiltreC: "Potatoes & Condiments",
-    titreCatL: "Vegetables",
-    titreCatF: "Fruits",
-    titreCatE: "Exotic",
-    titreCatC: "Potatoes & Condiments",
-    pFiltre1: "Filter:",
-    pFiltre2: "Active Filter:",
-    catTomate: "Tomato",
-    catCarotte: "Carrot",
-    catConcombre: "Cucumber",
-    catPomme: "Apple",
-    catBanane: "Banana",
-    catFraise: "Strawberry",
-    catAnanas: "Pineapple",
-    catMangue: "Mango",
-    catPapaye: "Papaya",
-    catPdt: "Potato",
-    catAil: "Garlic",
-    catOignon: "Onion",
+    //PAGE PARTENAIRES
+    titrePClients: "Clients",
+    titrePFournisseurs: "Suppliers",
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "Our Commitments",
@@ -427,7 +369,7 @@ const translations = {
     //TITRE
     TitrePage1: "Cruchaudet | La historia",
     TitrePage2: "Cruchaudet | Servicio de Entrega",
-    TitrePage3: "Cruchaudet | Catálogo",
+    TitrePage3: "Cruchaudet | Nuestros Socios",
     TitrePage4: "Cruchaudet | Secciones",
     TitrePage5: "Cruchaudet | Nuestros compromisos",
     TitrePage404: "Cruchaudet | Página 404",
@@ -440,16 +382,14 @@ const translations = {
     navRayonLegumes: "Verduras",
     navRayonFruits: "Frutas",
     navRayonExotic: "Exóticas",
-    navRayonC: "Condimentos",
-    navContactExport: "Formulario de contacto",
-    navCatalogue: "Catálogo",
-    navLegumes: "Verduras",
-    navFruits: "Frutas",
     navRayonMiniLegumes: 'Mini Verduras',
+    navRayonC: "Condimentos",
     navRayonJP: 'Brotes Tiernos',
     navRayonG: 'Germinados',
     navExotic: "Exóticas",
-    navC: "Condimentos",
+    navNosPartenaires: "Nuestros Socios",
+    navClients: "Clientes",
+    navFournisseurs: "Proveedores",
     navContact: "Contacto",
 
     //PAGE INDEX
@@ -504,13 +444,6 @@ const translations = {
       errorSend: "Corrige los errores antes de enviar.",
     },
 
-    //CATALOGUE
-    btnLegumes: "Verduras",
-    btnFruits: "Frutas",
-    btnExotic: "Exóticas",
-    btnC: "Patatas y condimentos",
-    searchPlaceholder: "Buscar en el catálogo...",
-
     //CGU
     TitrePageCGU: "Cruchaudet | Condiciones de uso",
     TitreCgu1: "Condiciones Generales de Uso",
@@ -529,29 +462,9 @@ const translations = {
     paragrapheCgu7: "Para cualquier pregunta sobre las CGU...",
     paragrapheCgu8: "© 2025 Cruchaudet. Todos los derechos reservados.",
 
-    //BTN FILTRE CATALOGUE
-    btnFiltreL: "Verduras",
-    btnFiltreF: "Frutas",
-    btnFiltreE: "Exóticas",
-    btnFiltreC: "Patatas y condimentos",
-    titreCatL: "Verduras",
-    titreCatF: "Frutas",
-    titreCatE: "Exóticas",
-    titreCatC: "Patatas y condimentos",
-    pFiltre1: "Filtro:",
-    pFiltre2: "Filtro activo:",
-    catTomate: "Tomate",
-    catCarotte: "Zanahoria",
-    catConcombre: "Pepino",
-    catPomme: "Manzana",
-    catBanane: "Banana",
-    catFraise: "Fresa",
-    catAnanas: "Piña",
-    catMangue: "Mango",
-    catPapaye: "Papaya",
-    catPdt: "Patata",
-    catAil: "Ajo",
-    catOignon: "Cebolla",
+    //PAGE PARTENAIRES
+    titrePClients: "Clientes",
+    titrePFournisseurs: "Proveedores",
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "Nuestros compromisos",
@@ -563,7 +476,7 @@ const translations = {
     //TITRE
     TitrePage1: "Cruchaudet | La storia",
     TitrePage2: "Cruchaudet | Servizio di Consegna",
-    TitrePage3: "Cruchaudet | Catalogo",
+    TitrePage3: "Cruchaudet | I Nostri Partner",
     TitrePage4: "Cruchaudet | Reparti",
     TitrePage5: "Cruchaudet | I nostri impegni",
     TitrePage404: "Cruchaudet | Pagina 404",
@@ -576,19 +489,13 @@ const translations = {
     navRayonLegumes: "Verdure",
     navRayonFruits: "Frutta",
     navRayonExotic: "Esotici",
-    navRayonMiniLegumes:'Mini-légumes',
-    navRayonJP:'Jeunes Pousses',
-    navRayonG:'Germes',
-    navRayonC: "Condimenti",
-    navContactExport: "Modulo di contatto",
-    navCatalogue: "Catalogo",
-    navLegumes: "Verdure",
-    navFruits: "Frutta",
     navRayonMiniLegumes: 'Mini Verdure',
     navRayonJP: 'Germogli Teneri',
     navRayonG: 'Germogli',
-    navExotic: "Esotici",
-    navC: "Condimenti",
+    navRayonC: "Condimenti",
+    navNosPartenaires: "I Nostri Partner",
+    navClients: "Clienti",
+    navFournisseurs: "Fornitori",
     navContact: "Contatto",
 
     //PAGE INDEX
@@ -643,13 +550,6 @@ const translations = {
       errorSend: "Correggi gli errori prima di inviare.",
     },
 
-    //CATALOGUE
-    btnLegumes: "Verdure",
-    btnFruits: "Frutta",
-    btnExotic: "Esotici",
-    btnC: "Patate e condimenti",
-    searchPlaceholder: "Cerca nel catalogo...",
-
     //CGU
     TitrePageCGU: "Cruchaudet | Condizioni d'uso",
     TitreCgu1: "Condizioni Generali d'Uso",
@@ -668,29 +568,9 @@ const translations = {
     paragrapheCgu7: "Per qualsiasi domanda riguardo le CGU...",
     paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
 
-    //BTN FILTRE CATALOGUE
-    btnFiltreL: "Verdure",
-    btnFiltreF: "Frutta",
-    btnFiltreE: "Esotici",
-    btnFiltreC: "Patate e condimenti",
-    titreCatL: "Verdure",
-    titreCatF: "Frutta",
-    titreCatE: "Esotici",
-    titreCatC: "Patate e condimenti",
-    pFiltre1: "Filtro:",
-    pFiltre2: "Filtro attivo:",
-    catTomate: "Pomodoro",
-    catCarotte: "Carota",
-    catConcombre: "Cetriolo",
-    catPomme: "Mela",
-    catBanane: "Banana",
-    catFraise: "Fragola",
-    catAnanas: "Ananas",
-    catMangue: "Mango",
-    catPapaye: "Papaya",
-    catPdt: "Patata",
-    catAil: "Aglio",
-    catOignon: "Cipolla",
+    //PAGE PARTENAIRES
+    titrePClients: "Clienti",
+    titrePFournisseurs: "Fornitori",
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "I nostri impegni",
@@ -899,89 +779,6 @@ const translations = {
     // Appel initial pour mettre en place la validation (si le formulaire est présent)
     initFormValidation();
 
-    // ---------- CATALOGUE & FILTRES ----------
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const searchInput = document.getElementById('searchCatalog');
-    const sections = document.querySelectorAll('.catalogue-section');
-    const activeFiltersContainer = document.querySelector('.active-filters');
-    let activeFilters = new Set();
-
-    function updateActiveFiltersUI() {
-      if (!activeFiltersContainer) return;
-      if (activeFilters.size === 0) {
-        activeFiltersContainer.style.display = 'none';
-        activeFiltersContainer.innerHTML = '';
-        return;
-      }
-      activeFiltersContainer.style.display = 'flex';
-      activeFiltersContainer.innerHTML = '';
-      activeFilters.forEach(type => {
-        const btn = document.querySelector(`.filter-btn[data-type="${type}"]`);
-        const badge = document.createElement('div');
-        badge.className = 'active-filter';
-        let translationKey = '';
-        switch (type) {
-          case 'legumes': translationKey = 'btnFiltreL'; break;
-          case 'fruits': translationKey = 'btnFiltreF'; break;
-          case 'exotic': translationKey = 'btnFiltreE'; break;
-          case 'CC': translationKey = 'btnFiltreC'; break;
-          default: translationKey = null;
-        }
-        badge.textContent = (translationKey && translations[currentLang][translationKey]) || (btn ? btn.textContent : type);
-        const close = document.createElement('span');
-        close.textContent = '✖';
-        close.addEventListener('click', () => {
-          activeFilters.delete(type);
-          if (btn) btn.classList.remove('active');
-          updateCatalogue();
-        });
-        badge.appendChild(close);
-        activeFiltersContainer.appendChild(badge);
-      });
-    }
-
-    function updateCatalogue() {
-      if (!sections) return;
-      const query = (searchInput && searchInput.value) ? searchInput.value.toLowerCase() : '';
-      sections.forEach(section => {
-        const sectionType = section.dataset.type;
-        let visibleSection = false;
-        const filterMatch = activeFilters.size === 0 || activeFilters.has(sectionType);
-        section.querySelectorAll('.product-card').forEach(card => {
-          const id = (card.dataset.id || "").toLowerCase();
-          const title = (card.dataset.title || "").toLowerCase();
-          const matchSearch = id.includes(query) || title.includes(query);
-          const matchFilter = filterMatch;
-          if (matchSearch && matchFilter) {
-            card.style.display = "block";
-            visibleSection = true;
-          } else card.style.display = "none";
-        });
-        section.style.display = visibleSection ? "block" : "none";
-      });
-      updateActiveFiltersUI();
-    }
-
-    // Attache listeners sur boutons de filtres (s'ils existent)
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.dataset.type;
-        if (!type) return;
-        if (activeFilters.has(type)) {
-          activeFilters.delete(type);
-          btn.classList.remove('active');
-        } else {
-          activeFilters.add(type);
-          btn.classList.add('active');
-        }
-        updateCatalogue();
-      });
-    });
-
-    if (searchInput) searchInput.addEventListener('input', updateCatalogue);
-
-    // Initialisation catalogue
-    updateCatalogue();
 
     // ---------- Initialisation finale de la langue + listeners ----------
     // On attache d'abord les listeners (s'ils existent déjà), puis on force setLanguage

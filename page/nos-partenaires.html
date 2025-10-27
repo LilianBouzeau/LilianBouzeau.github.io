@@ -13,8 +13,8 @@
     <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- CSS principal -->
-    <link rel="stylesheet" href="../css/style.css">
-    <title id="TitrePage404">Cruchaudet | Page 404</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title id="TitrePage3">Cruchaudet | Nos partenaires</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 
         <!-- ==================== BOUTONS DE LANGUE ==================== -->
         <div id="langButtons">
-            <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
+            <button class="btnLang scroll-animateG" id="langEN" title="Anglais" data>
                 <img src="../img/flag-anglais.png" alt="EN">
             </button>
             <button class="btnLang scroll-animateG" id="langFR" title="Français">
@@ -71,7 +71,7 @@
                     </li>
                     <!-- Sous-menu Export -->
                     <li class="deroulant">
-                    <a id="navExport" href="/page/export.html">Service de Livraison</a>
+                        <a id="navExport" href="/page/export.html">Service de Livraison</a>
                         <ul class="sous">
                             <li><a id="navContactExport" href="/page/export.html#contactExport">Prise de contact</a>
                             </li>
@@ -81,25 +81,27 @@
                     <li class="deroulant">
                         <a id="navNosPartenaires" href="/page/nos-partenaires.html">Nos partenaires</a>
                         <ul class="sous">
-                            <li><a id="navClients" href="/page/nos-partenaires.html">Clients</a></li>
-                            <li><a id="navFournisseurs" href="/page/nos-partenaires.html">Fournisseurs</a></li>
+                            <li><a id="navClients" href="/page/nos-partenaires.html#titrePClients">Clients</a></li>
+                            <li><a id="navFournisseurs" href="/page/nos-partenaires.html#titrePFournisseurs">Fournisseurs</a></li>
                             </li>
                         </ul>
                     </li>
 
 
                     <li>
-                        <a id="navContact" href="404.html#contact">Contact</a>
+                        <a id="navContact" href="/page/nos-partenaires.html#contact">Contact</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <div class="error-container">
-            <h1>404</h1>
-            <p id="text404">Oups ! La page que vous recherchez n'existe pas.</p>
-            <a id="btn404" href="../index.html" class="btn-home scroll-animate">Retour à l'accueil</a>
-        </div>
-
+          <div id="presentation">
+            <div id="quiSommeNous">
+            <!-- ==================== Clients + Map ==================== -->
+              <h2 id="titrePClients" class="nom">Clients</h2>
+            <!-- ==================== Fournisseurs ==================== -->
+              <h2 id="titrePFournisseurs" class="nom">Fournisseurs</h2>
+            </div>
+          </div>
         <!-- ==================== FOOTER ==================== -->
         <footer>
             <h1 id="contact">Contact</h1>
@@ -139,11 +141,12 @@
             </div>
 
             <!-- Copyright -->
-             <a id="cguFooter"  href="/page/cgu.html" target="_blank" rel="noopener noreferrer">Conditions générales d'utilisation</a>
+            <a id="cguFooter" href="/page/cgu.html" target="_blank" rel="noopener noreferrer">Conditions générales
+                d'utilisation</a>
             <p id="footerCopy">Copyright © 2025 Cruchaudet.com. Tous droits réservés.</p>
 
             <!-- Script principal -->
-            <script type="text/javascript" src="../js/main.js"></script>
+            <script type="text/javascript" src="/js/main.js"></script>
         </footer>
     </div>
 </body>

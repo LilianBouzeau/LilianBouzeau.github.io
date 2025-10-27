@@ -902,11 +902,15 @@ iframe {
 footer iframe {
   border-radius: 15px;
 }
-#cguFooter{
-  color: black;
+#cguFooter {
+  color: beige;
+  display: inline-block; /* nécessaire pour que transform fonctionne */
+  transition: all 0.3s ease;
 }
-#cguFooter:hover{
-  color: var(--blanc);
+
+#cguFooter:hover {
+  text-decoration: underline 1px white;
+  transform: scale(1.1);
 }
 /* ================================
    Page CGU
