@@ -672,8 +672,22 @@ textarea {
   transform: translateY(-2px);
   color: var(--blanc);
 }
-/* Mobile : image au-dessus du texte */
+/* Desktop par défaut */
+.imgMobile1 {
+  display: none;
+}
+.imgMobile2 {
+  display: block;
+}
+
+/* Mobile : inverser l'affichage */
 @media (max-width: 768px) {
+  .imgMobile1 {
+    display: block;
+  }
+  .imgMobile2 {
+    display: none;
+  }
   .fournisseur {
     flex-direction: column;
     height: auto;
