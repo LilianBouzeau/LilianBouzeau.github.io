@@ -595,172 +595,105 @@ textarea {
   color: #c62828;
 }
 
+
 /* ================================
-   BARRE DE RECHERCHE ET FILTRES
+  PAGE PARTENAIRES
 =================================*/
-.search-wrapper {
-  width: 80%;
-  max-width: 800px;
-  margin: 1rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
 
-.search-container {
-  display: flex;
-  width: 100%;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-}
-
-#searchCatalog {
-  flex: 1;
-  padding: 0.6rem 1rem;
-  border: none;
-  outline: none;
-  font-family: var(--font);
-  font-size: 1rem;
-  background-color: var(--blanc);
-  color: var(--noir);
-  transition: var(--transition);
-}
-
-#searchCatalog:focus {
-  color: var(--accent);
-}
-
-#searchCatalog::placeholder {
-  color: var(--gris);
-}
-
-#searchBtn {
-  background-color: var(--bleu);
-  border: none;
-  padding: 0 1rem;
-  cursor: pointer;
-  color: var(--blanc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-#searchBtn:hover {
-  background-color: var(--accent);
-}
-
-/* Boutons de filtre */
-.filter-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-}
-
-.filter-btn {
-  padding: 0.5rem 1rem;
-  background-color: var(--bleu);
-  color: var(--blanc);
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: var(--transition);
-  font-family: var(--font);
-  font-weight: 500;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background-color: var(--accent);
-  color: var(--blanc);
-  transform: scale(1.07);
-}
-.pFiltre{
-  font-family: var(--font);
-  font-size: 1rem;
-  color: var(--bleu);
-  font-weight: 600;
-  text-align: center;
-  margin: 0.5rem 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.catalogue-wrapper {
-  width: 90%;
-  margin: 2rem auto;
+.fournisseurs-wrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.catalogue-section h2 {
-  text-align: center;
+.fournisseur {
+  display: flex;
+  width: 100%;
+  height: 300px; /* ajustable selon ton image */
+  overflow: hidden;
+  background-color: var(--blanc);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+  border-radius: var(--radius);
+}
+
+/* Image à gauche qui prend la moitié exacte */
+.imgFournisseur {
+  width: 30%;
+  height: 100%;
+}
+
+.imgFournisseur img {
+  border-radius: var(--radius);
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* image remplie entièrement */
+  display: block;
+}
+
+/* Texte à droite */
+.bioEntreprise {
+  width: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.TitreBio {
   margin-bottom: 1rem;
   color: var(--bleu);
 }
 
-.product-grid {
+.paragrapheBio {
+  line-height: 1.6;
+}
+/* Lien du fournisseur */
+.lienSite{
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
 }
-
-/* Produit */
-.product-card {
-  flex: 1 1 200px; /* largeur par défaut */
-  max-width: 200px;
-  border-radius: var(--radius);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-  background: var(--blanc);
-  text-align: center;
-  padding: 0.5rem;
-  transition: transform 0.2s;
-}
-
-.product-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-/* Conteneur des filtres actifs */
-.active-filters {
-  display: flex;
-  gap: 0.5rem;
-  margin: 0.8rem auto;
-  flex-wrap: wrap;
-}
-
-/* Badge de filtre actif */
-.active-filter {
+.lienFournisseur {
+  display: inline-block;  /* s'adapte à la largeur du texte */
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
   background-color: var(--bleu);
   color: var(--blanc);
-  padding: 0.3rem 0.6rem;
+  font-weight: 500;
   border-radius: var(--radius);
-  font-family: var(--font);
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  cursor: default;
-  font-size: 0.9rem;
+  text-align: center; /* centrer le texte à l'intérieur du bouton */
+  text-decoration: none;
+  transition: var(--transition);
 }
 
-/* Crois pour enlever le filtre */
-.active-filter span {
-  cursor: pointer;
-  font-weight: bold;
+.lienFournisseur:hover {
+  background-color: var(--accent);
+  transform: translateY(-2px);
+  color: var(--blanc);
 }
-.active-filter span:hover {
-  color: var(--accent);
+/* Mobile : image au-dessus du texte */
+@media (max-width: 768px) {
+  .fournisseur {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imgFournisseur,
+  .bioEntreprise {
+    width: 100%;
+  }
+
+  .imgFournisseur img {
+    height: 250px; /* fixe ou auto */
+  }
+
+  .bioEntreprise {
+    text-align: center;
+  }
 }
+
+
 /* ================================
    FOOTER ET CONTACT
 =================================*/

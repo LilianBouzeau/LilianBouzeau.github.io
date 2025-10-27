@@ -251,6 +251,12 @@ const translations = {
     //PAGE PARTENAIRES
     titrePClients:"Clients",
     titrePFournisseurs:"Fournisseurs",
+    TitreFournisseur1:"Fournisseur",
+    TitreFournisseur2:"Fournisseur",
+    TitreFournisseur3:"Fournisseur",
+    lienSiteF1:'Visiter le site',
+    lienSiteF2:'Visiter le site',
+    lienSiteF3:'Visiter le site',
 
   //PAGE ENGAGEMENT
     titrepageEngagement: 'Nos engagements',
@@ -358,6 +364,12 @@ const translations = {
     //PAGE PARTENAIRES
     titrePClients: "Clients",
     titrePFournisseurs: "Suppliers",
+    TitreFournisseur1: "Supplier",
+    TitreFournisseur2: "Supplier",
+    TitreFournisseur3: "Supplier",
+    lienSiteF1:'Visit the website',
+    lienSiteF2:'Visit the website',
+    lienSiteF3:'Visit the website',
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "Our Commitments",
@@ -465,6 +477,12 @@ const translations = {
     //PAGE PARTENAIRES
     titrePClients: "Clientes",
     titrePFournisseurs: "Proveedores",
+    TitreFournisseur1: "Proveedor",
+    TitreFournisseur2: "Proveedor",
+    TitreFournisseur3: "Proveedor",
+    lienSiteF1:'Visitar el sitio',
+    lienSiteF2:'Visitar el sitio',
+    lienSiteF3:'Visitar el sitio',
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "Nuestros compromisos",
@@ -571,6 +589,12 @@ const translations = {
     //PAGE PARTENAIRES
     titrePClients: "Clienti",
     titrePFournisseurs: "Fornitori",
+    TitreFournisseur1: "Fornitore",
+    TitreFournisseur2: "Fornitore",
+    TitreFournisseur3: "Fornitore",
+    lienSiteF1:'Visita il sito',
+    lienSiteF2:'Visita il sito',
+    lienSiteF3:'Visita il sito',
 
     //PAGE ENGAGEMENT
     titrepageEngagement: "I nostri impegni",
