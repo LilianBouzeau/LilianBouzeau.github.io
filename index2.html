@@ -1,0 +1,114 @@
+<!-- HTML -->
+<div id="loader" aria-hidden="false" role="status">
+  <div class="spinner" aria-hidden="true">
+    <span class="fruit">🍎</span>
+    <span class="fruit">🍌</span>
+    <span class="fruit">🍓</span>
+    <span class="fruit">🥕</span>
+    <span class="fruit">🥦</span>
+    <span class="fruit">🍇</span>
+  </div>
+  <div class="loading-text">Chargement…</div>
+</div>
+
+<div id="mainContent" style="display:none;">
+  <!-- Ton contenu principal ici -->
+  <h1>Contenu principal</h1>
+  <p>Bienvenue !</p>
+</div>
+
+<!-- STYLE -->
+<style>
+  /* Container centré */
+  #loader{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:14px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,255,245,0.95));
+    z-index:9999;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+
+  .spinner{
+    position:relative;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    /* léger halo */
+    box-shadow: 0 6px 30px rgba(0,0,0,0.08), inset 0 2px 6px rgba(255,255,255,0.6);
+    display:block;
+    transform: translateZ(0);
+    /* fait tourner le conteneur d'icônes */
+    animation: spin 2.6s linear infinite;
+  }
+
+  /* Chaque fruit positionné en cercle */
+  .fruit{
+    --n: 6; /* nombre d'éléments (ajuste si tu en changes) */
+    --i: 0; /* index (sera surchargé en style attribute via nth-child) */
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform-origin: -38px center; /* rayon du cercle */
+    font-size:26px;
+    display:inline-block;
+    width:28px;
+    height:28px;
+    margin:-14px 0 0 -14px;
+    /* Chaque fruit contre-rotates pour rester droit (appliqué plus bas) */
+  }
+
+  /* positionnement équi-espacé et contre-rotation propre */
+  .fruit:nth-child(1){ transform: rotate(calc(0deg)) translateX(38px) rotate(calc(0deg)); }
+  .fruit:nth-child(2){ transform: rotate(calc(60deg)) translateX(38px) rotate(calc(-60deg)); }
+  .fruit:nth-child(3){ transform: rotate(calc(120deg)) translateX(38px) rotate(calc(-120deg)); }
+  .fruit:nth-child(4){ transform: rotate(calc(180deg)) translateX(38px) rotate(calc(-180deg)); }
+  .fruit:nth-child(5){ transform: rotate(calc(240deg)) translateX(38px) rotate(calc(-240deg)); }
+  .fruit:nth-child(6){ transform: rotate(calc(300deg)) translateX(38px) rotate(calc(-300deg)); }
+
+  /* petit rebond / scale en hover (si utilisateur passe la souris) */
+  .spinner:hover .fruit { animation: pop 1s ease-in-out infinite; }
+  .loading-text{
+    font-size:14px;
+    color:#2b2b2b;
+    opacity:.9;
+    letter-spacing:.02em;
+  }
+
+  @keyframes spin{
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(360deg); }
+  }
+
+  @keyframes pop{
+    0%,100%{ transform: scale(1) }
+    50%{ transform: scale(1.08) }
+  }
+
+  /* Réductions responsive */
+  @media (max-width:420px){
+    .spinner{ width:92px; height:92px; }
+    .fruit{ font-size:22px; transform-origin: -30px center; }
+  }
+</style>
+
+<!-- JS: simule le chargement → remplace par ton logique réelle -->
+<script>
+  // Simule un chargement asynchrone ; remplace setTimeout par la logique réelle (fetch, image load, etc.)
+  document.addEventListener("DOMContentLoaded", function(){
+    // Exemple : 2s de "chargement"
+    setTimeout(function(){
+      const loader = document.getElementById("loader");
+      const main = document.getElementById("mainContent");
+      if(loader) loader.style.display = "none";
+      if(main) main.style.display = ""; // restaure l'affichage par défaut
+      // accessibilité
+      if(loader) loader.setAttribute("aria-hidden","true");
+      if(main) main.setAttribute("aria-hidden","false");
+    }, 2000);
+  });
+</script>

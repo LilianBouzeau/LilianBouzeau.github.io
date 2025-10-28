@@ -4,25 +4,29 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ---------- Loader & Lancement principal ----------
-  const loader = document.getElementById("loader");
-  const mainContent = document.getElementById("mainContent");
-  if (mainContent) mainContent.style.display = "none";
+// ---------- Loader & Lancement principal ----------
+const loader = document.getElementById("loader");
+const mainContent = document.getElementById("mainContent");
+if (mainContent) mainContent.style.display = "none";
 
-  const startTime = Date.now();
+const startTime = Date.now();
 
-  // Attendre l'événement load pour s'assurer que tout (images, etc.) est prêt
-  window.addEventListener("load", () => {
-    const elapsed = Date.now() - startTime;
-    const minDelay = 500; // délai minimum pour éviter flash
-    const remaining = Math.max(minDelay - elapsed, 0);
+// Attendre le chargement complet
+window.addEventListener("load", () => {
+  const elapsed = Date.now() - startTime;
+  const minDelay = 43800; // délai minimum (ms)
+  const remaining = Math.max(minDelay - elapsed, 0);
 
+  setTimeout(() => {
+    if (loader) loader.style.opacity = "0";
     setTimeout(() => {
-      if (loader) loader.style.display = "none";
+      loader.style.display = "none";
       if (mainContent) mainContent.style.display = "block";
-      initMenusEtTraductions(); // on initialise tout après le chargement
-    }, remaining);
-  });
+      initMenusEtTraductions();
+    }, 500); // délai pour la transition
+  }, remaining);
+});
+
 
   // ---------- Fonction principale ----------
   function initMenusEtTraductions() {
