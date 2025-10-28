@@ -4,28 +4,34 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-// ---------- Loader & Lancement principal ----------
-const loader = document.getElementById("loader");
-const mainContent = document.getElementById("mainContent");
-if (mainContent) mainContent.style.display = "none";
+  // ---------- Loader & Lancement principal ----------
+  const loader = document.getElementById("loader");
+  const mainContent = document.getElementById("mainContent");
+  if (mainContent) mainContent.style.display = "none";
 
-const startTime = Date.now();
+  // -------- Assigner l’angle à chaque fruit --------
+  const fruits = document.querySelectorAll('.spinner .fruit');
+  fruits.forEach((fruit, i) => {
+    fruit.style.setProperty('--i', i);
+  });
 
-// Attendre le chargement complet
-window.addEventListener("load", () => {
-  const elapsed = Date.now() - startTime;
-  const minDelay = 43800; // délai minimum (ms)
-  const remaining = Math.max(minDelay - elapsed, 0);
+  const startTime = Date.now();
 
-  setTimeout(() => {
-    if (loader) loader.style.opacity = "0";
+  // Attendre le chargement complet
+  window.addEventListener("load", () => {
+    const elapsed = Date.now() - startTime;
+    const minDelay = 500; // délai minimum (ms)
+    const remaining = Math.max(minDelay - elapsed, 0);
+
     setTimeout(() => {
-      loader.style.display = "none";
-      if (mainContent) mainContent.style.display = "block";
-      initMenusEtTraductions();
-    }, 500); // délai pour la transition
-  }, remaining);
-});
+      if (loader) loader.style.opacity = "0";
+      setTimeout(() => {
+        loader.style.display = "none";
+        if (mainContent) mainContent.style.display = "block";
+        initMenusEtTraductions();
+      }, 500); // délai pour la transition
+    }, remaining);
+  });
 
 
   // ---------- Fonction principale ----------

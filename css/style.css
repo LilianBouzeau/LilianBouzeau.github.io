@@ -78,68 +78,66 @@ a:hover {
   color: var(--bleu);
 }
 /* ================================ */
-/* LOADER FRUITS EN ORBITE (PARFAITEMENT CENTRÉ) */
+/* LOADER FRUITS PARFAITEMENT EN ORBITE */
 /* ================================ */
 #loader {
   position: fixed;
-  inset: 0; /* top:0; left:0; right:0; bottom:0 */
-  background: var(--beige);
+  inset: 0;
+  background: var(--beige, #fff8e6);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  font-family: "Poppins", sans-serif;
-  overflow: hidden;
+  font-size: 3rem; /* taille de base pour desktop */
 }
 
-/* Conteneur du cercle d’orbite */
-.orbit {
-  position: relative;
-  width: 240px; /* diamètre du cercle */
-  height: 240px;
+.spinner {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 1.5rem; /* espace entre les fruits */
 }
 
-/* Fruits en orbite — espacement égal et centré */
 .fruit {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 2.8rem;
-  transform: rotate(var(--angle)) translateX(100px) rotate(calc(-1 * var(--angle)));
-  animation: orbit 4s linear infinite;
-  transform-origin: center center;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+  display: inline-block;
+  animation: bounceScale 1.2s ease-in-out infinite; /* rebond plus lent avec scale */
 }
 
-/* Animation orbitale circulaire parfaite */
-@keyframes orbit {
-  from {
-    transform: rotate(var(--angle)) translateX(100px) rotate(calc(-1 * var(--angle)));
+/* Décalage progressif pour effet dynamique */
+.fruit:nth-child(1) { animation-delay: 0s; }
+.fruit:nth-child(2) { animation-delay: 0.1s; }
+.fruit:nth-child(3) { animation-delay: 0.2s; }
+.fruit:nth-child(4) { animation-delay: 0.3s; }
+.fruit:nth-child(5) { animation-delay: 0.4s; }
+.fruit:nth-child(6) { animation-delay: 0.5s; }
+.fruit:nth-child(7) { animation-delay: 0.6s; }
+.fruit:nth-child(8) { animation-delay: 0.7s; }
+.fruit:nth-child(9) { animation-delay: 0.8s; }
+.fruit:nth-child(10){ animation-delay: 0.9s; }
+
+/* Animation rebond + léger scale */
+@keyframes bounceScale {
+  0%, 100% {
+    transform: translateY(0) scale(1);
   }
-  to {
-    transform: rotate(calc(var(--angle) + 360deg)) translateX(100px) rotate(calc(-1 * (var(--angle) + 360deg)));
+  50% {
+    transform: translateY(-20px) scale(1.15); /* rebond + agrandissement léger */
   }
 }
 
-/* Animation douce du texte */
-@keyframes fadeIn {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
+/* =================== MEDIA QUERIES =================== */
+@media (max-width: 768px) {
+  #loader { font-size: 2.2rem;}
+  .spinner { gap: 1rem; }
+  @keyframes bounceScale {
+    50% { transform: translateY(-15px) scale(1.12); }
+  }
 }
 
-/* Halo central */
-.orbit::before {
-  content: "";
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,214,160,0.9) 0%, rgba(255,203,130,0.4) 70%, transparent 100%);
-  box-shadow: 0 0 25px rgba(255,170,50,0.6);
+@media (max-width: 480px) {
+  #loader { font-size: 1.6rem; }
+  .spinner { gap: 0.7rem; }
+  @keyframes bounceScale {
+    50% { transform: translateY(-10px) scale(1.1); }
+  }
 }
 
 
