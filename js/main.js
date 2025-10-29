@@ -158,241 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
-   // ---------- map ----------
-// Taille du viewport (doit correspondre au viewBox du SVG)
-const width = 1350;
-const height = 600;
-
-// Coordonnées du point de départ (France / Paris)
-const france = { name: "France", lat: 37, lon: 0 };
-
-// Liste des pays (coordonnées des capitales)
-const exports = [
-  { name: "Canada", lat: 44, lon: -85 },
-  { name: "Guadeloupe", lat: 5, lon: -58 },
-  { name: "Irlande", lat: 41, lon: -8.5 },
-  { name: "Angleterre", lat: 40, lon: -3 },
-  { name: "Allemagne", lat: 39, lon: 6},
-  { name: "Suède", lat: 45, lon: 8.5 },
-  { name: "Danemark", lat: 43.5, lon: 5 },
-  { name: "Pays-Bas", lat: 40.5, lon: 2 },
-  { name: "Belgique", lat: 39, lon: 2 },
-  { name: "Hong Kong", lat: 12, lon: 100.5},
-  { name: "Singapour", lat: -10.5, lon:94},
-  { name: "Thaïlande", lat: 4, lon: 90 },
-  { name: "France", lat: 37, lon: 0 },
-];
-
-// --- Projection Mercator ---
-const zoom = 1.1;
-function proj(lon, lat) {
-  const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
-  const latRad = (lat * Math.PI) / 180;
-  const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-  const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
-  return { x, y };
-}
-
-// Récupération du SVG et du groupe pour les traits
-const svg = document.getElementById("svgmap");
-const g = document.getElementById("arrows");
-
-// Position de Paris
-const origin = proj(france.lon, france.lat);
-
-
-// Point bleu France
-const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-originCircle.setAttribute("cx", origin.x);
-originCircle.setAttribute("cy", origin.y);
-originCircle.setAttribute("r", 4);
-originCircle.setAttribute("fill", "#1a73e8");
-originCircle.setAttribute("stroke", "white");
-originCircle.setAttribute("stroke-width", "2");
-g.appendChild(originCircle);
-
-
-// Tracer les lignes rouges et les points
-exports.forEach((c) => {
-  const p = proj(c.lon, c.lat);
-
-  // Ligne Paris → capitale
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", origin.x);
-  line.setAttribute("y1", origin.y);
-  line.setAttribute("x2", p.x);
-  line.setAttribute("y2", p.y);
-  line.setAttribute("stroke", "#e34a33");
-  line.setAttribute("stroke-width", "2.5");
-  line.setAttribute("opacity", "0.9");
-  g.appendChild(line);
-
-  // Point capitale
-  const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circ.setAttribute("cx", p.x);
-  circ.setAttribute("cy", p.y);
-  circ.setAttribute("r", 4);
-  circ.setAttribute("fill", "#2b6cb0");
-  circ.setAttribute("stroke", "white");
-  circ.setAttribute("stroke-width", "1");
-  g.appendChild(circ);
-
-  // Effet hover + tooltip
-  circ.style.transition = "transform 0.2s ease, fill 0.2s ease";
-  circ.addEventListener("mouseenter", () => {
-    circ.setAttribute("fill", "#e34a33");
-    circ.style.transformOrigin = "center";
-
-    tooltip.textContent = c.name;
-    tooltip.setAttribute("x", p.x + 8); // légèrement à droite
-    tooltip.setAttribute("y", p.y - 8); // légèrement au-dessus
-    tooltip.setAttribute("visibility", "visible");
-  });
-  circ.addEventListener("mouseleave", () => {
-    circ.setAttribute("fill", "#2b6cb0");
-    circ.style.transform = "scale(1)";
-    tooltip.setAttribute("visibility", "hidden");
-  });
-});
-// ---------- Zoom & Pan complet ----------
-const svgEl = document.getElementById("svgmap");
-const mapGroup = document.getElementById("mapGroup");
-
-let scale = 1;
-let panX = 0;
-let panY = 0;
-let isPanning = false;
-let startX, startY;
-
-const minScale = 1;
-const maxScale = 3;
-let zoomDone = false;
-
-function applyTransform() {
-  mapGroup.setAttribute("transform", `translate(${panX}, ${panY}) scale(${scale})`);
-}
-
-// ----- ZOOM à la molette (desktop) -----
-svgEl.addEventListener("wheel", (e) => {
-  e.preventDefault();
-  const zoomSpeed = 0.1;
-  const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
-  const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
-
-  const rect = svgEl.getBoundingClientRect();
-  const cx = e.clientX - rect.left;
-  const cy = e.clientY - rect.top;
-
-  panX -= (cx - panX) * (newScale / scale - 1);
-  panY -= (cy - panY) * (newScale / scale - 1);
-  scale = newScale;
-  applyTransform();
-});
-
-// ----- PAN souris -----
-svgEl.addEventListener("mousedown", (e) => {
-  isPanning = true;
-  startX = e.clientX - panX;
-  startY = e.clientY - panY;
-  svgEl.style.cursor = "grabbing";
-});
-
-svgEl.addEventListener("mousemove", (e) => {
-  if (!isPanning) return;
-  panX = e.clientX - startX;
-  panY = e.clientY - startY;
-  applyTransform();
-});
-
-svgEl.addEventListener("mouseup", () => {
-  isPanning = false;
-  svgEl.style.cursor = "grab";
-});
-svgEl.addEventListener("mouseleave", () => {
-  isPanning = false;
-  svgEl.style.cursor = "grab";
-});
-
-// ----- Double clic = reset -----
-svgEl.addEventListener("dblclick", () => {
-  scale = 1;
-  panX = 0;
-  panY = 0;
-  applyTransform();
-});
-// ----- GESTION MOBILE (touch) -----
-let lastTouchDist = null;
-let isTouchPanning = false;
-let touchStartX = 0, touchStartY = 0;
-
-// Gestion double-tap
-let lastTap = 0;
-
-svgEl.addEventListener("touchstart", (e) => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-
-  if (tapLength < 300 && tapLength > 0) {
-    // Double-tap détecté → reset
-    scale = 1;
-    panX = 0;
-    panY = 0;
-    applyTransform();
-  }
-  lastTap = currentTime;
-
-  if (e.touches.length === 1) {
-    // Un doigt → pan
-    isTouchPanning = true;
-    touchStartX = e.touches[0].clientX - panX;
-    touchStartY = e.touches[0].clientY - panY;
-  } else if (e.touches.length === 2) {
-    // Deux doigts → zoom
-    isTouchPanning = false;
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
-    lastTouchDist = Math.hypot(dx, dy);
-  }
-});
-
-svgEl.addEventListener("touchmove", (e) => {
-  e.preventDefault();
-  if (isTouchPanning && e.touches.length === 1) {
-    // Pan avec un doigt
-    panX = e.touches[0].clientX - touchStartX;
-    panY = e.touches[0].clientY - touchStartY;
-    applyTransform();
-  } else if (e.touches.length === 2) {
-    const dx = e.touches[0].clientX - e.touches[1].clientX;
-    const dy = e.touches[0].clientY - e.touches[1].clientY;
-    const newDist = Math.hypot(dx, dy);
-
-    if (lastTouchDist) {
-      const delta = (newDist - lastTouchDist) * 0.005;
-      const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
-
-      // Point France à l'écran
-      const francePoint = proj(france.lon, france.lat);
-      const screenFranceX = francePoint.x * scale + panX;
-      const screenFranceY = francePoint.y * scale + panY;
-
-      // Ajustement pan pour zoom vers France
-      panX -= (screenFranceX - panX) * (newScale / scale - 1);
-      panY -= (screenFranceY - panY) * (newScale / scale - 1);
-
-      scale = newScale;
-      applyTransform();
-    }
-    lastTouchDist = newDist;
-  }
-});
-
-svgEl.addEventListener("touchend", (e) => {
-  if (e.touches.length < 2) lastTouchDist = null;
-  if (e.touches.length === 0) isTouchPanning = false;
-});
-
-
+ 
 
     // ---------- Traductions ----------
     const translations = {
@@ -482,7 +248,7 @@ svgEl.addEventListener("touchend", (e) => {
         titreCgu2: "1. Propriété du site",
         paragrapheCgu2: "Le contenu, la structure et les éléments graphiques du site sont la propriété exclusive de Cruchaudet. Toute reproduction, totale ou partielle, est interdite sans autorisation préalable.",
         titreCgu3: "2. Utilisation du site",
-        paragrapheCgu3: "Vous vous engagez à utiliser...",
+        paragrapheCgu3: "Vous vous engagez à utiliser ce site à des fins légales uniquement. Toute utilisation abusive, modification ou tentative de piratage est strictement interdite.",
         titreCgu4: "3. Responsabilité",
         paragrapheCgu4: "Cruchaudet met tout en œuvre pour assurer l’exactitude des informations, mais ne peut garantir qu’il n’existe aucune erreur. L’utilisation du site se fait sous votre entière responsabilité.",
         titreCgu5: "4. Données personnelles",
@@ -595,7 +361,7 @@ svgEl.addEventListener("touchend", (e) => {
         titreCgu2: "1. Site Ownership",
         paragrapheCgu2: "The content, structure, and graphic elements of the site are the exclusive property of Cruchaudet. Any reproduction, in whole or in part, is prohibited without prior authorization.",
         titreCgu3: "2. Use of the Site",
-        paragrapheCgu3: "You agree to use...",
+        paragrapheCgu3: "You agree to use this site for legal purposes only. Any abusive use, modification, or hacking attempt is strictly prohibited.",
         titreCgu4: "3. Liability",
         paragrapheCgu4: "Cruchaudet makes every effort to ensure the accuracy of information, but cannot guarantee that there are no errors. Use of the site is entirely at your own risk.",
         titreCgu5: "4. Personal Data",
@@ -708,7 +474,7 @@ svgEl.addEventListener("touchend", (e) => {
         titreCgu2: "1. Propiedad del sitio",
         paragrapheCgu2: "El contenido, la estructura y los elementos gráficos del sitio son propiedad exclusiva de Cruchaudet. Cualquier reproducción, total o parcial, está prohibida sin autorización previa.",
         titreCgu3: "2. Uso del sitio",
-        paragrapheCgu3: "Usted se compromete a usar...",
+        paragrapheCgu3: "Se compromete a utilizar este sitio únicamente con fines legales. Cualquier uso abusivo, modificación o intento de hacking está estrictamente prohibido.",
         titreCgu4: "3. Responsabilidad",
         paragrapheCgu4: "Cruchaudet hace todo lo posible para garantizar la exactitud de la información, pero no puede garantizar que no existan errores. El uso del sitio es bajo su propia responsabilidad.",
         titreCgu5: "4. Datos personales",
@@ -820,7 +586,7 @@ svgEl.addEventListener("touchend", (e) => {
         titreCgu2: "1. Proprietà del sito",
         paragrapheCgu2: "Il contenuto, la struttura e gli elementi grafici del sito sono di proprietà esclusiva di Cruchaudet. Qualsiasi riproduzione, totale o parziale, è vietata senza autorizzazione preventiva.",
         titreCgu3: "2. Utilizzo del sito",
-        paragrapheCgu3: "Ti impegni a utilizzare...",
+        paragrapheCgu3: "Vi impegnate a utilizzare questo sito solo per scopi legali. Qualsiasi uso abusivo, modifica o tentativo di hacking è severamente vietato.",
         titreCgu4: "3. Responsabilità",
         paragrapheCgu4: "Cruchaudet si impegna a garantire l’accuratezza delle informazioni, ma non può garantire l’assenza di errori. L’utilizzo del sito avviene sotto la tua piena responsabilità.",
         titreCgu5: "4. Dati personali",

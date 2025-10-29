@@ -625,38 +625,9 @@ textarea {
 /* ================================
   PAGE PARTENAIRES
 =================================*/
-* MAP */
-.map-wrap { 
-  width: 1350px; 
-  max-width: 100%; 
-  position: relative;
-}
 
-svg {
-  width: 100%;
-  height: auto;
-  background-color: var(--accent);
-  backdrop-filter: blur(150px);
-  -webkit-backdrop-filter: blur(150px);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius);
-  cursor: grab;
-  transition: transform 0.1s ease-out;
-  touch-action: none; /* Évite le scroll lors du pinch/drag sur mobile */
-  display: block;
-}
 
-@media (max-width: 768px) {
-  .map-wrap {
-    width: 100%;
-    height:200px; /* adapte la hauteur mobile */
-  }
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-}
 /*FOURNISSEUR*/
 .fournisseurs-wrapper {
   display: flex;
