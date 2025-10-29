@@ -328,7 +328,22 @@ let lastTouchDist = null;
 let isTouchPanning = false;
 let touchStartX = 0, touchStartY = 0;
 
+// Gestion double-tap
+let lastTap = 0;
+
 svgEl.addEventListener("touchstart", (e) => {
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - lastTap;
+
+  if (tapLength < 300 && tapLength > 0) {
+    // Double-tap détecté → reset
+    scale = 1;
+    panX = 0;
+    panY = 0;
+    applyTransform();
+  }
+  lastTap = currentTime;
+
   if (e.touches.length === 1) {
     // Un doigt → pan
     isTouchPanning = true;
@@ -346,11 +361,12 @@ svgEl.addEventListener("touchstart", (e) => {
 svgEl.addEventListener("touchmove", (e) => {
   e.preventDefault();
   if (isTouchPanning && e.touches.length === 1) {
+    // Pan avec un doigt
     panX = e.touches[0].clientX - touchStartX;
     panY = e.touches[0].clientY - touchStartY;
     applyTransform();
   } else if (e.touches.length === 2) {
-    // Calcul du zoom (pinch)
+    // Zoom avec deux doigts
     const dx = e.touches[0].clientX - e.touches[1].clientX;
     const dy = e.touches[0].clientY - e.touches[1].clientY;
     const newDist = Math.hypot(dx, dy);
@@ -358,6 +374,14 @@ svgEl.addEventListener("touchmove", (e) => {
     if (lastTouchDist) {
       const delta = (newDist - lastTouchDist) * 0.005;
       const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
+
+      // Calcul du point médian entre les deux doigts
+      const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+      const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+
+      panX -= (cx - panX) * (newScale / scale - 1);
+      panY -= (cy - panY) * (newScale / scale - 1);
+
       scale = newScale;
       applyTransform();
     }
