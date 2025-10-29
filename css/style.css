@@ -625,7 +625,20 @@ textarea {
 /* ================================
   PAGE PARTENAIRES
 =================================*/
+/*Map*/
+  .map-wrap { 
+    width: 1350px; 
+    max-width: 100%; 
+    margin: 0 auto; }
+    svg {
+    background-color:var(--accent);
+    backdrop-filter: blur(150px);
+    -webkit-backdrop-filter: blur(150px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius)
+    }
 
+/*FOURNISSEUR*/
 .fournisseurs-wrapper {
   display: flex;
   flex-direction: column;

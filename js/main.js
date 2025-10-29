@@ -158,6 +158,93 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
+    // ---------- map ----------
+// Taille du viewport (doit correspondre au viewBox du SVG)
+const width = 1350;
+const height = 600;
+
+// Liste des pays (coordonnées des capitales)
+const exports = [
+  { name: "Canada (Ottawa)", lat: 44, lon: -90},
+  { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -70 },
+  /*{ name: "Hong Kong", lat: 22.3193, lon: 114.1694 },
+  { name: "Singapour", lat: 1.3521, lon: 103.8198 },
+  { name: "Thaïlande (Bangkok)", lat: 13.7563, lon: 100.5018 },
+  { name: "Irlande (Dublin)", lat: 53.3498, lon: -6.2603 },
+  { name: "Angleterre (Londres)", lat: 51.5074, lon: -0.1278 },
+  { name: "Danemark (Copenhague)", lat: 55.6761, lon: 12.5683 },
+  { name: "Suède (Stockholm)", lat: 59.3293, lon: 18.0686 },
+  { name: "Belgique (Bruxelles)", lat: 50.8503, lon: 4.3517 },
+  { name: "Allemagne (Berlin)", lat: 52.5200, lon: 13.4050 },
+  { name: "Pays-Bas (Amsterdam)", lat: 52.3676, lon: 4.9041 }*/
+];
+
+// Coordonnées du point de départ (France / Paris)
+const france = { name: "France (Paris)", lat: 37, lon: -18 };
+
+// --- Projection Mercator ---
+// Avec zoom de +10 % (on multiplie les dimensions virtuelles)
+const zoom = 1.1;
+
+function proj(lon, lat) {
+  const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
+  const latRad = (lat * Math.PI) / 180;
+  const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+  const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
+  return { x, y };
+}
+
+// Récupération du SVG et du groupe pour les traits
+const svg = document.getElementById("svgmap");
+const g = document.getElementById("arrows");
+
+// Position de Paris
+const origin = proj(france.lon, france.lat);
+
+// Point bleu France
+const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+originCircle.setAttribute("cx", origin.x);
+originCircle.setAttribute("cy", origin.y);
+originCircle.setAttribute("r", 6);
+originCircle.setAttribute("fill", "#1a73e8");
+originCircle.setAttribute("stroke", "white");
+originCircle.setAttribute("stroke-width", "2");
+g.appendChild(originCircle);
+
+
+// Tracer les lignes rouges vers chaque capitale
+exports.forEach((c) => {
+  const p = proj(c.lon, c.lat);
+
+  // Ligne directe Paris → capitale
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", origin.x);
+  line.setAttribute("y1", origin.y);
+  line.setAttribute("x2", p.x);
+  line.setAttribute("y2", p.y);
+  line.setAttribute("stroke", "#e34a33");
+  line.setAttribute("stroke-width", "2.5");
+  line.setAttribute("opacity", "0.9");
+  g.appendChild(line);
+
+  // --- Point bleu avec border blanc ---
+  const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circ.setAttribute("cx", p.x);
+  circ.setAttribute("cy", p.y);
+  circ.setAttribute("r", 5);
+  circ.setAttribute("fill", "#2b6cb0");
+  circ.setAttribute("stroke", "white");
+  circ.setAttribute("stroke-width", "1");
+  g.appendChild(circ);
+
+  // Label du pays
+  const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  label.setAttribute("x", p.x + 8);
+  label.setAttribute("y", p.y - 8);
+  label.setAttribute("class", "label");
+  label.textContent = c.name;
+  g.appendChild(label);
+});
 
     // ---------- Traductions ----------
 const translations = {
