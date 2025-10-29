@@ -158,104 +158,102 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
-    // ---------- map ----------
-    // Taille du viewport (doit correspondre au viewBox du SVG)
-    const width = 1350;
-    const height = 600;
+   // ---------- map ----------
+// Taille du viewport (doit correspondre au viewBox du SVG)
+const width = 1350;
+const height = 600;
 
-    // Coordonnées du point de départ (France / Paris)
-    const france = { name: "France (Paris)", lat: 37, lon: 0 };
+// Coordonnées du point de départ (France / Paris)
+const france = { name: "France", lat: 37, lon: 0 };
 
-    // Liste des pays (coordonnées des capitales)
-    const exports = [
-      { name: "Canada (Ottawa)", lat: 44, lon: -85 },
-      { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -58 },
-      { name: "Irlande (Dublin)", lat: 41, lon: -8.5 },
-      {name: "Angleterre (Londres)", lat: 40, lon: -3 },
-      { name: "Allemagne (Berlin)", lat: 39, lon: 6},
-      { name: "Suède (Stockholm)", lat: 45, lon: 8.5 },
-     { name: "Danemark (Copenhague)", lat: 43.5, lon: 5 },
-      { name: "Pays-Bas (Amsterdam)", lat: 40.5, lon: 2 },
-      { name: "Belgique (Bruxelles)", lat: 39, lon: 2 },
-      { name: "Hong Kong", lat: 12, lon: 100.5},
-      { name: "Singapour", lat: -10.5, lon:94},
-      { name: "Thaïlande (Bangkok)", lat: 4, lon: 90 },
-      { name: "France (Paris)", lat: 37, lon: 0 },
-    ];
+// Liste des pays (coordonnées des capitales)
+const exports = [
+  { name: "Canada", lat: 44, lon: -85 },
+  { name: "Guadeloupe", lat: 5, lon: -58 },
+  { name: "Irlande", lat: 41, lon: -8.5 },
+  { name: "Angleterre", lat: 40, lon: -3 },
+  { name: "Allemagne", lat: 39, lon: 6},
+  { name: "Suède", lat: 45, lon: 8.5 },
+  { name: "Danemark", lat: 43.5, lon: 5 },
+  { name: "Pays-Bas", lat: 40.5, lon: 2 },
+  { name: "Belgique", lat: 39, lon: 2 },
+  { name: "Hong Kong", lat: 12, lon: 100.5},
+  { name: "Singapour", lat: -10.5, lon:94},
+  { name: "Thaïlande", lat: 4, lon: 90 },
+  { name: "France", lat: 37, lon: 0 },
+];
 
+// --- Projection Mercator ---
+const zoom = 1.1;
+function proj(lon, lat) {
+  const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
+  const latRad = (lat * Math.PI) / 180;
+  const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+  const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
+  return { x, y };
+}
 
-    // --- Projection Mercator ---
-    // Avec zoom de +10 % (on multiplie les dimensions virtuelles)
-    const zoom = 1.1;
+// Récupération du SVG et du groupe pour les traits
+const svg = document.getElementById("svgmap");
+const g = document.getElementById("arrows");
 
-    function proj(lon, lat) {
-      const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
-      const latRad = (lat * Math.PI) / 180;
-      const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-      const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
-      return { x, y };
-    }
-
-    // Récupération du SVG et du groupe pour les traits
-    const svg = document.getElementById("svgmap");
-    const g = document.getElementById("arrows");
-
-    // Position de Paris
-    const origin = proj(france.lon, france.lat);
-
-    // Point bleu France
-    const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    originCircle.setAttribute("cx", origin.x);
-    originCircle.setAttribute("cy", origin.y);
-    originCircle.setAttribute("r", 4);
-    originCircle.setAttribute("fill", "#1a73e8");
-    originCircle.setAttribute("stroke", "white");
-    originCircle.setAttribute("stroke-width", "2");
-    g.appendChild(originCircle);
+// Position de Paris
+const origin = proj(france.lon, france.lat);
 
 
-    // Tracer les lignes rouges vers chaque capitale
-    exports.forEach((c) => {
-      const p = proj(c.lon, c.lat);
+// Point bleu France
+const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+originCircle.setAttribute("cx", origin.x);
+originCircle.setAttribute("cy", origin.y);
+originCircle.setAttribute("r", 4);
+originCircle.setAttribute("fill", "#1a73e8");
+originCircle.setAttribute("stroke", "white");
+originCircle.setAttribute("stroke-width", "2");
+g.appendChild(originCircle);
 
-      // Ligne directe Paris → capitale
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", origin.x);
-      line.setAttribute("y1", origin.y);
-      line.setAttribute("x2", p.x);
-      line.setAttribute("y2", p.y);
-      line.setAttribute("stroke", "#e34a33");
-      line.setAttribute("stroke-width", "2.5");
-      line.setAttribute("opacity", "0.9");
-      g.appendChild(line);
 
-      // --- Point bleu avec border blanc ---
-      const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circ.setAttribute("cx", p.x);
-      circ.setAttribute("cy", p.y);
-      circ.setAttribute("r", 4);
-      circ.setAttribute("fill", "#2b6cb0");
-      circ.setAttribute("stroke", "white");
-      circ.setAttribute("stroke-width", "1");
-      g.appendChild(circ);
-// Effet hover sur les points (circles)
-const circles = document.querySelectorAll("#arrows circle");
+// Tracer les lignes rouges et les points
+exports.forEach((c) => {
+  const p = proj(c.lon, c.lat);
 
-circles.forEach((circ) => {
-  // Animation fluide
+  // Ligne Paris → capitale
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", origin.x);
+  line.setAttribute("y1", origin.y);
+  line.setAttribute("x2", p.x);
+  line.setAttribute("y2", p.y);
+  line.setAttribute("stroke", "#e34a33");
+  line.setAttribute("stroke-width", "2.5");
+  line.setAttribute("opacity", "0.9");
+  g.appendChild(line);
+
+  // Point capitale
+  const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circ.setAttribute("cx", p.x);
+  circ.setAttribute("cy", p.y);
+  circ.setAttribute("r", 4);
+  circ.setAttribute("fill", "#2b6cb0");
+  circ.setAttribute("stroke", "white");
+  circ.setAttribute("stroke-width", "1");
+  g.appendChild(circ);
+
+  // Effet hover + tooltip
   circ.style.transition = "transform 0.2s ease, fill 0.2s ease";
-
   circ.addEventListener("mouseenter", () => {
-    circ.setAttribute("fill", "#e34a33"); // devient rouge
+    circ.setAttribute("fill", "#e34a33");
     circ.style.transformOrigin = "center";
-  });
 
+    tooltip.textContent = c.name;
+    tooltip.setAttribute("x", p.x + 8); // légèrement à droite
+    tooltip.setAttribute("y", p.y - 8); // légèrement au-dessus
+    tooltip.setAttribute("visibility", "visible");
+  });
   circ.addEventListener("mouseleave", () => {
-    circ.setAttribute("fill", "#2b6cb0"); // redevient bleu
+    circ.setAttribute("fill", "#2b6cb0");
     circ.style.transform = "scale(1)";
+    tooltip.setAttribute("visibility", "hidden");
   });
 });
-    });
 // ---------- Zoom & Pan complet ----------
 const svgEl = document.getElementById("svgmap");
 const mapGroup = document.getElementById("mapGroup");
@@ -322,7 +320,6 @@ svgEl.addEventListener("dblclick", () => {
   panY = 0;
   applyTransform();
 });
-
 // ----- GESTION MOBILE (touch) -----
 let lastTouchDist = null;
 let isTouchPanning = false;
@@ -366,7 +363,6 @@ svgEl.addEventListener("touchmove", (e) => {
     panY = e.touches[0].clientY - touchStartY;
     applyTransform();
   } else if (e.touches.length === 2) {
-    // Zoom avec deux doigts
     const dx = e.touches[0].clientX - e.touches[1].clientX;
     const dy = e.touches[0].clientY - e.touches[1].clientY;
     const newDist = Math.hypot(dx, dy);
@@ -375,12 +371,14 @@ svgEl.addEventListener("touchmove", (e) => {
       const delta = (newDist - lastTouchDist) * 0.005;
       const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
 
-      // Calcul du point médian entre les deux doigts
-      const cx = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-      const cy = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+      // Point France à l'écran
+      const francePoint = proj(france.lon, france.lat);
+      const screenFranceX = francePoint.x * scale + panX;
+      const screenFranceY = francePoint.y * scale + panY;
 
-      panX -= (cx - panX) * (newScale / scale - 1);
-      panY -= (cy - panY) * (newScale / scale - 1);
+      // Ajustement pan pour zoom vers France
+      panX -= (screenFranceX - panX) * (newScale / scale - 1);
+      panY -= (screenFranceY - panY) * (newScale / scale - 1);
 
       scale = newScale;
       applyTransform();
@@ -393,6 +391,7 @@ svgEl.addEventListener("touchend", (e) => {
   if (e.touches.length < 2) lastTouchDist = null;
   if (e.touches.length === 0) isTouchPanning = false;
 });
+
 
 
     // ---------- Traductions ----------
