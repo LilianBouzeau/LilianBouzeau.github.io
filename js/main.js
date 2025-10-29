@@ -164,23 +164,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const height = 600;
 
     // Coordonnées du point de départ (France / Paris)
-    const france = { name: "France (Paris)", lat: 37, lon: -18 };
+    const france = { name: "France (Paris)", lat: 37, lon: 0 };
 
     // Liste des pays (coordonnées des capitales)
     const exports = [
-      { name: "Pays-Bas (Amsterdam)", lat: 41, lon: -17 },
-      { name: "Canada (Ottawa)", lat: 44, lon: -90 },
-      { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -70 },
-      { name: "Irlande (Dublin)", lat: 41, lon: -26 },
-      { name: "Angleterre (Londres)", lat: 40, lon: -21 },
-      { name: "Allemagne (Berlin)", lat: 39, lon: -14 },
-      { name: "Suède (Stockholm)", lat: 45, lon: -11 },
-      { name: "Danemark (Copenhague)", lat: 43, lon: -14 },
-      { name: "Belgique (Bruxelles)", lat: 39, lon: -17 },
-      { name: "Hong Kong", lat: 12, lon: 71 },
-      { name: "Singapour", lat: -10, lon: 65 },
-      { name: "Thaïlande (Bangkok)", lat: 4, lon: 62  },
-      { name: "France (Paris)", lat: 37, lon: -18 },
+      { name: "Canada (Ottawa)", lat: 44, lon: -85 },
+      { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -58 },
+      { name: "Irlande (Dublin)", lat: 41, lon: -8.5 },
+      {name: "Angleterre (Londres)", lat: 40, lon: -3 },
+      { name: "Allemagne (Berlin)", lat: 39, lon: 6},
+      { name: "Suède (Stockholm)", lat: 45, lon: 8.5 },
+     { name: "Danemark (Copenhague)", lat: 43.5, lon: 5 },
+      { name: "Pays-Bas (Amsterdam)", lat: 40.5, lon: 2 },
+      { name: "Belgique (Bruxelles)", lat: 39, lon: 2 },
+      { name: "Hong Kong", lat: 12, lon: 100.5},
+      { name: "Singapour", lat: -10.5, lon:94},
+      { name: "Thaïlande (Bangkok)", lat: 4, lon: 90 },
+      { name: "France (Paris)", lat: 37, lon: 0 },
     ];
 
 
@@ -214,11 +214,11 @@ document.addEventListener("DOMContentLoaded", () => {
     g.appendChild(originCircle);
 
 
-    // Tracer les lignes rouges vers chaque pays
+    // Tracer les lignes rouges vers chaque capitale
     exports.forEach((c) => {
       const p = proj(c.lon, c.lat);
 
-      // Ligne directe Paris → pays
+      // Ligne directe Paris → capitale
       const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
       line.setAttribute("x1", origin.x);
       line.setAttribute("y1", origin.y);
@@ -240,6 +240,96 @@ document.addEventListener("DOMContentLoaded", () => {
       g.appendChild(circ);
 
     });
+// ---------- Zoom & Pan complet ----------
+const svgEl = document.getElementById("svgmap");
+const mapGroup = document.getElementById("mapGroup");
+
+let scale = 1;
+let panX = 0;
+let panY = 0;
+let isPanning = false;
+let startX, startY;
+
+const minScale = 1;    // échelle initiale
+const maxScale = 3;    // zoom avant maximum
+let zoomDone = false;  // indique si le zoom avant a été effectué
+
+// Appliquer la transformation
+function applyTransform() {
+  mapGroup.setAttribute("transform", `translate(${panX}, ${panY}) scale(${scale})`);
+}
+
+// ----- ZOOM à la molette -----
+svgEl.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const zoomSpeed = 0.1;
+  const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
+
+  if (!zoomDone && delta > 0) {
+    // Zoom avant possible
+    const newScale = Math.min(scale + delta, maxScale);
+    const rect = svgEl.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+
+    panX -= (cx - panX) * (newScale / scale - 1);
+    panY -= (cy - panY) * (newScale / scale - 1);
+
+    scale = newScale;
+    if (scale >= maxScale) zoomDone = true;
+    applyTransform();
+
+  } else if (delta < 0) {
+    // Dé-zoom autorisé jusqu'à l'échelle initiale
+    const newScale = Math.max(scale + delta, minScale);
+    const rect = svgEl.getBoundingClientRect();
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
+
+    panX -= (cx - panX) * (newScale / scale - 1);
+    panY -= (cy - panY) * (newScale / scale - 1);
+
+    scale = newScale;
+
+    // Si on revient à l'échelle initiale, on peut zoomer de nouveau
+    if (scale <= minScale) zoomDone = false;
+    applyTransform();
+  }
+});
+
+// ----- PAN souris -----
+svgEl.addEventListener("mousedown", (e) => {
+  isPanning = true;
+  startX = e.clientX - panX;
+  startY = e.clientY - panY;
+  svgEl.style.cursor = "grabbing";
+});
+
+svgEl.addEventListener("mousemove", (e) => {
+  if (!isPanning) return;
+  panX = e.clientX - startX;
+  panY = e.clientY - startY;
+  applyTransform();
+});
+
+svgEl.addEventListener("mouseup", () => {
+  isPanning = false;
+  svgEl.style.cursor = "grab";
+});
+svgEl.addEventListener("mouseleave", () => {
+  isPanning = false;
+  svgEl.style.cursor = "grab";
+});
+
+// ----- Double clic = reset -----
+svgEl.addEventListener("dblclick", () => {
+  scale = 1;
+  panX = 0;
+  panY = 0;
+  zoomDone = false;
+  applyTransform();
+});
+
 
     // ---------- Traductions ----------
     const translations = {

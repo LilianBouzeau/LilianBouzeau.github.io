@@ -108,26 +108,48 @@
             <!-- ==================== Clients + Map ==================== -->
               <h2 id="titrePClients" class="nom">Clients</h2>
 
-                <!---------------------------MAP Clients ----------------------------------------->
-            <div class="map-wrap">
-              <!-- svg container : on met une image de fond (map) et on superpose des flèches -->
-              <svg id="svgmap" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" >
-                <!-- Remplace href ci-dessous par le chemin vers ta carte SVG/PNG (vectorielle de préférence) -->
-                <image id="bg" href="../img/world.svg" x="0" y="0" width="1200" height="600" preserveAspectRatio="xMidYMid slice"/>
+<div class="map-wrap">
+  <!-- SVG container : image de fond (carte) + flèches superposées -->
+  <svg id="svgmap" viewBox="0 0 1350 600" xmlns="http://www.w3.org/2000/svg">
+    <!-- Groupe principal pour gérer le zoom et le pan -->
+    <g id="mapGroup">
+      <!-- Image de fond de la carte -->
+      <image 
+        id="bg" 
+        href="../img/world.svg" 
+        x="0" 
+        y="0" 
+        width="1350" 
+        height="600" 
+        preserveAspectRatio="xMidYMid slice"
+      />
 
-                <!-- groupe pour flèches -->
-                <g id="arrows" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"></g>
+      <!-- Groupe pour les flèches et points -->
+      <g 
+        id="arrows" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none">
+      </g>
+    </g>
 
-                <!-- marker flèche -->
-                <defs>
-                  <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
-                    <path d="M0,0 L10,5 L0,10 z" />
-                  </marker>
-                </defs>
-              </svg>
-            </div>
+    <!-- Définition d’un marqueur de flèche (si tu veux réactiver plus tard) -->
+    <defs>
+      <marker 
+        id="arrowhead" 
+        markerWidth="10" 
+        markerHeight="10" 
+        refX="10" 
+        refY="5" 
+        orient="auto">
+        <path d="M0,0 L10,5 L0,10 z" fill="#e34a33" />
+      </marker>
+    </defs>
+  </svg>
+</div>
             <!-- ==================== Fournisseurs ==================== -->
-              <h2 id="titrePFournisseurs" class="nom">Fournisseurs</h2>
+              <h2 style="margin-top: 5%;" id="titrePFournisseurs" class="nom">Fournisseurs</h2>
                 <div class="fournisseurs-wrapper">
                   <!-- Fournisseur 1 -->
                 <div class="fournisseur scroll-animateG">
