@@ -159,546 +159,541 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
     // ---------- map ----------
-// Taille du viewport (doit correspondre au viewBox du SVG)
-const width = 1350;
-const height = 600;
+    // Taille du viewport (doit correspondre au viewBox du SVG)
+    const width = 1350;
+    const height = 600;
 
-// Liste des pays (coordonnées des capitales)
-const exports = [
-  { name: "Canada (Ottawa)", lat: 44, lon: -90},
-  { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -70 },
-  /*{ name: "Hong Kong", lat: 22.3193, lon: 114.1694 },
-  { name: "Singapour", lat: 1.3521, lon: 103.8198 },
-  { name: "Thaïlande (Bangkok)", lat: 13.7563, lon: 100.5018 },
-  { name: "Irlande (Dublin)", lat: 53.3498, lon: -6.2603 },
-  { name: "Angleterre (Londres)", lat: 51.5074, lon: -0.1278 },
-  { name: "Danemark (Copenhague)", lat: 55.6761, lon: 12.5683 },
-  { name: "Suède (Stockholm)", lat: 59.3293, lon: 18.0686 },
-  { name: "Belgique (Bruxelles)", lat: 50.8503, lon: 4.3517 },
-  { name: "Allemagne (Berlin)", lat: 52.5200, lon: 13.4050 },
-  { name: "Pays-Bas (Amsterdam)", lat: 52.3676, lon: 4.9041 }*/
-];
+    // Coordonnées du point de départ (France / Paris)
+    const france = { name: "France (Paris)", lat: 37, lon: -18 };
 
-// Coordonnées du point de départ (France / Paris)
-const france = { name: "France (Paris)", lat: 37, lon: -18 };
-
-// --- Projection Mercator ---
-// Avec zoom de +10 % (on multiplie les dimensions virtuelles)
-const zoom = 1.1;
-
-function proj(lon, lat) {
-  const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
-  const latRad = (lat * Math.PI) / 180;
-  const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
-  const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
-  return { x, y };
-}
-
-// Récupération du SVG et du groupe pour les traits
-const svg = document.getElementById("svgmap");
-const g = document.getElementById("arrows");
-
-// Position de Paris
-const origin = proj(france.lon, france.lat);
-
-// Point bleu France
-const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-originCircle.setAttribute("cx", origin.x);
-originCircle.setAttribute("cy", origin.y);
-originCircle.setAttribute("r", 6);
-originCircle.setAttribute("fill", "#1a73e8");
-originCircle.setAttribute("stroke", "white");
-originCircle.setAttribute("stroke-width", "2");
-g.appendChild(originCircle);
+    // Liste des pays (coordonnées des capitales)
+    const exports = [
+      { name: "Pays-Bas (Amsterdam)", lat: 41, lon: -17 },
+      { name: "Canada (Ottawa)", lat: 44, lon: -90 },
+      { name: "Guadeloupe (Basse-Terre)", lat: 5, lon: -70 },
+      { name: "Irlande (Dublin)", lat: 41, lon: -26 },
+      { name: "Angleterre (Londres)", lat: 40, lon: -21 },
+      { name: "Allemagne (Berlin)", lat: 39, lon: -14 },
+      { name: "Suède (Stockholm)", lat: 45, lon: -11 },
+      { name: "Danemark (Copenhague)", lat: 43, lon: -14 },
+      { name: "Belgique (Bruxelles)", lat: 39, lon: -17 },
+      { name: "Hong Kong", lat: 12, lon: 71 },
+      { name: "Singapour", lat: -10, lon: 65 },
+      { name: "Thaïlande (Bangkok)", lat: 4, lon: 62  },
+      { name: "France (Paris)", lat: 37, lon: -18 },
+    ];
 
 
-// Tracer les lignes rouges vers chaque capitale
-exports.forEach((c) => {
-  const p = proj(c.lon, c.lat);
+    // --- Projection Mercator ---
+    // Avec zoom de +10 % (on multiplie les dimensions virtuelles)
+    const zoom = 1.1;
 
-  // Ligne directe Paris → capitale
-  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  line.setAttribute("x1", origin.x);
-  line.setAttribute("y1", origin.y);
-  line.setAttribute("x2", p.x);
-  line.setAttribute("y2", p.y);
-  line.setAttribute("stroke", "#e34a33");
-  line.setAttribute("stroke-width", "2.5");
-  line.setAttribute("opacity", "0.9");
-  g.appendChild(line);
+    function proj(lon, lat) {
+      const x = (lon + 180) * ((width * zoom) / 360) - (width * (zoom - 1) / 2);
+      const latRad = (lat * Math.PI) / 180;
+      const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
+      const y = height / 2 - ((width * zoom) * mercN) / (2 * Math.PI);
+      return { x, y };
+    }
 
-  // --- Point bleu avec border blanc ---
-  const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  circ.setAttribute("cx", p.x);
-  circ.setAttribute("cy", p.y);
-  circ.setAttribute("r", 5);
-  circ.setAttribute("fill", "#2b6cb0");
-  circ.setAttribute("stroke", "white");
-  circ.setAttribute("stroke-width", "1");
-  g.appendChild(circ);
+    // Récupération du SVG et du groupe pour les traits
+    const svg = document.getElementById("svgmap");
+    const g = document.getElementById("arrows");
 
-  // Label du pays
-  const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
-  label.setAttribute("x", p.x + 8);
-  label.setAttribute("y", p.y - 8);
-  label.setAttribute("class", "label");
-  label.textContent = c.name;
-  g.appendChild(label);
-});
+    // Position de Paris
+    const origin = proj(france.lon, france.lat);
+
+    // Point bleu France
+    const originCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    originCircle.setAttribute("cx", origin.x);
+    originCircle.setAttribute("cy", origin.y);
+    originCircle.setAttribute("r", 4);
+    originCircle.setAttribute("fill", "#1a73e8");
+    originCircle.setAttribute("stroke", "white");
+    originCircle.setAttribute("stroke-width", "2");
+    g.appendChild(originCircle);
+
+
+    // Tracer les lignes rouges vers chaque pays
+    exports.forEach((c) => {
+      const p = proj(c.lon, c.lat);
+
+      // Ligne directe Paris → pays
+      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      line.setAttribute("x1", origin.x);
+      line.setAttribute("y1", origin.y);
+      line.setAttribute("x2", p.x);
+      line.setAttribute("y2", p.y);
+      line.setAttribute("stroke", "#e34a33");
+      line.setAttribute("stroke-width", "2.5");
+      line.setAttribute("opacity", "0.9");
+      g.appendChild(line);
+
+      // --- Point bleu avec border blanc ---
+      const circ = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      circ.setAttribute("cx", p.x);
+      circ.setAttribute("cy", p.y);
+      circ.setAttribute("r", 4);
+      circ.setAttribute("fill", "#2b6cb0");
+      circ.setAttribute("stroke", "white");
+      circ.setAttribute("stroke-width", "1");
+      g.appendChild(circ);
+
+    });
 
     // ---------- Traductions ----------
-const translations = {
-  FR: {
-    //TITRE
-    TitrePage1: "Cruchaudet | L'histoire",
-    TitrePage2: "Cruchaudet | Service de Livraison",
-    TitrePage3: "Cruchaudet | Nos partenaires",
-    TitrePage4: "Cruchaudet | Les rayons",
-    TitrePage5: "Cruchaudet | Nos engagements",
-    TitrePage404: 'Cruchaudet | Page 404',
+    const translations = {
+      FR: {
+        //TITRE
+        TitrePage1: "Cruchaudet | L'histoire",
+        TitrePage2: "Cruchaudet | Service de Livraison",
+        TitrePage3: "Cruchaudet | Nos partenaires",
+        TitrePage4: "Cruchaudet | Les rayons",
+        TitrePage5: "Cruchaudet | Nos engagements",
+        TitrePage404: 'Cruchaudet | Page 404',
 
-    //NAV
-    navHistory: "L'histoire",
-    navExport: "Service de Livraison",
-    navEngagement: "Nos engagements",
-    navRayon: 'Les rayons',
-    navRayonLegumes: "Légumes",
-    navRayonFruits: "Fruits",
-    navRayonExotic: "Exotic",
-    navRayonMiniLegumes:'Mini-légumes',
-    navRayonJP:'Jeunes Pousses',
-    navRayonG:'Germes',
-    navRayonC: "Condiments",
-    navContactExport: "Prise de contact",
-    navNosPartenaires: "Nos partenaires",
-    navClients: "Clients",
-    navFournisseurs: "Fournisseurs",
-    navContact: "Contact",
+        //NAV
+        navHistory: "L'histoire",
+        navExport: "Service de Livraison",
+        navEngagement: "Nos engagements",
+        navRayon: 'Les rayons',
+        navRayonLegumes: "Légumes",
+        navRayonFruits: "Fruits",
+        navRayonExotic: "Exotic",
+        navRayonMiniLegumes: 'Mini-légumes',
+        navRayonJP: 'Jeunes Pousses',
+        navRayonG: 'Germes',
+        navRayonC: "Condiments",
+        navContactExport: "Prise de contact",
+        navNosPartenaires: "Nos partenaires",
+        navClients: "Clients",
+        navFournisseurs: "Fournisseurs",
+        navContact: "Contact",
 
-    //PAGE INDEX
-    titre: "Cruchaudet",
-    phrase1: "Des fruits et légumes frais, chaque jour.",
-    phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
-    titrepageHistoire: "L'histoire",
-    titreBio1: 'Début',
-    titreBio2: 'Evolution',
-    titreBio3: 'Maintenant',
+        //PAGE INDEX
+        titre: "Cruchaudet",
+        phrase1: "Des fruits et légumes frais, chaque jour.",
+        phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
+        titrepageHistoire: "L'histoire",
+        titreBio1: 'Début',
+        titreBio2: 'Evolution',
+        titreBio3: 'Maintenant',
 
-    //PAGE RAYON
-    titrepageRayons: 'Les rayons',
-    titreRayon1: "Fruits",
-    titreRayon2: "Legumes",
-    titreRayon3: "Mini-legumes",
-    titreRayon4: "Condiments",
-    titreRayon5: "Exotic",
-    titreRayon6: "Jeunes pousses",
-    titreRayon7: "Germes",
+        //PAGE RAYON
+        titrepageRayons: 'Les rayons',
+        titreRayon1: "Fruits",
+        titreRayon2: "Legumes",
+        titreRayon3: "Mini-legumes",
+        titreRayon4: "Condiments",
+        titreRayon5: "Exotic",
+        titreRayon6: "Jeunes pousses",
+        titreRayon7: "Germes",
 
-    //FOOTER
-    cguFooter: "Conditions générales d'utilisation",
-    contact: "Contact",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
+        //FOOTER
+        cguFooter: "Conditions générales d'utilisation",
+        contact: "Contact",
+        footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
 
-    //404
-    text404: "Oups ! La page que vous recherchez n'existe pas.",
-    btn404: "Retour à l'accueil",
+        //404
+        text404: "Oups ! La page que vous recherchez n'existe pas.",
+        btn404: "Retour à l'accueil",
 
-    //PAGE EXPORT
-    TitreExport: "Service de Livraison",
-    contactFormTitle: "Contact Export",
-    nom: "Nom *",
-    prenom: "Prénom *",
-    email: "Email *",
-    telephone: "Téléphone *",
-    objet: "Objet *",
-    message: "Votre message *",
-    submitBtn: "Envoyer",
-    formErrors: {
-      nom: "Veuillez entrer un nom valide (2 à 30 lettres).",
-      prenom: "Veuillez entrer un prénom valide (2 à 30 lettres).",
-      email: "Veuillez entrer une adresse e-mail valide.",
-      telephone: "Veuillez entrer un numéro de téléphone valide.",
-      objet: "Veuillez indiquer un objet (minimum 2 caractères).",
-      messageVide: "Le message ne peut pas être vide.",
-      messageCourt: "Le message doit contenir au moins 20 caractères.",
-      noTags: "Les balises HTML ne sont pas autorisées.",
-      noScript: "Les balises <script> sont strictement interdites.",
-      success: "Votre message a bien été envoyé ✅",
-      errorSend: "Veuillez corriger les erreurs avant d'envoyer.",
-    },
+        //PAGE EXPORT
+        TitreExport: "Service de Livraison",
+        contactFormTitle: "Contact Export",
+        nom: "Nom *",
+        prenom: "Prénom *",
+        email: "Email *",
+        telephone: "Téléphone *",
+        objet: "Objet *",
+        message: "Votre message *",
+        submitBtn: "Envoyer",
+        formErrors: {
+          nom: "Veuillez entrer un nom valide (2 à 30 lettres).",
+          prenom: "Veuillez entrer un prénom valide (2 à 30 lettres).",
+          email: "Veuillez entrer une adresse e-mail valide.",
+          telephone: "Veuillez entrer un numéro de téléphone valide.",
+          objet: "Veuillez indiquer un objet (minimum 2 caractères).",
+          messageVide: "Le message ne peut pas être vide.",
+          messageCourt: "Le message doit contenir au moins 20 caractères.",
+          noTags: "Les balises HTML ne sont pas autorisées.",
+          noScript: "Les balises <script> sont strictement interdites.",
+          success: "Votre message a bien été envoyé ✅",
+          errorSend: "Veuillez corriger les erreurs avant d'envoyer.",
+        },
 
-    //CGU
-  TitrePageCGU: "Cruchaudet | Conditions générales d'utilisation",
-  titreCgu1: "Conditions Générales d'Utilisation",
-  paragrapheCgu1: "Bienvenue sur <strong>Cruchaudet</strong>. En accédant à ce site (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), vous acceptez de respecter les présentes conditions générales d'utilisation (CGU). Si vous n’acceptez pas ces conditions, veuillez ne pas utiliser ce site.",
-  titreCgu2: "1. Propriété du site",
-  paragrapheCgu2: "Le contenu, la structure et les éléments graphiques du site sont la propriété exclusive de Cruchaudet. Toute reproduction, totale ou partielle, est interdite sans autorisation préalable.",
- titreCgu3: "2. Utilisation du site",
-  paragrapheCgu3: "Vous vous engagez à utiliser...",
-  titreCgu4: "3. Responsabilité",
-  paragrapheCgu4: "Cruchaudet met tout en œuvre pour assurer l’exactitude des informations, mais ne peut garantir qu’il n’existe aucune erreur. L’utilisation du site se fait sous votre entière responsabilité.",
-  titreCgu5: "4. Données personnelles",
-  paragrapheCgu5:"Aucune donnée personnelle n’est collectée à votre insu. Pour plus d’informations, vous pouvez nous contacter via <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  titreCgu6: "5. Modifications des CGU",
-  paragrapheCgu6: "Cruchaudet se réserve le droit de modifier ces CGU à tout moment. Les modifications seront publiées sur cette page.",
-  titreCgu7: "6. Contact",
-  paragrapheCgu7: "Pour toute question concernant les CGU, vous pouvez nous contacter via <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  paragrapheCgu8: "© 2025 Cruchaudet. Tous droits réservés.",
+        //CGU
+        TitrePageCGU: "Cruchaudet | Conditions générales d'utilisation",
+        titreCgu1: "Conditions Générales d'Utilisation",
+        paragrapheCgu1: "Bienvenue sur <strong>Cruchaudet</strong>. En accédant à ce site (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), vous acceptez de respecter les présentes conditions générales d'utilisation (CGU). Si vous n’acceptez pas ces conditions, veuillez ne pas utiliser ce site.",
+        titreCgu2: "1. Propriété du site",
+        paragrapheCgu2: "Le contenu, la structure et les éléments graphiques du site sont la propriété exclusive de Cruchaudet. Toute reproduction, totale ou partielle, est interdite sans autorisation préalable.",
+        titreCgu3: "2. Utilisation du site",
+        paragrapheCgu3: "Vous vous engagez à utiliser...",
+        titreCgu4: "3. Responsabilité",
+        paragrapheCgu4: "Cruchaudet met tout en œuvre pour assurer l’exactitude des informations, mais ne peut garantir qu’il n’existe aucune erreur. L’utilisation du site se fait sous votre entière responsabilité.",
+        titreCgu5: "4. Données personnelles",
+        paragrapheCgu5: "Aucune donnée personnelle n’est collectée à votre insu. Pour plus d’informations, vous pouvez nous contacter via <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        titreCgu6: "5. Modifications des CGU",
+        paragrapheCgu6: "Cruchaudet se réserve le droit de modifier ces CGU à tout moment. Les modifications seront publiées sur cette page.",
+        titreCgu7: "6. Contact",
+        paragrapheCgu7: "Pour toute question concernant les CGU, vous pouvez nous contacter via <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        paragrapheCgu8: "© 2025 Cruchaudet. Tous droits réservés.",
 
-    //PAGE PARTENAIRES
-    titrePClients:"Clients",
-    titrePFournisseurs:"Fournisseurs",
-    TitreFournisseur1:"Fournisseur",
-    TitreFournisseur2:"Fournisseur",
-    TitreFournisseur3:"Fournisseur",
-    lienSiteF1:'Visiter le site',
-    lienSiteF2:'Visiter le site',
-    lienSiteF3:'Visiter le site',
+        //PAGE PARTENAIRES
+        titrePClients: "Clients",
+        titrePFournisseurs: "Fournisseurs",
+        TitreFournisseur1: "Fournisseur",
+        TitreFournisseur2: "Fournisseur",
+        TitreFournisseur3: "Fournisseur",
+        lienSiteF1: 'Visiter le site',
+        lienSiteF2: 'Visiter le site',
+        lienSiteF3: 'Visiter le site',
 
-  //PAGE ENGAGEMENT
-    titrepageEngagement: 'Nos engagements',
-    titreEngagements1: 'Qualité',
-    titreEngagements2: 'Service',
-  },
+        //PAGE ENGAGEMENT
+        titrepageEngagement: 'Nos engagements',
+        titreEngagements1: 'Qualité',
+        titreEngagements2: 'Service',
+      },
 
-  EN: {
-    //TITRE
-    TitrePage1: "Cruchaudet | The Story",
-    TitrePage2: "Cruchaudet | Delivery Service",
-    TitrePage3: "Cruchaudet | Our Partners",
-    TitrePage4: "Cruchaudet | Departments",
-    TitrePage5: "Cruchaudet | Our Commitments",
-    TitrePage404: "Cruchaudet | Page 404",
+      EN: {
+        //TITRE
+        TitrePage1: "Cruchaudet | The Story",
+        TitrePage2: "Cruchaudet | Delivery Service",
+        TitrePage3: "Cruchaudet | Our Partners",
+        TitrePage4: "Cruchaudet | Departments",
+        TitrePage5: "Cruchaudet | Our Commitments",
+        TitrePage404: "Cruchaudet | Page 404",
 
-    //NAV
-    navHistory: "Our Story",
-    navExport: "Delivery Service",
-    navEngagement: "Our Commitments",
-    navRayon: "Departments",
-    navRayonLegumes: "Vegetables",
-    navRayonFruits: "Fruits",
-    navRayonMiniLegumes: 'Baby Vegetables',
-    navRayonJP: 'Baby Leaves',
-    navRayonG: 'Sprouts',
-    navRayonExotic: "Exotic",
-    navRayonC: "Condiments",
-    navContactExport: "Contact Form",
-    navNosPartenaires: "Our Partners",
-    navClients: "Clients",
-    navFournisseurs: "Suppliers",
-    navContact: "Contact",
+        //NAV
+        navHistory: "Our Story",
+        navExport: "Delivery Service",
+        navEngagement: "Our Commitments",
+        navRayon: "Departments",
+        navRayonLegumes: "Vegetables",
+        navRayonFruits: "Fruits",
+        navRayonMiniLegumes: 'Baby Vegetables',
+        navRayonJP: 'Baby Leaves',
+        navRayonG: 'Sprouts',
+        navRayonExotic: "Exotic",
+        navRayonC: "Condiments",
+        navContactExport: "Contact Form",
+        navNosPartenaires: "Our Partners",
+        navClients: "Clients",
+        navFournisseurs: "Suppliers",
+        navContact: "Contact",
 
-    //PAGE INDEX
-    titre: "Cruchaudet",
-    phrase1: "Fresh fruits and vegetables, every day.",
-    phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
-    titrepageHistoire: "History",
-    titreBio1: "Beginning",
-    titreBio2: "Evolution",
-    titreBio3: "Now",
+        //PAGE INDEX
+        titre: "Cruchaudet",
+        phrase1: "Fresh fruits and vegetables, every day.",
+        phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
+        titrepageHistoire: "History",
+        titreBio1: "Beginning",
+        titreBio2: "Evolution",
+        titreBio3: "Now",
 
-    //PAGE RAYON
-    titrepageRayons: "Departments",
-    titreRayon1: "Fruits",
-    titreRayon2: "Vegetables",
-    titreRayon3: "Baby Vegetables",
-    titreRayon4: "Condiments",
-    titreRayon5: "Exotic",
-    titreRayon6: "Baby Leaves",
-    titreRayon7: "Sprouts",
+        //PAGE RAYON
+        titrepageRayons: "Departments",
+        titreRayon1: "Fruits",
+        titreRayon2: "Vegetables",
+        titreRayon3: "Baby Vegetables",
+        titreRayon4: "Condiments",
+        titreRayon5: "Exotic",
+        titreRayon6: "Baby Leaves",
+        titreRayon7: "Sprouts",
 
-    //FOOTER
-    cguFooter: "Terms and Conditions of Use",
-    contact: "Contact",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
+        //FOOTER
+        cguFooter: "Terms and Conditions of Use",
+        contact: "Contact",
+        footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
 
-    //404
-    text404: "Oops! The page you are looking for does not exist.",
-    btn404: "Back to Home",
+        //404
+        text404: "Oops! The page you are looking for does not exist.",
+        btn404: "Back to Home",
 
-    //PAGE EXPORT
-    TitreExport: "Delivery Service",
-    contactFormTitle: "Export Contact",
-    nom: "Last Name *",
-    prenom: "First Name *",
-    email: "Email *",
-    telephone: "Phone *",
-    objet: "Subject *",
-    message: "Your message *",
-    submitBtn: "Send",
-    formErrors: {
-      nom: "Please enter a valid last name (2 to 30 letters).",
-      prenom: "Please enter a valid first name (2 to 30 letters).",
-      email: "Please enter a valid email address.",
-      telephone: "Please enter a valid phone number.",
-      objet: "Please enter a subject (at least 2 characters).",
-      messageVide: "Message cannot be empty.",
-      messageCourt: "Message must be at least 20 characters long.",
-      noTags: "HTML tags are not allowed.",
-      noScript: "<script> tags are strictly forbidden.",
-      success: "Your message has been sent successfully ✅",
-      errorSend: "Please fix the errors before sending.",
-    },
+        //PAGE EXPORT
+        TitreExport: "Delivery Service",
+        contactFormTitle: "Export Contact",
+        nom: "Last Name *",
+        prenom: "First Name *",
+        email: "Email *",
+        telephone: "Phone *",
+        objet: "Subject *",
+        message: "Your message *",
+        submitBtn: "Send",
+        formErrors: {
+          nom: "Please enter a valid last name (2 to 30 letters).",
+          prenom: "Please enter a valid first name (2 to 30 letters).",
+          email: "Please enter a valid email address.",
+          telephone: "Please enter a valid phone number.",
+          objet: "Please enter a subject (at least 2 characters).",
+          messageVide: "Message cannot be empty.",
+          messageCourt: "Message must be at least 20 characters long.",
+          noTags: "HTML tags are not allowed.",
+          noScript: "<script> tags are strictly forbidden.",
+          success: "Your message has been sent successfully ✅",
+          errorSend: "Please fix the errors before sending.",
+        },
 
-    //CGU
-  TitrePageCGU: "Cruchaudet | Terms of Use",
- titreCgu1: "Terms of Use",
-  paragrapheCgu1: "Welcome to <strong>Cruchaudet</strong>. By accessing this site (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), you agree to comply with these Terms of Use (TOU). If you do not accept these terms, please do not use this site.",
-  titreCgu2: "1. Site Ownership",
-  paragrapheCgu2: "The content, structure, and graphic elements of the site are the exclusive property of Cruchaudet. Any reproduction, in whole or in part, is prohibited without prior authorization.",
- titreCgu3: "2. Use of the Site",
-  paragrapheCgu3: "You agree to use...",
- titreCgu4: "3. Liability",
-  paragrapheCgu4: "Cruchaudet makes every effort to ensure the accuracy of information, but cannot guarantee that there are no errors. Use of the site is entirely at your own risk.",
-  titreCgu5: "4. Personal Data",
-  paragrapheCgu5: "No personal data is collected without your knowledge. For more information, you can contact us at <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  titreCgu6: "5. Changes to the Terms",
-  paragrapheCgu6: "Cruchaudet reserves the right to modify these Terms of Use at any time. Changes will be posted on this page.",
- titreCgu7: "6. Contact",
-  paragrapheCgu7: "For any questions regarding the Terms of Use, you can contact us at <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  paragrapheCgu8: "© 2025 Cruchaudet. All rights reserved.",
+        //CGU
+        TitrePageCGU: "Cruchaudet | Terms of Use",
+        titreCgu1: "Terms of Use",
+        paragrapheCgu1: "Welcome to <strong>Cruchaudet</strong>. By accessing this site (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), you agree to comply with these Terms of Use (TOU). If you do not accept these terms, please do not use this site.",
+        titreCgu2: "1. Site Ownership",
+        paragrapheCgu2: "The content, structure, and graphic elements of the site are the exclusive property of Cruchaudet. Any reproduction, in whole or in part, is prohibited without prior authorization.",
+        titreCgu3: "2. Use of the Site",
+        paragrapheCgu3: "You agree to use...",
+        titreCgu4: "3. Liability",
+        paragrapheCgu4: "Cruchaudet makes every effort to ensure the accuracy of information, but cannot guarantee that there are no errors. Use of the site is entirely at your own risk.",
+        titreCgu5: "4. Personal Data",
+        paragrapheCgu5: "No personal data is collected without your knowledge. For more information, you can contact us at <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        titreCgu6: "5. Changes to the Terms",
+        paragrapheCgu6: "Cruchaudet reserves the right to modify these Terms of Use at any time. Changes will be posted on this page.",
+        titreCgu7: "6. Contact",
+        paragrapheCgu7: "For any questions regarding the Terms of Use, you can contact us at <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        paragrapheCgu8: "© 2025 Cruchaudet. All rights reserved.",
 
-    //PAGE PARTENAIRES
-    titrePClients: "Clients",
-    titrePFournisseurs: "Suppliers",
-    TitreFournisseur1: "Supplier",
-    TitreFournisseur2: "Supplier",
-    TitreFournisseur3: "Supplier",
-    lienSiteF1:'Visit the website',
-    lienSiteF2:'Visit the website',
-    lienSiteF3:'Visit the website',
+        //PAGE PARTENAIRES
+        titrePClients: "Clients",
+        titrePFournisseurs: "Suppliers",
+        TitreFournisseur1: "Supplier",
+        TitreFournisseur2: "Supplier",
+        TitreFournisseur3: "Supplier",
+        lienSiteF1: 'Visit the website',
+        lienSiteF2: 'Visit the website',
+        lienSiteF3: 'Visit the website',
 
-    //PAGE ENGAGEMENT
-    titrepageEngagement: "Our Commitments",
-    titreEngagements1: "Quality",
-    titreEngagements2: "Service",
-  },
+        //PAGE ENGAGEMENT
+        titrepageEngagement: "Our Commitments",
+        titreEngagements1: "Quality",
+        titreEngagements2: "Service",
+      },
 
-  ES: {
-    //TITRE
-    TitrePage1: "Cruchaudet | La historia",
-    TitrePage2: "Cruchaudet | Servicio de Entrega",
-    TitrePage3: "Cruchaudet | Nuestros Socios",
-    TitrePage4: "Cruchaudet | Secciones",
-    TitrePage5: "Cruchaudet | Nuestros compromisos",
-    TitrePage404: "Cruchaudet | Página 404",
+      ES: {
+        //TITRE
+        TitrePage1: "Cruchaudet | La historia",
+        TitrePage2: "Cruchaudet | Servicio de Entrega",
+        TitrePage3: "Cruchaudet | Nuestros Socios",
+        TitrePage4: "Cruchaudet | Secciones",
+        TitrePage5: "Cruchaudet | Nuestros compromisos",
+        TitrePage404: "Cruchaudet | Página 404",
 
-    //NAV
-    navHistory: "Nuestra historia",
-    navExport: "Servicio de Entrega",
-    navEngagement: "Nuestros compromisos",
-    navRayon: "Secciones",
-    navRayonLegumes: "Verduras",
-    navRayonFruits: "Frutas",
-    navRayonExotic: "Exóticas",
-    navRayonMiniLegumes: 'Mini Verduras',
-    navRayonC: "Condimentos",
-    navRayonJP: 'Brotes Tiernos',
-    navRayonG: 'Germinados',
-    navExotic: "Exóticas",
-    navNosPartenaires: "Nuestros Socios",
-    navClients: "Clientes",
-    navFournisseurs: "Proveedores",
-    navContact: "Contacto",
+        //NAV
+        navHistory: "Nuestra historia",
+        navExport: "Servicio de Entrega",
+        navEngagement: "Nuestros compromisos",
+        navRayon: "Secciones",
+        navRayonLegumes: "Verduras",
+        navRayonFruits: "Frutas",
+        navRayonExotic: "Exóticas",
+        navRayonMiniLegumes: 'Mini Verduras',
+        navRayonC: "Condimentos",
+        navRayonJP: 'Brotes Tiernos',
+        navRayonG: 'Germinados',
+        navExotic: "Exóticas",
+        navNosPartenaires: "Nuestros Socios",
+        navClients: "Clientes",
+        navFournisseurs: "Proveedores",
+        navContact: "Contacto",
 
-    //PAGE INDEX
-    titre: "Cruchaudet",
-    phrase1: "Frutas y verduras frescas, cada día.",
-    phrase2: "Desde <span class='Rungis'>Rungis</span>.",
-    titrepageHistoire: "Historia",
-    titreBio1: "Inicio",
-    titreBio2: "Evolución",
-    titreBio3: "Ahora",
+        //PAGE INDEX
+        titre: "Cruchaudet",
+        phrase1: "Frutas y verduras frescas, cada día.",
+        phrase2: "Desde <span class='Rungis'>Rungis</span>.",
+        titrepageHistoire: "Historia",
+        titreBio1: "Inicio",
+        titreBio2: "Evolución",
+        titreBio3: "Ahora",
 
-    //PAGE RAYON
-    titrepageRayons: "Secciones",
-    titreRayon1: "Frutas",
-    titreRayon2: "Verduras",
-    titreRayon3: "Mini Verduras",
-    titreRayon4: "Condimentos",
-    titreRayon5: "Exóticos",
-    titreRayon6: "Brotes Tiernos",
-    titreRayon7: "Germinados",
+        //PAGE RAYON
+        titrepageRayons: "Secciones",
+        titreRayon1: "Frutas",
+        titreRayon2: "Verduras",
+        titreRayon3: "Mini Verduras",
+        titreRayon4: "Condimentos",
+        titreRayon5: "Exóticos",
+        titreRayon6: "Brotes Tiernos",
+        titreRayon7: "Germinados",
 
-    //FOOTER
-    cguFooter: "Condiciones de uso",
-    contact: "Contacto",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
+        //FOOTER
+        cguFooter: "Condiciones de uso",
+        contact: "Contacto",
+        footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
 
-    //404
-    text404: "¡Ups! La página que buscas no existe.",
-    btn404: "Volver al inicio",
+        //404
+        text404: "¡Ups! La página que buscas no existe.",
+        btn404: "Volver al inicio",
 
-    //PAGE EXPORT
-    TitreExport: "Servicio de Entrega",
-    contactFormTitle: "Contacto Exportación",
-    nom: "Apellido *",
-    prenom: "Nombre *",
-    email: "Correo electrónico *",
-    telephone: "Teléfono *",
-    objet: "Asunto *",
-    message: "Tu mensaje *",
-    submitBtn: "Enviar",
-    formErrors: {
-      nom: "Introduce un apellido válido (2 a 30 letras).",
-      prenom: "Introduce un nombre válido (2 a 30 letras).",
-      email: "Introduce un correo electrónico válido.",
-      telephone: "Introduce un número de teléfono válido.",
-      objet: "Introduce un asunto (mínimo 2 caracteres).",
-      messageVide: "El mensaje no puede estar vacío.",
-      messageCourt: "El mensaje debe tener al menos 20 caracteres.",
-      noTags: "Las etiquetas HTML no están permitidas.",
-      noScript: "Las etiquetas <script> están estrictamente prohibidas.",
-      success: "Tu mensaje ha sido enviado correctamente ✅",
-      errorSend: "Corrige los errores antes de enviar.",
-    },
+        //PAGE EXPORT
+        TitreExport: "Servicio de Entrega",
+        contactFormTitle: "Contacto Exportación",
+        nom: "Apellido *",
+        prenom: "Nombre *",
+        email: "Correo electrónico *",
+        telephone: "Teléfono *",
+        objet: "Asunto *",
+        message: "Tu mensaje *",
+        submitBtn: "Enviar",
+        formErrors: {
+          nom: "Introduce un apellido válido (2 a 30 letras).",
+          prenom: "Introduce un nombre válido (2 a 30 letras).",
+          email: "Introduce un correo electrónico válido.",
+          telephone: "Introduce un número de teléfono válido.",
+          objet: "Introduce un asunto (mínimo 2 caracteres).",
+          messageVide: "El mensaje no puede estar vacío.",
+          messageCourt: "El mensaje debe tener al menos 20 caracteres.",
+          noTags: "Las etiquetas HTML no están permitidas.",
+          noScript: "Las etiquetas <script> están estrictamente prohibidas.",
+          success: "Tu mensaje ha sido enviado correctamente ✅",
+          errorSend: "Corrige los errores antes de enviar.",
+        },
 
-    //CGU
-  TitrePageCGU: "Cruchaudet | Términos de Uso",
-  titreCgu1: "Términos de Uso",
-  paragrapheCgu1: "Bienvenido a <strong>Cruchaudet</strong>. Al acceder a este sitio (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), acepta cumplir con estos Términos de Uso (TOU). Si no acepta estos términos, no utilice este sitio.",
-  titreCgu2: "1. Propiedad del sitio",
-  paragrapheCgu2: "El contenido, la estructura y los elementos gráficos del sitio son propiedad exclusiva de Cruchaudet. Cualquier reproducción, total o parcial, está prohibida sin autorización previa.",
-  titreCgu3: "2. Uso del sitio",
-  paragrapheCgu3: "Usted se compromete a usar...",
-  titreCgu4: "3. Responsabilidad",
-  paragrapheCgu4: "Cruchaudet hace todo lo posible para garantizar la exactitud de la información, pero no puede garantizar que no existan errores. El uso del sitio es bajo su propia responsabilidad.",
-  titreCgu5: "4. Datos personales",
-  paragrapheCgu5: "No se recopilan datos personales sin su conocimiento. Para más información, puede contactarnos en <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  titreCgu6: "5. Modificaciones de los Términos",
-  paragrapheCgu6: "Cruchaudet se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios se publicarán en esta página.",
-  titreCgu7: "6. Contacto",
-  paragrapheCgu7: "Para cualquier pregunta sobre los Términos de Uso, puede contactarnos en <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  paragrapheCgu8: "© 2025 Cruchaudet. Todos los derechos reservados.",
+        //CGU
+        TitrePageCGU: "Cruchaudet | Términos de Uso",
+        titreCgu1: "Términos de Uso",
+        paragrapheCgu1: "Bienvenido a <strong>Cruchaudet</strong>. Al acceder a este sitio (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), acepta cumplir con estos Términos de Uso (TOU). Si no acepta estos términos, no utilice este sitio.",
+        titreCgu2: "1. Propiedad del sitio",
+        paragrapheCgu2: "El contenido, la estructura y los elementos gráficos del sitio son propiedad exclusiva de Cruchaudet. Cualquier reproducción, total o parcial, está prohibida sin autorización previa.",
+        titreCgu3: "2. Uso del sitio",
+        paragrapheCgu3: "Usted se compromete a usar...",
+        titreCgu4: "3. Responsabilidad",
+        paragrapheCgu4: "Cruchaudet hace todo lo posible para garantizar la exactitud de la información, pero no puede garantizar que no existan errores. El uso del sitio es bajo su propia responsabilidad.",
+        titreCgu5: "4. Datos personales",
+        paragrapheCgu5: "No se recopilan datos personales sin su conocimiento. Para más información, puede contactarnos en <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        titreCgu6: "5. Modificaciones de los Términos",
+        paragrapheCgu6: "Cruchaudet se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios se publicarán en esta página.",
+        titreCgu7: "6. Contacto",
+        paragrapheCgu7: "Para cualquier pregunta sobre los Términos de Uso, puede contactarnos en <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        paragrapheCgu8: "© 2025 Cruchaudet. Todos los derechos reservados.",
 
-    //PAGE PARTENAIRES
-    titrePClients: "Clientes",
-    titrePFournisseurs: "Proveedores",
-    TitreFournisseur1: "Proveedor",
-    TitreFournisseur2: "Proveedor",
-    TitreFournisseur3: "Proveedor",
-    lienSiteF1:'Visitar el sitio',
-    lienSiteF2:'Visitar el sitio',
-    lienSiteF3:'Visitar el sitio',
+        //PAGE PARTENAIRES
+        titrePClients: "Clientes",
+        titrePFournisseurs: "Proveedores",
+        TitreFournisseur1: "Proveedor",
+        TitreFournisseur2: "Proveedor",
+        TitreFournisseur3: "Proveedor",
+        lienSiteF1: 'Visitar el sitio',
+        lienSiteF2: 'Visitar el sitio',
+        lienSiteF3: 'Visitar el sitio',
 
-    //PAGE ENGAGEMENT
-    titrepageEngagement: "Nuestros compromisos",
-    titreEngagements1: "Calidad",
-    titreEngagements2: "Servicio",
-  },
+        //PAGE ENGAGEMENT
+        titrepageEngagement: "Nuestros compromisos",
+        titreEngagements1: "Calidad",
+        titreEngagements2: "Servicio",
+      },
 
-  IT: {
-    //TITRE
-    TitrePage1: "Cruchaudet | La storia",
-    TitrePage2: "Cruchaudet | Servizio di Consegna",
-    TitrePage3: "Cruchaudet | I Nostri Partner",
-    TitrePage4: "Cruchaudet | Reparti",
-    TitrePage5: "Cruchaudet | I nostri impegni",
-    TitrePage404: "Cruchaudet | Pagina 404",
+      IT: {
+        //TITRE
+        TitrePage1: "Cruchaudet | La storia",
+        TitrePage2: "Cruchaudet | Servizio di Consegna",
+        TitrePage3: "Cruchaudet | I Nostri Partner",
+        TitrePage4: "Cruchaudet | Reparti",
+        TitrePage5: "Cruchaudet | I nostri impegni",
+        TitrePage404: "Cruchaudet | Pagina 404",
 
-    //NAV
-    navHistory: "La nostra storia",
-    navExport: "Servizio di Consegna",
-    navEngagement: "I nostri impegni",
-    navRayon: "Reparti",
-    navRayonLegumes: "Verdure",
-    navRayonFruits: "Frutta",
-    navRayonExotic: "Esotici",
-    navRayonMiniLegumes: 'Mini Verdure',
-    navRayonJP: 'Germogli Teneri',
-    navRayonG: 'Germogli',
-    navRayonC: "Condimenti",
-    navNosPartenaires: "I Nostri Partner",
-    navClients: "Clienti",
-    navFournisseurs: "Fornitori",
-    navContact: "Contatto",
+        //NAV
+        navHistory: "La nostra storia",
+        navExport: "Servizio di Consegna",
+        navEngagement: "I nostri impegni",
+        navRayon: "Reparti",
+        navRayonLegumes: "Verdure",
+        navRayonFruits: "Frutta",
+        navRayonExotic: "Esotici",
+        navRayonMiniLegumes: 'Mini Verdure',
+        navRayonJP: 'Germogli Teneri',
+        navRayonG: 'Germogli',
+        navRayonC: "Condimenti",
+        navNosPartenaires: "I Nostri Partner",
+        navClients: "Clienti",
+        navFournisseurs: "Fornitori",
+        navContact: "Contatto",
 
-    //PAGE INDEX
-    titre: "Cruchaudet",
-    phrase1: "Frutta e verdura fresca, ogni giorno.",
-    phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
-    titrepageHistoire: "Storia",
-    titreBio1: "Inizio",
-    titreBio2: "Evoluzione",
-    titreBio3: "Adesso",
+        //PAGE INDEX
+        titre: "Cruchaudet",
+        phrase1: "Frutta e verdura fresca, ogni giorno.",
+        phrase2: "In partenza da <span class='Rungis'>Rungis</span>.",
+        titrepageHistoire: "Storia",
+        titreBio1: "Inizio",
+        titreBio2: "Evoluzione",
+        titreBio3: "Adesso",
 
-    //PAGE RAYON
-    titrepageRayons: "Reparti",
-    titreRayon1: "Frutta",
-    titreRayon2: "Verdure",
-    titreRayon3: "Mini Verdure",
-    titreRayon4: "Condimenti",
-    titreRayon5: "Esotici",
-    titreRayon6: "Germogli Teneri",
-    titreRayon7: "Germogli",
+        //PAGE RAYON
+        titrepageRayons: "Reparti",
+        titreRayon1: "Frutta",
+        titreRayon2: "Verdure",
+        titreRayon3: "Mini Verdure",
+        titreRayon4: "Condimenti",
+        titreRayon5: "Esotici",
+        titreRayon6: "Germogli Teneri",
+        titreRayon7: "Germogli",
 
-    //FOOTER
-    cguFooter: "Condizioni d'uso",
-    contact: "Contatto",
-    footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
+        //FOOTER
+        cguFooter: "Condizioni d'uso",
+        contact: "Contatto",
+        footerCopy: "Copyright © 2025 Cruchaudet.com. Tutti i diritti riservati.",
 
-    //404
-    text404: "Ops! La pagina che stai cercando non esiste.",
-    btn404: "Torna alla home",
+        //404
+        text404: "Ops! La pagina che stai cercando non esiste.",
+        btn404: "Torna alla home",
 
-    //PAGE EXPORT
-    TitreExport: "Servizio di Consegna",
-    contactFormTitle: "Contatto Export",
-    nom: "Cognome *",
-    prenom: "Nome *",
-    email: "Email *",
-    telephone: "Telefono *",
-    objet: "Oggetto *",
-    message: "Il tuo messaggio *",
-    submitBtn: "Invia",
-    formErrors: {
-      nom: "Inserisci un cognome valido (2–30 lettere).",
-      prenom: "Inserisci un nome valido (2–30 lettere).",
-      email: "Inserisci un'email valida.",
-      telephone: "Inserisci un numero di telefono valido.",
-      objet: "Inserisci un oggetto (minimo 2 caratteri).",
-      messageVide: "Il messaggio non può essere vuoto.",
-      messageCourt: "Il messaggio deve contenere almeno 20 caratteri.",
-      noTags: "I tag HTML non sono consentiti.",
-      noScript: "I tag <script> sono severamente vietati.",
-      success: "Il tuo messaggio è stato inviato con successo ✅",
-      errorSend: "Correggi gli errori prima di inviare.",
-    },
+        //PAGE EXPORT
+        TitreExport: "Servizio di Consegna",
+        contactFormTitle: "Contatto Export",
+        nom: "Cognome *",
+        prenom: "Nome *",
+        email: "Email *",
+        telephone: "Telefono *",
+        objet: "Oggetto *",
+        message: "Il tuo messaggio *",
+        submitBtn: "Invia",
+        formErrors: {
+          nom: "Inserisci un cognome valido (2–30 lettere).",
+          prenom: "Inserisci un nome valido (2–30 lettere).",
+          email: "Inserisci un'email valida.",
+          telephone: "Inserisci un numero di telefono valido.",
+          objet: "Inserisci un oggetto (minimo 2 caratteri).",
+          messageVide: "Il messaggio non può essere vuoto.",
+          messageCourt: "Il messaggio deve contenere almeno 20 caratteri.",
+          noTags: "I tag HTML non sono consentiti.",
+          noScript: "I tag <script> sono severamente vietati.",
+          success: "Il tuo messaggio è stato inviato con successo ✅",
+          errorSend: "Correggi gli errori prima di inviare.",
+        },
 
-    //CGU
-  TitrePageCGU: "Cruchaudet | Condizioni Generali di Utilizzo",
-  titreCgu1: "Condizioni Generali di Utilizzo",
-  paragrapheCgu1: "Benvenuto su <strong>Cruchaudet</strong>. Accedendo a questo sito (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), accetti di rispettare queste Condizioni Generali di Utilizzo (CGU). Se non accetti queste condizioni, ti preghiamo di non utilizzare questo sito.",
-  titreCgu2: "1. Proprietà del sito",
-  paragrapheCgu2: "Il contenuto, la struttura e gli elementi grafici del sito sono di proprietà esclusiva di Cruchaudet. Qualsiasi riproduzione, totale o parziale, è vietata senza autorizzazione preventiva.",
-  titreCgu3: "2. Utilizzo del sito",
-  paragrapheCgu3: "Ti impegni a utilizzare...",
-  titreCgu4: "3. Responsabilità",
-  paragrapheCgu4: "Cruchaudet si impegna a garantire l’accuratezza delle informazioni, ma non può garantire l’assenza di errori. L’utilizzo del sito avviene sotto la tua piena responsabilità.",
-  titreCgu5: "4. Dati personali",
-  paragrapheCgu5: "Nessun dato personale viene raccolto a tua insaputa. Per ulteriori informazioni, puoi contattarci tramite <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  titreCgu6: "5. Modifiche alle CGU",
-  paragrapheCgu6: "Cruchaudet si riserva il diritto di modificare queste CGU in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.",
-  titreCgu7: "6. Contatto",
-  paragrapheCgu7: "Per qualsiasi domanda relativa alle CGU, puoi contattarci tramite <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-  paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
+        //CGU
+        TitrePageCGU: "Cruchaudet | Condizioni Generali di Utilizzo",
+        titreCgu1: "Condizioni Generali di Utilizzo",
+        paragrapheCgu1: "Benvenuto su <strong>Cruchaudet</strong>. Accedendo a questo sito (<a class='lienCgu' href='https://lilianbouzeau.github.io/index.html'>https://lilianbouzeau.github.io/index.html</a>), accetti di rispettare queste Condizioni Generali di Utilizzo (CGU). Se non accetti queste condizioni, ti preghiamo di non utilizzare questo sito.",
+        titreCgu2: "1. Proprietà del sito",
+        paragrapheCgu2: "Il contenuto, la struttura e gli elementi grafici del sito sono di proprietà esclusiva di Cruchaudet. Qualsiasi riproduzione, totale o parziale, è vietata senza autorizzazione preventiva.",
+        titreCgu3: "2. Utilizzo del sito",
+        paragrapheCgu3: "Ti impegni a utilizzare...",
+        titreCgu4: "3. Responsabilità",
+        paragrapheCgu4: "Cruchaudet si impegna a garantire l’accuratezza delle informazioni, ma non può garantire l’assenza di errori. L’utilizzo del sito avviene sotto la tua piena responsabilità.",
+        titreCgu5: "4. Dati personali",
+        paragrapheCgu5: "Nessun dato personale viene raccolto a tua insaputa. Per ulteriori informazioni, puoi contattarci tramite <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        titreCgu6: "5. Modifiche alle CGU",
+        paragrapheCgu6: "Cruchaudet si riserva il diritto di modificare queste CGU in qualsiasi momento. Le modifiche saranno pubblicate su questa pagina.",
+        titreCgu7: "6. Contatto",
+        paragrapheCgu7: "Per qualsiasi domanda relativa alle CGU, puoi contattarci tramite <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
+        paragrapheCgu8: "© 2025 Cruchaudet. Tutti i diritti riservati.",
 
-    //PAGE PARTENAIRES
-    titrePClients: "Clienti",
-    titrePFournisseurs: "Fornitori",
-    TitreFournisseur1: "Fornitore",
-    TitreFournisseur2: "Fornitore",
-    TitreFournisseur3: "Fornitore",
-    lienSiteF1:'Visita il sito',
-    lienSiteF2:'Visita il sito',
-    lienSiteF3:'Visita il sito',
+        //PAGE PARTENAIRES
+        titrePClients: "Clienti",
+        titrePFournisseurs: "Fornitori",
+        TitreFournisseur1: "Fornitore",
+        TitreFournisseur2: "Fornitore",
+        TitreFournisseur3: "Fornitore",
+        lienSiteF1: 'Visita il sito',
+        lienSiteF2: 'Visita il sito',
+        lienSiteF3: 'Visita il sito',
 
-    //PAGE ENGAGEMENT
-    titrepageEngagement: "I nostri impegni",
-    titreEngagements1: "Qualità",
-    titreEngagements2: "Servizio",
-  },
-};
+        //PAGE ENGAGEMENT
+        titrepageEngagement: "I nostri impegni",
+        titreEngagements1: "Qualità",
+        titreEngagements2: "Servizio",
+      },
+    };
 
 
     // Langue courante (persistée en localStorage)
