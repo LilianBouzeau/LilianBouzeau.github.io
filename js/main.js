@@ -238,7 +238,23 @@ document.addEventListener("DOMContentLoaded", () => {
       circ.setAttribute("stroke", "white");
       circ.setAttribute("stroke-width", "1");
       g.appendChild(circ);
+// Effet hover sur les points (circles)
+const circles = document.querySelectorAll("#arrows circle");
 
+circles.forEach((circ) => {
+  // Animation fluide
+  circ.style.transition = "transform 0.2s ease, fill 0.2s ease";
+
+  circ.addEventListener("mouseenter", () => {
+    circ.setAttribute("fill", "#e34a33"); // devient rouge
+    circ.style.transformOrigin = "center";
+  });
+
+  circ.addEventListener("mouseleave", () => {
+    circ.setAttribute("fill", "#2b6cb0"); // redevient bleu
+    circ.style.transform = "scale(1)";
+  });
+});
     });
 // ---------- Zoom & Pan complet ----------
 const svgEl = document.getElementById("svgmap");
@@ -250,51 +266,29 @@ let panY = 0;
 let isPanning = false;
 let startX, startY;
 
-const minScale = 1;    // échelle initiale
-const maxScale = 3;    // zoom avant maximum
-let zoomDone = false;  // indique si le zoom avant a été effectué
+const minScale = 1;
+const maxScale = 3;
+let zoomDone = false;
 
-// Appliquer la transformation
 function applyTransform() {
   mapGroup.setAttribute("transform", `translate(${panX}, ${panY}) scale(${scale})`);
 }
 
-// ----- ZOOM à la molette -----
+// ----- ZOOM à la molette (desktop) -----
 svgEl.addEventListener("wheel", (e) => {
   e.preventDefault();
   const zoomSpeed = 0.1;
   const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
+  const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
 
-  if (!zoomDone && delta > 0) {
-    // Zoom avant possible
-    const newScale = Math.min(scale + delta, maxScale);
-    const rect = svgEl.getBoundingClientRect();
-    const cx = e.clientX - rect.left;
-    const cy = e.clientY - rect.top;
+  const rect = svgEl.getBoundingClientRect();
+  const cx = e.clientX - rect.left;
+  const cy = e.clientY - rect.top;
 
-    panX -= (cx - panX) * (newScale / scale - 1);
-    panY -= (cy - panY) * (newScale / scale - 1);
-
-    scale = newScale;
-    if (scale >= maxScale) zoomDone = true;
-    applyTransform();
-
-  } else if (delta < 0) {
-    // Dé-zoom autorisé jusqu'à l'échelle initiale
-    const newScale = Math.max(scale + delta, minScale);
-    const rect = svgEl.getBoundingClientRect();
-    const cx = e.clientX - rect.left;
-    const cy = e.clientY - rect.top;
-
-    panX -= (cx - panX) * (newScale / scale - 1);
-    panY -= (cy - panY) * (newScale / scale - 1);
-
-    scale = newScale;
-
-    // Si on revient à l'échelle initiale, on peut zoomer de nouveau
-    if (scale <= minScale) zoomDone = false;
-    applyTransform();
-  }
+  panX -= (cx - panX) * (newScale / scale - 1);
+  panY -= (cy - panY) * (newScale / scale - 1);
+  scale = newScale;
+  applyTransform();
 });
 
 // ----- PAN souris -----
@@ -326,8 +320,54 @@ svgEl.addEventListener("dblclick", () => {
   scale = 1;
   panX = 0;
   panY = 0;
-  zoomDone = false;
   applyTransform();
+});
+
+// ----- GESTION MOBILE (touch) -----
+let lastTouchDist = null;
+let isTouchPanning = false;
+let touchStartX = 0, touchStartY = 0;
+
+svgEl.addEventListener("touchstart", (e) => {
+  if (e.touches.length === 1) {
+    // Un doigt → pan
+    isTouchPanning = true;
+    touchStartX = e.touches[0].clientX - panX;
+    touchStartY = e.touches[0].clientY - panY;
+  } else if (e.touches.length === 2) {
+    // Deux doigts → zoom
+    isTouchPanning = false;
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    lastTouchDist = Math.hypot(dx, dy);
+  }
+});
+
+svgEl.addEventListener("touchmove", (e) => {
+  e.preventDefault();
+  if (isTouchPanning && e.touches.length === 1) {
+    panX = e.touches[0].clientX - touchStartX;
+    panY = e.touches[0].clientY - touchStartY;
+    applyTransform();
+  } else if (e.touches.length === 2) {
+    // Calcul du zoom (pinch)
+    const dx = e.touches[0].clientX - e.touches[1].clientX;
+    const dy = e.touches[0].clientY - e.touches[1].clientY;
+    const newDist = Math.hypot(dx, dy);
+
+    if (lastTouchDist) {
+      const delta = (newDist - lastTouchDist) * 0.005;
+      const newScale = Math.min(Math.max(scale + delta, minScale), maxScale);
+      scale = newScale;
+      applyTransform();
+    }
+    lastTouchDist = newDist;
+  }
+});
+
+svgEl.addEventListener("touchend", (e) => {
+  if (e.touches.length < 2) lastTouchDist = null;
+  if (e.touches.length === 0) isTouchPanning = false;
 });
 
 
