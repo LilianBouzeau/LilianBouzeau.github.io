@@ -639,19 +639,22 @@ textarea {
       display: block;
     }
   path {
-    fill: #ccc;
-    stroke: #666;
-    stroke-width: 1.5;
+    fill: white;
+    stroke: black;
+    stroke-width: 1;
     transition: all 0.25s ease;
     cursor: pointer;
   }
-
-  path:hover {
-    fill: var(--accent);
-    stroke: #000;
-    stroke-width: 2.5;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+  .PaysExport{
+    fill: var(--bleu);
   }
+
+  .PaysExport:hover{
+    fill: var(--accent);
+    stroke: black;
+    stroke-width: 2;
+  }
+
 /*FOURNISSEUR*/
 .fournisseurs-wrapper {
   display: flex;
