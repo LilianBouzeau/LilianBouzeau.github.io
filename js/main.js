@@ -266,7 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF1: 'Visiter le site',
         lienSiteF2: 'Visiter le site',
         lienSiteF3: 'Visiter le site',
-
+        legendeTitre:'Légende',
+        legendeP:'Pays où nous exportons',
         //PAGE ENGAGEMENT
         titrepageEngagement: 'Nos engagements',
         titreEngagements1: 'Qualité',
@@ -379,6 +380,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF1: 'Visit the website',
         lienSiteF2: 'Visit the website',
         lienSiteF3: 'Visit the website',
+        legendeTitre: 'Legend',
+        legendeP: 'Countries where we export',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "Our Commitments",
@@ -492,6 +495,8 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF1: 'Visitar el sitio',
         lienSiteF2: 'Visitar el sitio',
         lienSiteF3: 'Visitar el sitio',
+        legendeTitre: 'Leyenda',
+      legendeP: 'Países donde exportamos',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "Nuestros compromisos",
@@ -604,6 +609,10 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF1: 'Visita il sito',
         lienSiteF2: 'Visita il sito',
         lienSiteF3: 'Visita il sito',
+        legendeTitre: 'Legenda',
+        legendeP: 'Paesi in cui esportiamo',
+        legendeTitre: 'Legenda',
+        legendeP: 'Paesi in cui esportiamo',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "I nostri impegni",
