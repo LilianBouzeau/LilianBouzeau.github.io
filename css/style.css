@@ -791,6 +791,8 @@ path {
     font-size: 0.85rem;
     text-align: center;
     margin-bottom: 0.5rem;
+    width: auto;
+    margin-right:10% ;
   }
 
   .map-legend h3 {
