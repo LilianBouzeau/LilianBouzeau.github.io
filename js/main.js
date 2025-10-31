@@ -147,23 +147,36 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollElements.forEach(el => observer.observe(el));
     }
     // ---------- COOKIES ----------
-  // Vérifie si l'utilisateur a déjà fait un choix
-  if (!localStorage.getItem("cookieConsent")) {
-    document.getElementById("cookie-banner").style.display = "flex";
+  const banner = document.getElementById("cookie-banner");
+  const acceptBtn = document.querySelector(".cookie-btn.accept");
+  const declineBtn = document.querySelector(".cookie-btn.decline");
+
+  if (!banner || !acceptBtn || !declineBtn) {
+    console.warn("❌ Cookie banner: éléments non trouvés dans le DOM.");
+    return;
   }
 
-  document.getElementById("acceptCookies").addEventListener("click", () => {
-    localStorage.setItem("cookieConsent", "accepted");
-    document.getElementById("cookie-banner").style.opacity = "0";
-    setTimeout(() => document.getElementById("cookie-banner").remove(), 400);
+  // Vérifie si l'utilisateur a déjà fait un choix
+  const consent = localStorage.getItem("cookieConsent");
+  if (!consent) {
+    banner.style.display = "flex"; // afficher la bannière
+  } else {
+    banner.style.display = "none"; // cacher si déjà choisi
+  }
+
+  // Accepter
+  acceptBtn.addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "accepted"); // garder en storage
+    banner.style.opacity = "0";
+    setTimeout(() => (banner.style.display = "none"), 400);
   });
 
-  document.getElementById("declineCookies").addEventListener("click", () => {
-    localStorage.setItem("cookieConsent", "declined");
-    document.getElementById("cookie-banner").style.opacity = "0";
-    setTimeout(() => document.getElementById("cookie-banner").remove(), 400);
+  // Refuser
+  declineBtn.addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "declined"); // garder en storage
+    banner.style.opacity = "0";
+    setTimeout(() => (banner.style.display = "none"), 400);
   });
-
 
     // ---------- Bouton "back to top" ----------
     const btnTop = document.getElementById("btnTop");
