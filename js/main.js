@@ -146,6 +146,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }, { threshold: 0.2 });
       scrollElements.forEach(el => observer.observe(el));
     }
+    // ---------- COOKIES ----------
+  // Vérifie si l'utilisateur a déjà fait un choix
+  if (!localStorage.getItem("cookieConsent")) {
+    document.getElementById("cookie-banner").style.display = "flex";
+  }
+
+  document.getElementById("acceptCookies").addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "accepted");
+    document.getElementById("cookie-banner").style.opacity = "0";
+    setTimeout(() => document.getElementById("cookie-banner").remove(), 400);
+  });
+
+  document.getElementById("declineCookies").addEventListener("click", () => {
+    localStorage.setItem("cookieConsent", "declined");
+    document.getElementById("cookie-banner").style.opacity = "0";
+    setTimeout(() => document.getElementById("cookie-banner").remove(), 400);
+  });
+
 
     // ---------- Bouton "back to top" ----------
     const btnTop = document.getElementById("btnTop");
@@ -272,6 +290,11 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageEngagement: 'Nos engagements',
         titreEngagements1: 'Qualité',
         titreEngagements2: 'Service',
+        //COOKIES
+        cookiesP:'🍪 Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
+       cookiesA:'En savoir plus',
+        acceptCookies:'Accepter',
+        declineCookies:'Refuser',
       },
 
       EN: {
@@ -387,6 +410,11 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageEngagement: "Our Commitments",
         titreEngagements1: "Quality",
         titreEngagements2: "Service",
+        //COOKIES
+        cookiesP: '🍪 We use cookies to improve your experience on our website.',
+        cookiesA: 'Learn more',
+        acceptCookies: 'Accept',
+        declineCookies: 'Decline',
       },
 
       ES: {
@@ -502,6 +530,11 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageEngagement: "Nuestros compromisos",
         titreEngagements1: "Calidad",
         titreEngagements2: "Servicio",
+        //COOKIES
+        cookiesP: '🍪 Utilizamos cookies para mejorar su experiencia en nuestro sitio web.',
+        cookiesA: 'Saber más',
+        acceptCookies: 'Aceptar',
+        declineCookies: 'Rechazar',
       },
 
       IT: {
@@ -618,6 +651,12 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageEngagement: "I nostri impegni",
         titreEngagements1: "Qualità",
         titreEngagements2: "Servizio",
+        //COOKIES
+        cookiesP: '🍪 Utilizziamo i cookie per migliorare la tua esperienza sul nostro sito web.',
+        cookiesA: 'Scopri di più',
+        acceptCookies: 'Accetta',
+        declineCookies: 'Rifiuta',
+
       },
     };
 
