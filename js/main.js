@@ -147,36 +147,41 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollElements.forEach(el => observer.observe(el));
     }
     // ---------- COOKIES ----------
-  const banner = document.getElementById("cookie-banner");
-  const acceptBtn = document.querySelector(".cookie-btn.accept");
-  const declineBtn = document.querySelector(".cookie-btn.decline");
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.querySelector(".cookie-btn.accept");
+    const declineBtn = document.querySelector(".cookie-btn.decline");
 
-  if (!banner || !acceptBtn || !declineBtn) {
-    console.warn("❌ Cookie banner: éléments non trouvés dans le DOM.");
-    return;
-  }
+    if (!banner || !acceptBtn || !declineBtn) {
+      console.warn("❌ Cookie banner: éléments non trouvés dans le DOM.");
+      return;
+    }
 
-  // Vérifie si l'utilisateur a déjà fait un choix
-  const consent = localStorage.getItem("cookieConsent");
-  if (!consent) {
-    banner.style.display = "flex"; // afficher la bannière
-  } else {
-    banner.style.display = "none"; // cacher si déjà choisi
-  }
+    // Vérifie si l'utilisateur a déjà fait un choix
+    const consent = localStorage.getItem("cookieConsent");
+    if (!consent) {
+      banner.style.display = "flex"; // afficher la bannière
+    } else {
+      banner.style.display = "none"; // cacher si déjà choisi
+    }
+    function setCookieConsent(value) {
+      const now = new Date();
+      const expire = now.getTime() + 30 * 24 * 60 * 60 * 1000; // 30 jours
+      const data = { value, expire };
+      localStorage.setItem("cookieConsent", JSON.stringify(data));
+    }
+    // Accepter
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "accepted"); // garder en storage
+      banner.style.opacity = "0";
+      setTimeout(() => (banner.style.display = "none"), 400);
+    });
 
-  // Accepter
-  acceptBtn.addEventListener("click", () => {
-    localStorage.setItem("cookieConsent", "accepted"); // garder en storage
-    banner.style.opacity = "0";
-    setTimeout(() => (banner.style.display = "none"), 400);
-  });
-
-  // Refuser
-  declineBtn.addEventListener("click", () => {
-    localStorage.setItem("cookieConsent", "declined"); // garder en storage
-    banner.style.opacity = "0";
-    setTimeout(() => (banner.style.display = "none"), 400);
-  });
+    // Refuser
+    declineBtn.addEventListener("click", () => {
+      localStorage.setItem("cookieConsent", "declined"); // garder en storage
+      banner.style.opacity = "0";
+      setTimeout(() => (banner.style.display = "none"), 400);
+    });
 
     // ---------- Bouton "back to top" ----------
     const btnTop = document.getElementById("btnTop");
@@ -297,17 +302,17 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF1: 'Visiter le site',
         lienSiteF2: 'Visiter le site',
         lienSiteF3: 'Visiter le site',
-        legendeTitre:'Légende',
-        legendeP:'Pays où nous exportons',
+        legendeTitre: 'Légende',
+        legendeP: 'Pays où nous exportons',
         //PAGE ENGAGEMENT
         titrepageEngagement: 'Nos engagements',
         titreEngagements1: 'Qualité',
         titreEngagements2: 'Service',
         //COOKIES
-        cookiesP:'🍪 Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
-       cookiesA:'En savoir plus',
-        acceptCookies:'Accepter',
-        declineCookies:'Refuser',
+        cookiesP: '🍪 Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
+        cookiesA: 'En savoir plus',
+        acceptCookies: 'Accepter',
+        declineCookies: 'Refuser',
       },
 
       EN: {
@@ -537,7 +542,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lienSiteF2: 'Visitar el sitio',
         lienSiteF3: 'Visitar el sitio',
         legendeTitre: 'Leyenda',
-      legendeP: 'Países donde exportamos',
+        legendeP: 'Países donde exportamos',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "Nuestros compromisos",
