@@ -520,6 +520,10 @@ nav {
   width: 90vw;
   margin: auto;
 }
+#MAP {
+  width: 95vw;
+  margin: auto;
+}
 
 .alignement {
   display: flex;
@@ -777,13 +781,12 @@ path {
   .map-container {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 
   /* Légende compacte au-dessus de la carte */
   .map-legend {
     order: -1;
-    width: 80%;
-    max-width: 280px;
     padding: 0.5rem 0.8rem;
     font-size: 0.85rem;
     text-align: center;
@@ -806,16 +809,23 @@ path {
     margin-right: 6px;
   }
 
-  /* Carte plus grande sur mobile */
+  /* Carte centrée et adaptée à l’écran mobile */
   .map-wrap {
-    width: 100%;
-    max-width: 95vw;
+    width: 175%;
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding-right:15% ;
   }
 
   #svgmap {
     width: 100%;
-    max-width: 95vw;
+    max-width: 100vw;
     height: auto;
+    display: block;
+    margin: 0 auto;
   }
 }
 
@@ -1377,7 +1387,6 @@ COOKIES
 
 }
 
-
 @media (max-width: 768px) {
 
   /* Adaptations mobiles */
@@ -1388,7 +1397,6 @@ COOKIES
     width: 95vw;
     margin: auto;
   }
-
   .contact-wrapper {
     padding: 4rem 2rem;
     width: 80vw;
