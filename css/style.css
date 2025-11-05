@@ -574,114 +574,31 @@ nav {
 /* ================================
    FORMULAIRE EXPORT / CONTACT
 =================================*/
-.contact-wrapper {
-  padding: 4rem 2rem;
-  width: 85vw;
+.formulaire {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: auto;
+  gap: 0.6rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: var(--blanc);
   border-radius: var(--radius);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
-}
-
-#contactFormTitle {
-  text-align: center;
-  color: var(--bleu);
-  margin-bottom: 1rem;
-}
-
-/* Organisation des champs */
-.form-row {
-  display: flex;
-  gap: 1rem;
-  width: 100%;
-}
-
-.form-group.half {
-  flex: 1;
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
-/* Champs de saisie */
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.7rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: var(--radius);
-  font-size: 1rem;
-  font-family: var(--font);
+  padding: 0.8rem 1.2rem;
+  width: fit-content;
   transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent);
-  outline: none;
-}
-
-/* Champs invalides */
-input.error,
-textarea.error {
-  border: 1px solid red;
-  box-sizing: border-box;
-}
-
-textarea {
-  min-height: 80px;
-  overflow: hidden;
-  resize: none;
-}
-
-/* Bouton d’envoi */
-#submitBtn {
-  background-color: var(--bleu);
-  color: var(--blanc);
-  border: none;
-  padding: 0.8rem 1.5rem;
-  border-radius: var(--radius);
   cursor: pointer;
-  transition: var(--transition);
-  display: block;
-  margin: 0 auto;
 }
 
-#submitBtn:hover {
+.formulaire:hover {
   background-color: var(--accent);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
 }
 
-/* Messages d’erreur et de succès */
-.error-msg {
-  display: block;
-  color: #c62828;
-  font-size: 0.9rem;
-  margin-top: 4px;
+.formulaire:hover .icone,
+.formulaire:hover .paraContact {
+  color: var(--blanc);
 }
-
-#formMsg {
-  margin-top: 1rem;
-  font-weight: 600;
-  font-size: 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  text-align: center;
-}
-
-#formMsg.show {
-  opacity: 1;
-}
-
-#formMsg.success {
-  color: #2e7d32;
-}
-
-#formMsg.error {
-  color: #c62828;
-}
-
 
 /* ================================
   PAGE PARTENAIRES
@@ -707,6 +624,7 @@ textarea {
   justify-content: center;
   align-items: center;
   min-width: 300px;
+
 }
 
 /* SVG responsive */
@@ -1198,7 +1116,7 @@ COOKIES
 
 .containerCGU {
   max-width: 800px;
-  margin: auto;
+  margin: 30px auto;
   padding: 20px;
   background-color: var(--blanc);
   border-radius: var(--radius);

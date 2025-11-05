@@ -4,6 +4,9 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  function updateActiveFiltersUI() {
+  // fonction vide pour éviter l'erreur si elle n'est pas utilisée
+}
   // ---------- Loader & Lancement principal ----------
   const loader = document.getElementById("loader");
   const mainContent = document.getElementById("mainContent");
@@ -458,6 +461,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navRayonG: 'Germinados',
         navExotic: "Exóticas",
         navNosPartenaires: "Nuestros Socios",
+          navContactExport: "Formulario de Contacto",
         navClients: "Clientes",
         navFournisseurs: "Proveedores",
         navContact: "Contacto",
@@ -577,6 +581,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navRayonG: 'Germogli',
         navRayonC: "Condimenti",
         navNosPartenaires: "I Nostri Partner",
+        navContactExport: "Modulo di Contatto",
         navClients: "Clienti",
         navFournisseurs: "Fornitori",
         navContact: "Contatto",
@@ -681,202 +686,92 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Langue courante (persistée en localStorage)
     let currentLang = localStorage.getItem("lang") || "FR";
+// ---------- Fonctions pour le formulaire (placeholders + bouton) ----------
+function setFormLanguage(lang) {
+  const t = translations[lang];
+  const form = document.getElementById("contactForm");
+  if (!form) return;
+  const safeGet = id => document.getElementById(id);
+  if (safeGet("contactFormTitle")) safeGet("contactFormTitle").innerText = t.contactFormTitle || "";
+  if (safeGet("nom")) safeGet("nom").placeholder = t.nom || "";
+  if (safeGet("prenom")) safeGet("prenom").placeholder = t.prenom || "";
+  if (safeGet("email")) safeGet("email").placeholder = t.email || "";
+  if (safeGet("telephone")) safeGet("telephone").placeholder = t.telephone || "";
+  if (safeGet("objet")) safeGet("objet").placeholder = t.objet || "";
+  if (safeGet("message")) safeGet("message").placeholder = t.message || "";
+  if (safeGet("submitBtn")) safeGet("submitBtn").innerText = t.submitBtn || "";
+}
 
-    // ---------- Fonctions pour le formulaire (placeholders + bouton) ----------
-    function setFormLanguage(lang) {
-      const t = translations[lang];
-      const form = document.getElementById("contactForm");
-      if (!form) return;
-      const safeGet = id => document.getElementById(id);
-      if (safeGet("contactFormTitle")) safeGet("contactFormTitle").innerText = t.contactFormTitle || "";
-      if (safeGet("nom")) safeGet("nom").placeholder = t.nom || "";
-      if (safeGet("prenom")) safeGet("prenom").placeholder = t.prenom || "";
-      if (safeGet("email")) safeGet("email").placeholder = t.email || "";
-      if (safeGet("telephone")) safeGet("telephone").placeholder = t.telephone || "";
-      if (safeGet("objet")) safeGet("objet").placeholder = t.objet || "";
-      if (safeGet("message")) safeGet("message").placeholder = t.message || "";
-      if (safeGet("submitBtn")) safeGet("submitBtn").innerText = t.submitBtn || "";
+// ---------- setLanguage : applique toutes les traductions ----------
+function setLanguage(lang, retry = 0) {
+  
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+
+  const tObj = translations[lang] || {};
+  for (const [id, text] of Object.entries(tObj)) {
+    if (id === "formErrors") continue;
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
+    if (el.tagName === "A" && el.querySelector("i.caret")) {
+      const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+      if (textNode) textNode.nodeValue = text;
+    } else {
+      el.innerHTML = text;
     }
+  }
 
-    // ---------- setLanguage : applique toutes les traductions ----------
-    function setLanguage(lang, retry = 0) {
-      currentLang = lang;
-      localStorage.setItem("lang", lang);
+  setFormLanguage(lang);
 
-      // Met à jour tous les éléments dont l'id correspond à une clé de translations[lang]
-      const tObj = translations[lang] || {};
-      for (const [id, text] of Object.entries(tObj)) {
-        if (id === "formErrors") continue; // messages d'erreur gérés séparément
-        const el = document.getElementById(id);
-        if (!el) continue;
-        // On ne touche pas aux inputs/textareas ici : ils sont gérés par setFormLanguage
-        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
-        // Cas particulier : lien avec caret -> ne pas écraser l'icône
-        if (el.tagName === "A" && el.querySelector("i.caret")) {
-          const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-          if (textNode) textNode.nodeValue = text;
-        } else {
-          el.innerHTML = text;
-        }
-      }
+  const searchInput = document.getElementById("searchCatalog");
+  if (searchInput) {
+    searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
+  }
 
-      // Met à jour le formulaire (placeholders & bouton)
-      setFormLanguage(lang);
+  const langButtons = document.querySelectorAll(".btnLang");
+  if (langButtons.length > 0) {
+    langButtons.forEach(btn => btn.style.display = "flex");
+    const activeBtn = document.getElementById(`lang${lang}`);
+    if (activeBtn) activeBtn.style.display = "none";
+  } else if (retry < 6) {
+    setTimeout(() => setLanguage(lang, retry + 1), 100);
+    return;
+  }
 
-      // Placeholder de la recherche
-      const searchInput = document.getElementById("searchCatalog");
-      if (searchInput) {
-        searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
-      }
+  initFormValidation();
 
-      // ----- Gestion des boutons de langue (.btnLang) -----
-      const langButtons = document.querySelectorAll(".btnLang");
-      if (langButtons.length > 0) {
-        // Affiche tous puis masque le bouton actif
-        langButtons.forEach(btn => btn.style.display = "flex");
-        const activeBtn = document.getElementById(`lang${lang}`);
-        if (activeBtn) activeBtn.style.display = "none";
-      } else if (retry < 6) {
-        // Si les boutons ne sont pas encore présents (ex : menu injecté plus tard),
-        // on retente quelques fois (100ms) puis on abandonne
-        setTimeout(() => setLanguage(lang, retry + 1), 100);
-        return; // on sort maintenant pour éviter d'initFormValidation trop tôt
-      }
+  const currentErrors = document.querySelectorAll(".error-msg");
+  if (currentErrors.length > 0) {
+    const t = translations[currentLang].formErrors || {};
+    currentErrors.forEach(err => {
+      const key = err.dataset.key;
+      if (key && t[key]) err.textContent = t[key];
+    });
+  }
 
-      // ✅ Ré-initialise la validation (pour rafraîchir messages, si présents)
-      initFormValidation();
+  const formMsg = document.getElementById("formMsg");
+  if (formMsg && formMsg.dataset.key) {
+    const formMessages = translations[currentLang].formMessages || {};
+    const key = formMsg.dataset.key;
+    if (key && formMessages[key]) formMsg.textContent = formMessages[key];
+  }
+}
 
-      // ✅ Traduit les messages d'erreur déjà affichés dans le formulaire
-      const currentErrors = document.querySelectorAll(".error-msg");
-      if (currentErrors.length > 0) {
-        const t = translations[currentLang].formErrors || {};
-        currentErrors.forEach(err => {
-          const key = err.dataset.key; // clé du message d’erreur
-          if (key && t[key]) {
-            err.textContent = t[key];
-          }
-        });
-      }
-
-      // ✅ Traduit aussi le message global du formulaire (si affiché)
-      const formMsg = document.getElementById("formMsg");
-      if (formMsg && formMsg.dataset.key) {
-        const formMessages = translations[currentLang].formMessages || {};
-        const key = formMsg.dataset.key;
-        if (key && formMessages[key]) {
-          formMsg.textContent = formMessages[key];
-        }
-      }
-    }
-    // ---------- Écouteurs pour changement de langue (après qu'on appelle setLanguage une première fois) ----------
-    // On attache des listeners génériques : s'ils n'existent pas encore, on retentera après setLanguage
-    function attachLangButtonsListeners() {
-      const btns = document.querySelectorAll(".btnLang");
-      if (!btns || btns.length === 0) return;
-      btns.forEach(btn => {
-        // éviter de rattacher plusieurs fois
-        if (btn.dataset.langInit === "1") return;
-        btn.dataset.langInit = "1";
-        btn.addEventListener("click", () => {
-          const lang = btn.id.replace("lang", "");
-          setLanguage(lang);
-          updateActiveFiltersUI();
-          closeAllSousMenus();
-        });
-      });
-    }
-
-    // ---------- VALIDATION DU FORMULAIRE ----------
-    function initFormValidation() {
-      const contactForm = document.getElementById("contactForm");
-      const formMsg = document.getElementById("formMsg");
-      if (!contactForm) return;
-
-      // On supprime d'anciens handlers pour éviter duplications si ré-initialisé
-      contactForm.addEventListener("submit", noop); // dummy pour éviter erreur si déjà attaché
-      // (Note : on conserve un seul handler ci-dessous en ajoutant removeEventListener si besoin)
-      contactForm.removeEventListener("submit", handleSubmit);
-      contactForm.addEventListener("submit", handleSubmit);
-
-      function handleSubmit(e) {
-        e.preventDefault();
-        if (validateForm()) {
-          const successText = translations[currentLang].formErrors?.success || "✔️ Envoyé";
-          if (formMsg) {
-            formMsg.textContent = successText;
-            formMsg.classList.remove("error");
-            formMsg.classList.add("show", "success");
-          }
-          contactForm.reset();
-        } else {
-          const errorText = translations[currentLang].formErrors?.errorSend || "Veuillez corriger les erreurs.";
-          if (formMsg) {
-            formMsg.textContent = errorText;
-            formMsg.classList.remove("success");
-            formMsg.classList.add("show", "error");
-          }
-        }
-      }
-
-      function noop() { }
-
-      function validateForm() {
-        // Supprime anciens messages
-        document.querySelectorAll(".error-msg").forEach(msg => msg.remove());
-        if (formMsg) formMsg.classList.remove("show", "success", "error");
-
-        const t = translations[currentLang].formErrors || {};
-
-        const nom = document.getElementById("nom");
-        const prenom = document.getElementById("prenom");
-        const email = document.getElementById("email");
-        const tel = document.getElementById("telephone");
-        const objet = document.getElementById("objet");
-        const message = document.getElementById("message");
-
-        // Si un champ manquant dans le DOM -> considéré valide par défaut
-        const addError = (input, msgKey) => {
-          if (!input) return;
-          input.classList.add("error");
-          const error = document.createElement("span");
-          error.className = "error-msg";
-          error.dataset.key = msgKey;
-          error.textContent = t[msgKey] || "Erreur";
-          // Insère après l'élément (suppose qu'il est dans un wrapper)
-          if (input.parentElement) input.parentElement.appendChild(error);
-        };
-
-        const clearError = input => { if (input) input.classList.remove("error"); };
-
-        const nameRegex = /^[A-Za-zÀ-ÿ'\-\s]{2,30}$/;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRegex = /^[+0-9\s().-]{6,20}$/;
-        const htmlTagRegex = /<[^>]*>/;
-        const scriptTagRegex = /<\s*script.*?>.*?<\s*\/\s*script\s*>/i;
-
-        [nom, prenom, email, tel, objet, message].forEach(clearError);
-
-        let valid = true;
-
-        if (nom && (!nom.value.trim() || !nameRegex.test(nom.value.trim()))) { addError(nom, "nom"); valid = false; }
-        if (prenom && (!prenom.value.trim() || !nameRegex.test(prenom.value.trim()))) { addError(prenom, "prenom"); valid = false; }
-        if (email && (!email.value.trim() || !emailRegex.test(email.value.trim()))) { addError(email, "email"); valid = false; }
-        if (tel && (!tel.value.trim() || !phoneRegex.test(tel.value.trim()))) { addError(tel, "telephone"); valid = false; }
-        if (objet && (!objet.value.trim() || objet.value.trim().length < 2)) { addError(objet, "objet"); valid = false; }
-
-        if (message) {
-          if (!message.value.trim()) { addError(message, "messageVide"); valid = false; }
-          else if (message.value.trim().length < 20) { addError(message, "messageCourt"); valid = false; }
-          else if (htmlTagRegex.test(message.value)) { addError(message, "noTags"); valid = false; }
-          else if (scriptTagRegex.test(message.value)) { addError(message, "noScript"); valid = false; }
-        }
-
-        return valid;
-      }
-    }
-
-    // Appel initial pour mettre en place la validation (si le formulaire est présent)
-    initFormValidation();
+function attachLangButtonsListeners() {
+  const btns = document.querySelectorAll(".btnLang");
+  if (!btns || btns.length === 0) return;
+  btns.forEach(btn => {
+    if (btn.dataset.langInit === "1") return;
+    btn.dataset.langInit = "1";
+    btn.addEventListener("click", () => {
+      const lang = btn.id.replace("lang", "");
+      setLanguage(lang);
+      updateActiveFiltersUI();
+      closeAllSousMenus();
+    });
+  });
+}
 
 
     // ---------- Initialisation finale de la langue + listeners ----------
@@ -887,4 +782,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(attachLangButtonsListeners, 200);
     setTimeout(attachLangButtonsListeners, 600);
   } // fin initMenusEtTraductions()
+  
 }); // fin DOMContentLoaded
