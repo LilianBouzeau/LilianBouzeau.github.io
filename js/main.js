@@ -739,7 +739,6 @@ function setLanguage(lang, retry = 0) {
     return;
   }
 
-  initFormValidation();
 
   const currentErrors = document.querySelectorAll(".error-msg");
   if (currentErrors.length > 0) {
