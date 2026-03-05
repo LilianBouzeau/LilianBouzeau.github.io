@@ -572,24 +572,37 @@ nav {
 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
 #histoireD{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/passe.png);
+  url("/img/passe.png");
 }
 
 #histoireE{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/evolution.jpg);
+  url("/img/evolution.jpg");
 }
 
 #histoireP{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/present.jpg);
+  url("/img/present.jpg");
+}
+
+/* Correction mobile */
+@media (max-width: 768px) {
+  #histoireD,
+  #histoireE,
+  #histoireP{
+    background-attachment: scroll;
+    min-height: 60vh;
+    padding: 60px 15px;
+  }
 }
 
 .nom {
@@ -619,52 +632,70 @@ nav {
 
   background-size: cover;
   background-position: center;
-  background-attachment: fixed
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+/* Images */
 #RayonF{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/fruit.jpg);
+  url("/img/fruit.jpg");
 }
 
 #RayonL{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/legumes.jpg);
+  url("/img/legumes.jpg");
 }
 
 #RayonML{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/minilegumes.jpg);
+  url("/img/minilegumes.jpg");
 }
 
 #RayonC{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/condiments.jpg);
+  url("/img/condiments.jpg");
 }
 
 #RayonE{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/exotic.jpg);
+  url("/img/exotic.jpg");
 }
 
 #RayonJP{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/jeunespousses.jpg);
+  url("/img/jeunespousses.jpg");
 }
 
 #RayonG{
   background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/germes.jpg);
+  url("/img/germes.jpg");
+}
+
+/* Correction mobile */
+@media (max-width: 768px) {
+  #RayonF,
+  #RayonL,
+  #RayonML,
+  #RayonC,
+  #RayonE,
+  #RayonJP,
+  #RayonG{
+    background-attachment: scroll;
+    min-height: 60vh;
+    padding: 60px 15px;
+  }
 }
 /*témoignage*/
 #temoignage{
-    width: 100%;
+  width: 100%;
   min-height: 80vh;
   padding: 80px 20px;
 
@@ -675,12 +706,21 @@ nav {
 
   text-align: center;
 
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url("/img/present.jpg");
+
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-    background-image:
-  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/present.jpg);
+  background-repeat: no-repeat;
+}
+
+/* Adaptation mobile */
+@media (max-width: 768px) {
+  #temoignage{
+    background-attachment: scroll; /* évite le flou sur mobile */
+    padding: 60px 15px;
+  }
 }
 .sliderTemoignage{
 display:flex;
