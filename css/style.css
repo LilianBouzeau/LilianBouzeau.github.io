@@ -318,7 +318,9 @@ nav {
   display: block;
   transition: color 0.3s;
 }
-
+#nav-menu a:hover {
+  transition: 0.5s;
+}
 #nav-menu a:hover,
 #nav-menu a.active {
   color: var(--accent);
@@ -340,6 +342,7 @@ nav {
 .sous li a:hover {
   background-color: var(--blanc);
   color: var(--bleu);
+  transition: 0.5s;
 }
 
 .sous.active {
@@ -519,6 +522,7 @@ nav {
   width: 100vw;
   margin: auto;
 }
+
 #Export,
 #contactExport {
   width: 90vw;
@@ -528,24 +532,12 @@ nav {
   width: 95vw;
   margin: auto;
 }
-#quiSommeNous{
-    width: 100vw;
-    background-image: 
-    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-    url(/img/debut.png);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* effet parallaxe */
-}
 .alignement {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 3rem;
-  width: 100%;
-  gap: 1rem;
 }
 
 .TitreBio {
@@ -565,13 +557,39 @@ nav {
   width: 100%;
   max-width: 1000px;
 }
-
-.imgEntreprise {
-  max-width: 400px;
+#histoireD,
+#histoireE,
+#histoireP{
   width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  object-fit: cover;
+  min-height: 80vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed
+}
+#histoireD{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/passe.png);
+}
+
+#histoireE{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/evolution.jpg);
+}
+
+#histoireP{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/present.jpg);
 }
 
 .nom {
@@ -662,7 +680,7 @@ nav {
   background-attachment: fixed;
     background-image:
   linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-  url(/img/b2.jpg);
+  url(/img/present.jpg);
 }
 .sliderTemoignage{
 display:flex;
@@ -778,7 +796,11 @@ color:#001b99;
 .formulaire:hover .paraContact {
   color: var(--blanc);
 }
-
+.imgExport{
+width: 250px;
+border-radius:5px;
+margin: 2%;
+}
 /* ================================
   PAGE PARTENAIRES
 =================================*/
