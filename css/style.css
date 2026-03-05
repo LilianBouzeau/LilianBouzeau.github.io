@@ -970,13 +970,12 @@ path {
 
   /* Carte centrée et adaptée à l’écran mobile */
   .map-wrap {
-    width: 175%;
+    width: 100%;
     max-width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding-right:15% ;
   }
 
   #svgmap {
