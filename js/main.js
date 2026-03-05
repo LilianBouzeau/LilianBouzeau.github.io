@@ -39,6 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Fonction principale ----------
   function initMenusEtTraductions() {
+    // ------ Slider avis clients --------
+function initSliderAvisClients() {
+  const slides = document.querySelectorAll(".slide");
+  if (!slides || slides.length === 0) return;
+
+  let index = 0;
+  let slideInterval;
+
+  function showSlide(newIndex) {
+    slides[index].classList.remove("active");
+
+    index = newIndex;
+    if (index >= slides.length) index = 0;
+    if (index < 0) index = slides.length - 1;
+
+    slides[index].classList.add("active");
+  }
+
+  function startInterval() {
+    if (slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(() => {
+      showSlide(index + 1);
+    }, 5000);
+  }
+
+  const nextBtn = document.querySelector(".next");
+  const prevBtn = document.querySelector(".prev");
+
+  if (nextBtn) nextBtn.addEventListener("click", () => { showSlide(index + 1); startInterval(); });
+  if (prevBtn) prevBtn.addEventListener("click", () => { showSlide(index - 1); startInterval(); });
+
+  startInterval();
+}
+
+// ------ Slider logos --------
+function initSliderLogos() {
+  const logoContainer = document.querySelector(".logo-slider");
+  const logosSlide = document.querySelector(".logos-slide");
+  if (!logoContainer || !logosSlide) return;
+
+  const copy = logosSlide.cloneNode(true);
+  logoContainer.appendChild(copy);
+}
+
+// Appeler après initMenusEtTraductions()
+initSliderAvisClients();
+initSliderLogos();
     // Menu / hamburger
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
@@ -197,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
+
     // ---------- Traductions ----------
     const translations = {
       FR: {
@@ -210,7 +258,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //NAV
         navHistory: "L'histoire",
-        navExport: "Service de Livraison",
+        navExport: "Service Expédition",
         navEngagement: "Nos engagements",
         navRayon: 'Les rayons',
         navRayonLegumes: "Légumes",
@@ -233,7 +281,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageHistoire: "L'histoire",
         titreBio1: 'Début',
         titreBio2: 'Evolution',
-        titreBio3: 'Maintenant',
+        titreBio3: 'Présent',
 
         //PAGE RAYON
         titrepageRayons: 'Les rayons',
@@ -298,15 +346,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
-        titrePFournisseurs: "Fournisseurs",
-        TitreFournisseur1: "Fournisseur",
-        TitreFournisseur2: "Fournisseur",
-        TitreFournisseur3: "Fournisseur",
-        lienSiteF1: 'Visiter le site',
-        lienSiteF2: 'Visiter le site',
-        lienSiteF3: 'Visiter le site',
+        titreTemoignage:"Nos clients en parlent",
         legendeTitre: 'Légende',
         legendeP: 'Pays où nous exportons',
+        titrePFournisseurs:'Nos partenaires',
         //PAGE ENGAGEMENT
         titrepageEngagement: 'Nos engagements',
         titreEngagements1: 'Qualité',
@@ -321,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
       EN: {
         //TITRE
         TitrePage1: "Cruchaudet | The Story",
-        TitrePage2: "Cruchaudet | Delivery Service",
+        TitrePage2: "Cruchaudet | Shipping Service",
         TitrePage3: "Cruchaudet | Our Partners",
         TitrePage4: "Cruchaudet | Departments",
         TitrePage5: "Cruchaudet | Our Commitments",
@@ -329,7 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //NAV
         navHistory: "Our Story",
-        navExport: "Delivery Service",
+        navExport: "Shipping Service",
         navEngagement: "Our Commitments",
         navRayon: "Departments",
         navRayonLegumes: "Vegetables",
@@ -352,7 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageHistoire: "History",
         titreBio1: "Beginning",
         titreBio2: "Evolution",
-        titreBio3: "Now",
+        titreBio3: "Present",
 
         //PAGE RAYON
         titrepageRayons: "Departments",
@@ -417,15 +460,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
-        titrePFournisseurs: "Suppliers",
-        TitreFournisseur1: "Supplier",
-        TitreFournisseur2: "Supplier",
-        TitreFournisseur3: "Supplier",
-        lienSiteF1: 'Visit the website',
-        lienSiteF2: 'Visit the website',
-        lienSiteF3: 'Visit the website',
+        titreTemoignage:"Our customers talk about it",
         legendeTitre: 'Legend',
         legendeP: 'Countries where we export',
+        titrePFournisseurs:'Our partners',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "Our Commitments",
@@ -441,7 +479,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ES: {
         //TITRE
         TitrePage1: "Cruchaudet | La historia",
-        TitrePage2: "Cruchaudet | Servicio de Entrega",
+        TitrePage2: "Cruchaudet | Servicio de Envío",
         TitrePage3: "Cruchaudet | Nuestros Socios",
         TitrePage4: "Cruchaudet | Secciones",
         TitrePage5: "Cruchaudet | Nuestros compromisos",
@@ -449,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //NAV
         navHistory: "Nuestra historia",
-        navExport: "Servicio de Entrega",
+        navExport: "Servicio de Envío",
         navEngagement: "Nuestros compromisos",
         navRayon: "Secciones",
         navRayonLegumes: "Verduras",
@@ -473,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageHistoire: "Historia",
         titreBio1: "Inicio",
         titreBio2: "Evolución",
-        titreBio3: "Ahora",
+        titreBio3: "Presente",
 
         //PAGE RAYON
         titrepageRayons: "Secciones",
@@ -538,16 +576,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //PAGE PARTENAIRES
         titrePClients: "Clientes",
-        titrePFournisseurs: "Proveedores",
-        TitreFournisseur1: "Proveedor",
-        TitreFournisseur2: "Proveedor",
-        TitreFournisseur3: "Proveedor",
-        lienSiteF1: 'Visitar el sitio',
-        lienSiteF2: 'Visitar el sitio',
-        lienSiteF3: 'Visitar el sitio',
+        titreTemoignage:"Nuestros clientes hablan de ello",
         legendeTitre: 'Leyenda',
         legendeP: 'Países donde exportamos',
-
+        titrePFournisseurs:'Nuestros socios',
         //PAGE ENGAGEMENT
         titrepageEngagement: "Nuestros compromisos",
         titreEngagements1: "Calidad",
@@ -562,7 +594,7 @@ document.addEventListener("DOMContentLoaded", () => {
       IT: {
         //TITRE
         TitrePage1: "Cruchaudet | La storia",
-        TitrePage2: "Cruchaudet | Servizio di Consegna",
+        TitrePage2: "Cruchaudet | Servizio Spedizioni",
         TitrePage3: "Cruchaudet | I Nostri Partner",
         TitrePage4: "Cruchaudet | Reparti",
         TitrePage5: "Cruchaudet | I nostri impegni",
@@ -570,7 +602,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //NAV
         navHistory: "La nostra storia",
-        navExport: "Servizio di Consegna",
+        navExport: "Servizio Spedizioni",
         navEngagement: "I nostri impegni",
         navRayon: "Reparti",
         navRayonLegumes: "Verdure",
@@ -593,7 +625,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titrepageHistoire: "Storia",
         titreBio1: "Inizio",
         titreBio2: "Evoluzione",
-        titreBio3: "Adesso",
+        titreBio3: "Presente",
 
         //PAGE RAYON
         titrepageRayons: "Reparti",
@@ -658,17 +690,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //PAGE PARTENAIRES
         titrePClients: "Clienti",
-        titrePFournisseurs: "Fornitori",
-        TitreFournisseur1: "Fornitore",
-        TitreFournisseur2: "Fornitore",
-        TitreFournisseur3: "Fornitore",
-        lienSiteF1: 'Visita il sito',
-        lienSiteF2: 'Visita il sito',
-        lienSiteF3: 'Visita il sito',
+        titreTemoignage:"I nostri clienti ne parlano",
         legendeTitre: 'Legenda',
         legendeP: 'Paesi in cui esportiamo',
-        legendeTitre: 'Legenda',
-        legendeP: 'Paesi in cui esportiamo',
+        titrePFournisseurs:'I nostri partner',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "I nostri impegni",

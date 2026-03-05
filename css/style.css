@@ -77,7 +77,9 @@ a {
 a:hover {
   color: var(--bleu);
 }
-
+p{
+  font-weight: 600;
+}
 /* ================================ */
 /* LOADER FRUITS PARFAITEMENT EN ORBITE */
 /* ================================ */
@@ -513,10 +515,12 @@ nav {
 /* ================================
    SECTIONS DE PAGE (Présentation, Export, Contact)
 =================================*/
-#presentation,
+#presentation{
+  width: 100vw;
+  margin: auto;
+}
 #Export,
 #contactExport {
-  padding: 4rem 2rem;
   width: 90vw;
   margin: auto;
 }
@@ -524,24 +528,29 @@ nav {
   width: 95vw;
   margin: auto;
 }
-
+#quiSommeNous{
+    width: 100vw;
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url(/img/debut.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* effet parallaxe */
+}
 .alignement {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: var(--blanc);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  padding: 3rem;
   width: 100%;
   gap: 1rem;
-  margin: 1.5rem 0;
 }
 
 .TitreBio {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 3rem;
   color: var(--bleu);
   line-height: 1.7;
   width: 100%;
@@ -550,8 +559,9 @@ nav {
 
 .paragrapheBio {
   font-size: 1.1rem;
-  color: var(--gris);
+  color: white;
   line-height: 1.7;
+  padding: 2.5rem;
   width: 100%;
   max-width: 1000px;
 }
@@ -570,7 +580,175 @@ nav {
   margin-bottom: 1rem;
   text-align: center;
 }
+/*rayons*/
+#RayonF,
+#RayonL,
+#RayonML,
+#RayonC,
+#RayonE,
+#RayonJP,
+#RayonG{
+  width: 100%;
+  min-height: 80vh;
+  padding: 80px 20px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed
+}
+#RayonF{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/fruit.jpg);
+}
+
+#RayonL{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/legumes.jpg);
+}
+
+#RayonML{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/minilegumes.jpg);
+}
+
+#RayonC{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/condiments.jpg);
+}
+
+#RayonE{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/exotic.jpg);
+}
+
+#RayonJP{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/jeunespousses.jpg);
+}
+
+#RayonG{
+  background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/germes.jpg);
+}
+/*témoignage*/
+#temoignage{
+    width: 100%;
+  min-height: 80vh;
+  padding: 80px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+    background-image:
+  linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url(/img/b2.jpg);
+}
+.sliderTemoignage{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+max-width:800px;
+text-align:center;
+}
+#paragraphetemoignage{
+  color: white;
+}
+.slides{
+position:relative;
+width:100%;
+overflow:hidden;
+min-height:120px;
+}
+
+.slide{
+position:absolute;
+width:100%;
+opacity:0;
+transform:translateX(50px);
+transition:all 0.6s ease;
+font-size:18px;
+line-height:1.6;
+}
+
+.slide.active{
+opacity:1;
+transform:translateX(0);
+position:relative;
+}
+
+.slide span{
+display:block;
+margin-top:15px;
+color:#001b99;
+font-weight:bold;
+}
+
+.prev, .next{
+background:none;
+border:none;
+font-size:50px;
+cursor:pointer;
+color:white;
+}
+.prev:hover, .next:hover{
+transition: 0.5s;
+color:#001b99;
+}
+/*slider fournisseur*/
+.logo-slider {
+    overflow: hidden;
+    padding: 30px 0 0 0;
+    white-space: nowrap;
+    position: relative;
+}
+
+.logos-slide {
+    display: inline-block;
+    animation: 45s slide infinite linear;
+}
+
+.logos-slide img {
+    width: 200px;
+    height: 200px;
+    margin: 0 40px;
+}
+
+
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+.logos-slide img:hover {
+    transform: scale(1.1);
+    transition: 1s;
+}
 /* ================================
    FORMULAIRE EXPORT / CONTACT
 =================================*/
@@ -587,6 +765,7 @@ nav {
   width: fit-content;
   transition: var(--transition);
   cursor: pointer;
+  margin-bottom: 2%;
 }
 
 .formulaire:hover {
@@ -632,8 +811,6 @@ nav {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   touch-action: none;
   /* pour le pinch-zoom sur mobile */
 }
@@ -995,7 +1172,6 @@ footer {
   color: var(--blanc);
   text-align: center;
   padding: 1rem;
-  margin-top: 3rem;
   font-size: 0.9rem;
 }
 
@@ -1313,8 +1489,7 @@ COOKIES
   #presentation,
   #Export,
   #contactExport {
-    padding: 4rem 2rem;
-    width: 95vw;
+    width:  100vw;
     margin: auto;
   }
   .contact-wrapper {
