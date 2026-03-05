@@ -1039,11 +1039,6 @@ path {
   flex-direction: column;
 }
 
-.TitreBio {
-  margin-bottom: 1rem;
-  color: var(--bleu);
-}
-
 .paragrapheBio {
   line-height: 1.6;
 }
@@ -1588,7 +1583,9 @@ COOKIES
   .search-wrapper {
     width: 95%;
   }
-
+  .TitreBio {
+  padding: 0 5px;
+}
   .hero-overlay h1 {
     font-size: 3rem;
   }
