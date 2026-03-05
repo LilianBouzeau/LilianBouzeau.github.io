@@ -748,6 +748,7 @@ transform:translateX(50px);
 transition:all 0.6s ease;
 font-size:18px;
 line-height:1.6;
+text-align: center;
 }
 
 .slide.active{
@@ -757,10 +758,16 @@ position:relative;
 }
 
 .slide span{
-display:block;
+display:inline-block;
 margin-top:15px;
 color:#001b99;
 font-weight:bold;
+background:#FFF;
+padding:4px 10px;
+border-radius:4px;
+}
+.highlight {
+  background: #FFF;
 }
 
 .prev, .next{
