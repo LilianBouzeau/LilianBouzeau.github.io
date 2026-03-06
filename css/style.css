@@ -862,11 +862,12 @@ color:#001b99;
     padding: 30px 0 0 0;
     white-space: nowrap;
     position: relative;
+    margin-bottom: 2%;
 }
 
 .logos-slide {
     display: inline-block;
-    animation: 15s slide infinite linear;
+    animation: 30s slide infinite linear;
 }
 
 .logos-slide img {
