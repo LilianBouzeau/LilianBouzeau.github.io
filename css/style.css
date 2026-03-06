@@ -693,6 +693,81 @@ nav {
     padding: 60px 15px;
   }
 }
+/*compteur*/
+/* Section générale */
+.stats-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+#titreChiffres {
+  margin-bottom: 40px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #001b99;
+}
+
+/* Conteneur des compteurs */
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 80px; /* espace entre les compteurs */
+  flex-wrap: wrap; /* empile sur mobile */
+}
+
+/* Chaque compteur */
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  margin: 0 30px 30px 30px;
+}
+
+/* Icones */
+.iconeCompteur {
+  font-size: 8rem;
+  color: var(--bleu);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.iconeCompteur:hover {
+transition: 0.5s;
+  transform: scale(1.1);
+ cursor: pointer;
+}
+
+/* Chiffres */
+.counter {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #001b99;
+  margin: 10px 0;
+}
+
+/* Texte sous chaque compteur */
+.stat p {
+  font-size: 1.2rem;
+  color: black;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+/*Parallax*/
+.parallax{
+    height: 400px;
+    background-image: url("/img/photo.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /*témoignage*/
 #temoignage{
   width: 100%;

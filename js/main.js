@@ -82,7 +82,6 @@ function initSliderLogos() {
   const copy = logosSlide.cloneNode(true);
   logoContainer.appendChild(copy);
 }
-
 // Appeler après initMenusEtTraductions()
 initSliderAvisClients();
 initSliderLogos();
@@ -196,6 +195,53 @@ initSliderLogos();
       }, { threshold: 0.2 });
       scrollElements.forEach(el => observer.observe(el));
     }
+// ---------- Compteur ----------
+function animateCounters() {
+  const counters = document.querySelectorAll(".counter");
+  
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const counter = entry.target;
+        const target = parseInt(counter.dataset.target, 10);
+        let startTime = null;
+        const duration = 2000; // 2 secondes
+
+        function update(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const elapsed = timestamp - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          let value = Math.floor(progress * target);
+
+          // Ajoute un "+" pour le compteur des produits
+          if (counter.id === "compteurProduits") {
+            counter.textContent = "+" + value;
+          } else if (counter.id === "compteurExpertise") {
+            counter.textContent = value + " ans";
+          } else {
+            counter.textContent = value;
+          }
+
+          if (progress < 1) requestAnimationFrame(update);
+          else {
+            // Valeur finale
+            if (counter.id === "compteurProduits") counter.textContent = "+1000";
+            else if (counter.id === "compteurExpertise") counter.textContent = "43 ans";
+            else counter.textContent = target;
+          }
+        }
+
+        requestAnimationFrame(update);
+        obs.unobserve(counter);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => observer.observe(c));
+}
+
+// Appel de la fonction
+animateCounters();
     // ---------- COOKIES ----------
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.querySelector(".cookie-btn.accept");
@@ -282,6 +328,10 @@ initSliderLogos();
         titreBio1: 'Début',
         titreBio2: 'Evolution',
         titreBio3: 'Présent',
+        titreChiffresGeneral: "Quelques chiffres",
+        titreChiffresCreation: "Création",
+        titreChiffresExpertise: "Expertise",
+        titreChiffresProduits: "Produits",
 
         //PAGE RAYON
         titrepageRayons: 'Les rayons',
@@ -396,6 +446,10 @@ initSliderLogos();
         titreBio1: "Beginning",
         titreBio2: "Evolution",
         titreBio3: "Present",
+        titreChiffresGeneral: "Some figures",
+        titreChiffresCreation: "Founded",
+        titreChiffresExpertise: "Expertise",
+        titreChiffresProduits: "Products",
 
         //PAGE RAYON
         titrepageRayons: "Departments",
@@ -512,6 +566,10 @@ initSliderLogos();
         titreBio1: "Inicio",
         titreBio2: "Evolución",
         titreBio3: "Presente",
+        titreChiffresGeneral: "Algunos números",
+        titreChiffresCreation: "Creación",
+        titreChiffresExpertise: "Experiencia",
+        titreChiffresProduits: "Productos",
 
         //PAGE RAYON
         titrepageRayons: "Secciones",
@@ -626,6 +684,10 @@ initSliderLogos();
         titreBio1: "Inizio",
         titreBio2: "Evoluzione",
         titreBio3: "Presente",
+        titreChiffresGeneral: "Alcuni numeri",
+        titreChiffresCreation: "Fondazione",
+        titreChiffresExpertise: "Esperienza",
+        titreChiffresProduits: "Prodotti",
 
         //PAGE RAYON
         titrepageRayons: "Reparti",
