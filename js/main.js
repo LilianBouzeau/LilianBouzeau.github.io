@@ -195,6 +195,7 @@ initSliderLogos();
       }, { threshold: 0.2 });
       scrollElements.forEach(el => observer.observe(el));
     }
+    
 // ---------- Compteur ----------
 function animateCounters() {
   const counters = document.querySelectorAll(".counter");

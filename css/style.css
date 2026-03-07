@@ -974,7 +974,11 @@ path {
   transition: all 0.25s ease;
   cursor: pointer;
 }
-
+path:hover {
+  stroke-width: 3;
+      transform: scale(1.001);
+  transition:1s;
+}
 /* Pays d'exportation */
 .PaysExport {
   fill: var(--bleu);
@@ -983,7 +987,9 @@ path {
 /* Effet au survol */
 .PaysExport:hover {
   fill: var(--accent);
-  stroke-width: 2;
+  stroke-width: 3;
+    transform: scale(1.001);
+  transition:1s;
 }
 
 /* ===========================
