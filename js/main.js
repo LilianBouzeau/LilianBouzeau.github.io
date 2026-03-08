@@ -5,8 +5,8 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   function updateActiveFiltersUI() {
-  // fonction vide pour éviter l'erreur si elle n'est pas utilisée
-}
+    // fonction vide pour éviter l'erreur si elle n'est pas utilisée
+  }
   // ---------- Loader & Lancement principal ----------
   const loader = document.getElementById("loader");
   const mainContent = document.getElementById("mainContent");
@@ -40,51 +40,51 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------- Fonction principale ----------
   function initMenusEtTraductions() {
     // ------ Slider avis clients --------
-function initSliderAvisClients() {
-  const slides = document.querySelectorAll(".slide");
-  if (!slides || slides.length === 0) return;
+    function initSliderAvisClients() {
+      const slides = document.querySelectorAll(".slide");
+      if (!slides || slides.length === 0) return;
 
-  let index = 0;
-  let slideInterval;
+      let index = 0;
+      let slideInterval;
 
-  function showSlide(newIndex) {
-    slides[index].classList.remove("active");
+      function showSlide(newIndex) {
+        slides[index].classList.remove("active");
 
-    index = newIndex;
-    if (index >= slides.length) index = 0;
-    if (index < 0) index = slides.length - 1;
+        index = newIndex;
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
 
-    slides[index].classList.add("active");
-  }
+        slides[index].classList.add("active");
+      }
 
-  function startInterval() {
-    if (slideInterval) clearInterval(slideInterval);
-    slideInterval = setInterval(() => {
-      showSlide(index + 1);
-    }, 5000);
-  }
+      function startInterval() {
+        if (slideInterval) clearInterval(slideInterval);
+        slideInterval = setInterval(() => {
+          showSlide(index + 1);
+        }, 5000);
+      }
 
-  const nextBtn = document.querySelector(".next");
-  const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      const prevBtn = document.querySelector(".prev");
 
-  if (nextBtn) nextBtn.addEventListener("click", () => { showSlide(index + 1); startInterval(); });
-  if (prevBtn) prevBtn.addEventListener("click", () => { showSlide(index - 1); startInterval(); });
+      if (nextBtn) nextBtn.addEventListener("click", () => { showSlide(index + 1); startInterval(); });
+      if (prevBtn) prevBtn.addEventListener("click", () => { showSlide(index - 1); startInterval(); });
 
-  startInterval();
-}
+      startInterval();
+    }
 
-// ------ Slider logos --------
-function initSliderLogos() {
-  const logoContainer = document.querySelector(".logo-slider");
-  const logosSlide = document.querySelector(".logos-slide");
-  if (!logoContainer || !logosSlide) return;
+    // ------ Slider logos --------
+    function initSliderLogos() {
+      const logoContainer = document.querySelector(".logo-slider");
+      const logosSlide = document.querySelector(".logos-slide");
+      if (!logoContainer || !logosSlide) return;
 
-  const copy = logosSlide.cloneNode(true);
-  logoContainer.appendChild(copy);
-}
-// Appeler après initMenusEtTraductions()
-initSliderAvisClients();
-initSliderLogos();
+      const copy = logosSlide.cloneNode(true);
+      logoContainer.appendChild(copy);
+    }
+    // Appeler après initMenusEtTraductions()
+    initSliderAvisClients();
+    initSliderLogos();
     // Menu / hamburger
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
@@ -195,54 +195,54 @@ initSliderLogos();
       }, { threshold: 0.2 });
       scrollElements.forEach(el => observer.observe(el));
     }
-    
-// ---------- Compteur ----------
-function animateCounters() {
-  const counters = document.querySelectorAll(".counter");
-  
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target;
-        const target = parseInt(counter.dataset.target, 10);
-        let startTime = null;
-        const duration = 2000; // 2 secondes
 
-        function update(timestamp) {
-          if (!startTime) startTime = timestamp;
-          const elapsed = timestamp - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          let value = Math.floor(progress * target);
+    // ---------- Compteur ----------
+    function animateCounters() {
+      const counters = document.querySelectorAll(".counter");
 
-          // Ajoute un "+" pour le compteur des produits
-          if (counter.id === "compteurProduits") {
-            counter.textContent = "+" + value;
-          } else if (counter.id === "compteurExpertise") {
-            counter.textContent = value + " ans";
-          } else {
-            counter.textContent = value;
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.dataset.target, 10);
+            let startTime = null;
+            const duration = 2000; // 2 secondes
+
+            function update(timestamp) {
+              if (!startTime) startTime = timestamp;
+              const elapsed = timestamp - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              let value = Math.floor(progress * target);
+
+              // Ajoute un "+" pour le compteur des produits
+              if (counter.id === "compteurProduits") {
+                counter.textContent = "+" + value;
+              } else if (counter.id === "compteurExpertise") {
+                counter.textContent = value + " ans";
+              } else {
+                counter.textContent = value;
+              }
+
+              if (progress < 1) requestAnimationFrame(update);
+              else {
+                // Valeur finale
+                if (counter.id === "compteurProduits") counter.textContent = "+1000";
+                else if (counter.id === "compteurExpertise") counter.textContent = "43 ans";
+                else counter.textContent = target;
+              }
+            }
+
+            requestAnimationFrame(update);
+            obs.unobserve(counter);
           }
+        });
+      }, { threshold: 0.5 });
 
-          if (progress < 1) requestAnimationFrame(update);
-          else {
-            // Valeur finale
-            if (counter.id === "compteurProduits") counter.textContent = "+1000";
-            else if (counter.id === "compteurExpertise") counter.textContent = "43 ans";
-            else counter.textContent = target;
-          }
-        }
+      counters.forEach(c => observer.observe(c));
+    }
 
-        requestAnimationFrame(update);
-        obs.unobserve(counter);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-}
-
-// Appel de la fonction
-animateCounters();
+    // Appel de la fonction
+    animateCounters();
     // ---------- COOKIES ----------
     const banner = document.getElementById("cookie-banner");
     const acceptBtn = document.querySelector(".cookie-btn.accept");
@@ -397,10 +397,10 @@ animateCounters();
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
-        titreTemoignage:"Nos clients en parlent",
+        titreTemoignage: "Nos clients en parlent",
         legendeTitre: 'Légende',
         legendeP: 'Pays où nous exportons',
-        titrePFournisseurs:'Nos partenaires',
+        titrePFournisseurs: 'Nos partenaires',
         //PAGE ENGAGEMENT
         titrepageEngagement: 'Nos engagements',
         titreEngagements1: 'Qualité',
@@ -515,10 +515,10 @@ animateCounters();
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
-        titreTemoignage:"Our customers talk about it",
+        titreTemoignage: "Our customers talk about it",
         legendeTitre: 'Legend',
         legendeP: 'Countries where we export',
-        titrePFournisseurs:'Our partners',
+        titrePFournisseurs: 'Our partners',
 
         //PAGE ENGAGEMENT
         titrepageEngagement: "Our Commitments",
@@ -554,7 +554,7 @@ animateCounters();
         navRayonG: 'Germinados',
         navExotic: "Exóticas",
         navNosPartenaires: "Nuestros Socios",
-          navContactExport: "Formulario de Contacto",
+        navContactExport: "Formulario de Contacto",
         navClients: "Clientes",
         navFournisseurs: "Proveedores",
         navContact: "Contacto",
@@ -635,10 +635,10 @@ animateCounters();
 
         //PAGE PARTENAIRES
         titrePClients: "Clientes",
-        titreTemoignage:"Nuestros clientes hablan de ello",
+        titreTemoignage: "Nuestros clientes hablan de ello",
         legendeTitre: 'Leyenda',
         legendeP: 'Países donde exportamos',
-        titrePFournisseurs:'Nuestros socios',
+        titrePFournisseurs: 'Nuestros socios',
         //PAGE ENGAGEMENT
         titrepageEngagement: "Nuestros compromisos",
         titreEngagements1: "Calidad",
@@ -774,91 +774,91 @@ animateCounters();
 
     // Langue courante (persistée en localStorage)
     let currentLang = localStorage.getItem("lang") || "FR";
-// ---------- Fonctions pour le formulaire (placeholders + bouton) ----------
-function setFormLanguage(lang) {
-  const t = translations[lang];
-  const form = document.getElementById("contactForm");
-  if (!form) return;
-  const safeGet = id => document.getElementById(id);
-  if (safeGet("contactFormTitle")) safeGet("contactFormTitle").innerText = t.contactFormTitle || "";
-  if (safeGet("nom")) safeGet("nom").placeholder = t.nom || "";
-  if (safeGet("prenom")) safeGet("prenom").placeholder = t.prenom || "";
-  if (safeGet("email")) safeGet("email").placeholder = t.email || "";
-  if (safeGet("telephone")) safeGet("telephone").placeholder = t.telephone || "";
-  if (safeGet("objet")) safeGet("objet").placeholder = t.objet || "";
-  if (safeGet("message")) safeGet("message").placeholder = t.message || "";
-  if (safeGet("submitBtn")) safeGet("submitBtn").innerText = t.submitBtn || "";
-}
-
-// ---------- setLanguage : applique toutes les traductions ----------
-function setLanguage(lang, retry = 0) {
-  
-  currentLang = lang;
-  localStorage.setItem("lang", lang);
-
-  const tObj = translations[lang] || {};
-  for (const [id, text] of Object.entries(tObj)) {
-    if (id === "formErrors") continue;
-    const el = document.getElementById(id);
-    if (!el) continue;
-    if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
-    if (el.tagName === "A" && el.querySelector("i.caret")) {
-      const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
-      if (textNode) textNode.nodeValue = text;
-    } else {
-      el.innerHTML = text;
+    // ---------- Fonctions pour le formulaire (placeholders + bouton) ----------
+    function setFormLanguage(lang) {
+      const t = translations[lang];
+      const form = document.getElementById("contactForm");
+      if (!form) return;
+      const safeGet = id => document.getElementById(id);
+      if (safeGet("contactFormTitle")) safeGet("contactFormTitle").innerText = t.contactFormTitle || "";
+      if (safeGet("nom")) safeGet("nom").placeholder = t.nom || "";
+      if (safeGet("prenom")) safeGet("prenom").placeholder = t.prenom || "";
+      if (safeGet("email")) safeGet("email").placeholder = t.email || "";
+      if (safeGet("telephone")) safeGet("telephone").placeholder = t.telephone || "";
+      if (safeGet("objet")) safeGet("objet").placeholder = t.objet || "";
+      if (safeGet("message")) safeGet("message").placeholder = t.message || "";
+      if (safeGet("submitBtn")) safeGet("submitBtn").innerText = t.submitBtn || "";
     }
-  }
 
-  setFormLanguage(lang);
+    // ---------- setLanguage : applique toutes les traductions ----------
+    function setLanguage(lang, retry = 0) {
 
-  const searchInput = document.getElementById("searchCatalog");
-  if (searchInput) {
-    searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
-  }
+      currentLang = lang;
+      localStorage.setItem("lang", lang);
 
-  const langButtons = document.querySelectorAll(".btnLang");
-  if (langButtons.length > 0) {
-    langButtons.forEach(btn => btn.style.display = "flex");
-    const activeBtn = document.getElementById(`lang${lang}`);
-    if (activeBtn) activeBtn.style.display = "none";
-  } else if (retry < 6) {
-    setTimeout(() => setLanguage(lang, retry + 1), 100);
-    return;
-  }
+      const tObj = translations[lang] || {};
+      for (const [id, text] of Object.entries(tObj)) {
+        if (id === "formErrors") continue;
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") continue;
+        if (el.tagName === "A" && el.querySelector("i.caret")) {
+          const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+          if (textNode) textNode.nodeValue = text;
+        } else {
+          el.innerHTML = text;
+        }
+      }
+
+      setFormLanguage(lang);
+
+      const searchInput = document.getElementById("searchCatalog");
+      if (searchInput) {
+        searchInput.placeholder = (translations[lang] && translations[lang].searchPlaceholder) || "";
+      }
+
+      const langButtons = document.querySelectorAll(".btnLang");
+      if (langButtons.length > 0) {
+        langButtons.forEach(btn => btn.style.display = "flex");
+        const activeBtn = document.getElementById(`lang${lang}`);
+        if (activeBtn) activeBtn.style.display = "none";
+      } else if (retry < 6) {
+        setTimeout(() => setLanguage(lang, retry + 1), 100);
+        return;
+      }
 
 
-  const currentErrors = document.querySelectorAll(".error-msg");
-  if (currentErrors.length > 0) {
-    const t = translations[currentLang].formErrors || {};
-    currentErrors.forEach(err => {
-      const key = err.dataset.key;
-      if (key && t[key]) err.textContent = t[key];
-    });
-  }
+      const currentErrors = document.querySelectorAll(".error-msg");
+      if (currentErrors.length > 0) {
+        const t = translations[currentLang].formErrors || {};
+        currentErrors.forEach(err => {
+          const key = err.dataset.key;
+          if (key && t[key]) err.textContent = t[key];
+        });
+      }
 
-  const formMsg = document.getElementById("formMsg");
-  if (formMsg && formMsg.dataset.key) {
-    const formMessages = translations[currentLang].formMessages || {};
-    const key = formMsg.dataset.key;
-    if (key && formMessages[key]) formMsg.textContent = formMessages[key];
-  }
-}
+      const formMsg = document.getElementById("formMsg");
+      if (formMsg && formMsg.dataset.key) {
+        const formMessages = translations[currentLang].formMessages || {};
+        const key = formMsg.dataset.key;
+        if (key && formMessages[key]) formMsg.textContent = formMessages[key];
+      }
+    }
 
-function attachLangButtonsListeners() {
-  const btns = document.querySelectorAll(".btnLang");
-  if (!btns || btns.length === 0) return;
-  btns.forEach(btn => {
-    if (btn.dataset.langInit === "1") return;
-    btn.dataset.langInit = "1";
-    btn.addEventListener("click", () => {
-      const lang = btn.id.replace("lang", "");
-      setLanguage(lang);
-      updateActiveFiltersUI();
-      closeAllSousMenus();
-    });
-  });
-}
+    function attachLangButtonsListeners() {
+      const btns = document.querySelectorAll(".btnLang");
+      if (!btns || btns.length === 0) return;
+      btns.forEach(btn => {
+        if (btn.dataset.langInit === "1") return;
+        btn.dataset.langInit = "1";
+        btn.addEventListener("click", () => {
+          const lang = btn.id.replace("lang", "");
+          setLanguage(lang);
+          updateActiveFiltersUI();
+          closeAllSousMenus();
+        });
+      });
+    }
 
 
     // ---------- Initialisation finale de la langue + listeners ----------
@@ -869,5 +869,5 @@ function attachLangButtonsListeners() {
     setTimeout(attachLangButtonsListeners, 200);
     setTimeout(attachLangButtonsListeners, 600);
   } // fin initMenusEtTraductions()
-  
+
 }); // fin DOMContentLoaded
