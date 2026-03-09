@@ -778,16 +778,16 @@ nav {
   height: 400px;
   background-image: url("/img/photo.png");
   background-attachment: fixed;
-  background-position: center;
+  background-position: top center; /* montre le haut de l'image */
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/* Sur téléphone */
+/* Téléphone */
 @media (max-width: 768px) {
   .parallax {
     background-attachment: scroll;
-    background-size: cover;
+    background-position: top center;
   }
 }
 
