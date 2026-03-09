@@ -773,7 +773,7 @@ nav {
   }
 }
 
-/*Parallax*/
+/* Parallax */
 .parallax {
   height: 400px;
   background-image: url("/img/photo.png");
@@ -781,6 +781,14 @@ nav {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* Sur téléphone */
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+    background-size: cover;
+  }
 }
 
 /*témoignage*/
