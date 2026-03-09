@@ -787,7 +787,7 @@ nav {
 @media (max-width: 768px) {
   .parallax {
     background-attachment: scroll;
-    background-position: top center;
+    background-position: center center;
   }
 }
 
