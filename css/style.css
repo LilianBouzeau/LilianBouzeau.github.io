@@ -8,12 +8,12 @@
 }
 
 :root {
-  --bleu: #001b99;
+  --bleu: #8fdc8f;
   --beige: #f5f1e6;
   --blanc: #ffffff;
   --gris: #444;
   --noir: #222;
-  --accent: #015aff;
+  --accent: #b2f7b2;
   --transition: all 0.3s ease;
   --radius: 12px;
   --font: "Poppins", sans-serif;
@@ -282,11 +282,12 @@ nav {
 /* Logo */
 .nav-logo img {
   height: 75px;
+  transition: 0.3s;
 }
 
 .nav-logo img:hover {
   transition: 0.3s;
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 .deroulant>a .caret {
@@ -312,7 +313,14 @@ nav {
 
 #nav-menu li {
   position: relative;
+  transition: 0.5S;
 }
+#nav-menu li:hover{
+  position: relative;
+  transform: scale(1.05);
+    transition: 0.5S;
+}
+
 
 #nav-menu a {
   text-decoration: none;
@@ -320,7 +328,6 @@ nav {
   display: block;
   transition: color 0.3s;
 }
-
 #nav-menu a:hover {
   transition: 0.5s;
 }
@@ -754,7 +761,7 @@ nav {
 .counter {
   font-size: 2rem;
   font-weight: bold;
-  color: #001b99;
+  color: #b2f7b2;
   margin: 10px 0;
 }
 
@@ -980,7 +987,6 @@ nav {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
   padding: 1rem;
   flex-wrap: wrap;
 }
@@ -1041,6 +1047,7 @@ path:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 0.95rem;
   height: fit-content;
+  margin: auto;
 }
 
 .map-legend h3 {
@@ -1082,9 +1089,8 @@ path:hover {
     padding: 0.5rem 0.8rem;
     font-size: 0.85rem;
     text-align: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     width: auto;
-    margin-right: 10%;
   }
 
   .map-legend h3 {
@@ -1605,6 +1611,9 @@ COOKIES
   background-color: var(--accent);
   color: var(--blanc);
   transform: translateY(-3px);
+  transition: 0.3s;
+  transform: scale(1.1);
+  border:2px solid #b2f7b2;
 }
 
 #btnTop.show {
@@ -1640,6 +1649,7 @@ COOKIES
   display: flex;
   align-items: center;
   justify-content: center;
+  border:2px solid#8fdc8f;
 }
 
 .btnLang:not(:last-child) {
@@ -1649,6 +1659,9 @@ COOKIES
 .btnLang:hover {
   background-color: var(--blanc);
   transform: translateY(-3px);
+  transition: 0.3s;
+  transform: scale(1.1);
+  border:2px solid #b2f7b2;
 }
 
 .btnLang img {
