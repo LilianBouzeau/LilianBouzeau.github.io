@@ -284,7 +284,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  max-width: 80%;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
   font: var(--font);
@@ -293,6 +293,7 @@ nav {
 /* Logo */
 .nav-logo img {
   height: 75px;
+  margin-left: 25%;
   transition: 0.3s;
 }
 
@@ -418,7 +419,9 @@ nav {
     padding: 0px 15px;
   }
 }
-
+.nav-logo img {
+  margin-left: 5%;
+}
 /* Mobile */
 @media (max-width: 768px) {
   .hamburger {
@@ -430,7 +433,9 @@ nav {
     /* 2 produits par ligne avec un petit gap */
     max-width: calc(50% - 0.5rem);
   }
-
+.nav-logo img {
+  margin-left: 5%;
+}
   /* Menu principal en dessous de la navbar */
   #nav-menu {
     display: none;
