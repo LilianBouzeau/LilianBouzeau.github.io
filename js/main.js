@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //FOOTER
         cguFooter: "Conditions générales d'utilisation",
         contact: "Contact",
-        footerCopy: "Copyright © 2025 Cruchaudet.com. Tous droits réservés.",
+        footerCopy: "Copyright © 2026 Cruchaudet.com. Tous droits réservés.",
 
         //404
         text404: "Oups ! La page que vous recherchez n'existe pas.",
@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paragrapheCgu6: "Cruchaudet se réserve le droit de modifier ces CGU à tout moment. Les modifications seront publiées sur cette page.",
         titreCgu7: "6. Contact",
         paragrapheCgu7: "Pour toute question concernant les CGU, vous pouvez nous contacter via <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-        paragrapheCgu8: "© 2025 Cruchaudet. Tous droits réservés.",
+        paragrapheCgu8: "© 2026 Cruchaudet. Tous droits réservés.",
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
@@ -465,7 +465,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //FOOTER
         cguFooter: "Terms and Conditions of Use",
         contact: "Contact",
-        footerCopy: "Copyright © 2025 Cruchaudet.com. All rights reserved.",
+        footerCopy: "Copyright © 2026 Cruchaudet.com. All rights reserved.",
 
         //404
         text404: "Oops! The page you are looking for does not exist.",
@@ -511,7 +511,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paragrapheCgu6: "Cruchaudet reserves the right to modify these Terms of Use at any time. Changes will be posted on this page.",
         titreCgu7: "6. Contact",
         paragrapheCgu7: "For any questions regarding the Terms of Use, you can contact us at <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-        paragrapheCgu8: "© 2025 Cruchaudet. All rights reserved.",
+        paragrapheCgu8: "© 2026 Cruchaudet. All rights reserved.",
 
         //PAGE PARTENAIRES
         titrePClients: "Clients",
@@ -585,7 +585,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //FOOTER
         cguFooter: "Condiciones de uso",
         contact: "Contacto",
-        footerCopy: "Copyright © 2025 Cruchaudet.com. Todos los derechos reservados.",
+        footerCopy: "Copyright © 2026 Cruchaudet.com. Todos los derechos reservados.",
 
         //404
         text404: "¡Ups! La página que buscas no existe.",
@@ -631,7 +631,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paragrapheCgu6: "Cruchaudet se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios se publicarán en esta página.",
         titreCgu7: "6. Contacto",
         paragrapheCgu7: "Para cualquier pregunta sobre los Términos de Uso, puede contactarnos en <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a>.",
-        paragrapheCgu8: "© 2025 Cruchaudet. Todos los derechos reservados.",
+        paragrapheCgu8: "© 2026 Cruchaudet. Todos los derechos reservados.",
 
         //PAGE PARTENAIRES
         titrePClients: "Clientes",
@@ -703,7 +703,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //FOOTER
         cguFooter: "Nutzungsbedingungen",
         contact: "Kontakt",
-        footerCopy: "Copyright © 2025 Cruchaudet.com. Alle Rechte vorbehalten.",
+        footerCopy: "Copyright © 2026 Cruchaudet.com. Alle Rechte vorbehalten.",
 
         //404
         text404: "Ups! Die Seite, die du suchst, existiert nicht.",
@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
         paragrapheCgu6: "Cruchaudet behält sich das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Änderungen werden auf dieser Seite veröffentlicht.",
         titreCgu7: "6. Kontakt",
         paragrapheCgu7: "Bei Fragen zu den Nutzungsbedingungen kannst du uns unter <a class='lienCgu' href='mailto:contact@cruchaudet.com'>contact@cruchaudet.com</a> kontaktieren.",
-        paragrapheCgu8: "© 2025 Cruchaudet. Alle Rechte vorbehalten.",
+        paragrapheCgu8: "© 2026 Cruchaudet. Alle Rechte vorbehalten.",
 
         //PAGE PARTENAIRES
         titrePClients: "Kunden",
@@ -770,7 +770,6 @@ document.addEventListener("DOMContentLoaded", () => {
         declineCookies: "Ablehnen",
       },
     };
-
 
     // Langue courante (persistée en localStorage)
     let currentLang = localStorage.getItem("lang") || "FR";

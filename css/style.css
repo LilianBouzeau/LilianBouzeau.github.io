@@ -8,12 +8,23 @@
 }
 
 :root {
-  --bleu: #8fdc8f;
-  --beige: #f5f1e6;
-  --blanc: #ffffff;
-  --gris: #444;
-  --noir: #222;
-  --accent: #b2f7b2;
+  /* Couleurs principales */
+  --vert: #4CAF50;        /* vert principal (CTA, titres) */
+  --accent: #2E7D32;      /* vert foncé (hover, important) */
+
+  /* Fonds */
+  --beige: #F5F1E6;       /* fond naturel */
+  --blanc: #FFFFFF;
+
+  /* Texte */
+  --gris: #555;
+  --noir: #1B1B1B;
+
+  /* Bonus (tu peux utiliser si besoin) */
+  --orange: #FF8F00;      /* promo / bouton important */
+  --rouge: #E53935;       /* alerte / fruits rouges */
+
+  /* UI */
   --transition: all 0.3s ease;
   --radius: 12px;
   --font: "Poppins", sans-serif;
@@ -65,7 +76,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--bleu);
+  color: var(--vert);
 }
 
 a {
@@ -75,7 +86,7 @@ a {
 }
 
 a:hover {
-  color: var(--bleu);
+  color: var(--vert);
 }
 
 p {
@@ -248,7 +259,7 @@ p {
 }
 
 .Rungis {
-  color: var(--bleu);
+  color: var(--orange);
   font-weight: 600;
 }
 
@@ -272,8 +283,8 @@ nav {
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  max-width: 1200px;
+  justify-content: space-around;
+  max-width: 80%;
   margin: 0 auto;
   position: relative;
   font: var(--font);
@@ -291,6 +302,7 @@ nav {
 }
 
 .deroulant>a .caret {
+  color: var(--orange);
   margin-left: 6px;
   display: inline-block;
   vertical-align: middle;
@@ -308,7 +320,6 @@ nav {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  gap: 35px;
 }
 
 #nav-menu li {
@@ -317,25 +328,24 @@ nav {
 }
 #nav-menu li:hover{
   position: relative;
-  transform: scale(1.05);
-    transition: 0.5S;
 }
 
 
 #nav-menu a {
   text-decoration: none;
-  padding: 0px 5px;
+  padding: 0px 15px;
   display: block;
   transition: color 0.3s;
 }
 #nav-menu a:hover {
   transition: 0.5s;
+    transform: scale(1.05);
+    transition: 0.5S;
 }
 
 #nav-menu a:hover,
 #nav-menu a.active {
   color: var(--accent);
-  font-weight: bold;
 }
 
 /* Sous-menus */
@@ -352,7 +362,7 @@ nav {
 
 .sous li a:hover {
   background-color: var(--blanc);
-  color: var(--bleu);
+  color: var(--vert);
   transition: 0.5s;
 }
 
@@ -556,7 +566,7 @@ nav {
 .TitreBio {
   text-align: center;
   font-size: 3rem;
-  color: var(--bleu);
+  color: var(--accent);
   line-height: 1.7;
   display: inline-block;
   padding: 0 10px;
@@ -622,7 +632,7 @@ nav {
 
 .nom {
   font-size: 2.5rem;
-  color: var(--bleu);
+  color: var(--vert);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -722,7 +732,7 @@ nav {
   margin-bottom: 40px;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #001b99;
+  color:var(--accent);
 }
 
 /* Conteneur des compteurs */
@@ -747,7 +757,7 @@ nav {
 /* Icones */
 .iconeCompteur {
   font-size: 8rem;
-  color: var(--bleu);
+  color: var(--vert);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -761,14 +771,14 @@ nav {
 .counter {
   font-size: 2rem;
   font-weight: bold;
-  color: #b2f7b2;
+  color: var(--orange);
   margin: 10px 0;
 }
 
 /* Texte sous chaque compteur */
 .stat p {
   font-size: 1.2rem;
-  color: black;
+  color: var(--rouge);
   margin: 0;
 }
 
@@ -870,15 +880,14 @@ nav {
 .slide span {
   display: inline-block;
   margin-top: 15px;
-  color: #001b99;
+  color: var(--orange);
   font-weight: bold;
-  background: #FFF;
   padding: 4px 10px;
   border-radius: 4px;
 }
 
 .highlight {
-  background: rgba(255, 255, 255, 0.50);
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .prev,
@@ -952,7 +961,7 @@ nav {
 }
 
 .formulaire:hover {
-  background-color: var(--accent);
+  background-color: var(--orange);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
@@ -1013,26 +1022,28 @@ nav {
 /* Styles de base pour les pays */
 path {
   fill: white;
-  stroke: black;
+  stroke: var(--vert);
   stroke-width: 1;
   transition: all 0.25s ease;
   cursor: pointer;
 }
 
 path:hover {
-  stroke-width: 3;
+  stroke-width: 2;
   transform: scale(1.001);
   transition: 1s;
 }
 
 /* Pays d'exportation */
 .PaysExport {
-  fill: var(--bleu);
+    stroke-width: 2;
+  fill: var(--vert);
+    stroke: var(--orange);
 }
 
 /* Effet au survol */
 .PaysExport:hover {
-  fill: var(--accent);
+  fill: var(--orange);
   stroke-width: 3;
   transform: scale(1.001);
   transition: 1s;
@@ -1071,9 +1082,10 @@ path:hover {
   border: 1px solid #ccc;
 }
 
-/* Couleur bleue pour les pays d’export */
+/* Couleur vert--verte pour les pays d’export */
 .legend-blue {
-  background: var(--bleu, #3b82f6);
+  background: var(--vert);
+  border: 1px solid var(--orange);
 }
 
 @media (max-width: 768px) {
@@ -1187,7 +1199,7 @@ path:hover {
   /* s'adapte à la largeur du texte */
   margin-top: 1rem;
   padding: 0.7rem 1rem;
-  background-color: var(--bleu);
+  background-color: var(--vert);
   color: var(--blanc);
   font-weight: 500;
   border-radius: var(--radius);
@@ -1257,7 +1269,7 @@ path:hover {
 
 .icone2 {
   font-size: 1.6rem;
-  color: var(--bleu);
+  color: var(--vert);
   transition: var(--transition);
 }
 
@@ -1279,7 +1291,7 @@ path:hover {
 }
 
 .reseauxSociaux a:hover {
-  background-color: var(--accent);
+  background-color: var(--orange);
   transform: translateY(-3px);
 }
 
@@ -1306,11 +1318,12 @@ h1#contact {
 
 .contactCase2 {
   width: 100%;
-  border: none;
   border-radius: var(--radius);
   height: 280px;
 }
-
+.contactCase2>iframe{
+   border: 2px solid var(--orange);
+}
 .contactCase {
   display: flex;
   flex-direction: column;
@@ -1338,7 +1351,7 @@ h1#contact {
 }
 
 .ligneContact:hover {
-  background-color: var(--accent);
+  background-color: var(--orange);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
@@ -1350,7 +1363,7 @@ h1#contact {
 
 .icone {
   font-size: 1.6rem;
-  color: var(--bleu);
+  color: var(--vert);
   transition: var(--transition);
 }
 
@@ -1365,7 +1378,7 @@ h1#contact {
 
 /* Pied de page */
 footer {
-  background-color: var(--bleu);
+  background-color: var(--vert);
   color: var(--blanc);
   text-align: center;
   padding: 1rem;
@@ -1393,7 +1406,8 @@ footer iframe {
 
 #cguFooter:hover {
   text-decoration: underline 1px white;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  color: var(--orange);
 }
 
 /* ================================
@@ -1497,7 +1511,7 @@ COOKIES
 }
 
 .titreCgu {
-  color: var(--bleu);
+  color: var(--vert);
 }
 
 .pCgu {
@@ -1505,7 +1519,7 @@ COOKIES
 }
 
 .lienCgu {
-  color: var(--accent);
+  color: var(--orange);
   text-decoration: none;
 }
 
@@ -1568,7 +1582,7 @@ COOKIES
 .btn-home {
   display: inline-block;
   padding: 12px 30px;
-  background-color: var(--bleu);
+  background-color: var(--orange);
   color: var(--blanc);
   text-decoration: none;
   font-weight: 600;
@@ -1579,6 +1593,7 @@ COOKIES
 }
 
 .btn-home:hover {
+  transition: var(--transition);
   background-color: var(--accent);
   color: var(--blanc);
   transform: translateY(-5px);
@@ -1588,12 +1603,13 @@ COOKIES
    BOUTON RETOUR EN HAUT
 =================================*/
 #btnTop {
+    transition: 0.3s;
   position: fixed;
   bottom: 25px;
   right: 25px;
   width: 45px;
   height: 45px;
-  background-color: var(--bleu);
+  background-color: var(--vert);
   color: var(--blanc);
   border: none;
   border-radius: 50%;
@@ -1608,12 +1624,12 @@ COOKIES
 }
 
 #btnTop:hover {
-  background-color: var(--accent);
+    transition: 0.3s;
+  background-color: var(--orange);
   color: var(--blanc);
   transform: translateY(-3px);
-  transition: 0.3s;
   transform: scale(1.1);
-  border:2px solid #b2f7b2;
+  border:2px solid var(--orange);
 }
 
 #btnTop.show {
@@ -1638,7 +1654,7 @@ COOKIES
 .btnLang {
   width: 45px;
   height: 45px;
-  background-color: var(--bleu);
+  background-color: var(--vert);
   border: 1px solid var(--blanc);
   border-radius: 50%;
   cursor: pointer;
@@ -1661,7 +1677,7 @@ COOKIES
   transform: translateY(-3px);
   transition: 0.3s;
   transform: scale(1.1);
-  border:2px solid #b2f7b2;
+  border:2px solid var(--orange);
 }
 
 .btnLang img {
