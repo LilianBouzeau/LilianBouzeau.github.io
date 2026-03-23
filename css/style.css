@@ -643,13 +643,13 @@ nav {
 }
 
 /*rayons*/
-#RayonF,
-#RayonL,
-#RayonML,
-#RayonC,
-#RayonE,
-#RayonJP,
-#RayonG {
+#rayonF,
+#rayonL,
+#rayonML,
+#rayonC,
+#rayonE,
+#rayonJP,
+#rayonG {
   width: 100%;
   min-height: 50vh;
   padding: 80px 20px;
@@ -668,43 +668,43 @@ nav {
 }
 
 /* Images */
-#RayonF {
+#rayonF {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/fruit.jpg");
 }
 
-#RayonL {
+#rayonL {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/legumes.jpg");
 }
 
-#RayonML {
+#rayonML {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/minilegumes.jpg");
 }
 
-#RayonC {
+#rayonC {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/condiments.jpg");
 }
 
-#RayonE {
+#rayonE {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/exotic.jpg");
 }
 
-#RayonJP {
+#rayonJP {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/jeunespousses.jpg");
 }
 
-#RayonG {
+#rayonG {
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("/img/germes.jpg");
@@ -713,13 +713,13 @@ nav {
 /* Correction mobile */
 @media (max-width: 768px) {
 
-  #RayonF,
-  #RayonL,
-  #RayonML,
-  #RayonC,
-  #RayonE,
-  #RayonJP,
-  #RayonG {
+  #rayonF,
+  #rayonL,
+  #rayonML,
+  #rayonC,
+  #rayonE,
+  #rayonJP,
+  #rayonG {
     background-attachment: scroll;
     min-height: 60vh;
     padding: 60px 15px;
