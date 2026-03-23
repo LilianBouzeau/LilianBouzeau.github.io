@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (slideInterval) clearInterval(slideInterval);
         slideInterval = setInterval(() => {
           showSlide(index + 1);
-        }, 5000);
+        }, 10000);
       }
 
       const nextBtn = document.querySelector(".next");
