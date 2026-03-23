@@ -6,24 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Cruchaudet" content="">
     <meta name="Description" content="Description de la page ici" />
-
-    <!-- Description -->
-    <meta name="Description" content="">
 
 
     <!-- ==================== FAVICON ==================== -->
     <link rel="icon" type="image/png" href="../favicon.ico">
-
-    <!-- ==================== POLICE ET ICONES ==================== -->
     <!-- Icônes Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- ==================== FEUILLE DE STYLE ==================== -->
     <link rel="stylesheet" href="../css/style.css">
 
-    <!-- ==================== TITRE DE LA PAGE ==================== -->
-    <title id="TitrePage2">Cruchaudet | Service Expédition</title>
+    <!-- ==================== TITRE ==================== -->
+    <title id="TitrePage4">Cruchaudet | Les Rayons</title>
 </head>
 
 <body>
@@ -42,25 +38,27 @@
     </div>
     <div id="mainContent" style="display:none;">
         <!-- ==================== BOUTON RETOUR EN HAUT ==================== -->
-        <button id="btnTop" title="Retour en haut"><i class="bi bi-arrow-up-short"></i></button>
+        <button id="btnTop" title="Retour en haut">
+            <i class="bi bi-arrow-up-short"></i>
+        </button>
 
         <!-- ==================== BOUTONS DE LANGUE ==================== -->
         <div id="langButtons">
-            <button class="btnLang scroll-animateG" id="langEN" title="Anglais">
+            <button class="btnLang scroll-animateD" id="langEN" title="Anglais">
                 <img src="../img/flag-anglais.png" alt="EN">
             </button>
-            <button class="btnLang scroll-animateG" id="langFR" title="Français">
+            <button class="btnLang scroll-animateD" id="langFR" title="Français">
                 <img src="../img/flag-francais.png" alt="FR">
             </button>
-            <button class="btnLang scroll-animateG" id="langES" title="Espagnol">
+            <button class="btnLang scroll-animateD" id="langES" title="Espagnol">
                 <img src="../img/flag-espagnol.png" alt="ES">
             </button>
-            <button class="btnLang scroll-animateG" id="langDE" title="allemand">
+            <button class="btnLang scroll-animateD" id="langDE" title="allemand">
                 <img src="../img/flag-allemand.png" alt="DE">
             </button>
         </div>
 
-        <!-- ==================== BARRE DE NAVIGATION ==================== -->
+        <!-- ==================== NAVIGATION PRINCIPALE ==================== -->
         <nav>
             <div class="nav-container">
                 <div class="nav-logo">
@@ -70,9 +68,7 @@
                     <span></span><span></span><span></span>
                 </div>
                 <ul id="nav-menu">
-                    <li>
-                        <a id="navHistory" href="../index.html#quiSommeNous">L'histoire</a>
-                    </li>
+                    <li><a id="navHistory" href="../index.html#presentation">L'histoire</a></li>
                     <li><a id="navEngagement" href="nos-engagement.html">Nos engagements</a></li>
 
                     <!-- Sous-menu Rayon -->
@@ -108,7 +104,7 @@
                 </li>
 
 
-                <li><a id="navContact" href="export.html#contact">Contact</a></li>
+                <li><a id="navContact" href="rayon.html#contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -123,30 +119,72 @@
                 <button id="declineCookies" class="cookie-btn decline">Refuser</button>
             </div>
         </div>
-        <!-- ==================== SECTION EXPORT ==================== -->
-        <div  id="Export">
+        <!-- ==================== SECTION PRÉSENTATION ==================== -->
+        <div id="presentation">
             <div>
-                <!-- Texte descriptif + image -->
-                <div class="alignement scroll-animateG">
-                    <p class="paragrapheBio" style="color: black;">
-                        Chez Cruchaudet Grandjean, nous mettons en œuvre une organisation efficace pour assurer l’expédition de fruits et légumes à l’international. Grâce à notre implantation sur le marché de Rungis et à notre expérience dans le commerce de gros, nous sommes en mesure de livrer dans le monde entier tout en garantissant la fraîcheur des produits et le respect des délais. Nous nous appuyons sur une logistique maîtrisée et un réseau de partenaires fiables afin de répondre aux exigences de nos clients étrangers, tout en assurant un accompagnement professionnel et un suivi rigoureux des commandes pour offrir un service de qualité.
+
+                <!-- Rayons 1 : Fruits -->
+                <div id="rayonF" class="alignement">
+                    <h3 id="titreRayon1" class="TitreBio highlight scroll-animateD">Fruits</h3>
+                    <p class="paragrapheBio  scroll-animateD">
+                        Au rayon fruits, nous vous proposons une large sélection de produits frais, soigneusement choisis pour leur qualité et leur fraîcheur. Issus de producteurs locaux et internationaux, nous sélectionnons nos fruits avec rigueur afin de garantir goût, maturité et diversité tout au long de l’année. Nous répondons ainsi aux attentes des professionnels en offrant des produits parfaitement adaptés aux besoins du marché.
                     </p>
-                    <img class="imgExport" src="../img/logoV3.png" alt="Logo de l'Entreprise" />
+                </div>
+
+                <!-- Rayons 2 : Legumes -->
+                <div id="rayonL" class="alignement">
+                    <h3 id="titreRayon2" class="TitreBio highlight scroll-animateG">Legumes</h3>
+                    <p class="paragrapheBio  scroll-animateG">
+                    Au rayon légumes, nous vous proposons une grande variété de produits frais, rigoureusement sélectionnés pour répondre aux standards de qualité les plus exigeants. Nous veillons à la fraîcheur, à la traçabilité et à la conformité de nos légumes aux normes sanitaires. Ainsi, nous sommes en mesure de satisfaire une clientèle variée, allant du commerce de proximité à la restauration.
+                    </p>
+                </div>
+
+                <!-- Rayons 3 : Mini-Legumes -->
+                <div id="rayonML" class="alignement">
+                    <h3 id="titreRayon3" class="TitreBio highlight scroll-animateD">Mini-legumes</h3>
+                    <p class="paragrapheBio  scroll-animateD">
+                        Au rayon mini‑légumes, nous vous proposons des produits originaux et raffinés, particulièrement appréciés en restauration gastronomique. Nos petits formats offrent une présentation esthétique et une grande diversité d’utilisations culinaires, tout en conservant toutes les qualités gustatives des légumes traditionnels.
+                    </p>
+                </div>
+
+                <!-- Rayons 4 : Condiments -->
+                <div id="rayonC" class="alignement" href="#rayonC">
+                    <h3 id="titreRayon4" class="TitreBio highlight scroll-animateG">Condiments</h3>
+                    <p class="paragrapheBio  scroll-animateG">
+                        Au rayon condiments, nous vous proposons une gamme de produits essentiels pour la cuisine. Nous sélectionnons chaque produit avec soin afin de garantir qualité, conservation et polyvalence. Ainsi, nous répondons aux besoins quotidiens des professionnels en leur fournissant des ingrédients fiables et incontournables pour la préparation de leurs plats.
+                    </p>
+                </div>
+                <!-- Rayons 5 : Exotic -->
+                <div id="rayonE" class="alignement">
+                    <h3 id="titreRayon5" class="TitreBio highlight scroll-animateD">Exotic</h3>
+                    <p class="paragrapheBio  scroll-animateD">
+                        Au rayon exotique, nous vous proposons des produits venus du monde entier, pour vous permettre de découvrir de nouvelles saveurs et d’élargir votre offre. Grâce à notre réseau d’importation efficace, nous garantissons la disponibilité de ces produits tout en respectant nos exigences de qualité et de fraîcheur.
+                    </p>
+                </div>
+
+                <!-- Rayons 6 : Jeunes Pousses -->
+                <div id="rayonJP" class="alignement">
+                    <h3 id="titreRayon6" class="TitreBio highlight scroll-animateG">Jeunes pousses</h3>
+                    <p class="paragrapheBio  scroll-animateG">
+                        Au rayon jeunes pousses, nous vous proposons une sélection de produits frais, composés de jeunes feuilles délicates. Appréciées pour leur tendreté et leur fraîcheur, elles sont idéales pour les salades ou en accompagnement. Nous sélectionnons soigneusement nos produits afin de garantir qualité, goût et régularité pour les professionnels
+                    </p>
+                </div>
+
+
+                <!-- Rayons 7 : Germes -->
+                <div id="rayonG" class="alignement">
+                    <h3 id="titreRayon7" class="TitreBio highlight scroll-animateD">Germes</h3>
+                    <p class="paragrapheBio  scroll-animateD">
+                        Au rayon germes, nous vous proposons une gamme de produits frais, reconnus pour leurs qualités nutritionnelles et leur fraîcheur. Idéaux pour apporter croquant, couleur et originalité à vos préparations culinaires, nos germes répondent à une demande croissante pour une alimentation saine et équilibrée.
+                    </p>
                 </div>
             </div>
-        </div>
-
-        <!-- ==================== FORMULAIRE DE CONTACT EXPORT ==================== -->
-        <h2 id="contactFormTitle" class="nom">Contact Export</h2>
-
-        <div class="formulaire scroll-animateG">
-            <i class="bi bi-envelope icone"></i>
-            <a href="mailto:contact@Cruchaudet.com" class="paraContact">contact@Cruchaudet.com</a>
         </div>
 
         <!-- ==================== PIED DE PAGE ==================== -->
         <footer>
             <h1 id="contact">Contact</h1>
+
             <div class="groupeContact">
                 <!-- Bloc contact direct -->
                 <div class="contactCase">
@@ -181,11 +219,11 @@
                     </iframe>
                 </div>
             </div>
+
             <!-- Texte copyright -->
             <a id="cguFooter" href="../page/cgu.html" target="_blank" rel="noopener noreferrer">Conditions générales
                 d'utilisation</a>
             <p id="footerCopy">Copyright © 2026 Cruchaudet.com. Tous droits réservés.</p>
-
             <!-- ==================== SCRIPT PRINCIPAL ==================== -->
             <script type="text/javascript" src="../js/main.js"></script>
         </footer>
