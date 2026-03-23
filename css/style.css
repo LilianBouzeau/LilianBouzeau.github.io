@@ -1350,7 +1350,35 @@ animation: bouncePaysExport 2s infinite;
   font-size: 1.2rem;
   transition: all 0.3s ease;
 }
+@keyframes bounceRS {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
 
+/* Tous les icônes rebondissent avec le même style */
+.reseauxSociaux a {
+  animation: bounceRS 2s infinite;
+  animation-fill-mode: both; /* important pour que le delay fonctionne */
+  display: inline-block; /* pour que transform fonctionne */
+}
+
+/* Cascade : on applique un delay différent à chaque icône */
+.reseauxSociaux a:nth-child(1) {
+  animation-delay: 0s;
+}
+.reseauxSociaux a:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.reseauxSociaux a:nth-child(3) {
+  animation-delay: 0.4s;
+}
 .reseauxSociaux a:hover {
   background-color: var(--orange);
   transform: translateY(-3px);
@@ -1397,6 +1425,18 @@ h1#contact {
 }
 
 /* Lignes de contact */
+/* Définition de l'animation bounce */
+@keyframes bounceContact {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
 .ligneContact {
   display: flex;
   align-items: center;
@@ -1409,6 +1449,7 @@ h1#contact {
   width: fit-content;
   transition: var(--transition);
   cursor: pointer;
+    animation: bounceContact 2s infinite;
 }
 
 .ligneContact:hover {
@@ -1500,11 +1541,6 @@ COOKIES
   font-size: 0.95rem;
 }
 
-.cookie-banner a {
-  color: #ffd700;
-  text-decoration: underline;
-}
-
 .cookie-buttons {
   display: flex;
   gap: 10px;
@@ -1520,21 +1556,27 @@ COOKIES
 }
 
 .cookie-btn.accept {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--vert);
+  color: var(--blanc);
+  border: 2px var(--blanc) solid;
+   transition:  0.3s;
 }
 
 .cookie-btn.accept:hover {
-  background-color: #43a047;
+  border: 2px var(--vert) solid;
+      transition: var(--transition);
 }
 
 .cookie-btn.decline {
-  background-color: #f44336;
-  color: white;
+  background-color: var(--orange);
+  color: var(--blanc);
+  border: 2px var(--blanc) solid;
+   transition:  0.3s;
 }
 
 .cookie-btn.decline:hover {
-  background-color: #e53935;
+  border: 2px var(--orange) solid;
+      transition: var(--transition);
 }
 
 @media (max-width:768px) {
