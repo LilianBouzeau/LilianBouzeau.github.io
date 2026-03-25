@@ -974,15 +974,12 @@ nav {
 @keyframes bounceExport {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
-    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.5); /* vert */
   }
   40% {
     transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(255, 143, 0, 0.5); /* orange */
   }
   60% {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 143, 0, 0.5); /* orange */
   }
 }
 
@@ -1007,6 +1004,7 @@ nav {
 .formulaire:hover {
   background-color: var(--orange);
   transform: translateY(-3px);
+  transition: all 0.3s ease; /* transition pour hover */
 }
 
 .formulaire .icone,
@@ -1078,7 +1076,8 @@ path:hover {
 
 /* Pays d'exportation */
 .PaysExport {
-    stroke-width: 2;
+  stroke: var(--orange);
+  stroke-width: 1;
   fill: var(--vert);
 animation: bouncePaysExport 2s infinite;
 }
