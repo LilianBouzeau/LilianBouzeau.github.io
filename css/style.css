@@ -1470,6 +1470,12 @@ h1#contact {
   height: 280px;
 }
 .contactCase2>iframe{
+  transition: var(--transition);
+   border: 2px solid var(--vert);
+  filter: invert(90%) hue-rotate(180deg) brightness(90%) contrast(90%);
+}
+.contactCase2>iframe:hover{
+    transition: var(--transition);
    border: 2px solid var(--orange);
 }
 .contactCase {
@@ -1485,17 +1491,7 @@ h1#contact {
 
 /* Lignes de contact */
 /* Définition de l'animation bounce */
-@keyframes bounceContact {
-  0%, 20%, 50%, 80%, 100% {
-  transform: translateY(0);
-  }
-  40% {
-  transform: translateY(-10px);
-  }
-  60% {
-  transform: translateY(-5px);
-  }
-}
+
 .ligneContact {
   display: flex;
   align-items: center;
@@ -1508,7 +1504,6 @@ h1#contact {
   width: fit-content;
   transition: var(--transition);
   cursor: pointer;
-  animation: bounceContact 2s infinite;
 }
 
 .ligneContact:hover {
