@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Couleurs principales */
   --vert: #4CAF50;    /* vert principal (CTA, titres) */
@@ -261,6 +265,48 @@ p {
 .Rungis {
   color: var(--orange);
   font-weight: 600;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    color: var(--orange);
+  }
+  50% {
+    color: var(--accent);
+  }
+}
+
+.Rungis:hover {
+  color: var(--accent);
+    transition: var(--transition);
+    cursor: pointer;
+}
+/* ================================
+   ANIMATION TITRE LETTRE PAR LETTRE
+=================================*/
+#titre.animated-title .letter {
+  opacity: 0;
+  animation: glowLetter 0.5s ease-in-out forwards;
+  cursor: pointer;
+    transition: text-shadow 0.8s ease;
+}
+
+#titre.animated-title .letter:hover {
+    transition: text-shadow 0.8s ease;
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+}
+
+@keyframes glowLetter {
+  0% {
+    opacity: 0;
+    color: var(--orange);
+    text-shadow: 0 0 0 transparent;
+  }
+  100% {
+    opacity: 1;
+    color: var(--vert);
+  }
 }
 
 /* ==================== NAVBAR ==================== */

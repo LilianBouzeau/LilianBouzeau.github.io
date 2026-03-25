@@ -32,10 +32,27 @@ document.addEventListener("DOMContentLoaded", () => {
     loader.style.display = "none";
     if (mainContent) mainContent.style.display = "block";
     initMenusEtTraductions();
+    animateTitleLetters();
     }, 500); // délai pour la transition
   }, remaining);
   });
 
+  // ---------- Animation lettres du titre ----------
+  function animateTitleLetters() {
+    const titleElement = document.getElementById("titre");
+    if (!titleElement) return;
+    
+    const text = "Cruchaudet";
+    titleElement.innerHTML = "";
+    
+    text.split("").forEach((letter, index) => {
+      const span = document.createElement("span");
+      span.className = "letter";
+      span.textContent = letter;
+      span.style.animationDelay = (index * 0.25) + "s";
+      titleElement.appendChild(span);
+    });
+  }
 
   // ---------- Fonction principale ----------
   function initMenusEtTraductions() {
