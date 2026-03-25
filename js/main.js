@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.className = "letter";
       span.textContent = letter;
-      span.style.animationDelay = (index * 0.25) + "s";
+      span.style.animationDelay = (index * 0.15) + "s";
       titleElement.appendChild(span);
     });
   }

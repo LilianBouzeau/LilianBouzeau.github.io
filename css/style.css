@@ -265,7 +265,7 @@ p {
 .Rungis {
   color: var(--orange);
   font-weight: 600;
-  animation: blink 1.5s ease-in-out infinite;
+  animation: blink 2s ease-in-out infinite;
 }
 
 @keyframes blink {
@@ -278,23 +278,24 @@ p {
 }
 
 .Rungis:hover {
-  color: var(--accent);
+  color: var(--rouge);
     transition: var(--transition);
     cursor: pointer;
+    animation: none;
 }
 /* ================================
    ANIMATION TITRE LETTRE PAR LETTRE
 =================================*/
 #titre.animated-title .letter {
+    transition: all 0.3s ease; /* transition pour hover */
   opacity: 0;
   animation: glowLetter 0.5s ease-in-out forwards;
   cursor: pointer;
-    transition: text-shadow 0.8s ease;
 }
 
 #titre.animated-title .letter:hover {
-    transition: text-shadow 0.8s ease;
-  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+    transition: all 0.3s ease; /* transition pour hover */
+    color: var(--orange);
 }
 
 @keyframes glowLetter {
@@ -305,7 +306,7 @@ p {
   }
   100% {
     opacity: 1;
-    color: var(--vert);
+
   }
 }
 
