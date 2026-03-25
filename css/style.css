@@ -9,11 +9,11 @@
 
 :root {
   /* Couleurs principales */
-  --vert: #4CAF50;        /* vert principal (CTA, titres) */
-  --accent: #2E7D32;      /* vert foncé (hover, important) */
+  --vert: #4CAF50;    /* vert principal (CTA, titres) */
+  --accent: #2E7D32;    /* vert foncé (hover, important) */
 
   /* Fonds */
-  --beige: #F5F1E6;       /* fond naturel */
+  --beige: #F5F1E6;     /* fond naturel */
   --blanc: #FFFFFF;
 
   /* Texte */
@@ -21,8 +21,8 @@
   --noir: #1B1B1B;
 
   /* Bonus (tu peux utiliser si besoin) */
-  --orange: #FF8F00;      /* promo / bouton important */
-  --rouge: #E53935;       /* alerte / fruits rouges */
+  --orange: #FF8F00;    /* promo / bouton important */
+  --rouge: #E53935;     /* alerte / fruits rouges */
 
   /* UI */
   --transition: all 0.3s ease;
@@ -166,45 +166,45 @@ p {
 
   0%,
   100% {
-    transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1);
   }
 
   50% {
-    transform: translateY(-20px) scale(1.15);
-    /* rebond + agrandissement léger */
+  transform: translateY(-20px) scale(1.15);
+  /* rebond + agrandissement léger */
   }
 }
 
 /* =================== MEDIA QUERIES =================== */
 @media (max-width: 768px) {
   #loader {
-    font-size: 2.2rem;
+  font-size: 2.2rem;
   }
 
   .spinner {
-    gap: 1rem;
+  gap: 1rem;
   }
 
   @keyframes bounceScale {
-    50% {
-      transform: translateY(-15px) scale(1.12);
-    }
+  50% {
+    transform: translateY(-15px) scale(1.12);
+  }
   }
 }
 
 @media (max-width: 480px) {
   #loader {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
   }
 
   .spinner {
-    gap: 0.7rem;
+  gap: 0.7rem;
   }
 
   @keyframes bounceScale {
-    50% {
-      transform: translateY(-10px) scale(1.1);
-    }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+  }
   }
 }
 
@@ -340,8 +340,8 @@ nav {
 }
 #nav-menu a:hover {
   transition: 0.5s;
-    transform: scale(1.05);
-    transition: 0.5S;
+  transform: scale(1.05);
+  transition: 0.5S;
 }
 
 #nav-menu a:hover,
@@ -412,11 +412,11 @@ nav {
 /* Tablette */
 @media (max-width: 1024px) {
   #nav-menu {
-    gap: 15px;
+  gap: 15px;
   }
 
   .nav-container {
-    padding: 0px 15px;
+  padding: 0px 15px;
   }
 }
 .nav-logo img {
@@ -425,118 +425,118 @@ nav {
 /* Mobile */
 @media (max-width: 768px) {
   .hamburger {
-    display: flex;
+  display: flex;
   }
 
   .product-card {
-    flex: 1 1 calc(50% - 0.5rem);
-    /* 2 produits par ligne avec un petit gap */
-    max-width: calc(50% - 0.5rem);
+  flex: 1 1 calc(50% - 0.5rem);
+  /* 2 produits par ligne avec un petit gap */
+  max-width: calc(50% - 0.5rem);
   }
 .nav-logo img {
   margin-left: 5%;
 }
   /* Menu principal en dessous de la navbar */
   #nav-menu {
-    display: none;
-    /* caché par défaut */
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    /* Même couleur et flou que la nav-container */
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 998;
+  display: none;
+  /* caché par défaut */
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  /* Même couleur et flou que la nav-container */
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 998;
   }
 
   #nav-menu.active {
-    display: flex;
+  display: flex;
   }
 
   #nav-menu li {
-    width: 100%;
+  width: 100%;
   }
 
   #nav-menu a {
-    padding: 12px 20px;
-    border-bottom: 1px solid #eee;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
   }
 
   .sous {
-    padding-left: 20px;
+  padding-left: 20px;
   }
 
   #nav-menu .sous li a:hover {
-    background-color: var(--accent);
-    color: #fff;
-    border-radius: 4px;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 4px;
   }
 
   /* Navbar sticky mobile (même couleur partout) */
   .nav-container {
-    position: relative;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 999;
-    padding: 0px 20px;
+  position: relative;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  padding: 0px 20px;
   }
 }
 
 /* ==================== SOUS-MENUS CENTRÉS SOUS LE LI PARENT (DESKTOP) ==================== */
 @media (min-width: 769px) {
   #nav-menu .deroulant {
-    position: relative;
+  position: relative;
   }
 
   #nav-menu .sous {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) scaleY(0);
-    /* fermé par défaut */
-    transform-origin: top center;
-    display: block;
-    /* on contrôle la visibilité avec scaleY */
-    opacity: 0;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-    border-radius: 8px;
-    z-index: 998;
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    min-width: 180px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0);
+  /* fermé par défaut */
+  transform-origin: top center;
+  display: block;
+  /* on contrôle la visibilité avec scaleY */
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  border-radius: 8px;
+  z-index: 998;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
   }
 
   #nav-menu .sous.active {
-    transform: translateX(-50%) scaleY(1);
-    /* ouvert */
-    opacity: 1;
+  transform: translateX(-50%) scaleY(1);
+  /* ouvert */
+  opacity: 1;
   }
 
   #nav-menu .sous li {
-    display: block;
-    text-align: left;
+  display: block;
+  text-align: left;
   }
 
   #nav-menu .sous li a {
-    display: block;
-    padding: 10px 20px;
-    white-space: nowrap;
-    transition: background-color 0.2s, color 0.2s;
+  display: block;
+  padding: 10px 20px;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
   }
 
   #nav-menu .sous li a:hover {
-    background-color: var(--accent);
-    color: #fff;
-    border-radius: 4px;
+  background-color: var(--accent);
+  color: #fff;
+  border-radius: 4px;
   }
 }
 
@@ -607,20 +607,20 @@ nav {
 
 #histoireD {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/passe.png");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/passe.png");
 }
 
 #histoireE {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/evolution.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/evolution.jpg");
 }
 
 #histoireP {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/present.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/present.jpg");
 }
 
 /* Correction mobile */
@@ -629,9 +629,9 @@ nav {
   #histoireD,
   #histoireE,
   #histoireP {
-    background-attachment: scroll;
-    min-height: 60vh;
-    padding: 60px 15px;
+  background-attachment: scroll;
+  min-height: 60vh;
+  padding: 60px 15px;
   }
 }
 
@@ -670,44 +670,44 @@ nav {
 /* Images */
 #rayonF {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/fruit.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/fruit.jpg");
 }
 
 #rayonL {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/legumes.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/legumes.jpg");
 }
 
 #rayonML {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/minilegumes.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/minilegumes.jpg");
 }
 
 #rayonC {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/condiments.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/condiments.jpg");
 }
 
 #rayonE {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/exotic.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/exotic.jpg");
 }
 
 #rayonJP {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/jeunespousses.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/jeunespousses.jpg");
 }
 
 #rayonG {
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/germes.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/germes.jpg");
 }
 
 /* Correction mobile */
@@ -720,9 +720,9 @@ nav {
   #rayonE,
   #rayonJP,
   #rayonG {
-    background-attachment: scroll;
-    min-height: 60vh;
-    padding: 60px 15px;
+  background-attachment: scroll;
+  min-height: 60vh;
+  padding: 60px 15px;
   }
 }
 
@@ -794,8 +794,8 @@ nav {
 /* Responsive */
 @media (max-width: 768px) {
   .stats-container {
-    flex-direction: column;
-    gap: 40px;
+  flex-direction: column;
+  gap: 40px;
   }
 }
 
@@ -812,8 +812,8 @@ nav {
 /* Téléphone */
 @media (max-width: 768px) {
   .parallax {
-    background-attachment: scroll;
-    background-position: center center;
+  background-attachment: scroll;
+  background-position: center center;
   }
 }
 
@@ -831,8 +831,8 @@ nav {
   text-align: center;
 
   background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/img/present.jpg");
+  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url("/img/present.jpg");
 
   background-size: cover;
   background-position: center;
@@ -842,9 +842,9 @@ nav {
 /* Adaptation mobile */
 @media (max-width: 768px) {
   #temoignage {
-    background-attachment: scroll;
-    /* évite le flou sur mobile */
-    padding: 60px 15px;
+  background-attachment: scroll;
+  /* évite le flou sur mobile */
+  padding: 60px 15px;
   }
 }
 
@@ -930,9 +930,9 @@ nav {
 }
 
 .logos-slide img {
-  width: 150px;       /* taille réduite pour mobile */
+  width: 150px;     /* taille réduite pour mobile */
   height: 150px;
-  margin: 0 20px;     /* marges réduites */
+  margin: 0 20px;   /* marges réduites */
   vertical-align: middle;
 }
 
@@ -944,10 +944,10 @@ nav {
 /* Animation du slide */
 @keyframes slide {
   from {
-    transform: translateX(0);
+  transform: translateX(0);
   }
   to {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
   }
 }
 
@@ -957,13 +957,13 @@ nav {
   margin-bottom: 10%;
 }
   .logos-slide img {
-    width: 100px;      /* encore plus petit sur petit écran */
-    height: 100px;
-    margin: 0 10px;
+  width: 100px;    /* encore plus petit sur petit écran */
+  height: 100px;
+  margin: 0 10px;
   }
   
   .logos-slide {
-    animation: 20s slide infinite linear; /* optionnel : animation plus rapide */
+  animation: 20s slide infinite linear; /* optionnel : animation plus rapide */
   }
 }
 
@@ -973,13 +973,13 @@ nav {
 /* Définition de l'animation bounce */
 @keyframes bounceExport {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+  transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
   }
   60% {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
   }
 }
 
@@ -1020,7 +1020,7 @@ nav {
 /* Correction mobile */
 @media (max-width: 768px) {
   .formulaire {
-    margin-bottom: 5%;
+  margin-bottom: 5%;
   }
 }
 
@@ -1101,13 +1101,13 @@ animation: bouncePaysExport 2s infinite;
 /* Animation bounce avec shadow visible mais mouvement doux */
 @keyframes bouncePaysExport {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+  transform: translateY(0);
   }
   40% {
-    transform: translateY(-6px);
+  transform: translateY(-6px);
   }
   60% {
-    transform: translateY(-3px);
+  transform: translateY(-3px);
   }
 }
 /* Effet au survol */
@@ -1161,55 +1161,55 @@ animation: bouncePaysExport 2s infinite;
 
 @media (max-width: 768px) {
   .map-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   }
 
   /* Légende compacte au-dessus de la carte */
   .map-legend {
-    order: -1;
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    width: auto;
+  order: -1;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  width: auto;
   }
 
   .map-legend h3 {
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
   }
 
   .legend-item {
-    justify-content: center;
-    margin-bottom: 0.3rem;
+  justify-content: center;
+  margin-bottom: 0.3rem;
   }
 
   .legend-color {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
   }
 
   /* Carte centrée et adaptée à l’écran mobile */
   .map-wrap {
-    width: 100vw;
-    overflow: visible;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   }
 
   #svgmap {
-    width: 130%;
-    height: auto;
-    max-width: none;
+  width: 130%;
+  height: auto;
+  max-width: none;
 
-    /* CENTRAGE PARFAIT */
-    position: relative;
-    left: 50%;
-    transform: translateX(-55%);
+  /* CENTRAGE PARFAIT */
+  position: relative;
+  left: 50%;
+  transform: translateX(-55%);
   }
 }
 
@@ -1300,30 +1300,30 @@ animation: bouncePaysExport 2s infinite;
 /* Mobile : inverser l'affichage */
 @media (max-width: 768px) {
   .imgMobile1 {
-    display: block;
+  display: block;
   }
 
   .imgMobile2 {
-    display: none;
+  display: none;
   }
 
   .fournisseur {
-    flex-direction: column;
-    height: auto;
+  flex-direction: column;
+  height: auto;
   }
 
   .imgFournisseur,
   .bioEntreprise {
-    width: 100%;
+  width: 100%;
   }
 
   .imgFournisseur img {
-    height: 250px;
-    /* fixe ou auto */
+  height: 250px;
+  /* fixe ou auto */
   }
 
   .bioEntreprise {
-    text-align: center;
+  text-align: center;
   }
 }
 
@@ -1364,13 +1364,13 @@ animation: bouncePaysExport 2s infinite;
 }
 @keyframes bounceRS {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+  transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
   }
   60% {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
   }
 }
 
@@ -1440,13 +1440,13 @@ h1#contact {
 /* Définition de l'animation bounce */
 @keyframes bounceContact {
   0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+  transform: translateY(0);
   }
   40% {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
   }
   60% {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
   }
 }
 .ligneContact {
@@ -1461,7 +1461,7 @@ h1#contact {
   width: fit-content;
   transition: var(--transition);
   cursor: pointer;
-    animation: bounceContact 2s infinite;
+  animation: bounceContact 2s infinite;
 }
 
 .ligneContact:hover {
@@ -1576,7 +1576,7 @@ COOKIES
 
 .cookie-btn.accept:hover {
   border: 2px var(--vert) solid;
-      transition: var(--transition);
+    transition: var(--transition);
 }
 
 .cookie-btn.decline {
@@ -1588,27 +1588,27 @@ COOKIES
 
 .cookie-btn.decline:hover {
   border: 2px var(--orange) solid;
-      transition: var(--transition);
+    transition: var(--transition);
 }
 
 @media (max-width:768px) {
 
   .cookie-banner {
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-    width: 65%;
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+  width: 65%;
   }
 
   .cookie-buttons {
-    flex-direction: column;
-    width: 100%;
-    gap: 8px;
-    margin-top: 0.8rem;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  margin-top: 0.8rem;
   }
 
   .cookie-btn {
-    width: 100%;
+  width: 100%;
   }
 }
 
@@ -1670,15 +1670,15 @@ COOKIES
   50%,
   80%,
   100% {
-    transform: translateY(0);
+  transform: translateY(0);
   }
 
   40% {
-    transform: translateY(-20px);
+  transform: translateY(-20px);
   }
 
   60% {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
   }
 }
 
@@ -1718,7 +1718,7 @@ COOKIES
    BOUTON RETOUR EN HAUT
 =================================*/
 #btnTop {
-    transition: 0.3s;
+  transition: 0.3s;
   position: fixed;
   bottom: 25px;
   right: 25px;
@@ -1736,11 +1736,11 @@ COOKIES
   opacity: 0;
   visibility: hidden;
   border: 1px solid var(--blanc);
-    animation: bounceRS 2s infinite;
+  animation: bounceRS 2s infinite;
 }
 
 #btnTop:hover {
-    transition: 0.3s;
+  transition: 0.3s;
   background-color: var(--orange);
   color: var(--blanc);
   transform: translateY(-3px);
@@ -1810,11 +1810,11 @@ COOKIES
 /* Tablettes */
 @media (max-width: 1024px) {
   .hero-overlay h1 {
-    font-size: 4.5rem;
+  font-size: 4.5rem;
   }
 
   .hero-overlay p {
-    font-size: 1.8rem;
+  font-size: 1.8rem;
   }
 
 }
@@ -1825,52 +1825,52 @@ COOKIES
   #presentation,
   #Export,
   #contactExport {
-    width: 100vw;
-    margin: auto;
+  width: 100vw;
+  margin: auto;
   }
 
   .contact-wrapper {
-    padding: 4rem 2rem;
-    width: 80vw;
-    margin: auto;
+  padding: 4rem 2rem;
+  width: 80vw;
+  margin: auto;
   }
 
   .containerCGU {
-    margin: 25px;
-    overflow-wrap: break-word;
-    white-space: normal;
+  margin: 25px;
+  overflow-wrap: break-word;
+  white-space: normal;
   }
 
   .alignement {
-    flex-direction: column;
+  flex-direction: column;
   }
 
   .imgEntreprise {
-    max-width: 90%;
+  max-width: 90%;
   }
 
   .form-row {
-    flex-direction: column;
+  flex-direction: column;
   }
 
   .search-wrapper {
-    width: 95%;
+  width: 95%;
   }
 
   .TitreBio {
-    padding: 0 10px;
+  padding: 0 10px;
   }
 
   .hero-overlay h1 {
-    font-size: 3rem;
+  font-size: 3rem;
   }
 
   .hero-overlay p {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
   }
 
   #btnTop,
   #langButtons {
-    bottom: 15px;
+  bottom: 15px;
   }
 }
