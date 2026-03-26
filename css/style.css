@@ -724,7 +724,7 @@ nav {
 }
 
 .carte-back {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.70);
   transform: rotateY(180deg);
   color: var(--noir);
   border: 2px solid var(--orange);
@@ -759,11 +759,12 @@ nav {
 }
 
 .carte-back li {
-  font-size: 1rem;
+  font-size: 1rem; /* ou ajuste selon ton besoin */
   margin: 5px 0;
   color: var(--orange);
   transition: var(--transition);
   cursor: pointer;
+  font-weight: 700; /* rend le texte plus épais */
 }
 
 .carte-back li:hover {
