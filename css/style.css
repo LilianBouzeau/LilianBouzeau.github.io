@@ -655,7 +655,6 @@ nav {
     transform: scale(1) translateY(0);
   }
 }
-
 .carte {
   border-radius: var(--radius);
   padding: 15px;
@@ -726,7 +725,7 @@ nav {
 }
 
 .carte:hover .carte-front div {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
 .carte-front:hover {
   background: rgba(255, 255, 255, 0.35);
