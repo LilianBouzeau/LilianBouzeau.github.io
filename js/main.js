@@ -402,6 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navRayonMiniLegumes: 'Mini-légumes',
     navRayonJP: 'Jeunes Pousses',
     navRayonG: 'Germes',
+    navRayonH: 'Herbes',
     navRayonC: "Condiments",
     navContactExport: "Prise de contact",
     navNosPartenaires: "Nos partenaires",
@@ -431,6 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
     titreRayon5: "Exotic",
     titreRayon6: "Jeunes pousses",
     titreRayon7: "Germes",
+    titreRayon8: "Herbes",
 
     //FOOTER
     cguFooter: "Conditions générales d'utilisation",
@@ -519,6 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navRayonMiniLegumes: 'Baby Vegetables',
     navRayonJP: 'Baby Leaves',
     navRayonG: 'Sprouts',
+    navHebes: 'Herbs',
     navRayonExotic: "Exotic",
     navRayonC: "Condiments",
     navContactExport: "Contact Form",
@@ -549,6 +552,7 @@ document.addEventListener("DOMContentLoaded", () => {
     titreRayon5: "Exotic",
     titreRayon6: "Baby Leaves",
     titreRayon7: "Sprouts",
+    titreRayon8: "Herbs",
 
     //FOOTER
     cguFooter: "Terms and Conditions of Use",
@@ -640,6 +644,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navRayonC: "Condimentos",
     navRayonJP: 'Brotes Tiernos',
     navRayonG: 'Germinados',
+    navRayonH: 'Hierbas',
     navExotic: "Exóticas",
     navNosPartenaires: "Nuestros Socios",
     navContactExport: "Formulario de Contacto",
@@ -669,6 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
     titreRayon5: "Exóticos",
     titreRayon6: "Brotes Tiernos",
     titreRayon7: "Germinados",
+    titreRayon8: "Hierbas",
 
     //FOOTER
     cguFooter: "Condiciones de uso",
@@ -758,6 +764,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navRayonMiniLegumes: "Mini-Gemüse",
     navRayonJP: "Zarte Sprossen",
     navRayonG: "Sprossen",
+    navRayonH: "Kräuter",
     navRayonC: "Gewürze",
     navNosPartenaires: "Unsere Partner",
     navContactExport: "Kontaktformular",
@@ -787,6 +794,7 @@ document.addEventListener("DOMContentLoaded", () => {
     titreRayon5: "Exotische Produkte",
     titreRayon6: "Zarte Sprossen",
     titreRayon7: "Sprossen",
+    titreRayon8: "Kräuter",
 
     //FOOTER
     cguFooter: "Nutzungsbedingungen",
