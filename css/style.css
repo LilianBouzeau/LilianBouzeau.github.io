@@ -754,8 +754,7 @@ nav {
   font-size: 1.2rem;
   color: var(--vert);
   margin: 0;
-  border: 1px solid var(--orange);
-  -webkit-text-stroke: 1px var(--orange);
+  -webkit-text-stroke: 0.5px var(--orange);
 }
 
 .carte-back h4 {
