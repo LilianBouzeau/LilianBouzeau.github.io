@@ -709,7 +709,7 @@ nav {
 
 .carte-front {
   transition: var(--transition);
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.5);
   border: 2px solid var(--vert);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
