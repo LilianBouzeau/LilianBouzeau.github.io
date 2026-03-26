@@ -679,6 +679,7 @@ nav {
 .carte:nth-child(6) { animation-delay: 0.6s; }
 .carte:nth-child(7) { animation-delay: 0.7s; }
 .carte:nth-child(8) { animation-delay: 0.8s; }
+.carte:nth-child(8) { animation-delay:1s; }
 
 
 .carte-inner {
@@ -754,7 +755,7 @@ nav {
   font-size: 1.2rem;
   color: var(--vert);
   margin: 0;
-  -webkit-text-stroke: 0.5px var(--orange);
+  -webkit-text-stroke: 1px var(--orange);
 }
 
 .carte-back h4 {
