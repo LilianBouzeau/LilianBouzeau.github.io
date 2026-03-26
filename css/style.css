@@ -687,7 +687,7 @@ nav {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 0.8s;
+  transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1); /* flip plus lent et smooth */
   transform-style: preserve-3d;
 }
 
@@ -716,8 +716,18 @@ nav {
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carte-front div {
+  transition: transform 0.3s ease;
 }
 
+.carte:hover .carte-front div {
+  transform: scale(1.3);
+}
 .carte-front:hover {
   background: rgba(255, 255, 255, 0.35);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
