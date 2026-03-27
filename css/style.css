@@ -2406,8 +2406,7 @@ body.seasonal-popup-open {
   padding: 0 10px;
   }
 
-  .hero-overlay h1 {
-  font-size: clamp(1.8rem, 8vw, 3rem);
+  .hero-overlay h1 {  font-size: clamp(2.8rem, 11vw, 4.5rem); 
   white-space: nowrap;
   }
 
@@ -2448,7 +2447,7 @@ body.seasonal-popup-open {
 
 @media (max-width: 480px) {
   .hero-overlay h1 {
-  font-size: clamp(1.4rem, 8vw, 2rem);
+  font-size: clamp(2.6rem, 11vw, 3.8rem);
   white-space: nowrap;
   }
 
