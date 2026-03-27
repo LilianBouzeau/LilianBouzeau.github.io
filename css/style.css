@@ -246,6 +246,12 @@ p {
   object-fit: cover;
   transform: translate(-50%, -50%);
   z-index: 1;
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.hero-video.is-dimmed {
+  opacity: 0.2;
 }
 
 .hero-overlay {
@@ -280,6 +286,7 @@ p {
   color: var(--orange);
   font-weight: 600;
   animation: blink 2s ease-in-out infinite;
+  transition: var(--transition);
 }
 
 @keyframes blink {
@@ -293,7 +300,6 @@ p {
 
 .Rungis:hover {
   color: var(--rouge);
-    transition: var(--transition);
     cursor: pointer;
     animation: none;
 }
@@ -301,15 +307,13 @@ p {
    ANIMATION TITRE LETTRE PAR LETTRE
 =================================*/
 #titre.animated-title .letter {
-    transition: all 0.3s ease; /* transition pour hover */
   opacity: 0;
   animation: glowLetter 0.5s ease-in-out forwards;
   cursor: pointer;
 }
 
-#titre.animated-title .letter:hover {
-    transition: all 0.3s ease; /* transition pour hover */
-    color: var(--orange);
+#titre.animated-title .letter:hover {  
+    transform: scale(1.1);
 }
 
 @keyframes glowLetter {
@@ -317,6 +321,7 @@ p {
     opacity: 0;
     color: var(--orange);
     text-shadow: 0 0 0 transparent;
+      transform: scale(0.1);
   }
   100% {
     opacity: 1;
@@ -359,7 +364,6 @@ nav {
 }
 
 .nav-logo img:hover {
-  transition: 0.3s;
   transform: scale(1.2);
 }
 
@@ -397,12 +401,10 @@ nav {
   text-decoration: none;
   padding: 0px 15px;
   display: block;
-  transition: color 0.3s;
+  transition: color 0.3s, transform 0.5s;
 }
 #nav-menu a:hover {
-  transition: 0.5s;
   transform: scale(1.05);
-  transition: 0.5S;
 }
 
 #nav-menu a:hover,
@@ -425,7 +427,6 @@ nav {
 .sous li a:hover {
   background-color: var(--blanc);
   color: var(--vert);
-  transition: 0.5s;
 }
 
 .sous.active {
@@ -1098,6 +1099,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   gap: 20px;
   max-width: 1000px;
   text-align: center;
@@ -1109,14 +1111,18 @@ nav {
 }
 
 .slides {
+  flex: 1;
+  min-width: 0;
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height: 120px;
+  min-height: 170px;
 }
 
 .slide {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   opacity: 0;
   transform: translateX(50px);
@@ -1124,12 +1130,14 @@ nav {
   font-size: 18px;
   line-height: 1.6;
   text-align: center;
+  z-index: 0;
 }
 
 .slide.active {
+  position: relative;
   opacity: 1;
   transform: translateX(0);
-  position: relative;
+  z-index: 1;
 }
 
 .slide span {
@@ -1151,27 +1159,73 @@ nav {
   border: none;
   font-size: 50px;
   cursor: pointer;
-  color: white;
+  color: var(--vert);
+  transition: color 0.35s ease;
 }
 
 .prev:hover,
 .next:hover {
-  transition: 0.5s;
-  color: #001b99;
+  color: var(--orange);
 }
 
 /*slider fournisseur*/
+.partners-section {
+  width: 100%;
+  max-width: none;
+  margin: 3rem auto 2rem;
+  padding: 1.2rem 1.2rem 1.5rem;
+  border-radius: 16px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+#fournisseurs #titrePFournisseurs {
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+}
+
+.partners-subtitle {
+  text-align: center;
+  color: var(--gris);
+  font-weight: 500;
+  margin-bottom: 0.9rem;
+}
+
 .logo-slider {
   overflow: hidden;
-  padding: 30px 0 0 0;
+  padding: 0.6rem 0 0.2rem;
   white-space: nowrap;
   position: relative;
-  margin-bottom: 2%;
+  margin-bottom: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.logo-slider::before,
+.logo-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 95px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.logo-slider::before {
+  left: 0;
+  background: linear-gradient(to right, var(--beige), rgba(245, 241, 230, 0));
+}
+
+.logo-slider::after {
+  right: 0;
+  background: linear-gradient(to left, var(--beige), rgba(245, 241, 230, 0));
 }
 
 .logos-slide {
   display: inline-block;
-  animation: 15s slide infinite linear;
+  animation: 20s slide infinite linear;
   white-space: nowrap; /* Empêche le retour à la ligne sur mobile */
 }
 
@@ -1180,11 +1234,16 @@ nav {
   height: 150px;
   margin: 0 20px;   /* marges réduites */
   vertical-align: middle;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 10px;
+  transition: 0.35s;
+  box-shadow: none;
 }
 
 .logos-slide img:hover {
-  transform: scale(1.1);
-  transition: 0.5s;   /* transition plus rapide pour mobile */
+  transform: scale(1.07);
 }
 
 /* Animation du slide */
@@ -1199,13 +1258,31 @@ nav {
 
 /* Media query pour mobile */
 @media screen and (max-width: 768px) {
+  .partners-section {
+  width: 100%;
+  padding: 0.9rem 0.7rem 1rem;
+  border-radius: 14px;
+  }
+
+  .partners-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+  }
+
   .logo-slider {
   margin-bottom: 10%;
 }
+
+  .logo-slider::before,
+  .logo-slider::after {
+  width: 45px;
+  }
+
   .logos-slide img {
   width: 100px;    /* encore plus petit sur petit écran */
   height: 100px;
   margin: 0 10px;
+  padding: 8px;
   }
   
   .logos-slide {
@@ -1250,7 +1327,6 @@ nav {
 .formulaire:hover {
   background-color: var(--orange);
   transform: translateY(-3px);
-  transition: all 0.3s ease; /* transition pour hover */
 }
 
 .formulaire .icone,
@@ -1310,14 +1386,13 @@ path {
   fill: white;
   stroke: var(--vert);
   stroke-width: 1;
-  transition: all 0.25s ease;
+  transition: all 1s ease;
   cursor: pointer;
 }
 
 path:hover {
   stroke-width: 2;
   transform: scale(1.001);
-  transition: 1s;
 }
 
 /* Pays d'exportation */
@@ -1325,7 +1400,8 @@ path:hover {
   stroke: var(--orange);
   stroke-width: 1;
   fill: var(--vert);
-animation: bouncePaysExport 2s infinite;
+  animation: bouncePaysExport 2s infinite;
+  transition: all 1s ease;
 }
 
 /* Décalage progressif */
@@ -1361,7 +1437,6 @@ animation: bouncePaysExport 2s infinite;
   fill: var(--orange);
   stroke-width: 3;
   transform: scale(1.001);
-  transition: 1s;
   animation: bouncePaysExport none;
 }
 
@@ -1674,7 +1749,6 @@ h1#contact {
   filter: invert(90%) hue-rotate(180deg) brightness(90%) contrast(90%);
 }
 .contactCase2>iframe:hover{
-    transition: var(--transition);
    border: 2px solid var(--orange);
 }
 .contactCase {
@@ -1817,7 +1891,6 @@ COOKIES
 
 .cookie-btn.accept:hover {
   border: 2px var(--vert) solid;
-    transition: var(--transition);
 }
 
 .cookie-btn.decline {
@@ -1829,7 +1902,6 @@ COOKIES
 
 .cookie-btn.decline:hover {
   border: 2px var(--orange) solid;
-    transition: var(--transition);
 }
 
 @media (max-width:768px) {
@@ -1949,7 +2021,6 @@ COOKIES
 }
 
 .btn-home:hover {
-  transition: var(--transition);
   background-color: var(--accent);
   color: var(--blanc);
   transform: translateY(-5px);
@@ -1973,15 +2044,13 @@ COOKIES
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: var(--transition);
-  z-index: 10;
+  z-index: 1402;
   opacity: 0;
   visibility: hidden;
   border: 1px solid var(--blanc);
-  animation: bounceRS 2s infinite;
 }
 
 #btnTop:hover {
-  transition: 0.3s;
   background-color: var(--orange);
   color: var(--blanc);
   transform: translateY(-3px);
@@ -1992,6 +2061,239 @@ COOKIES
 #btnTop.show {
   opacity: 1;
   visibility: visible;
+  animation: bounceRS 2s infinite;
+}
+
+/* ================================
+   POP-UP PRODUITS DE SAISON
+=================================*/
+.seasonal-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 28, 18, 0.68);
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1200;
+}
+
+.seasonal-popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.28s ease;
+}
+
+.seasonal-popup-overlay:not(.show) .seasonal-popup {
+  opacity: 0;
+  transform: translate(0, 0) scale(0.55);
+}
+
+.seasonal-popup {
+  position: relative;
+  width: min(980px, 100%);
+  background: linear-gradient(180deg, #fffdf5 0%, #f8f3df 100%);
+  border: 2px solid var(--vert);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+  padding: 24px 24px 20px;
+  transform-origin: center center;
+}
+
+.seasonal-popup-overlay.is-opening .seasonal-popup {
+  animation: popupFromCenter 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.seasonal-popup-overlay.is-closing .seasonal-popup {
+  animation: popupToCenter 0.24s ease both;
+}
+
+@keyframes popupFromCenter {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.55);
+  }
+  65% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+@keyframes popupToCenter {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.55);
+  }
+}
+
+.seasonal-popup h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.seasonal-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--blanc);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.seasonal-popup-close:hover {
+  transform: scale(1.08);
+  background: var(--orange);
+}
+
+.seasonal-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.seasonal-card {
+  height: 245px;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.seasonal-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.7s ease;
+}
+
+.seasonal-card:hover .seasonal-card-inner,
+.seasonal-card.is-flipped .seasonal-card-inner,
+.seasonal-card:focus-visible .seasonal-card-inner {
+  transform: rotateY(180deg);
+}
+
+.seasonal-card-front,
+.seasonal-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+
+.seasonal-card-front {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--vert);
+}
+
+.seasonal-card-front img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.seasonal-card-front h4,
+.seasonal-card-back h4 {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.seasonal-card-back {
+  background: #fff;
+  border: 2px solid var(--orange);
+  transform: rotateY(180deg);
+}
+
+.seasonal-card-back p {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--noir);
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.seasonal-popup-trigger {
+  position: fixed;
+  bottom: 25px;
+  right: 80px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--blanc);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+  padding: 10px 15px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 1001;
+  transition: var(--transition);
+}
+
+.seasonal-popup-trigger.show {
+  display: flex;
+  animation: bounceRS 2s infinite;
+}
+
+.seasonal-popup-trigger:hover {
+  background: var(--accent);
+}
+
+@keyframes seasonalVibrate {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  6% {
+    transform: translateX(-2px);
+  }
+  12% {
+    transform: translateX(2px);
+  }
+  18% {
+    transform: translateX(-2px);
+  }
+  24% {
+    transform: translateX(2px);
+  }
+  30% {
+    transform: translateX(0);
+  }
+}
+
+body.seasonal-popup-open {
+  overflow-x: hidden;
 }
 
 /* ================================
@@ -2004,7 +2306,7 @@ COOKIES
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 999;
+  z-index: 1301;
   transform: none;
 }
 
@@ -2032,7 +2334,6 @@ COOKIES
 .btnLang:hover {
   background-color: var(--blanc);
   transform: translateY(-3px);
-  transition: 0.3s;
   transform: scale(1.1);
   border:2px solid var(--orange);
 }
@@ -2113,5 +2414,29 @@ COOKIES
   #btnTop,
   #langButtons {
   bottom: 15px;
+  }
+
+  .seasonal-popup {
+  padding: 20px 14px 16px;
+  }
+
+  .seasonal-popup h2 {
+  font-size: 1.6rem;
+  padding-right: 34px;
+  }
+
+  .seasonal-cards {
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
+  }
+
+  .seasonal-card {
+  height: 220px;
+  }
+
+  .seasonal-popup-trigger {
+  right: 70px;
+  bottom: 15px;
+  padding: 10px 12px;
+  font-size: 0.85rem;
   }
 }

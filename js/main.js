@@ -277,6 +277,16 @@ const scrollElements = document.querySelectorAll(
   '.scroll-animate, .scroll-animateG, .scroll-animateD, .scroll-animate-opacity'
 );
 
+// Applique un décalage progressif pour les cartes de rayon (effet une par une)
+const cardGroups = document.querySelectorAll('.cartes-groupe');
+cardGroups.forEach((group) => {
+  const cards = group.querySelectorAll('.carte.scroll-animate-opacity');
+  cards.forEach((card, index) => {
+    const delay = 0.08 + index * 0.12;
+    card.style.transitionDelay = `${delay}s`;
+  });
+});
+
 if (scrollElements.length > 0) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -388,6 +398,122 @@ if (scrollElements.length > 0) {
     window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
+
+  // ---------- Pop-up produits de saison (index) ----------
+  function initSeasonalPopup() {
+    const currentPath = window.location.pathname.toLowerCase();
+    const isIndexPage = currentPath.endsWith("/index.html") || currentPath.endsWith("/") || currentPath === "/";
+    if (!isIndexPage) return;
+
+    const overlay = document.getElementById("seasonalPopupOverlay");
+    const closeBtn = document.getElementById("seasonalPopupClose");
+    const triggerBtn = document.getElementById("seasonalPopupTrigger");
+    const cards = document.querySelectorAll(".seasonal-card");
+    if (!overlay || !closeBtn || !triggerBtn) return;
+
+    const storageKey = "indexSeasonalPopupClosed";
+    let popupAnimTimeout = null;
+    let isPopupAnimating = false;
+    let isPopupClosing = false;
+    const POPUP_OPEN_MS = 420;
+    const POPUP_CLOSE_MS = 240;
+
+    function getStoredState() {
+      try {
+        return localStorage.getItem(storageKey);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function setStoredState(value) {
+      try {
+        localStorage.setItem(storageKey, value);
+      } catch (error) {
+        // stockage indisponible: on ignore sans bloquer l'UI
+      }
+    }
+
+    function openPopup() {
+      if (isPopupClosing) return;
+      if (overlay.classList.contains("show") && !overlay.classList.contains("is-closing")) return;
+      if (popupAnimTimeout) {
+        clearTimeout(popupAnimTimeout);
+        popupAnimTimeout = null;
+      }
+      isPopupAnimating = true;
+      overlay.classList.remove("is-closing");
+      overlay.classList.add("is-opening");
+      overlay.classList.add("show");
+      overlay.setAttribute("aria-hidden", "false");
+      triggerBtn.classList.remove("show");
+      document.body.classList.add("seasonal-popup-open");
+      popupAnimTimeout = setTimeout(() => {
+        overlay.classList.remove("is-opening");
+        isPopupAnimating = false;
+      }, POPUP_OPEN_MS);
+    }
+
+    function closePopup() {
+      if (!overlay.classList.contains("show") || isPopupClosing) return;
+      if (popupAnimTimeout) {
+        clearTimeout(popupAnimTimeout);
+        popupAnimTimeout = null;
+      }
+      isPopupAnimating = true;
+      isPopupClosing = true;
+      overlay.classList.remove("is-opening");
+      overlay.classList.add("is-closing");
+      setStoredState("closed");
+      popupAnimTimeout = setTimeout(() => {
+        overlay.classList.remove("show", "is-closing");
+        overlay.setAttribute("aria-hidden", "true");
+        triggerBtn.classList.add("show");
+        document.body.classList.remove("seasonal-popup-open");
+        isPopupAnimating = false;
+        isPopupClosing = false;
+      }, POPUP_CLOSE_MS);
+    }
+
+    if (getStoredState() === "closed") {
+      overlay.classList.remove("show");
+      overlay.setAttribute("aria-hidden", "true");
+      triggerBtn.classList.add("show");
+    } else {
+      openPopup();
+    }
+
+    closeBtn.addEventListener("click", closePopup);
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) closePopup();
+    });
+
+    triggerBtn.addEventListener("click", () => {
+      openPopup();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && overlay.classList.contains("show")) {
+        closePopup();
+      }
+    });
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.classList.toggle("is-flipped");
+        }
+      });
+    });
+  }
+
+  initSeasonalPopup();
 
   // ---------- Traductions ----------
   const translations = {
