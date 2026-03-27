@@ -679,7 +679,7 @@ nav {
 .carte:nth-child(6) { animation-delay: 0.6s; }
 .carte:nth-child(7) { animation-delay: 0.7s; }
 .carte:nth-child(8) { animation-delay: 0.8s; }
-.carte:nth-child(8) { animation-delay:1s; }
+.carte:nth-child(9) { animation-delay:1s; }
 
 
 .carte-inner {
