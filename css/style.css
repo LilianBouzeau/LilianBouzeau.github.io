@@ -314,26 +314,17 @@ p {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform, opacity;
-  -webkit-animation: glowLetter 0.5s ease-in-out forwards;
-  animation: glowLetter 0.5s ease-in-out forwards;
+  transition: opacity 0.45s ease-in-out, transform 0.45s ease-in-out;
   cursor: pointer;
+}
+
+#titre.animated-title .letter.is-visible {
+  opacity: 1;
+  transform: translateZ(0) scale(1);
 }
 
 #titre.animated-title .letter:hover {  
     transform: scale(1.1);
-}
-
-@keyframes glowLetter {
-  0% {
-    opacity: 0;
-    color: var(--orange);
-    text-shadow: 0 0 0 transparent;
-    transform: translateZ(0) scale(0.1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateZ(0) scale(1);
-  }
 }
 
 /* ==================== NAVBAR ==================== */
