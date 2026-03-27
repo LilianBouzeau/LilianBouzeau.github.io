@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function animateTitleLetters() {
     const titleElement = document.getElementById("titre");
     if (!titleElement) return;
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
     
     const text = "Cruchaudet";
     titleElement.innerHTML = "";
@@ -49,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.className = "letter";
       span.textContent = letter;
-      span.style.animationDelay = (index * 0.15) + "s";
+      span.style.animationDelay = isIOS ? "0s" : (index * 0.15) + "s";
       titleElement.appendChild(span);
     });
   }
