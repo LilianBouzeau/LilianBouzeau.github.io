@@ -47,15 +47,25 @@ body {
 
 /* ===============================
    ANIMATIONS AU SCROLL
-=================================*/
+================================= */
+
+/* Base commune */
+.scroll-animate,
 .scroll-animateG,
 .scroll-animateD,
-.scroll-animate {
+.scroll-animate-opacity {
   opacity: 0;
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition: 
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
-/* Animations directionnelles */
+/* Directions */
+.scroll-animate {
+  transform: translateY(40px);
+}
+
 .scroll-animateG {
   transform: translateX(-40px);
 }
@@ -64,11 +74,13 @@ body {
   transform: translateX(40px);
 }
 
-.scroll-animate {
-  transform: translateY(40px);
+/* Fade only */
+.scroll-animate-opacity {
+  transform: none;
+  transition: var(--transition);
 }
 
-/* Apparition au scroll */
+/* État visible */
 .scroll-visible {
   opacity: 1;
   transform: translate(0, 0);
@@ -645,16 +657,7 @@ nav {
 }
 
 /* Animation d'apparition */
-@keyframes apparitionCartes {
-  0% {
-    opacity: 0;
-    transform: scale(0.3) translateY(-100px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+
 .carte {
   border-radius: var(--radius);
   padding: 15px;
@@ -664,23 +667,7 @@ nav {
   height: 300px;
   cursor: pointer;
   perspective: 1000px;
-
-  /* Animation */
-  opacity: 0;
-  animation: apparitionCartes 0.8s ease forwards;
 }
-
-/* Décalage pour effet en cascade */
-.carte:nth-child(1) { animation-delay: 0.1s; }
-.carte:nth-child(2) { animation-delay: 0.2s; }
-.carte:nth-child(3) { animation-delay: 0.3s; }
-.carte:nth-child(4) { animation-delay: 0.4s; }
-.carte:nth-child(5) { animation-delay: 0.5s; }
-.carte:nth-child(6) { animation-delay: 0.6s; }
-.carte:nth-child(7) { animation-delay: 0.7s; }
-.carte:nth-child(8) { animation-delay: 0.8s; }
-.carte:nth-child(9) { animation-delay:1s; }
-.carte:nth-child(10) { animation-delay:1.25s; }
 
 
 .carte-inner {

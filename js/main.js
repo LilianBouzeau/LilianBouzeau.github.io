@@ -270,20 +270,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ---------- IntersectionObserver pour animations au scroll ----------
-  const scrollElements = document.querySelectorAll('.scroll-animate, .scroll-animateG, .scroll-animateD');
-  if (scrollElements.length > 0) {
-    const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
+// ===============================
+// ANIMATIONS AU SCROLL
+// ===============================
+const scrollElements = document.querySelectorAll(
+  '.scroll-animate, .scroll-animateG, .scroll-animateD, .scroll-animate-opacity'
+);
+
+if (scrollElements.length > 0) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-      entry.target.classList.add('scroll-visible');
-      observer.unobserve(entry.target); // une seule fois
+        entry.target.classList.add('scroll-visible');
+        observer.unobserve(entry.target); // animation une seule fois
       }
     });
-    }, { threshold: 0.2 });
-    scrollElements.forEach(el => observer.observe(el));
-  }
+  }, {
+    threshold: 0.2
+  });
 
+  scrollElements.forEach((el) => {
+    observer.observe(el);
+  });
+}
   // ---------- Compteur ----------
   function animateCounters() {
     const counters = document.querySelectorAll(".counter");
