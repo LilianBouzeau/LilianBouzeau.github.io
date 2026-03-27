@@ -407,19 +407,15 @@ if (scrollElements.length > 0) {
     });
   }
 
-  // ---------- Pop-up produits de saison (index) ----------
+  // ---------- Pop-up produits de saison ----------
   function initSeasonalPopup() {
-    const currentPath = window.location.pathname.toLowerCase();
-    const isIndexPage = currentPath.endsWith("/index.html") || currentPath.endsWith("/") || currentPath === "/";
-    if (!isIndexPage) return;
-
     const overlay = document.getElementById("seasonalPopupOverlay");
     const closeBtn = document.getElementById("seasonalPopupClose");
     const triggerBtn = document.getElementById("seasonalPopupTrigger");
     const cards = document.querySelectorAll(".seasonal-card");
     if (!overlay || !closeBtn || !triggerBtn) return;
 
-    const storageKey = "indexSeasonalPopupClosed";
+    const storageKey = "seasonalPopupClosed";
     let popupAnimTimeout = null;
     let isPopupAnimating = false;
     let isPopupClosing = false;

@@ -336,9 +336,10 @@ nav {
   -webkit-backdrop-filter: blur(4px);
   /* pour Safari */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 990;
+  z-index: 1400;
   transition: background-color 0.3s, backdrop-filter 0.3s;
   font-size: 18px;
 }
@@ -399,6 +400,7 @@ nav {
   text-decoration: none;
   padding: 0px 15px;
   display: block;
+  font-weight: 700;
   transition: color 0.3s, transform 0.5s;
 }
 #nav-menu a:hover {
@@ -471,6 +473,13 @@ nav {
 
 /* Tablette */
 @media (max-width: 1024px) {
+  nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1400;
+  }
+
   #nav-menu {
   gap: 15px;
   }
@@ -484,6 +493,13 @@ nav {
 }
 /* Mobile */
 @media (max-width: 768px) {
+  nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1400;
+  }
+
   .hamburger {
   display: flex;
   }
@@ -505,7 +521,7 @@ nav {
   padding: 0;
   margin: 0;
   /* Même couleur et flou que la nav-container */
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   position: absolute;
@@ -1483,6 +1499,7 @@ path:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0;
   }
 
   /* Légende compacte au-dessus de la carte */
@@ -1492,7 +1509,8 @@ path:hover {
   font-size: 0.85rem;
   text-align: center;
   margin-bottom: 1rem;
-  width: auto;
+  width: 50%;
+  box-sizing: border-box;
   }
 
   .map-legend h3 {
@@ -1513,22 +1531,19 @@ path:hover {
 
   /* Carte centrée et adaptée à l’écran mobile */
   .map-wrap {
-  width: 100vw;
-  overflow: visible;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   }
 
   #svgmap {
-  width: 130%;
+  width: 100%;
   height: auto;
   max-width: none;
-
-  /* CENTRAGE PARFAIT */
-  position: relative;
-  left: 50%;
-  transform: translateX(-55%);
+  position: static;
+  transform: none;
   }
 }
 
