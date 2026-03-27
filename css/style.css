@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 :root {
@@ -2244,7 +2245,7 @@ COOKIES
 .seasonal-popup-trigger {
   position: fixed;
   bottom: 25px;
-  right: 80px;
+  right: 100px;
   border: none;
   border-radius: 999px;
   background: var(--orange);
@@ -2367,7 +2368,7 @@ body.seasonal-popup-open {
   #presentation,
   #Export,
   #contactExport {
-  width: 100vw;
+  width: 100%;
   margin: auto;
   }
 
@@ -2434,7 +2435,8 @@ body.seasonal-popup-open {
   }
 
   .seasonal-popup-trigger {
-  right: 70px;
+  right: 90px;
+  max-width: calc(100vw - 130px);
   bottom: 15px;
   padding: 10px 12px;
   font-size: 0.85rem;
