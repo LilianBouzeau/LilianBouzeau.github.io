@@ -49,43 +49,45 @@ body {
    ANIMATIONS AU SCROLL
 ================================= */
 
-/* Base commune */
+/* Base commune pour tous les éléments */
 .scroll-animate,
 .scroll-animateG,
 .scroll-animateD,
 .scroll-animate-opacity {
   opacity: 0;
+  transform: scale(0.97); /* léger “pop” initial */
   transition: 
-    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 1.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+    transform 1.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   will-change: opacity, transform;
 }
 
 /* Directions */
 .scroll-animate {
-  transform: translateY(40px);
+  transform: translateY(40px) scale(0.97);
 }
 
 .scroll-animateG {
-  transform: translateX(-40px);
+  transform: translateX(-40px) scale(0.97);
 }
 
 .scroll-animateD {
-  transform: translateX(40px);
+  transform: translateX(40px) scale(0.97);
 }
 
-/* Fade only */
+/* Fade uniquement */
 .scroll-animate-opacity {
-  transform: none;
-  transition: var(--transition);
+  transition: 
+    opacity 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s,  /* 1.6s durée + 0.2s delay */
+    transform 1.6s cubic-bezier(0.25, 0.8, 0.25, 1) 0.2s;
+  will-change: opacity, transform;
 }
 
-/* État visible */
+/* État visible au scroll */
 .scroll-visible {
   opacity: 1;
-  transform: translate(0, 0);
+  transform: translate(0, 0) scale(1);
 }
-
 /* ================================
    TITRES ET LIENS
 =================================*/
