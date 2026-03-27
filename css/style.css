@@ -2186,10 +2186,15 @@ COOKIES
   transition: transform 0.7s ease;
 }
 
-.seasonal-card:hover .seasonal-card-inner,
 .seasonal-card.is-flipped .seasonal-card-inner,
 .seasonal-card:focus-visible .seasonal-card-inner {
   transform: rotateY(180deg);
+}
+
+@media (min-width: 769px) {
+  .seasonal-card:hover .seasonal-card-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .seasonal-card-front,
@@ -2437,5 +2442,15 @@ body.seasonal-popup-open {
   bottom: 15px;
   padding: 10px 12px;
   font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+  font-size: 2rem;
+  }
+
+  .hero-overlay p {
+  font-size: 0.9rem;
   }
 }
