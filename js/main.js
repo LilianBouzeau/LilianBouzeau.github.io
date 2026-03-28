@@ -110,6 +110,66 @@ document.addEventListener("DOMContentLoaded", () => {
   // Appeler après initMenusEtTraductions()
   initSliderAvisClients();
   initSliderLogos();
+
+  // ------ Fallback sticky navbar (si sticky ne fonctionne pas) --------
+  function initStickyNavbarFallback() {
+    const nav = document.querySelector("nav");
+    if (!nav) return;
+
+    const root = document.documentElement;
+    let navStart = nav.getBoundingClientRect().top + window.scrollY;
+    let fallbackEnabled = false;
+
+    function setFallbackOffset() {
+      root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
+    }
+
+    function enableFallback() {
+      if (fallbackEnabled) return;
+      fallbackEnabled = true;
+      setFallbackOffset();
+      document.body.classList.add("nav-fallback-active");
+      nav.classList.add("nav-fallback-fixed");
+    }
+
+    function disableFallback() {
+      if (!fallbackEnabled) return;
+      fallbackEnabled = false;
+      document.body.classList.remove("nav-fallback-active");
+      nav.classList.remove("nav-fallback-fixed");
+    }
+
+    function stickySeemsWorking() {
+      if (window.scrollY <= navStart + 1) return true;
+      const navTop = Math.round(nav.getBoundingClientRect().top);
+      return navTop >= -1 && navTop <= 1;
+    }
+
+    function evaluateSticky() {
+      const shouldStick = window.scrollY > navStart + 1;
+
+      if (!shouldStick) {
+        disableFallback();
+        return;
+      }
+
+      if (!stickySeemsWorking()) enableFallback();
+      else disableFallback();
+    }
+
+    window.addEventListener("scroll", evaluateSticky, { passive: true });
+    window.addEventListener("resize", () => {
+      navStart = nav.getBoundingClientRect().top + window.scrollY;
+      setFallbackOffset();
+      evaluateSticky();
+    });
+
+    setFallbackOffset();
+    evaluateSticky();
+  }
+
+  initStickyNavbarFallback();
+
   // Menu / hamburger
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
