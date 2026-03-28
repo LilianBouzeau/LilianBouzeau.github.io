@@ -391,7 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const el = document.createElement("div");
         el.className = "footer-plane";
         el.style.backgroundImage = planeSvgDataUri(undefined);
-        el.style.opacity = String(randomBetween(0.38, 0.62));
+        el.style.opacity = "1";
         const scale = randomBetween(0.75, 1.18);
         el.dataset.scale = scale.toFixed(3);
         layer.appendChild(el);
