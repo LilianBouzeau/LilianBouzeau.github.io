@@ -111,6 +111,369 @@ document.addEventListener("DOMContentLoaded", () => {
   initSliderAvisClients();
   initSliderLogos();
 
+  // ------ Avions export sur la carte partenaires --------
+  function initMapExportFlights() {
+    const svg = document.getElementById("svgmap");
+    if (!svg || svg.querySelector(".map-flight-overlay")) return;
+
+    const exportPaths = Array.from(svg.querySelectorAll("path.PaysExport")).filter((pathEl) => {
+      return pathEl.id !== "FR" && !pathEl.classList.contains("France") && pathEl.getAttribute("name") !== "France";
+    });
+    if (!exportPaths.length) return;
+
+    const francePaths = Array.from(svg.querySelectorAll("path#FR, path[name='France'], path.France"));
+    if (!francePaths.length) return;
+
+    const getCenter = (pathEl) => {
+      const box = pathEl.getBBox();
+      return {
+        x: box.x + box.width / 2,
+        y: box.y + box.height / 2,
+      };
+    };
+
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    francePaths.forEach((pathEl) => {
+      const box = pathEl.getBBox();
+      minX = Math.min(minX, box.x);
+      maxX = Math.max(maxX, box.x + box.width);
+      minY = Math.min(minY, box.y);
+      maxY = Math.max(maxY, box.y + box.height);
+    });
+    const franceCenter = {
+      x: (minX + maxX) / 2,
+      y: (minY + maxY) / 2,
+    };
+
+    const uniqueTargets = [];
+    const seen = new Set();
+    exportPaths.forEach((pathEl) => {
+      const c = getCenter(pathEl);
+      const key = `${Math.round(c.x)}-${Math.round(c.y)}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      uniqueTargets.push(c);
+    });
+    if (!uniqueTargets.length) return;
+
+    const ns = "http://www.w3.org/2000/svg";
+    const overlay = document.createElementNS(ns, "g");
+    overlay.setAttribute("class", "map-flight-overlay");
+    svg.appendChild(overlay);
+
+    const planes = [];
+    const PLANE_D = "M22 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9L3 14v2l8-1.5V20l-2 1.5V23l3.5-1 3.5 1v-1.5L14 20v-5.5z";
+    const FLIGHT_PAUSE_SECONDS = 1.1;
+
+    uniqueTargets.forEach((target, idx) => {
+      const dx = target.x - franceCenter.x;
+      const dy = target.y - franceCenter.y;
+      const dist = Math.hypot(dx, dy) || 1;
+      const nx = -dy / dist;
+      const ny = dx / dist;
+      const amp = Math.min(180, 45 + dist * 0.12);
+      const direction = idx % 2 === 0 ? 1 : -1;
+      const cx = (franceCenter.x + target.x) / 2 + nx * amp * direction;
+      const cy = (franceCenter.y + target.y) / 2 + ny * amp * direction;
+
+      const route = document.createElementNS(ns, "path");
+      route.setAttribute("d", `M ${franceCenter.x} ${franceCenter.y} Q ${cx} ${cy} ${target.x} ${target.y}`);
+      const length = route.getTotalLength();
+
+      const plane = document.createElementNS(ns, "g");
+      plane.setAttribute("class", "map-flight-plane");
+      const planeShape = document.createElementNS(ns, "path");
+      planeShape.setAttribute("d", PLANE_D);
+      planeShape.setAttribute("transform", "translate(-12 -12) scale(0.62)");
+      planeShape.style.fill = "#FF8F00";
+      plane.appendChild(planeShape);
+      overlay.appendChild(plane);
+
+      planes.push({
+        route,
+        plane,
+        length,
+        target,
+        frameCenter: franceCenter,
+        speed: 20 + (idx % 4) * 5,
+        phase: 0,
+        flightDuration: 0,
+        cycleDuration: 0,
+      });
+    });
+
+    const count = Math.max(planes.length, 1);
+    planes.forEach((item, idx) => {
+      item.flightDuration = item.length / item.speed;
+      item.cycleDuration = item.flightDuration + FLIGHT_PAUSE_SECONDS;
+      item.phase = (idx / count) * item.cycleDuration;
+    });
+
+    let rafId = null;
+    const animate = (time) => {
+      const seconds = time / 1000;
+
+      planes.forEach((item) => {
+        const localTime = (seconds + item.phase) % item.cycleDuration;
+
+        if (localTime > item.flightDuration) {
+          item.plane.style.opacity = "0";
+          return;
+        }
+
+        item.plane.style.opacity = "0.95";
+        const progress = (localTime / item.flightDuration) * item.length;
+        
+        const p1 = item.route.getPointAtLength(progress);
+        const p2 = item.route.getPointAtLength(Math.min(progress + 2, item.length));
+        const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI + 90;
+        item.plane.setAttribute("transform", `translate(${p1.x} ${p1.y}) rotate(${angle})`);
+      });
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!rafId) rafId = requestAnimationFrame(animate);
+        } else if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(svg);
+    rafId = requestAnimationFrame(animate);
+  }
+
+  initMapExportFlights();
+
+  // ------ Trafic avion dans le footer --------
+  function initFooterAirTraffic() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const footers = document.querySelectorAll("footer");
+    if (!footers.length) return;
+
+    const PLANE_COLORS_BY_SLOT = ["orange", "orange", "orange", "accent", "accent"];
+    const PLANE_COUNT = PLANE_COLORS_BY_SLOT.length;
+    const MAX_TRAIL_DOTS = 20;
+    const PLANE_HEADING_OFFSET = 90;
+
+    const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+    const randomBetween = (min, max) => Math.random() * (max - min) + min;
+
+    const getCssVarColor = (el, varName, fallback) => {
+      const value = getComputedStyle(el).getPropertyValue(varName).trim();
+      return value || fallback;
+    };
+
+    const planeSvgDataUri = (fillColor) => {
+      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='${fillColor}' d='M22 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9L3 14v2l8-1.5V20l-2 1.5V23l3.5-1 3.5 1v-1.5L14 20v-5.5z'/></svg>`;
+      return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+    };
+
+    const cubicBezierPoint = (path, t) => {
+      const mt = 1 - t;
+      return {
+        x: mt ** 3 * path.p0.x + 3 * mt ** 2 * t * path.p1.x + 3 * mt * t ** 2 * path.p2.x + t ** 3 * path.p3.x,
+        y: mt ** 3 * path.p0.y + 3 * mt ** 2 * t * path.p1.y + 3 * mt * t ** 2 * path.p2.y + t ** 3 * path.p3.y,
+      };
+    };
+
+    const cubicBezierDerivative = (path, t) => {
+      const mt = 1 - t;
+      return {
+        x: 3 * mt ** 2 * (path.p1.x - path.p0.x) + 6 * mt * t * (path.p2.x - path.p1.x) + 3 * t ** 2 * (path.p3.x - path.p2.x),
+        y: 3 * mt ** 2 * (path.p1.y - path.p0.y) + 6 * mt * t * (path.p2.y - path.p1.y) + 3 * t ** 2 * (path.p3.y - path.p2.y),
+      };
+    };
+
+    footers.forEach((footer) => {
+      if (footer.querySelector(".footer-air-traffic")) return;
+
+      const layer = document.createElement("div");
+      layer.className = "footer-air-traffic";
+      footer.prepend(layer);
+
+      const orangeColor = getCssVarColor(footer, "--orange", "#FF8F00");
+      const accentColor = getCssVarColor(footer, "--accent", "#2E7D32");
+      const planeSvgs = {
+        orange: planeSvgDataUri(orangeColor),
+        accent: planeSvgDataUri(accentColor),
+      };
+
+      const planes = [];
+      let rafId = null;
+      let running = true;
+      let width = footer.clientWidth;
+      let height = footer.clientHeight;
+
+      const CORNER_KEYS = ["top-left", "top-right", "bottom-left", "bottom-right"];
+      const OPPOSITE_CORNERS = {
+        "top-left": ["bottom-right", "top-right", "bottom-left"],
+        "top-right": ["bottom-left", "top-left", "bottom-right"],
+        "bottom-left": ["top-right", "top-left", "bottom-right"],
+        "bottom-right": ["top-left", "top-right", "bottom-left"],
+      };
+
+      const getCornerPoint = (corner, outside) => {
+        const yTop = 6;
+        const yBottom = Math.max(16, height - 10);
+        if (corner === "top-left") return { x: -outside, y: yTop };
+        if (corner === "top-right") return { x: width + outside, y: yTop };
+        if (corner === "bottom-left") return { x: -outside, y: yBottom };
+        return { x: width + outside, y: yBottom };
+      };
+
+      const chooseEndCorner = (startCorner) => {
+        const choices = OPPOSITE_CORNERS[startCorner] || CORNER_KEYS;
+        return choices[Math.floor(Math.random() * choices.length)];
+      };
+
+      const createPath = (startCorner) => {
+        const outside = 120;
+        const yMin = 6;
+        const yMax = Math.max(16, height - 10);
+        const endCorner = chooseEndCorner(startCorner);
+        const startPoint = getCornerPoint(startCorner, outside);
+        const endPoint = getCornerPoint(endCorner, outside);
+        const startY = startPoint.y;
+        const endY = endPoint.y;
+        const c1Y = clamp(startY + randomBetween(-height * 0.35, height * 0.3), yMin, yMax);
+        const c2Y = clamp(endY + randomBetween(-height * 0.35, height * 0.3), yMin, yMax);
+        const goingLeftToRight = startPoint.x < endPoint.x;
+        const c1xMin = goingLeftToRight ? 0.18 : 0.55;
+        const c1xMax = goingLeftToRight ? 0.45 : 0.85;
+        const c2xMin = goingLeftToRight ? 0.55 : 0.18;
+        const c2xMax = goingLeftToRight ? 0.85 : 0.45;
+
+        return {
+          p0: { x: startPoint.x, y: startY },
+          p1: { x: width * randomBetween(c1xMin, c1xMax), y: c1Y },
+          p2: { x: width * randomBetween(c2xMin, c2xMax), y: c2Y },
+          p3: { x: endPoint.x, y: endY },
+        };
+      };
+
+      const resetPlane = (plane, now) => {
+        plane.path = createPath(plane.startCorner);
+        plane.duration = randomBetween(11000, 18000);
+        plane.dotInterval = randomBetween(70, 120);
+        plane.lastDotAt = now;
+        plane.startAt = now;
+      };
+
+      const addTrailDot = (plane, x, y) => {
+        const dot = document.createElement("span");
+        dot.className = "footer-plane-trail-dot";
+        const size = randomBetween(3.6, 6.8);
+        dot.style.width = `${size}px`;
+        dot.style.height = `${size}px`;
+        dot.style.left = `${x}px`;
+        dot.style.top = `${y}px`;
+        layer.appendChild(dot);
+
+        plane.trailDots.push(dot);
+        if (plane.trailDots.length > MAX_TRAIL_DOTS) {
+          const oldest = plane.trailDots.shift();
+          if (oldest) oldest.remove();
+        }
+
+        dot.addEventListener("animationend", () => {
+          const idx = plane.trailDots.indexOf(dot);
+          if (idx >= 0) plane.trailDots.splice(idx, 1);
+          dot.remove();
+        }, { once: true });
+      };
+
+      for (let i = 0; i < PLANE_COUNT; i += 1) {
+        const el = document.createElement("div");
+        el.className = "footer-plane";
+        const slotColor = PLANE_COLORS_BY_SLOT[i];
+        el.style.backgroundImage = planeSvgs[slotColor] || planeSvgs.orange;
+        el.style.opacity = String(randomBetween(0.38, 0.62));
+        const scale = randomBetween(0.75, 1.18);
+        el.dataset.scale = scale.toFixed(3);
+        layer.appendChild(el);
+
+        const plane = {
+          el,
+          path: null,
+          startCorner: CORNER_KEYS[i] || CORNER_KEYS[Math.floor(Math.random() * CORNER_KEYS.length)],
+          duration: 0,
+          dotInterval: 90,
+          startAt: performance.now() - randomBetween(0, 7000),
+          lastDotAt: 0,
+          trailDots: [],
+        };
+
+        resetPlane(plane, plane.startAt);
+        planes.push(plane);
+      }
+
+      const animate = (now) => {
+        if (!running) return;
+
+        width = footer.clientWidth;
+        height = footer.clientHeight;
+
+        planes.forEach((plane) => {
+          let t = (now - plane.startAt) / plane.duration;
+
+          if (t >= 1) {
+            resetPlane(plane, now);
+            t = 0;
+          }
+
+          const point = cubicBezierPoint(plane.path, t);
+          const velocity = cubicBezierDerivative(plane.path, t);
+          const angle = Math.atan2(velocity.y, velocity.x) * (180 / Math.PI) + PLANE_HEADING_OFFSET;
+          const scale = Number(plane.el.dataset.scale || 1);
+
+          plane.el.style.transform = `translate3d(${point.x}px, ${point.y}px, 0) rotate(${angle}deg) scale(${scale})`;
+
+          if (now - plane.lastDotAt >= plane.dotInterval) {
+            plane.lastDotAt = now;
+            const centerX = point.x + plane.el.offsetWidth / 2;
+            const centerY = point.y + plane.el.offsetHeight / 2;
+            const speed = Math.hypot(velocity.x, velocity.y) || 1;
+            const dirX = velocity.x / speed;
+            const dirY = velocity.y / speed;
+            const tailDistance = (plane.el.offsetWidth * scale) * 0.42;
+            const tailX = centerX - dirX * tailDistance;
+            const tailY = centerY - dirY * tailDistance;
+            addTrailDot(plane, tailX, tailY);
+          }
+        });
+
+        rafId = requestAnimationFrame(animate);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!running) {
+              running = true;
+              rafId = requestAnimationFrame(animate);
+            }
+          } else {
+            running = false;
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = null;
+          }
+        });
+      }, { threshold: 0.01 });
+
+      observer.observe(footer);
+      rafId = requestAnimationFrame(animate);
+    });
+  }
+
+  initFooterAirTraffic();
+
   // ------ Fallback sticky navbar (si sticky ne fonctionne pas) --------
   function initStickyNavbarFallback() {
     const nav = document.querySelector("nav");
