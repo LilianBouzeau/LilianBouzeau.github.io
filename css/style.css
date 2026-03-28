@@ -1478,7 +1478,7 @@ path:hover {
 }
 
 .map-flight-path.is-accent {
-  stroke: var(--accent);
+  stroke: var(--accent);  
 }
 
 .map-flight-plane {
@@ -1868,36 +1868,11 @@ footer {
   isolation: isolate;
   border: none;
   margin: 0;
+  border-top: none;
+  border-bottom: none;
 }
 
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 72px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 140' preserveAspectRatio='none'%3E%3Cpath fill='%23F5F1E6' d='M0,56 C50,20 100,20 150,56 C200,92 250,92 300,56 C350,20 400,20 450,56 C500,92 550,92 600,56 L600,0 L0,0 Z'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-size: 480px 72px;
-  background-position: 0 0;
-  animation: footerWaveDrift 8s linear infinite;
-  pointer-events: none;
-  z-index: 2;
-  display: block;
-  margin: 0;
-  padding: 0;
-}
 
-@keyframes footerWaveDrift {
-  from {
-    background-position-x: 0;
-  }
-  to {
-    background-position-x: 480px;
-  }
-}
 
 footer > *:not(.footer-air-traffic) {
   position: relative;
@@ -2598,6 +2573,12 @@ body.seasonal-popup-open {
   right: 0;
   margin: 0;
   padding: 0;
+  }
+
+  footer {
+  border: none;
+  border-top: none;
+  border-bottom: none;
   }
 }
 

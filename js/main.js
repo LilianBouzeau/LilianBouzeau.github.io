@@ -257,8 +257,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const footers = document.querySelectorAll("footer");
     if (!footers.length) return;
 
-    const PLANE_COLORS_BY_SLOT = ["orange", "orange", "orange", "accent", "accent"];
-    const PLANE_COUNT = PLANE_COLORS_BY_SLOT.length;
+    const PLANE_COLORS_BY_SLOT = ["orange", "orange", "orange", "accent", "accent", "orange", "accent", "orange", "accent", "orange", "accent", "orange", "accent"];
+    const PLANE_COUNT = Math.floor(Math.random() * (15 - 10 + 1)) + 10;
     const MAX_TRAIL_DOTS = 20;
     const PLANE_HEADING_OFFSET = 90;
 
@@ -271,8 +271,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const planeSvgDataUri = (fillColor) => {
-      const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='${fillColor}' d='M22 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9L3 14v2l8-1.5V20l-2 1.5V23l3.5-1 3.5 1v-1.5L14 20v-5.5z'/></svg>`;
-      return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+      const fruits = ["🍎", "🍊", "🥕", "🥦", "🍇", "🥬", "🥭", "🍌", "🍆", "🥑", "🍄", "🥒", "🌽", "🥔", "🧅", "🧄", "🫒", "🍅"];
+      const fruit = fruits[Math.floor(Math.random() * fruits.length)];
+      return `url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text x='12' y='16' font-size='20' text-anchor='middle' dominant-baseline='middle'>${fruit}</text></svg>`)}")`;
     };
 
     const cubicBezierPoint = (path, t) => {
@@ -300,10 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const orangeColor = getCssVarColor(footer, "--orange", "#FF8F00");
       const accentColor = getCssVarColor(footer, "--accent", "#2E7D32");
-      const planeSvgs = {
-        orange: planeSvgDataUri(orangeColor),
-        accent: planeSvgDataUri(accentColor),
-      };
+      // Chaque fruit est généré aléatoirement au lieu de réutiliser le même
 
       const planes = [];
       let rafId = null;
@@ -392,8 +390,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < PLANE_COUNT; i += 1) {
         const el = document.createElement("div");
         el.className = "footer-plane";
-        const slotColor = PLANE_COLORS_BY_SLOT[i];
-        el.style.backgroundImage = planeSvgs[slotColor] || planeSvgs.orange;
+        el.style.backgroundImage = planeSvgDataUri(undefined);
         el.style.opacity = String(randomBetween(0.38, 0.62));
         const scale = randomBetween(0.75, 1.18);
         el.dataset.scale = scale.toFixed(3);
@@ -402,10 +399,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const plane = {
           el,
           path: null,
-          startCorner: CORNER_KEYS[i] || CORNER_KEYS[Math.floor(Math.random() * CORNER_KEYS.length)],
+          startCorner: CORNER_KEYS[i % CORNER_KEYS.length],
           duration: 0,
-          dotInterval: 90,
-          startAt: performance.now() - randomBetween(0, 7000),
+          dotInterval: randomBetween(70, 150),
+          startAt: performance.now() - randomBetween(0, 12000) - (i * 800),
           lastDotAt: 0,
           trailDots: [],
         };
@@ -437,15 +434,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (now - plane.lastDotAt >= plane.dotInterval) {
             plane.lastDotAt = now;
-            const centerX = point.x + plane.el.offsetWidth / 2;
-            const centerY = point.y + plane.el.offsetHeight / 2;
-            const speed = Math.hypot(velocity.x, velocity.y) || 1;
-            const dirX = velocity.x / speed;
-            const dirY = velocity.y / speed;
-            const tailDistance = (plane.el.offsetWidth * scale) * 0.42;
-            const tailX = centerX - dirX * tailDistance;
-            const tailY = centerY - dirY * tailDistance;
-            addTrailDot(plane, tailX, tailY);
+            // Trail dots désactivés - fruits et légumes sans pointillés
+            // const centerX = point.x + plane.el.offsetWidth / 2;
+            // const centerY = point.y + plane.el.offsetHeight / 2;
+            // const speed = Math.hypot(velocity.x, velocity.y) || 1;
+            // const dirX = velocity.x / speed;
+            // const dirY = velocity.y / speed;
+            // const tailDistance = (plane.el.offsetWidth * scale) * 0.42;
+            // const tailX = centerX - dirX * tailDistance;
+            // const tailY = centerY - dirY * tailDistance;
+            // addTrailDot(plane, tailX, tailY);
           }
         });
 
