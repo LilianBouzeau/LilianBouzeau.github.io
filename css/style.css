@@ -2374,7 +2374,7 @@ COOKIES
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 1402;
   transition: var(--transition);
 }
 
@@ -2423,7 +2423,7 @@ body.seasonal-popup-open {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 1301;
+  z-index: 1402;
   transform: none;
 }
 
