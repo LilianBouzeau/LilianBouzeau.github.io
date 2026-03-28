@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plane.setAttribute("class", "map-flight-plane");
       const planeShape = document.createElementNS(ns, "path");
       planeShape.setAttribute("d", PLANE_D);
-      planeShape.setAttribute("transform", "translate(-12 -12) scale(0.62)");
+      planeShape.setAttribute("transform", "translate(-12 -12) scale(1.2)");
       planeShape.style.fill = "#FF8F00";
       plane.appendChild(planeShape);
       overlay.appendChild(plane);
@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
         el.className = "footer-plane";
         el.style.backgroundImage = planeSvgDataUri(undefined);
         el.style.opacity = "1";
-        const scale = randomBetween(0.75, 1.18);
+        const scale = randomBetween(1.15, 1.65);
         el.dataset.scale = scale.toFixed(3);
         layer.appendChild(el);
 
