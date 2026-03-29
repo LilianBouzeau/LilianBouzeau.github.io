@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 :root {
@@ -43,6 +44,7 @@ body {
   color: var(--noir);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* ===============================
@@ -615,7 +617,7 @@ nav.nav-fallback-fixed {
   }
 }
 .nav-logo img {
-  margin-left: 5%;
+  margin-left: 0;
 }
 /* Mobile */
 @media (max-width: 768px) {
@@ -635,9 +637,9 @@ nav.nav-fallback-fixed {
   /* 2 produits par ligne avec un petit gap */
   max-width: calc(50% - 0.5rem);
   }
-.nav-logo img {
-  margin-left: 5%;
-}
+  .nav-logo img {
+  margin-left: 0;
+  }
   /* Menu principal en dessous de la navbar */
   #nav-menu {
   display: none;
@@ -755,7 +757,7 @@ nav.nav-fallback-fixed {
    SECTIONS DE PAGE (Présentation, Export, Contact)
 =================================*/
 #presentation {
-  width: 100vw;
+  width: 100%;
   margin: auto;
 }
 
