@@ -472,29 +472,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initFooterAirTraffic();
 
-  // ------ Navbar toujours visible en haut --------
+  // ------ Navbar en haut apres le header sur l'accueil --------
   function initStickyNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
+    const isHomePage = document.body.classList.contains("home-page");
 
     const root = document.documentElement;
+    let navStart = nav.getBoundingClientRect().top + window.scrollY;
+    let rafPending = false;
 
     function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
-    function enableStickyTop() {
-      document.body.classList.add("nav-fallback-active");
-      nav.classList.add("nav-fallback-fixed");
+    function updateStickyState() {
+      const shouldFix = isHomePage ? window.scrollY >= navStart : true;
+      document.body.classList.toggle("nav-fallback-active", shouldFix);
+      nav.classList.toggle("nav-fallback-fixed", shouldFix);
     }
 
+    function scheduleUpdate() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        updateStickyState();
+      });
+    }
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", () => {
       setNavOffset();
-      enableStickyTop();
+      navStart = nav.getBoundingClientRect().top + window.scrollY;
+      updateStickyState();
     });
 
+    if (isHomePage) {
+      document.body.classList.remove("nav-fallback-active");
+      nav.classList.remove("nav-fallback-fixed");
+    }
+
     setNavOffset();
-    enableStickyTop();
+    updateStickyState();
   }
 
   initStickyNavbar();
