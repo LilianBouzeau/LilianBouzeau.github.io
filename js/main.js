@@ -480,13 +480,27 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
     let rafPending = false;
+    let hasBeenSticky = false;
 
     function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
     function updateStickyState() {
-      const shouldFix = window.scrollY >= navStart;
+      const y = window.scrollY;
+
+      // Dès que la navbar est devenue sticky une fois, on la garde visible
+      // pendant la remontée et on la relâche seulement tout en haut de page.
+      if (y >= navStart) {
+        hasBeenSticky = true;
+      }
+
+      const shouldFix = y >= navStart || (hasBeenSticky && y > 2);
+
+      if (y <= 2) {
+        hasBeenSticky = false;
+      }
+
       document.body.classList.toggle("nav-fallback-active", shouldFix);
       nav.classList.toggle("nav-fallback-fixed", shouldFix);
     }
