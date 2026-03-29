@@ -472,70 +472,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initFooterAirTraffic();
 
-  // ------ Navbar en haut apres le header sur l'accueil --------
+  // ------ Navbar toujours visible en haut --------
   function initStickyNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
-    const isHomePage = document.body.classList.contains("home-page");
 
     const root = document.documentElement;
-    let navStart = nav.getBoundingClientRect().top + window.scrollY;
-    let rafPending = false;
-    let isHomeFixed = false;
-    const ENTER_STICKY_OFFSET = 6;
-    const EXIT_STICKY_OFFSET = 28;
 
     function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
-    function updateStickyState() {
-      let shouldFix;
-
-      if (isHomePage) {
-        const y = window.scrollY;
-
-        if (isHomeFixed) {
-          shouldFix = y > navStart - EXIT_STICKY_OFFSET;
-        } else {
-          shouldFix = y >= navStart + ENTER_STICKY_OFFSET;
-        }
-
-        isHomeFixed = shouldFix;
-      } else {
-        shouldFix = true;
-      }
-
-      document.body.classList.toggle("nav-fallback-active", shouldFix);
-      nav.classList.toggle("nav-fallback-fixed", shouldFix);
+    function enableStickyTop() {
+      document.body.classList.add("nav-fallback-active");
+      nav.classList.add("nav-fallback-fixed");
     }
 
-    function scheduleUpdate() {
-      if (rafPending) return;
-      rafPending = true;
-      requestAnimationFrame(() => {
-        rafPending = false;
-        updateStickyState();
-      });
-    }
-
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", () => {
       setNavOffset();
-      navStart = nav.getBoundingClientRect().top + window.scrollY;
-      if (isHomePage && window.scrollY <= navStart - EXIT_STICKY_OFFSET) {
-        isHomeFixed = false;
-      }
-      updateStickyState();
+      enableStickyTop();
     });
 
-    if (isHomePage) {
-      document.body.classList.remove("nav-fallback-active");
-      nav.classList.remove("nav-fallback-fixed");
-    }
-
     setNavOffset();
-    updateStickyState();
+    enableStickyTop();
   }
 
   initStickyNavbar();
