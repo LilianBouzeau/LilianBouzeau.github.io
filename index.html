@@ -61,13 +61,13 @@
             </video>
             <!-- Texte de présentation -->
             <div class="hero-overlay">
-                <span class="hero-kicker">Grossiste fruits & légumes depuis 1983</span>
+                <span id="heroKicker" class="hero-kicker">Grossiste fruits & légumes depuis 1983</span>
                 <h1 id="titre" class="animated-title"></h1>
                 <p id="phrase1">Des fruits et légumes frais, chaque jour.</p>
                 <p id="phrase2">Au départ de <span class="Rungis">Rungis</span>.</p>
                 <div class="hero-actions">
-                    <a class="hero-btn hero-btn-primary" href="#presentation">Découvrir notre histoire</a>
-                    <a class="hero-btn hero-btn-secondary" href="page/rayon.html">Voir nos rayons</a>
+                    <a id="heroBtnStory" class="hero-btn hero-btn-primary" href="#presentation">Découvrir notre histoire</a>
+                    <a id="heroBtnDepartments" class="hero-btn hero-btn-secondary" href="page/rayon.html">Voir nos rayons</a>
                 </div>
                 <a class="hero-scroll-indicator" href="#presentation" aria-label="Descendre vers la présentation">
                     <span></span>
@@ -168,7 +168,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Asperges</h4>
-                                <p>Asperges vertes et blanches, récoltées en pleine saison pour une texture tendre et un goût délicat.</p>
+                                <p id="seasonalAsparagusDesc">Asperges vertes et blanches, récoltées en pleine saison pour une texture tendre et un goût délicat.</p>
                             </div>
                         </div>
                     </article>
@@ -181,7 +181,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Artichauts</h4>
-                                <p>Artichauts frais, généreux et savoureux, parfaits pour les plats traditionnels et les recettes créatives.</p>
+                                <p id="seasonalArtichokeDesc">Artichauts frais, généreux et savoureux, parfaits pour les plats traditionnels et les recettes créatives.</p>
                             </div>
                         </div>
                     </article>
@@ -194,7 +194,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Fraises</h4>
-                                <p>Fraises sucrées et parfumées, sélectionnées pour leur fraîcheur et leur belle tenue en vitrine.</p>
+                                <p id="seasonalStrawberryDesc">Fraises sucrées et parfumées, sélectionnées pour leur fraîcheur et leur belle tenue en vitrine.</p>
                             </div>
                         </div>
                     </article>
@@ -207,7 +207,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Pommes</h4>
-                                <p>Pommes croquantes et équilibrées, disponibles en plusieurs variétés pour tous les usages.</p>
+                                <p id="seasonalAppleDesc">Pommes croquantes et équilibrées, disponibles en plusieurs variétés pour tous les usages.</p>
                             </div>
                         </div>
                     </article>
@@ -216,7 +216,7 @@
         </div>
         <button id="seasonalPopupTrigger" class="seasonal-popup-trigger" type="button" aria-label="Réouvrir Produits de saison">
             <i class="bi bi-basket3-fill"></i>
-            <span>Produits de saison</span>
+            <span id="seasonalTriggerText">Produits de saison</span>
         </button>
         <!-- ==================== SECTION PRÉSENTATION ==================== -->
         <div id="presentation">
@@ -225,7 +225,7 @@
                     <!-- Bloc 1 : Début -->
                 <div id="histoireD">
                     <h3 id="titreBio1" class="TitreBio highlight scroll-animateG">Début</h3>
-                    <p class="paragrapheBio scroll-animateG">
+                    <p id="histoireText1" class="paragrapheBio scroll-animateG">
                         Notre histoire commence en 1983, portée par une ambition claire : offrir des produits de qualité
                         en nous appuyant sur un savoir-faire exigeant. Dès nos débuts, nous avons évolué dans un
                         environnement où tradition et précision sont essentielles. Nous avons toujours placé la rigueur
@@ -236,7 +236,7 @@
                 <div id="histoireE">
                     <!-- Bloc 2 : Évolution -->>
                     <h3 id="titreBio2" class="TitreBio highlight scroll-animateD">Evolution</h3>
-                    <p class="paragrapheBio scroll-animateD">
+                    <p id="histoireText2" class="paragrapheBio scroll-animateD">
                         Au fil des années, nous avons connu une croissance progressive en nous adaptant aux évolutions
                         du marché et aux nouvelles attentes des consommateurs. Tout en restant fidèles à nos valeurs
                         d’origine, nous avons su diversifier nos activités, développer notre expertise et renforcer
@@ -248,7 +248,7 @@
                 <div id="histoireP">
                     <!-- Bloc 3 : Maintenant -->
                     <h3 id="titreBio3" class="TitreBio highlight scroll-animateG">Présent</h3>
-                    <p class="paragrapheBio scroll-animateG">
+                    <p id="histoireText3" class="paragrapheBio scroll-animateG">
                         Aujourd’hui, nous nous imposons comme une entreprise reconnue dans notre domaine et faisons
                         partie des piliers du MIN de Rungis, en alliant tradition et modernité. Nous continuons de
                         valoriser notre héritage tout en intégrant de nouveaux produits afin de rester compétitifs.

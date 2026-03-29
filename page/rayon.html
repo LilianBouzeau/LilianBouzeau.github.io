@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 
 <head>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Asperges</h4>
-                                <p>Asperges vertes et blanches, récoltées en pleine saison pour une texture tendre et un goût délicat.</p>
+                                <p id="seasonalAsparagusDesc">Asperges vertes et blanches, récoltées en pleine saison pour une texture tendre et un goût délicat.</p>
                             </div>
                         </div>
                     </article>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Artichauts</h4>
-                                <p>Artichauts frais, généreux et savoureux, parfaits pour les plats traditionnels et les recettes créatives.</p>
+                                <p id="seasonalArtichokeDesc">Artichauts frais, généreux et savoureux, parfaits pour les plats traditionnels et les recettes créatives.</p>
                             </div>
                         </div>
                     </article>
@@ -148,7 +148,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Fraises</h4>
-                                <p>Fraises sucrées et parfumées, sélectionnées pour leur fraîcheur et leur belle tenue en vitrine.</p>
+                                <p id="seasonalStrawberryDesc">Fraises sucrées et parfumées, sélectionnées pour leur fraîcheur et leur belle tenue en vitrine.</p>
                             </div>
                         </div>
                     </article>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="seasonal-card-back">
                                 <h4>Pommes</h4>
-                                <p>Pommes croquantes et équilibrées, disponibles en plusieurs variétés pour tous les usages.</p>
+                                <p id="seasonalAppleDesc">Pommes croquantes et équilibrées, disponibles en plusieurs variétés pour tous les usages.</p>
                             </div>
                         </div>
                     </article>
@@ -170,7 +170,7 @@
         </div>
         <button id="seasonalPopupTrigger" class="seasonal-popup-trigger" type="button" aria-label="Réouvrir Produits de saison">
             <i class="bi bi-basket3-fill"></i>
-            <span>Produits de saison</span>
+            <span id="seasonalTriggerText">Produits de saison</span>
         </button>
         <!-- ==================== SECTION PRÉSENTATION ==================== -->
         <div id="presentation">
@@ -178,7 +178,7 @@
                 <!-- Rayons 1 : Fruits -->
                 <div id="rayonF" class="alignement">
                     <h3 id="titreRayon1" class="TitreBio highlight scroll-animateD">Fruits</h3>
-                    <p class="paragrapheBio  scroll-animateD">
+                    <p id="rayonText1" class="paragrapheBio  scroll-animateD">
                         Au rayon fruits, nous vous proposons une large sélection de produits frais, soigneusement
                         choisis pour leur qualité et leur fraîcheur. Issus de producteurs locaux et internationaux, nous
                         sélectionnons nos fruits avec rigueur afin de garantir goût, maturité et diversité tout au long
@@ -191,16 +191,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍌</div>
-                                    <h4>Bananes</h4>
+                                    <h4 id="cardBananasTitle">Bananes</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Bananes</h4>
+                                    <h4 id="cardBananasVarieties">Variétés de Bananes</h4>
                                     <ul>
                                         <li>Banane</li>
                                         <li>Frecinette</li>
                                         <li>Banane verte</li>
                                         <li>Banane Bio</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -210,16 +210,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍎</div>
-                                    <h4>Pommes</h4>
+                                    <h4 id="cardApplesTitle">Pommes</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Pommes</h4>
+                                    <h4 id="cardApplesVarieties">Variétés de Pommes</h4>
                                     <ul>
                                         <li>Pink Lady</li>
                                         <li>Golden Delicious</li>
                                         <li>Granny Smith</li>
                                         <li>Fuji</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -229,15 +229,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍐</div>
-                                    <h4>Poires</h4>
+                                    <h4 id="cardPearsTitle">Poires</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Poires</h4>
+                                    <h4 id="cardPearsVarieties">Variétés de Poires</h4>
                                     <ul>
                                         <li>Comice</li>
                                         <li>Williams</li>
                                         <li>Conférence</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -247,15 +247,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🥝</div>
-                                    <h4>Kiwis</h4>
+                                    <h4 id="cardKiwisTitle">Kiwis</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Kiwis</h4>
+                                    <h4 id="cardKiwisVarieties">Variétés de Kiwis</h4>
                                     <ul>
                                         <li>vert</li>
                                         <li>Gold</li>
                                         <li>Rouge</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -265,15 +265,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍈</div>
-                                    <h4>Melons</h4>
+                                    <h4 id="cardMelonsTitle">Melons</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Melons</h4>
+                                    <h4 id="cardMelonsVarieties">Variétés de Melons</h4>
                                     <ul>
                                         <li>Philibon</li>
                                         <li>Charentais</li>
                                         <li>Boule de miel</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -283,16 +283,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍊</div>
-                                    <h4>Agrumes</h4>
+                                    <h4 id="cardCitrusTitle">Agrumes</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés d'Agrumes</h4>
+                                    <h4 id="cardCitrusVarieties">Variétés d'Agrumes</h4>
                                     <ul>
                                         <li>Citron</li>
                                         <li>Orange</li>
                                         <li>Clémentine</li>
                                         <li>Pamplemousse</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -302,16 +302,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍓</div>
-                                    <h4>Fruits Rouges</h4>
+                                    <h4 id="cardBerriesTitle">Fruits Rouges</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Fruits Rouges</h4>
+                                    <h4 id="cardBerriesVarieties">Variétés de Fruits Rouges</h4>
                                     <ul>
                                         <li>Fraise</li>
                                         <li>Framboise</li>
                                         <li>Myrtille</li>
                                         <li>Mûre</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -320,15 +320,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍇</div>
-                                    <h4>Raisins</h4>
+                                    <h4 id="cardGrapesTitle">Raisins</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Raisins</h4>
+                                    <h4 id="cardGrapesVarieties">Variétés de Raisins</h4>
                                     <ul>
                                         <li>Raisin noir</li>
                                         <li>Raisin rose</li>
                                         <li>Raisin blanc</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -337,16 +337,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍑</div>
-                                    <h4>Fruits à noyau</h4>
+                                    <h4 id="cardStoneFruitTitle">Fruits à noyau</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de fruits à noyau</h4>
+                                    <h4 id="cardStoneFruitVarieties">Variétés de fruits à noyau</h4>
                                     <ul>
                                         <li>Abricot</li>
                                         <li>Pêche plate</li>
                                         <li>Nectarine</li>
                                         <li>Pêche</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -356,7 +356,7 @@
                 <!-- Rayons 2 : Legumes -->
                 <div id="rayonL" class="alignement">
                     <h3 id="titreRayon2" class="TitreBio highlight scroll-animateG">Legumes</h3>
-                    <p class="paragrapheBio  scroll-animateG">
+                    <p id="rayonText2" class="paragrapheBio  scroll-animateG">
                         Au rayon légumes, nous vous proposons une grande variété de produits frais, rigoureusement
                         sélectionnés pour répondre aux standards de qualité les plus exigeants. Nous veillons à la
                         fraîcheur, à la traçabilité et à la conformité de nos légumes aux normes sanitaires. Ainsi,
@@ -371,16 +371,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🍅</div>
-                                    <h4>Tomates</h4>
+                                    <h4 id="cardTomatoesTitle">Tomates</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Tomates</h4>
+                                    <h4 id="cardTomatoesVarieties">Variétés de Tomates</h4>
                                     <ul>
                                         <li>Coeur de boeif</li>
                                         <li>Noire</li>
                                         <li>Ananas</li>
                                         <li>Cerise</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -390,16 +390,16 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🫑</div>
-                                    <h4>Ratatouille</h4>
+                                    <h4 id="cardRatatouilleTitle">Ratatouille</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Ingrédients principaux</h4>
+                                    <h4 id="cardRatatouilleMainIngredients">Ingrédients principaux</h4>
                                     <ul>
                                         <li>Aubergine</li>
                                         <li>Poivron</li>
                                         <li>Courgette</li>
                                         <li>Concombre</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -409,17 +409,17 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🥕</div>
-                                    <h4>Racines & Bulbes</h4>
+                                    <h4 id="cardRootsBulbsTitle">Racines & Bulbes</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés principales</h4>
+                                    <h4 id="cardRootsBulbsVarieties">Variétés principales</h4>
                                     <ul>
                                         <li>Betterave</li>
                                         <li>Navet</li>
                                         <li>Carotte</li>
                                         <li>Radis</li>
                                         <li>Endive</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -429,14 +429,14 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🥦</div>
-                                    <h4>Brocoli & Artichaut</h4>
+                                    <h4 id="cardBroccoliArtichokeTitleFront">Brocoli & Artichaut</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Brocoli & Artichaut</h4>
+                                    <h4 id="cardBroccoliArtichokeTitleBack">Brocoli & Artichaut</h4>
                                     <ul>
                                         <li>Brocoli</li>
                                         <li>Artichaut</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -446,17 +446,17 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🔴</div>
-                                    <h4>Les choux</h4>
+                                    <h4 id="cardCabbagesTitle">Les choux</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de Choux</h4>
+                                    <h4 id="cardCabbagesVarieties">Variétés de Choux</h4>
                                     <ul>
                                         <li>Chou-fleur</li>
                                         <li>Chou blanc</li>
                                         <li>Chou rouge</li>
                                         <li>Chou de Bruxelles</li>
                                         <li>Romanesco</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -466,10 +466,10 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🥬</div>
-                                    <h4>Salades</h4>
+                                    <h4 id="cardSaladsTitle">Salades</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés de salade</h4>
+                                    <h4 id="cardSaladsVarieties">Variétés de salade</h4>
                                     <ul>
                                         <li>Batavia</li>
                                         <li>Laitue</li>
@@ -477,7 +477,7 @@
                                         <li>Feuille de chêne</li>
                                         <li>Lollo Rossa</li>
 
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -487,15 +487,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">🎃</div> <!-- emoji potiron -->
-                                    <h4>Potirons </h4>
+                                    <h4 id="cardPumpkinsTitle">Potirons </h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés principales</h4>
+                                    <h4 id="cardPumpkinsVarieties">Variétés principales</h4>
                                     <ul>
                                         <li>Potiron</li>
                                         <li>Potimarron</li>
                                         <li>Butternut</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -505,15 +505,15 @@
                             <div class="carte-inner">
                                 <div class="carte-front">
                                     <div style="font-size: 60px;">⚪</div>
-                                    <h4>Autres légumes</h4>
+                                    <h4 id="cardOtherVegetablesTitle">Autres légumes</h4>
                                 </div>
                                 <div class="carte-back">
-                                    <h4>Variétés d'Autres Légumes</h4>
+                                    <h4 id="cardOtherVegetablesVarieties">Variétés d'Autres Légumes</h4>
                                     <ul>
                                         <li>Poireaux</li>
                                         <li>Fenouil</li>
                                         <li>celeri branche</li>
-                                        <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                        <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                     </ul>
                                 </div>
                             </div>
@@ -524,7 +524,7 @@
             <!-- Rayons 3 : Mini-Legumes -->
             <div id="rayonML" class="alignement">
                 <h3 id="titreRayon3" class="TitreBio highlight scroll-animateD">Mini-légumes</h3>
-                <p class="paragrapheBio  scroll-animateD">
+                <p id="rayonText3" class="paragrapheBio  scroll-animateD">
                     Au rayon mini‑légumes, nous vous proposons des produits originaux et raffinés,
                     particulièrement
                     appréciés en restauration gastronomique. Nos petits formats offrent une présentation
@@ -538,17 +538,17 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 30px;">🥕</div>
-                                <h4>Mini-légumes</h4>
+                                <h4 id="cardMiniVegetablesTitle">Mini-légumes</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de mini-légumes</h4>
+                                <h4 id="cardMiniVegetablesVarieties">Variétés de mini-légumes</h4>
                                 <ul>
                                     <li>Carottes</li>
                                     <li>betteraves</li>
                                     <li>Fenouil</li>
                                     <li>Poireaux</li>
 
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -558,7 +558,7 @@
             <!-- Rayons 4 : Condiments -->
             <div id="rayonC" class="alignement" href="#rayonC">
                 <h3 id="titreRayon4" class="TitreBio highlight scroll-animateG">Condiments</h3>
-                <p class="paragrapheBio  scroll-animateG">
+                <p id="rayonText4" class="paragrapheBio  scroll-animateG">
                     Au rayon condiments, nous vous proposons une gamme de produits essentiels pour la cuisine.
                     Nous
                     sélectionnons chaque produit avec soin afin de garantir qualité, conservation et
@@ -572,15 +572,15 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🥔</div>
-                                <h4>Pomme de Terre</h4>
+                                <h4 id="cardPotatoesTitle">Pomme de Terre</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de Pommes de Terre</h4>
+                                <h4 id="cardPotatoesVarieties">Variétés de Pommes de Terre</h4>
                                 <ul>
                                     <li>Charlotte</li>
                                     <li>Agata</li>
                                     <li>Ratte</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -590,16 +590,16 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🧅</div>
-                                <h4>Oignons</h4>
+                                <h4 id="cardOnionsTitle">Oignons</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Oignons</h4>
+                                <h4 id="cardOnionsVarieties">Variétés d'Oignons</h4>
                                 <ul>
                                     <li>Jaune</li>
                                     <li>Rouge</li>
                                     <li>Blanc</li>
                                     <li>Échalote</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -609,15 +609,15 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🧄</div>
-                                <h4>Ails</h4>
+                                <h4 id="cardGarlicTitle">Ails</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Ail</h4>
+                                <h4 id="cardGarlicVarieties">Variétés d'Ail</h4>
                                 <ul>
                                     <li>Blanc</li>
                                     <li>Rose</li>
                                     <li>Violet</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -628,7 +628,7 @@
             <!-- Rayons 5 : Exotic -->
             <div id="rayonE" class="alignement">
                 <h3 id="titreRayon5" class="TitreBio highlight scroll-animateD">Exotic</h3>
-                <p class="paragrapheBio  scroll-animateD">
+                <p id="rayonText5" class="paragrapheBio  scroll-animateD">
                     Au rayon exotique, nous vous proposons des produits venus du monde entier, pour vous
                     permettre
                     de découvrir de nouvelles saveurs et d’élargir votre offre. Grâce à notre réseau
@@ -643,15 +643,15 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🥑</div>
-                                <h4>Avocats</h4>
+                                <h4 id="cardAvocadosTitle">Avocats</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Avocats</h4>
+                                <h4 id="cardAvocadosVarieties">Variétés d'Avocats</h4>
                                 <ul>
                                     <li>Avocat tournant</li>
                                     <li>Avocat ferme</li>
                                     <li>Avocat tropical</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -661,16 +661,16 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🍄</div>
-                                <h4>Champignons</h4>
+                                <h4 id="cardMushroomsTitle">Champignons</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de Champignons</h4>
+                                <h4 id="cardMushroomsVarieties">Variétés de Champignons</h4>
                                 <ul>
                                     <li>Champignon de Paris</li>
                                     <li>Shiitake</li>
                                     <li>Pleurote</li>
                                     <li>Morilles</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -679,16 +679,16 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🟢</div>
-                                <h4>Apserges</h4>
+                                <h4 id="cardAsparagusTitle">Apserges</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Asperges</h4>
+                                <h4 id="cardAsparagusVarieties">Variétés d'Asperges</h4>
                                 <ul>
                                     <li>Blanche</li>
                                     <li>Verte</li>
                                     <li>Sauvage</li>
                                     <li>Violette</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -699,14 +699,14 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🥭</div>
-                                <h4>Mangues</h4>
+                                <h4 id="cardMangoesTitle">Mangues</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de Mangues</h4>
+                                <h4 id="cardMangoesVarieties">Variétés de Mangues</h4>
                                 <ul>
                                     <li>Kent</li>
                                     <li>Bateau</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -715,15 +715,15 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🟡</div>
-                                <h4>Fruit du dragon</h4>
+                                <h4 id="cardDragonFruitTitle">Fruit du dragon</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés fruit du dragon</h4>
+                                <h4 id="cardDragonFruitVarieties">Variétés fruit du dragon</h4>
                                 <ul>
                                     <li>chair jaune</li>
                                     <li>chaire rouge</li>
                                     <li>chaire blanche</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -732,14 +732,14 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🌺</div>
-                                <h4>Fruits de la Passion</h4>
+                                <h4 id="cardPassionFruitTitle">Fruits de la Passion</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de Fruits de la Passion</h4>
+                                <h4 id="cardPassionFruitVarieties">Variétés de Fruits de la Passion</h4>
                                 <ul>
                                     <li>Pourpre</li>
                                     <li>Jaune</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -749,16 +749,16 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🍆</div>
-                                <h4>Aubergines</h4>
+                                <h4 id="cardEggplantsTitle">Aubergines</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Aubergines</h4>
+                                <h4 id="cardEggplantsVarieties">Variétés d'Aubergines</h4>
                                 <ul>
                                     <li>Violette</li>
                                     <li>Mini-blanche</li>
                                     <li>Mini-graphiti</li>
                                     <li>Mini-noire</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -768,16 +768,16 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🍍</div>
-                                <h4>Ananas</h4>
+                                <h4 id="cardPineapplesTitle">Ananas</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'Ananas</h4>
+                                <h4 id="cardPineapplesVarieties">Variétés d'Ananas</h4>
                                 <ul>
                                     <li>Bateau</li>
                                     <li>Pain de sucre</li>
                                     <li>Premium</li>
                                     <li>Victoria</li>
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -788,7 +788,7 @@
             <!-- Rayons 6 : Jeunes Pousses -->
             <div id="rayonJP" class="alignement">
                 <h3 id="titreRayon6" class="TitreBio highlight scroll-animateG">Jeunes pousses</h3>
-                <p class="paragrapheBio  scroll-animateG">
+                <p id="rayonText6" class="paragrapheBio  scroll-animateG">
                     Au rayon jeunes pousses, nous vous proposons une sélection de produits frais, composés de
                     jeunes
                     feuilles délicates. Appréciées pour leur tendreté et leur fraîcheur, elles sont idéales pour
@@ -803,17 +803,17 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 30px;">🥬</div>
-                                <h4>Jeunes pousses</h4>
+                                <h4 id="cardBabyLeavesTitle">Jeunes pousses</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de jeunes pousses</h4>
+                                <h4 id="cardBabyLeavesVarieties">Variétés de jeunes pousses</h4>
                                 <ul>
                                     <li>Mesclun</li>
                                     <li>Roquette</li>
                                     <li>Mâche</li>
                                     <li>Mélange gourmand</li>
 
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -823,7 +823,7 @@
             <!-- Rayons 7 : Germes -->
             <div id="rayonG" class="alignement">
                 <h3 id="titreRayon7" class="TitreBio highlight scroll-animateD">Germes</h3>
-                <p class="paragrapheBio  scroll-animateD">
+                <p id="rayonText7" class="paragrapheBio  scroll-animateD">
                     Au rayon germes, nous vous proposons une gamme de produits frais, reconnus pour leurs
                     qualités
                     nutritionnelles et leur fraîcheur. Idéaux pour apporter croquant, couleur et originalité à
@@ -837,17 +837,17 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🌱</div>
-                                <h4>Germes</h4>
+                                <h4 id="cardSproutsTitle">Germes</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de germes</h4>
+                                <h4 id="cardSproutsVarieties">Variétés de germes</h4>
                                 <ul>
                                     <li>Betterave</li>
                                     <li>Luzerne</li>
                                     <li>Lentilles</li>
                                     <li>Radis</li>
 
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -857,7 +857,7 @@
             <!-- Rayons : Herbes -->
             <div id="rayonH" class="alignement">
                 <h3 id="titreRayon8" class="TitreBio highlight scroll-animateD">Herbes aromatiques</h3>
-                <p class="paragrapheBio scroll-animateD">
+                <p id="rayonText8" class="paragrapheBio scroll-animateD">
                     Au rayon herbes aromatiques, nous vous proposons une sélection fraîche et parfumée. Nos herbes
                     apportent saveur, fraîcheur et authenticité à votre cuisine,
                     que ce soit pour des recettes simples ou gastronomiques.
@@ -868,10 +868,10 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🌿</div>
-                                <h4>Herbes aromatique</h4>
+                                <h4 id="cardAromaticHerbsTitle">Herbes aromatique</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés d'herbes</h4>
+                                <h4 id="cardAromaticHerbsVarieties">Variétés d'herbes</h4>
                                 <ul>
                                     <li>Laurier</li>
                                     <li>Thym</li>
@@ -879,7 +879,7 @@
                                     <li>Basilic</li>
                                     <li>Aneth</li>
 
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -888,17 +888,17 @@
                         <div class="carte-inner">
                             <div class="carte-front">
                                 <div style="font-size: 60px;">🌸</div>
-                                <h4>Fleurs comestibles</h4>
+                                <h4 id="cardEdibleFlowersTitle">Fleurs comestibles</h4>
                             </div>
                             <div class="carte-back">
-                                <h4>Variétés de fleurs comestibles</h4>
+                                <h4 id="cardEdibleFlowersVarieties">Variétés de fleurs comestibles</h4>
                                 <ul>
                                     <li>Pensées mixte</li>
                                     <li>Alysse</li>
                                     <li>Pétale rose</li>
                                     <li>Bourrache</li>
 
-                                    <li><em style="color: var(--rouge)">Et bien d'autres...</em></li>
+                                    <li><em class="jsTranslateMoreItems" style="color: var(--rouge)">Et bien d'autres...</em></li>
                                 </ul>
                             </div>
                         </div>
@@ -953,3 +953,4 @@
 </body>
 
 </html>
+
