@@ -2871,9 +2871,14 @@ body.seasonal-popup-open {
   }
 
   .hero-scroll-indicator {
+  position: static;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  align-self: center;
+  margin-top: 0.8rem;
   width: 24px;
   height: 40px;
-  bottom: 12px;
   }
 
   #btnTop,
