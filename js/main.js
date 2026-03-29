@@ -472,64 +472,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initFooterAirTraffic();
 
-  // ------ Sticky navbar fiable (place d'origine puis fixation en haut) --------
+  // ------ Navbar toujours visible en haut --------
   function initStickyNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
-    const isHomePage = !!document.querySelector("header.hero");
 
     const root = document.documentElement;
-    let navStart = nav.getBoundingClientRect().top + window.scrollY;
-    let rafPending = false;
-    let hasBeenSticky = false;
 
     function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
-    function updateStickyState() {
-      const y = window.scrollY;
-
-      if (isHomePage) {
-        const shouldFix = y >= navStart;
-        document.body.classList.toggle("nav-fallback-active", shouldFix);
-        nav.classList.toggle("nav-fallback-fixed", shouldFix);
-        return;
-      }
-
-      // Sur les autres pages, on garde la navbar visible pendant la remontée.
-      if (y >= navStart) {
-        hasBeenSticky = true;
-      }
-
-      const shouldFix = y >= navStart || (hasBeenSticky && y > 2);
-
-      if (y <= 2) {
-        hasBeenSticky = false;
-      }
-
-      document.body.classList.toggle("nav-fallback-active", shouldFix);
-      nav.classList.toggle("nav-fallback-fixed", shouldFix);
+    function enableStickyTop() {
+      document.body.classList.add("nav-fallback-active");
+      nav.classList.add("nav-fallback-fixed");
     }
 
-    function scheduleUpdate() {
-      if (rafPending) return;
-      rafPending = true;
-      requestAnimationFrame(() => {
-        rafPending = false;
-        updateStickyState();
-      });
-    }
-
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", () => {
       setNavOffset();
-      navStart = nav.getBoundingClientRect().top + window.scrollY;
-      updateStickyState();
+      enableStickyTop();
     });
 
     setNavOffset();
-    updateStickyState();
+    enableStickyTop();
   }
 
   initStickyNavbar();
