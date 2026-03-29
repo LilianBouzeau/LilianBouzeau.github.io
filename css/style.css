@@ -439,9 +439,10 @@ nav {
   -webkit-backdrop-filter: blur(4px);
   /* pour Safari */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: -webkit-sticky;
-  position: sticky;
+  position: -webkit-sticky !important;
+  position: sticky !important;
   top: 0;
+  width: 100%;
   z-index: 1400;
   transition: background-color 0.3s, backdrop-filter 0.3s;
   font-size: 18px;

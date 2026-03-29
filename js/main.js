@@ -472,113 +472,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initFooterAirTraffic();
 
-  // ------ Fallback sticky navbar (si sticky ne fonctionne pas) --------
-  function initStickyNavbarFallback() {
+  // ------ Sticky navbar fiable (place d'origine puis fixation en haut) --------
+  function initStickyNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
 
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
-    let fallbackEnabled = false;
     let rafPending = false;
-    let stickyConfirmed = false;
-    let stickyStableChecks = 0;
-    const STICKY_TOLERANCE = 4;
-    const ENTER_STICKY_OFFSET = 8;
-    const EXIT_STICKY_OFFSET = 24;
-    let stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
 
-    function setFallbackOffset() {
+    function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
-    function enableFallback() {
-      if (fallbackEnabled) return;
-      fallbackEnabled = true;
-      setFallbackOffset();
-      document.body.classList.add("nav-fallback-active");
-      nav.classList.add("nav-fallback-fixed");
+    function updateStickyState() {
+      const shouldFix = window.scrollY >= navStart;
+      document.body.classList.toggle("nav-fallback-active", shouldFix);
+      nav.classList.toggle("nav-fallback-fixed", shouldFix);
     }
 
-    function disableFallback() {
-      if (!fallbackEnabled) return;
-      fallbackEnabled = false;
-      document.body.classList.remove("nav-fallback-active");
-      nav.classList.remove("nav-fallback-fixed");
-    }
-
-    function stickySeemsWorking() {
-      if (window.scrollY <= navStart + 1) return true;
-      const navTop = Math.round(nav.getBoundingClientRect().top);
-      return navTop >= -STICKY_TOLERANCE && navTop <= STICKY_TOLERANCE;
-    }
-
-    function shouldStickNow() {
-      const y = window.scrollY;
-
-      if (stickyZoneActive) {
-        if (y <= navStart - EXIT_STICKY_OFFSET) {
-          stickyZoneActive = false;
-        }
-      } else if (y >= navStart + ENTER_STICKY_OFFSET) {
-        stickyZoneActive = true;
-      }
-
-      return stickyZoneActive;
-    }
-
-    function evaluateSticky() {
-      if (stickyConfirmed && !fallbackEnabled) return;
-
-      const shouldStick = shouldStickNow();
-
-      if (!shouldStick) {
-        stickyStableChecks = 0;
-        disableFallback();
-        return;
-      }
-
-      // Evite l'alternance apparition/disparition sur mobile:
-      // une fois le fallback actif, on le garde tant qu'on reste en zone sticky.
-      if (fallbackEnabled) return;
-
-      if (!stickySeemsWorking()) {
-        stickyStableChecks = 0;
-        enableFallback();
-        return;
-      }
-
-      stickyStableChecks += 1;
-      if (stickyStableChecks >= 3) {
-        // Sticky natif valide: inutile de continuer les mesures au scroll.
-        stickyConfirmed = true;
-      }
-      disableFallback();
-    }
-
-    function scheduleEvaluateSticky() {
+    function scheduleUpdate() {
       if (rafPending) return;
-      if (stickyConfirmed && !fallbackEnabled) return;
       rafPending = true;
       requestAnimationFrame(() => {
         rafPending = false;
-        evaluateSticky();
+        updateStickyState();
       });
     }
 
-    window.addEventListener("scroll", scheduleEvaluateSticky, { passive: true });
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", () => {
+      setNavOffset();
       navStart = nav.getBoundingClientRect().top + window.scrollY;
-      stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
-      setFallbackOffset();
-      evaluateSticky();
+      updateStickyState();
     });
 
-    setFallbackOffset();
-    evaluateSticky();
+    setNavOffset();
+    updateStickyState();
   }
 
-  initStickyNavbarFallback();
+  initStickyNavbar();
 
   // Menu / hamburger
   const hamburger = document.getElementById("hamburger");
