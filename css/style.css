@@ -502,6 +502,12 @@ nav.nav-fallback-fixed {
   padding: 0;
 }
 
+@media (min-width: 1025px) {
+  #nav-menu {
+  gap: 18px;
+  }
+}
+
 #nav-menu li {
   position: relative;
   transition: 0.5S;

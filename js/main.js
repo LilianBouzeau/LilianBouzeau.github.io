@@ -480,6 +480,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
     let fallbackEnabled = false;
+    let rafPending = false;
+    const STICKY_TOLERANCE = 4;
 
     function setFallbackOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
@@ -503,7 +505,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function stickySeemsWorking() {
       if (window.scrollY <= navStart + 1) return true;
       const navTop = Math.round(nav.getBoundingClientRect().top);
-      return navTop >= -1 && navTop <= 1;
+      return navTop >= -STICKY_TOLERANCE && navTop <= STICKY_TOLERANCE;
     }
 
     function evaluateSticky() {
@@ -514,11 +516,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Evite l'alternance apparition/disparition sur mobile:
+      // une fois le fallback actif, on le garde tant qu'on reste en zone sticky.
+      if (fallbackEnabled) return;
+
       if (!stickySeemsWorking()) enableFallback();
       else disableFallback();
     }
 
-    window.addEventListener("scroll", evaluateSticky, { passive: true });
+    function scheduleEvaluateSticky() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        rafPending = false;
+        evaluateSticky();
+      });
+    }
+
+    window.addEventListener("scroll", scheduleEvaluateSticky, { passive: true });
     window.addEventListener("resize", () => {
       navStart = nav.getBoundingClientRect().top + window.scrollY;
       setFallbackOffset();
