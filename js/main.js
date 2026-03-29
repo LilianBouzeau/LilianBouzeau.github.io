@@ -481,13 +481,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
     let rafPending = false;
+    let isHomeFixed = false;
+    const ENTER_STICKY_OFFSET = 6;
+    const EXIT_STICKY_OFFSET = 28;
 
     function setNavOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
     }
 
     function updateStickyState() {
-      const shouldFix = isHomePage ? window.scrollY >= navStart : true;
+      let shouldFix;
+
+      if (isHomePage) {
+        const y = window.scrollY;
+
+        if (isHomeFixed) {
+          shouldFix = y > navStart - EXIT_STICKY_OFFSET;
+        } else {
+          shouldFix = y >= navStart + ENTER_STICKY_OFFSET;
+        }
+
+        isHomeFixed = shouldFix;
+      } else {
+        shouldFix = true;
+      }
+
       document.body.classList.toggle("nav-fallback-active", shouldFix);
       nav.classList.toggle("nav-fallback-fixed", shouldFix);
     }
@@ -505,6 +523,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("resize", () => {
       setNavOffset();
       navStart = nav.getBoundingClientRect().top + window.scrollY;
+      if (isHomePage && window.scrollY <= navStart - EXIT_STICKY_OFFSET) {
+        isHomeFixed = false;
+      }
       updateStickyState();
     });
 
