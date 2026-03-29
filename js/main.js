@@ -478,15 +478,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav) return;
 
     const root = document.documentElement;
-    let navStart = nav.getBoundingClientRect().top + window.scrollY;
     let fallbackEnabled = false;
-    let rafPending = false;
-    let stickyConfirmed = false;
-    let stickyStableChecks = 0;
-    const STICKY_TOLERANCE = 4;
-    const ENTER_STICKY_OFFSET = 8;
-    const EXIT_STICKY_OFFSET = 24;
-    let stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
 
     function setFallbackOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
@@ -507,75 +499,14 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.classList.remove("nav-fallback-fixed");
     }
 
-    function stickySeemsWorking() {
-      if (window.scrollY <= navStart + 1) return true;
-      const navTop = Math.round(nav.getBoundingClientRect().top);
-      return navTop >= -STICKY_TOLERANCE && navTop <= STICKY_TOLERANCE;
-    }
-
-    function shouldStickNow() {
-      const y = window.scrollY;
-
-      if (stickyZoneActive) {
-        if (y <= navStart - EXIT_STICKY_OFFSET) {
-          stickyZoneActive = false;
-        }
-      } else if (y >= navStart + ENTER_STICKY_OFFSET) {
-        stickyZoneActive = true;
-      }
-
-      return stickyZoneActive;
-    }
-
-    function evaluateSticky() {
-      if (stickyConfirmed && !fallbackEnabled) return;
-
-      const shouldStick = shouldStickNow();
-
-      if (!shouldStick) {
-        stickyStableChecks = 0;
-        disableFallback();
-        return;
-      }
-
-      // Evite l'alternance apparition/disparition sur mobile:
-      // une fois le fallback actif, on le garde tant qu'on reste en zone sticky.
-      if (fallbackEnabled) return;
-
-      if (!stickySeemsWorking()) {
-        stickyStableChecks = 0;
-        enableFallback();
-        return;
-      }
-
-      stickyStableChecks += 1;
-      if (stickyStableChecks >= 3) {
-        // Sticky natif validé: inutile de refaire une mesure layout à chaque scroll.
-        stickyConfirmed = true;
-      }
-      disableFallback();
-    }
-
-    function scheduleEvaluateSticky() {
-      if (rafPending) return;
-      if (stickyConfirmed && !fallbackEnabled) return;
-      rafPending = true;
-      requestAnimationFrame(() => {
-        rafPending = false;
-        evaluateSticky();
-      });
-    }
-
-    window.addEventListener("scroll", scheduleEvaluateSticky, { passive: true });
+    // Navbar toujours visible: on applique le mode fixe en permanence.
+    enableFallback();
     window.addEventListener("resize", () => {
-      navStart = nav.getBoundingClientRect().top + window.scrollY;
-      stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
       setFallbackOffset();
-      evaluateSticky();
     });
 
     setFallbackOffset();
-    evaluateSticky();
+    enableFallback();
   }
 
   initStickyNavbarFallback();
