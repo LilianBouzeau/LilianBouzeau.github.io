@@ -484,6 +484,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let stickyConfirmed = false;
     let stickyStableChecks = 0;
     const STICKY_TOLERANCE = 4;
+    const ENTER_STICKY_OFFSET = 8;
+    const EXIT_STICKY_OFFSET = 24;
+    let stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
 
     function setFallbackOffset() {
       root.style.setProperty("--nav-fallback-offset", `${nav.offsetHeight}px`);
@@ -510,10 +513,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return navTop >= -STICKY_TOLERANCE && navTop <= STICKY_TOLERANCE;
     }
 
+    function shouldStickNow() {
+      const y = window.scrollY;
+
+      if (stickyZoneActive) {
+        if (y <= navStart - EXIT_STICKY_OFFSET) {
+          stickyZoneActive = false;
+        }
+      } else if (y >= navStart + ENTER_STICKY_OFFSET) {
+        stickyZoneActive = true;
+      }
+
+      return stickyZoneActive;
+    }
+
     function evaluateSticky() {
       if (stickyConfirmed && !fallbackEnabled) return;
 
-      const shouldStick = window.scrollY > navStart + 1;
+      const shouldStick = shouldStickNow();
 
       if (!shouldStick) {
         stickyStableChecks = 0;
@@ -552,6 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", scheduleEvaluateSticky, { passive: true });
     window.addEventListener("resize", () => {
       navStart = nav.getBoundingClientRect().top + window.scrollY;
+      stickyZoneActive = window.scrollY > navStart + ENTER_STICKY_OFFSET;
       setFallbackOffset();
       evaluateSticky();
     });
