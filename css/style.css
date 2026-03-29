@@ -2525,7 +2525,7 @@ COOKIES
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 1200;
+  z-index: 2000;
 }
 
 .seasonal-popup-overlay.show {
@@ -2757,7 +2757,7 @@ body.seasonal-popup-open {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  z-index: 1402;
+  z-index: 2100;
   transform: none;
 }
 
