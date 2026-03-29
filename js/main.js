@@ -478,12 +478,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nav) return;
     const isHomePage = !!document.querySelector("header.hero");
 
-    if (isHomePage) {
-      document.body.classList.remove("nav-fallback-active");
-      nav.classList.remove("nav-fallback-fixed");
-      return;
-    }
-
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
     let rafPending = false;
@@ -495,6 +489,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateStickyState() {
       const y = window.scrollY;
+
+      if (isHomePage) {
+        const shouldFix = y >= navStart;
+        document.body.classList.toggle("nav-fallback-active", shouldFix);
+        nav.classList.toggle("nav-fallback-fixed", shouldFix);
+        return;
+      }
 
       // Sur les autres pages, on garde la navbar visible pendant la remontée.
       if (y >= navStart) {
