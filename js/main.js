@@ -945,7 +945,7 @@ if (scrollElements.length > 0) {
     FR: {
     //TITRE
     TitrePage1: "Cruchaudet | L'histoire",
-    TitrePage2: "Cruchaudet | Service de Livraison",
+    TitrePage2: "Cruchaudet | Service d'Expédition",
     TitrePage3: "Cruchaudet | Nos partenaires",
     TitrePage4: "Cruchaudet | Les rayons",
     TitrePage5: "Cruchaudet | Nos engagements",
@@ -953,7 +953,7 @@ if (scrollElements.length > 0) {
 
     //NAV
     navHistory: "L'histoire",
-    navExport: "Service Expédition",
+    navExport: "Service d'Expédition",
     navEngagement: "Nos engagements",
     navRayon: 'Les rayons',
     navRayonLegumes: "Légumes",
@@ -1004,7 +1004,7 @@ if (scrollElements.length > 0) {
     btn404: "Retour à l'accueil",
 
     //PAGE EXPORT
-    TitreExport: "Service de Livraison",
+    TitreExport: "Service d'Expédition",
     contactFormTitle: "Contact Export",
     nom: "Nom *",
     prenom: "Prénom *",
