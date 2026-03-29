@@ -476,6 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function initStickyNavbar() {
     const nav = document.querySelector("nav");
     if (!nav) return;
+    const isHomePage = !!document.querySelector("header.hero");
 
     const root = document.documentElement;
     let navStart = nav.getBoundingClientRect().top + window.scrollY;
@@ -489,16 +490,20 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateStickyState() {
       const y = window.scrollY;
 
-      // Dès que la navbar est devenue sticky une fois, on la garde visible
-      // pendant la remontée et on la relâche seulement tout en haut de page.
-      if (y >= navStart) {
-        hasBeenSticky = true;
-      }
-
-      const shouldFix = y >= navStart || (hasBeenSticky && y > 2);
-
-      if (y <= 2) {
-        hasBeenSticky = false;
+      // Sur index, la navbar ne doit jamais dépasser le header:
+      // elle colle seulement à partir de sa position d'origine.
+      let shouldFix;
+      if (isHomePage) {
+        shouldFix = y >= navStart;
+      } else {
+        // Sur les autres pages, on garde la navbar visible pendant la remontée.
+        if (y >= navStart) {
+          hasBeenSticky = true;
+        }
+        shouldFix = y >= navStart || (hasBeenSticky && y > 2);
+        if (y <= 2) {
+          hasBeenSticky = false;
+        }
       }
 
       document.body.classList.toggle("nav-fallback-active", shouldFix);
