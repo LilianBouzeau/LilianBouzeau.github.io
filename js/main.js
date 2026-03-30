@@ -477,6 +477,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector("nav");
     if (!nav) return;
 
+    // Sur la page d'accueil, la navbar reste au-dessus du header sans décaler le contenu.
+    if (document.body.classList.contains("home-page")) {
+      document.body.classList.remove("nav-fallback-active");
+      nav.classList.add("nav-fallback-fixed");
+      return;
+    }
+
     const root = document.documentElement;
 
     function setNavOffset() {
