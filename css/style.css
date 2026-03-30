@@ -1133,13 +1133,14 @@ body.home-page nav {
 #rayonJP,
 #rayonG,
 #rayonH {
+  position: relative;
   width: 100%;
-  min-height: 50vh;
-  padding: 80px 20px;
+  min-height: auto;
+  padding: 80px 20px 36px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   text-align: center;
@@ -1148,6 +1149,51 @@ body.home-page nav {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+#rayonL::before,
+#rayonML::before,
+#rayonC::before,
+#rayonE::before,
+#rayonJP::before,
+#rayonG::before,
+#rayonH::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(180px, calc(100% - 4rem));
+  height: 26px;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06)),
+    linear-gradient(90deg, rgba(76, 175, 80, 0.12), rgba(255, 143, 0, 0.12));
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 3;
+}
+
+#rayonL::after,
+#rayonML::after,
+#rayonC::after,
+#rayonE::after,
+#rayonJP::after,
+#rayonG::after,
+#rayonH::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(72px, calc(100% - 8rem));
+  height: 1px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  z-index: 4;
 }
 
 /* Images */
@@ -1210,8 +1256,29 @@ body.home-page nav {
   #rayonG,
   #rayonH {
   background-attachment: scroll;
-  min-height: 60vh;
-  padding: 60px 15px;
+  min-height: auto;
+  padding: 60px 15px 24px;
+  }
+
+  #rayonL::before,
+  #rayonML::before,
+  #rayonC::before,
+  #rayonE::before,
+  #rayonJP::before,
+  #rayonG::before,
+  #rayonH::before {
+  width: min(140px, calc(100% - 2.5rem));
+  height: 20px;
+  }
+
+  #rayonL::after,
+  #rayonML::after,
+  #rayonC::after,
+  #rayonE::after,
+  #rayonJP::after,
+  #rayonG::after,
+  #rayonH::after {
+  width: min(54px, calc(100% - 5rem));
   }
 }
 
