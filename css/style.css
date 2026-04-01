@@ -102,6 +102,28 @@ body {
   will-change: opacity;
 }
 
+/* Rayon: on n'anime plus les cartes, seulement les images dans les cartes */
+.rayon-page #rayons-section .carte.scroll-animate-opacity {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+.rayon-page #rayons-section .carte.scroll-animate-opacity .carte-front-logo {
+  opacity: 0;
+  transform: translateY(18px) scale(0.9);
+  transition:
+    opacity 0.85s cubic-bezier(0.25, 0.8, 0.25, 1),
+    transform 0.85s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: opacity, transform;
+}
+
+.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* Optimisations perf spécifiques a la page Rayon desktop */
 @media (min-width: 1025px) {
   .rayon-page #rayons-section .alignement,
@@ -1171,7 +1193,7 @@ body.home-page nav {
 #rayonG,
 #rayonH {
   position: relative;
-  z-index: 0;
+  z-index: 5;
   isolation: isolate;
   width: 100%;
   min-height: auto;
@@ -1190,6 +1212,7 @@ body.home-page nav {
   background-attachment: fixed;
 }
 
+/* Separateurs entre les blocs rayon (meme style que l'index) */
 #rayonF::before,
 #rayonL::before,
 #rayonML::before,
@@ -1215,7 +1238,7 @@ body.home-page nav {
     inset 0 1px 0 rgba(255, 255, 255, 0.26);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  z-index: 20;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -1235,7 +1258,7 @@ body.home-page nav {
   height: 1px;
   transform: translate(-50%, -50%);
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
-  z-index: 21;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -1285,46 +1308,6 @@ body.home-page nav {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url("/img/rayon/herbes.jpg");
-}
-
-/* Correction mobile */
-@media (max-width: 768px) {
-
-  #rayonF,
-  #rayonL,
-  #rayonML,
-  #rayonC,
-  #rayonE,
-  #rayonJP,
-  #rayonG,
-  #rayonH {
-  background-attachment: scroll;
-  min-height: auto;
-  padding: 60px 15px 24px;
-  }
-
-  #rayonF::before,
-  #rayonL::before,
-  #rayonML::before,
-  #rayonC::before,
-  #rayonE::before,
-  #rayonJP::before,
-  #rayonG::before,
-  #rayonH::before {
-  width: min(140px, calc(100% - 2.5rem));
-  height: 20px;
-  }
-
-  #rayonF::after,
-  #rayonL::after,
-  #rayonML::after,
-  #rayonC::after,
-  #rayonE::after,
-  #rayonJP::after,
-  #rayonG::after,
-  #rayonH::after {
-  width: min(54px, calc(100% - 5rem));
-  }
 }
 
 /*compteur*/
