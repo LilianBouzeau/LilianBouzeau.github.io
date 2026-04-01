@@ -927,11 +927,6 @@ body.home-page nav {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.1),
-    0 10px 25px rgba(0, 0, 0, 0.15),
-    0 20px 40px rgba(0, 0, 0, 0.2);
-
   border-radius: 12px;
 
   display: flex;
@@ -960,11 +955,6 @@ body.home-page nav {
   border: 2px solid var(--orange);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.1),
-    0 10px 25px rgba(0, 0, 0, 0.15),
-    0 20px 40px rgba(0, 0, 0, 0.2);
 
   border-radius: 12px;
 }
@@ -1188,6 +1178,7 @@ body.home-page nav {
   background-attachment: fixed;
 }
 
+#rayonF::before,
 #rayonL::before,
 #rayonML::before,
 #rayonC::before,
@@ -1215,6 +1206,7 @@ body.home-page nav {
   z-index: 3;
 }
 
+#rayonF::after,
 #rayonL::after,
 #rayonML::after,
 #rayonC::after,
@@ -1297,6 +1289,7 @@ body.home-page nav {
   padding: 60px 15px 24px;
   }
 
+  #rayonF::before,
   #rayonL::before,
   #rayonML::before,
   #rayonC::before,
@@ -1308,6 +1301,7 @@ body.home-page nav {
   height: 20px;
   }
 
+  #rayonF::after,
   #rayonL::after,
   #rayonML::after,
   #rayonC::after,
