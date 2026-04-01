@@ -723,7 +723,10 @@ cardGroups.forEach((group) => {
   const cards = group.querySelectorAll('.carte.scroll-animate-opacity');
   cards.forEach((card, index) => {
     const delay = 0.08 + index * 0.12;
-    card.style.transitionDelay = `${delay}s`;
+    const frontImage = card.querySelector('.carte-front-logo');
+    if (frontImage) {
+      frontImage.style.transitionDelay = `${delay}s`;
+    }
   });
 });
 
