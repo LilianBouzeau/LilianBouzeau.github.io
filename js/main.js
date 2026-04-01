@@ -64,6 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Fonction principale ----------
   function initMenusEtTraductions() {
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const isRayonPage = currentPath.toLowerCase() === "rayon.html";
+
   // ------ Slider avis clients --------
   function initSliderAvisClients() {
     const slides = document.querySelectorAll(".slide");
@@ -258,7 +261,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!footers.length) return;
 
     const PLANE_COLORS_BY_SLOT = ["orange", "orange", "orange", "accent", "accent", "orange", "accent", "orange", "accent", "orange", "accent", "orange", "accent"];
-    const PLANE_COUNT = Math.floor(Math.random() * (15 - 10 + 1)) + 10;
+    const isDesktopViewport = window.matchMedia("(min-width: 1025px)").matches;
+    const PLANE_COUNT = (isRayonPage && isDesktopViewport)
+      ? 6
+      : Math.floor(Math.random() * (15 - 10 + 1)) + 10;
     const MAX_TRAIL_DOTS = 20;
     const PLANE_HEADING_OFFSET = 90;
 
@@ -308,6 +314,13 @@ document.addEventListener("DOMContentLoaded", () => {
       let running = true;
       let width = footer.clientWidth;
       let height = footer.clientHeight;
+
+      const updateFooterSize = () => {
+        width = footer.clientWidth;
+        height = footer.clientHeight;
+      };
+
+      window.addEventListener("resize", updateFooterSize, { passive: true });
 
       const CORNER_KEYS = ["top-left", "top-right", "bottom-left", "bottom-right"];
       const OPPOSITE_CORNERS = {
@@ -413,9 +426,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const animate = (now) => {
         if (!running) return;
-
-        width = footer.clientWidth;
-        height = footer.clientHeight;
 
         planes.forEach((plane) => {
           let t = (now - plane.startAt) / plane.duration;
@@ -591,7 +601,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- Activation du lien courant dans le menu ----------
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll("#nav-menu a").forEach(link => link.classList.remove("active"));
   document.querySelectorAll("#nav-menu a").forEach(link => {
     const href = link.getAttribute("href");
@@ -674,6 +683,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function initRayonScrollPerfMode() {
+    if (!isRayonPage || window.matchMedia("(max-width: 1024px)").matches) return;
+
+    let fastScrollTimeout = null;
+    const FAST_SCROLL_IDLE_MS = 120;
+
+    window.addEventListener("scroll", () => {
+      document.body.classList.add("is-fast-scrolling");
+      if (fastScrollTimeout) {
+        clearTimeout(fastScrollTimeout);
+      }
+      fastScrollTimeout = setTimeout(() => {
+        document.body.classList.remove("is-fast-scrolling");
+      }, FAST_SCROLL_IDLE_MS);
+    }, { passive: true });
+  }
+
+  function optimizeRayonImages() {
+    if (!isRayonPage) return;
+    const sectionImages = document.querySelectorAll("#rayons-section img");
+
+    sectionImages.forEach((img) => {
+      if (!img.hasAttribute("loading")) img.loading = "lazy";
+      img.decoding = "async";
+    });
+  }
+
 // ===============================
 // ANIMATIONS AU SCROLL
 // ===============================
@@ -754,6 +790,9 @@ if (scrollElements.length > 0) {
 
   // Appel de la fonction
   animateCounters();
+  initRayonScrollPerfMode();
+  optimizeRayonImages();
+
   // ---------- COOKIES ----------
   const banner = document.getElementById("cookie-banner");
   const acceptBtn = document.querySelector(".cookie-btn.accept");

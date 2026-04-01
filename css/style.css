@@ -89,6 +89,28 @@ body {
 .scroll-visible {
   opacity: 1;
   transform: translate(0, 0) scale(1);
+  will-change: auto;
+}
+
+/* Optimisations perf spécifiques a la page Rayon desktop */
+@media (min-width: 1025px) {
+  .rayon-page #rayons-section .alignement,
+  .rayon-page #rayons-section .cartes-groupe {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
+
+  .rayon-page.is-fast-scrolling nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .rayon-page.is-fast-scrolling .carte-front,
+  .rayon-page.is-fast-scrolling .carte-back {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  }
 }
 /* ================================
    TITRES ET LIENS
@@ -1215,48 +1237,48 @@ body.home-page nav {
 #rayonF {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/fruit.jpg");
+  url("/img/rayon/fruit.jpg");
 }
 
 #rayonL {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/legumes.jpg");
+  url("/img/rayon/legumes.jpg");
 }
 
 #rayonML {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/minilegumes.jpg");
+  url("/img/rayon/minilegumes.jpg");
 }
 
 #rayonC {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/condiments.jpg");
+  url("/img/rayon/condiments.jpg");
 }
 
 #rayonE {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/exotic.jpg");
+  url("/img/rayon/exotic.jpg");
 }
 
 #rayonJP {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/jeunespousses.jpg");
+  url("/img/rayon/jeunespousses.jpg");
 }
 
 #rayonG {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/germes.jpg");
+  url("/img/rayon/germes.jpg");
 }
 #rayonH {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/herbes.jpg");
+  url("/img/rayon/herbes.jpg");
 }
 
 /* Correction mobile */
