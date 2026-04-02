@@ -768,7 +768,7 @@ const cardGroups = document.querySelectorAll('.cartes-groupe');
 cardGroups.forEach((group) => {
   const cards = group.querySelectorAll('.carte.scroll-animate-opacity');
   cards.forEach((card, index) => {
-    const delay = 0.08 + index * 0.12;
+    const delay = index * 0.06;
     const frontImage = card.querySelector('.carte-front-logo');
     if (frontImage) {
       frontImage.style.animationDelay = `${delay}s`;
@@ -785,7 +785,7 @@ if (scrollElements.length > 0) {
       }
     });
   }, {
-    threshold: 0.2
+    threshold: 0.1
   });
 
   scrollElements.forEach((el) => {
