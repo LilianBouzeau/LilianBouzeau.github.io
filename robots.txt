@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /img/popup/
+Disallow: /img/cartes/
+
+Sitemap: https://www.cruchaudet.fr/sitemap.xml
