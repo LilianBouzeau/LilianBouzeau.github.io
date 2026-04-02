@@ -684,7 +684,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initRayonScrollPerfMode() {
-    if (!isRayonPage || window.matchMedia("(max-width: 1024px)").matches) return;
+    if (!isRayonPage) return;
+
+    document.body.classList.add("rayon-perf");
+
+    if (window.matchMedia("(max-width: 1024px)").matches) return;
 
     let fastScrollTimeout = null;
     const FAST_SCROLL_IDLE_MS = 120;

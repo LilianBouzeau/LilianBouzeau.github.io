@@ -92,15 +92,6 @@ body {
   will-change: auto;
 }
 
-/* Evite les conflits de stacking sur la page rayon: fade sans transform */
-.rayon-page #rayons-section .scroll-animate,
-.rayon-page #rayons-section .scroll-animateG,
-.rayon-page #rayons-section .scroll-animateD,
-.rayon-page #rayons-section .scroll-animate-opacity,
-.rayon-page #rayons-section .scroll-visible {
-  transform: none !important;
-  will-change: opacity;
-}
 
 /* Rayon: on n'anime plus les cartes, seulement les images dans les cartes */
 .rayon-page #rayons-section .carte.scroll-animate-opacity {
@@ -124,9 +115,43 @@ body {
   transform: translateY(0) scale(1);
 }
 
+/* Mode performance dedie a la page rayon */
+.rayon-page.rayon-perf nav {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.rayon-page.rayon-perf #rayonF,
+.rayon-page.rayon-perf #rayonL,
+.rayon-page.rayon-perf #rayonML,
+.rayon-page.rayon-perf #rayonC,
+.rayon-page.rayon-perf #rayonE,
+.rayon-page.rayon-perf #rayonJP,
+.rayon-page.rayon-perf #rayonG,
+.rayon-page.rayon-perf #rayonH {
+  background-attachment: scroll;
+}
+
+.rayon-page.rayon-perf #rayonF::before,
+.rayon-page.rayon-perf #rayonL::before,
+.rayon-page.rayon-perf #rayonML::before,
+.rayon-page.rayon-perf #rayonC::before,
+.rayon-page.rayon-perf #rayonE::before,
+.rayon-page.rayon-perf #rayonJP::before,
+.rayon-page.rayon-perf #rayonG::before,
+.rayon-page.rayon-perf #rayonH::before {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.rayon-page.rayon-perf .carte-front,
+.rayon-page.rayon-perf .carte-back {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
 /* Optimisations perf spécifiques a la page Rayon desktop */
 @media (min-width: 1025px) {
-  .rayon-page #rayons-section .alignement,
   .rayon-page #rayons-section .cartes-groupe {
     content-visibility: auto;
     contain-intrinsic-size: 1px 900px;
@@ -1192,24 +1217,22 @@ body.home-page nav {
 #rayonJP,
 #rayonG,
 #rayonH {
-  position: relative;
-  z-index: 5;
-  isolation: isolate;
-  width: 100%;
-  min-height: auto;
-  padding: 80px 20px 36px;
-
+  align-items: center;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-
+  isolation: isolate;
+  min-height: auto;
+  overflow: visible;
+  padding: 80px 20px 36px;
+  position: relative;
+  width: 100%;
   text-align: center;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  z-index: 5;
 }
 
 /* Separateurs entre les blocs rayon (meme style que l'index) */
@@ -1238,7 +1261,7 @@ body.home-page nav {
     inset 0 1px 0 rgba(255, 255, 255, 0.26);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  z-index: 1;
+  z-index: 9;
   pointer-events: none;
 }
 
@@ -1258,7 +1281,7 @@ body.home-page nav {
   height: 1px;
   transform: translate(-50%, -50%);
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
-  z-index: 1;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -2547,7 +2570,6 @@ COOKIES
   background-color: var(--vert);
   color: var(--blanc);
   border: 2px var(--blanc) solid;
-   transition:  0.3s;
 }
 
 .cookie-btn.accept:hover {
@@ -2558,7 +2580,6 @@ COOKIES
   background-color: var(--orange);
   color: var(--blanc);
   border: 2px var(--blanc) solid;
-   transition:  0.3s;
 }
 
 .cookie-btn.decline:hover {
@@ -2691,7 +2712,6 @@ COOKIES
    BOUTON RETOUR EN HAUT
 =================================*/
 #btnTop {
-  transition: 0.3s;
   position: fixed;
   bottom: 25px;
   right: 25px;
@@ -2699,7 +2719,6 @@ COOKIES
   height: 45px;
   background-color: var(--vert);
   color: var(--blanc);
-  border: none;
   border-radius: 50%;
   font-size: 1.5rem;
   cursor: pointer;
@@ -2714,8 +2733,7 @@ COOKIES
 #btnTop:hover {
   background-color: var(--orange);
   color: var(--blanc);
-  transform: translateY(-3px);
-  transform: scale(1.1);
+  transform: translateY(-3px) scale(1.1);
   border:2px solid var(--orange);
 }
 
@@ -2887,6 +2905,42 @@ COOKIES
   margin-bottom: 10px;
 }
 
+/* Fruits animes a l'ouverture de la pop-up */
+.seasonal-popup-overlay.is-opening .seasonal-card-front img {
+  animation: seasonalFruitPop 0.55s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+
+.seasonal-popup-overlay.is-opening .seasonal-card:nth-child(1) .seasonal-card-front img {
+  animation-delay: 0.06s;
+}
+
+.seasonal-popup-overlay.is-opening .seasonal-card:nth-child(2) .seasonal-card-front img {
+  animation-delay: 0.12s;
+}
+
+.seasonal-popup-overlay.is-opening .seasonal-card:nth-child(3) .seasonal-card-front img {
+  animation-delay: 0.18s;
+}
+
+.seasonal-popup-overlay.is-opening .seasonal-card:nth-child(4) .seasonal-card-front img {
+  animation-delay: 0.24s;
+}
+
+@keyframes seasonalFruitPop {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.82) rotate(-5deg);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.06) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
 .seasonal-card-front h4,
 .seasonal-card-back h4 {
   color: var(--accent);
@@ -2980,7 +3034,6 @@ body.seasonal-popup-open {
   width: 45px;
   height: 45px;
   background-color: var(--vert);
-  border: 1px solid var(--blanc);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -2999,8 +3052,7 @@ body.seasonal-popup-open {
 
 .btnLang:hover {
   background-color: var(--blanc);
-  transform: translateY(-3px);
-  transform: scale(1.1);
+  transform: translateY(-3px) scale(1.1);
   border:2px solid var(--orange);
 }
 
