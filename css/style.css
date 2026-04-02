@@ -960,8 +960,15 @@ body.home-page nav {
   transform-style: preserve-3d;
 }
 
-.carte:hover .carte-inner {
+.carte.is-flipped .carte-inner,
+.carte:focus-visible .carte-inner {
   transform: rotateY(180deg);
+}
+
+@media (min-width: 769px) {
+  .carte:hover .carte-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .carte-front, .carte-back {
@@ -1102,13 +1109,20 @@ body.home-page nav {
   }
 
   .rayon-page #rayons-section .carte .carte-front .carte-front-logo {
-    transition: transform 0.3s ease, opacity 0.25s ease;
+    opacity: 1;
+    transition: none !important;
+  }
+
+  .rayon-page #rayons-section .carte .carte-back .carte-front-logo {
+    display: none !important;
   }
 
   .rayon-page #rayons-section .carte:hover .carte-front .carte-front-logo,
+  .rayon-page #rayons-section .carte.is-flipped .carte-front .carte-front-logo,
   .rayon-page #rayons-section .carte:active .carte-front .carte-front-logo,
   .rayon-page #rayons-section .carte:focus-within .carte-front .carte-front-logo {
     opacity: 0;
+    visibility: hidden;
   }
 }
 

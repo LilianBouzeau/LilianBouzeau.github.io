@@ -714,6 +714,30 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function initRayonCardsFlip() {
+    if (!isRayonPage) return;
+
+    const cards = document.querySelectorAll("#rayons-section .carte");
+    if (cards.length === 0) return;
+
+    cards.forEach((card) => {
+      if (!card.hasAttribute("tabindex")) {
+        card.setAttribute("tabindex", "0");
+      }
+
+      card.addEventListener("click", () => {
+        card.classList.toggle("is-flipped");
+      });
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.classList.toggle("is-flipped");
+        }
+      });
+    });
+  }
+
 // ===============================
 // ANIMATIONS AU SCROLL
 // ===============================
@@ -799,6 +823,7 @@ if (scrollElements.length > 0) {
   animateCounters();
   initRayonScrollPerfMode();
   optimizeRayonImages();
+  initRayonCardsFlip();
 
   // ---------- COOKIES ----------
   const banner = document.getElementById("cookie-banner");
