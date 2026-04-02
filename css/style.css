@@ -1174,21 +1174,6 @@ body.home-page nav {
   #quiSommeNous > div + div::after {
   width: min(54px, calc(100% - 5rem));
   }
-
-  /* Rayon: evite l'effet de zoom sur telephone */
-  #rayonF,
-  #rayonL,
-  #rayonML,
-  #rayonC,
-  #rayonE,
-  #rayonJP,
-  #rayonG,
-  #rayonH {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  }
 }
 
 .nom {
@@ -1324,7 +1309,23 @@ body.home-page nav {
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url("/img/rayon/herbes.jpg");
 }
-
+/* Correction mobile */
+@media (max-width: 768px) {
+  /* Rayon: evite l'effet de zoom sur telephone */
+  #rayonF,
+  #rayonL,
+  #rayonML,
+  #rayonC,
+  #rayonE,
+  #rayonJP,
+  #rayonG,
+  #rayonH {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
+}
 /*compteur*/
 /* Section générale */
 .stats-section {
