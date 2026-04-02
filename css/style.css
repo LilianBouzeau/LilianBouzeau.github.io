@@ -996,6 +996,11 @@ body.home-page nav {
   transition: transform 0.3s ease;
 }
 
+.carte-front .carte-front-logo {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 .carte:hover .carte-front div,
 .carte:hover .carte-front .carte-front-logo {
   transform: scale(1.1);
@@ -1094,6 +1099,16 @@ body.home-page nav {
 
   .carte-back li {
     font-size: 0.8rem;
+  }
+
+  .rayon-page #rayons-section .carte .carte-front .carte-front-logo {
+    transition: transform 0.3s ease, opacity 0.25s ease;
+  }
+
+  .rayon-page #rayons-section .carte:hover .carte-front .carte-front-logo,
+  .rayon-page #rayons-section .carte:active .carte-front .carte-front-logo,
+  .rayon-page #rayons-section .carte:focus-within .carte-front .carte-front-logo {
+    opacity: 0;
   }
 }
 
