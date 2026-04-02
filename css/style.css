@@ -1174,6 +1174,20 @@ body.home-page nav {
   #quiSommeNous > div + div::after {
   width: min(54px, calc(100% - 5rem));
   }
+
+  /* Rayon: evite l'effet de zoom sur telephone */
+  #rayonF,
+  #rayonL,
+  #rayonML,
+  #rayonC,
+  #rayonE,
+  #rayonJP,
+  #rayonG,
+  #rayonH {
+  background-attachment: scroll;
+  background-size: contain;
+  background-position: center;
+  }
 }
 
 .nom {
