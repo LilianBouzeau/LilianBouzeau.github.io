@@ -1171,13 +1171,13 @@ body.home-page nav {
 #histoireE {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/evolution.jpg");
+  url("/img/evolution.png");
 }
 
 #histoireP {
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/present.jpg");
+  url("/img/present.png");
 }
 
 /* Correction mobile */
@@ -1522,7 +1522,7 @@ body.home-page nav {
 
   background-image:
   linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-  url("/img/present.jpg");
+  url("/img/present.png");
 
   background-size: cover;
   background-position: center;
