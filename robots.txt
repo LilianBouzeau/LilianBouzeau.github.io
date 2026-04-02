@@ -4,4 +4,4 @@ Allow: /
 Disallow: /img/popup/
 Disallow: /img/cartes/
 
-Sitemap: https://www.cruchaudet.fr/sitemap.xml
+Sitemap: https://https://lilianbouzeau.github.io/sitemap.xml
