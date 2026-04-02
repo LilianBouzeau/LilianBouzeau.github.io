@@ -103,16 +103,10 @@ body {
 
 .rayon-page #rayons-section .carte.scroll-animate-opacity .carte-front-logo {
   opacity: 0;
-  transform: translateY(18px) scale(0.9);
-  transition:
-    opacity 0.85s cubic-bezier(0.25, 0.8, 0.25, 1),
-    transform 0.85s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change: opacity, transform;
 }
 
 .rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+  animation: seasonalFruitPop 0.55s cubic-bezier(0.2, 0.85, 0.25, 1) both;
 }
 
 /* Mode performance dedie a la page rayon */
@@ -1001,9 +995,6 @@ body.home-page nav {
 .carte-front div,
 .carte-front .carte-front-logo {
   transition: transform 0.3s ease;
-}
-
-.carte-front .carte-front-logo {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
@@ -1108,22 +1099,7 @@ body.home-page nav {
     font-size: 0.8rem;
   }
 
-  .rayon-page #rayons-section .carte .carte-front .carte-front-logo {
-    opacity: 1;
-    transition: none !important;
-  }
 
-  .rayon-page #rayons-section .carte .carte-back .carte-front-logo {
-    display: none !important;
-  }
-
-  .rayon-page #rayons-section .carte:hover .carte-front .carte-front-logo,
-  .rayon-page #rayons-section .carte.is-flipped .carte-front .carte-front-logo,
-  .rayon-page #rayons-section .carte:active .carte-front .carte-front-logo,
-  .rayon-page #rayons-section .carte:focus-within .carte-front .carte-front-logo {
-    opacity: 0;
-    visibility: hidden;
-  }
 }
 
 @media (max-width: 480px) {
