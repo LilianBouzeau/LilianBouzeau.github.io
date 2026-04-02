@@ -1184,9 +1184,10 @@ body.home-page nav {
   #rayonJP,
   #rayonG,
   #rayonH {
-  background-attachment: scroll;
-  background-size: contain;
-  background-position: center;
+  background-attachment: scroll, scroll;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: 100% 100%, contain;
   }
 }
 
@@ -3166,5 +3167,24 @@ body.seasonal-popup-open {
 
   .hero-overlay p {
   font-size: 0.9rem;
+  }
+}
+
+/* iOS Safari: corrige le zoom des images de fond sur la page rayon */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+  .rayon-page #rayonF,
+  .rayon-page #rayonL,
+  .rayon-page #rayonML,
+  .rayon-page #rayonC,
+  .rayon-page #rayonE,
+  .rayon-page #rayonJP,
+  .rayon-page #rayonG,
+  .rayon-page #rayonH {
+    background-attachment: scroll, scroll !important;
+    background-repeat: no-repeat, no-repeat !important;
+    background-position: center center, center center !important;
+    background-size: 100% 100%, 100% auto !important;
+  }
   }
 }
