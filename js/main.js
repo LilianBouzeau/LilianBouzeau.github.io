@@ -782,7 +782,28 @@ if (scrollElements.length > 0) {
     threshold: 0.1
   });
 
+  const rayonCardsObserver = isRayonPage
+    ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 1) {
+          entry.target.classList.add('scroll-visible');
+          rayonCardsObserver.unobserve(entry.target); // animation une seule fois
+        }
+      });
+    }, {
+      threshold: [1]
+    })
+    : null;
+
   scrollElements.forEach((el) => {
+    if (
+      rayonCardsObserver &&
+      el.matches('#rayons-section .carte.scroll-animate-opacity')
+    ) {
+      rayonCardsObserver.observe(el);
+      return;
+    }
+
     observer.observe(el);
   });
 }
