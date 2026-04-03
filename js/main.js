@@ -726,36 +726,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       card.addEventListener("click", () => {
-        const wasFlipped = card.classList.contains("is-flipped");
         card.classList.toggle("is-flipped");
-        if (wasFlipped) {
-          card.classList.remove("is-returning-front");
-          void card.offsetWidth;
-          card.classList.add("is-returning-front");
-          setTimeout(() => {
-            card.classList.remove("is-returning-front");
-          }, 560);
-
-          // On mobile/touch, remove lingering focus so front logo can reappear immediately.
-          if (document.activeElement === card) {
-            card.blur();
-          }
+        // On mobile/touch, remove lingering focus to avoid sticky focus styles.
+        if (document.activeElement === card) {
+          card.blur();
         }
       });
 
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
-          const wasFlipped = card.classList.contains("is-flipped");
           card.classList.toggle("is-flipped");
-          if (wasFlipped) {
-            card.classList.remove("is-returning-front");
-            void card.offsetWidth;
-            card.classList.add("is-returning-front");
-            setTimeout(() => {
-              card.classList.remove("is-returning-front");
-            }, 560);
-          }
         }
       });
     });
@@ -767,19 +748,6 @@ document.addEventListener("DOMContentLoaded", () => {
 const scrollElements = document.querySelectorAll(
   '.scroll-animate, .scroll-animateG, .scroll-animateD, .scroll-animate-opacity'
 );
-
-// Applique un décalage progressif pour les cartes de rayon (effet une par une)
-const cardGroups = document.querySelectorAll('.cartes-groupe');
-cardGroups.forEach((group) => {
-  const cards = group.querySelectorAll('.carte.scroll-animate-opacity');
-  cards.forEach((card, index) => {
-    const delay = index * 0.06;
-    const frontImage = card.querySelector('.carte-front-logo');
-    if (frontImage) {
-      frontImage.style.animationDelay = `${delay}s`;
-    }
-  });
-});
 
 if (scrollElements.length > 0) {
   const observer = new IntersectionObserver((entries) => {
