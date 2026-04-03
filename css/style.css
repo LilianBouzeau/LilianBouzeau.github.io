@@ -890,7 +890,7 @@ body.home-page nav {
 
 #Export,
 #contactExport {
-  width: 90vw;
+  width: 85vw;
   margin: auto;
 }
 
@@ -1833,7 +1833,7 @@ body.home-page nav {
    FORMULAIRE EXPORT / CONTACT
 =================================*/
 .export-hero {
-  width: min(1120px, 92vw);
+  width: 85vw;
   margin: 28px auto 12px;
   padding: 30px 24px;
   text-align: center;
@@ -1869,7 +1869,7 @@ body.home-page nav {
 }
 
 .export-section {
-  width: min(1120px, 92vw);
+  width: 85vw;
   margin: 8px auto 34px;
 }
 
@@ -1944,7 +1944,7 @@ body.home-page nav {
 }
 
 .export-contact-block {
-  width: min(1120px, 92vw);
+  width: 85vw;
   margin: 8px auto 34px;
 }
 
@@ -2139,7 +2139,7 @@ body.home-page nav {
   .export-grid {
   grid-template-columns: 1fr;
   gap: 12px;
-  margin: 0 5%;
+  margin: 0;
   }
 
   .export-card {
