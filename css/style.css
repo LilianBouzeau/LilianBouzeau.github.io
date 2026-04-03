@@ -1944,40 +1944,184 @@ body.home-page nav {
 }
 
 .export-contact-block {
-  width: min(700px, 92vw);
-  margin: 20px auto 14px;
-  text-align: center;
+  width: min(1120px, 92vw);
+  margin: 8px auto 34px;
 }
 
-.export-contact-block .nom {
-  margin-bottom: 10px;
+.export-form-shell {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 143, 0, 0.16), transparent 34%),
+    radial-gradient(circle at bottom left, rgba(76, 175, 80, 0.2), transparent 32%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 246, 0.96));
+  border: 1px solid rgba(46, 125, 50, 0.12);
+  box-shadow: 0 18px 48px rgba(46, 125, 50, 0.12);
 }
 
-.formulaire {
-  display: flex;
+.export-form-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(46, 125, 50, 0.06), transparent 40%, rgba(255, 143, 0, 0.08));
+  pointer-events: none;
+}
+
+.export-form-heading,
+.export-form {
+  position: relative;
+  z-index: 1;
+}
+
+.export-form-heading {
+  margin-bottom: 22px;
+}
+
+.export-form-kicker {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(46, 125, 50, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.18);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.export-form-heading h2 {
+  margin: 0;
+  color: var(--accent);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+.export-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  color: #214b24;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1d1d1d;
+  font: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.form-field textarea {
+  min-height: 148px;
+  resize: vertical;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #78857a;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: rgba(255, 143, 0, 0.75);
+  box-shadow: 0 0 0 4px rgba(255, 143, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.form-field.has-error input,
+.form-field.has-error textarea {
+  border-color: rgba(198, 40, 40, 0.55);
+  box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.09);
+}
+
+.form-field.has-valid input,
+.form-field.has-valid textarea {
+  border-color: rgba(46, 125, 50, 0.75);
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.14);
+}
+
+.error-msg {
+  min-height: 1.05rem;
+  margin: 0;
+  color: #b3261e;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.export-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
   margin: auto;
-  gap: 0.6rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius);
-  padding: 0.8rem 1.2rem;
-  width: fit-content;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  margin-bottom: 2%;
-  background-color: var(--vert);
-  animation: bounceExport 2s infinite;
 }
 
-.formulaire:hover {
-  background-color: var(--orange);
-  transform: translateY(-3px);
-}
-
-.formulaire .icone,
-.formulaire .paraContact {
+.export-submit-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, var(--accent), var(--vert));
   color: var(--blanc);
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 14px 26px rgba(46, 125, 50, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.export-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 30px rgba(46, 125, 50, 0.24);
+  filter: saturate(1.06);
+}
+
+.export-submit-btn:active {
+  transform: translateY(0);
+}
+
+.form-status {
+  min-height: 1.1rem;
+  margin: 0;
+  color: #214b24;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.form-status.is-error {
+  color: #b3261e;
+}
+
+.form-status.is-success {
+  color: var(--accent);
 }
 
 /* Correction mobile */
@@ -2015,8 +2159,22 @@ body.home-page nav {
   padding: 0 0.45rem 0.3rem;
   }
 
-  .formulaire {
-  margin-bottom: 5%;
+  .export-form-shell {
+  padding: 20px 16px;
+  border-radius: 20px;
+  }
+
+  .form-row {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  }
+
+  .export-form-actions {
+  align-items: stretch;
+  }
+
+  .export-submit-btn {
+  width: 100%;
   }
 }
 

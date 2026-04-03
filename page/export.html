@@ -135,9 +135,54 @@
         </section>
         <!-- ==================== FORMULAIRE DE CONTACT EXPORT ==================== -->
         <section class="export-contact-block scroll-animate-opacity">
-            <div class="formulaire">
-                <i class="bi bi-envelope icone"></i>
-                <a href="mailto:contact@Cruchaudet.com" class="paraContact">contact@Cruchaudet.com</a>
+            <div class="export-form-shell">
+                <div class="export-form-heading">
+                    <h2 id="contactFormTitle">Contact Export</h2>
+                </div>
+                <form id="contactExportForm" class="export-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label id="nom" for="exportNom">Nom *</label>
+                            <input id="exportNom" name="nom" type="text" autocomplete="family-name" />
+                            <p class="error-msg" data-field="nom" data-key="nom" aria-live="polite"></p>
+                        </div>
+                        <div class="form-field">
+                            <label id="prenom" for="exportPrenom">Prénom *</label>
+                            <input id="exportPrenom" name="prenom" type="text" autocomplete="given-name" />
+                            <p class="error-msg" data-field="prenom" data-key="prenom" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label id="email" for="exportEmail">Email *</label>
+                            <input id="exportEmail" name="email" type="email" autocomplete="email" inputmode="email" />
+                            <p class="error-msg" data-field="email" data-key="email" aria-live="polite"></p>
+                        </div>
+                        <div class="form-field">
+                            <label id="telephone" for="exportTelephone">Téléphone *</label>
+                            <input id="exportTelephone" name="telephone" type="tel" autocomplete="tel" inputmode="tel" />
+                            <p class="error-msg" data-field="telephone" data-key="telephone" aria-live="polite"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label id="objet" for="exportObjet">Objet *</label>
+                        <input id="exportObjet" name="objet" type="text" />
+                        <p class="error-msg" data-field="objet" data-key="objet" aria-live="polite"></p>
+                    </div>
+
+                    <div class="form-field form-field-message">
+                        <label id="message" for="exportMessage">Votre message *</label>
+                        <textarea id="exportMessage" name="message" rows="6"></textarea>
+                        <p class="error-msg" data-field="message" data-key="messageVide" aria-live="polite"></p>
+                    </div>
+
+                    <div class="export-form-actions">
+                        <button id="submitBtn" type="submit" class="export-submit-btn">Envoyer</button>
+                        <p id="formMsg" class="form-status" aria-live="polite"></p>
+                    </div>
+                </form>
             </div>
         </section>
         <!-- ==================== PIED DE PAGE ==================== -->

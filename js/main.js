@@ -322,35 +322,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
       window.addEventListener("resize", updateFooterSize, { passive: true });
 
-      const CORNER_KEYS = ["top-left", "top-right", "bottom-left", "bottom-right"];
-      const OPPOSITE_CORNERS = {
-        "top-left": ["bottom-right", "top-right", "bottom-left"],
-        "top-right": ["bottom-left", "top-left", "bottom-right"],
-        "bottom-left": ["top-right", "top-left", "bottom-right"],
-        "bottom-right": ["top-left", "top-right", "bottom-left"],
+      const EDGE_KEYS = ["top", "right", "bottom", "left"];
+
+      const getEdgePoint = (edge, outside) => {
+        if (edge === "top") {
+          return { x: randomBetween(-outside * 0.2, width + outside * 0.2), y: -outside };
+        }
+        if (edge === "right") {
+          return { x: width + outside, y: randomBetween(6, Math.max(16, height - 10)) };
+        }
+        if (edge === "bottom") {
+          return { x: randomBetween(-outside * 0.2, width + outside * 0.2), y: height + outside };
+        }
+        return { x: -outside, y: randomBetween(6, Math.max(16, height - 10)) };
       };
 
-      const getCornerPoint = (corner, outside) => {
-        const yTop = 6;
-        const yBottom = Math.max(16, height - 10);
-        if (corner === "top-left") return { x: -outside, y: yTop };
-        if (corner === "top-right") return { x: width + outside, y: yTop };
-        if (corner === "bottom-left") return { x: -outside, y: yBottom };
-        return { x: width + outside, y: yBottom };
+      const getRandomPerimeterPoint = (outside, excludedEdge = null) => {
+        const edges = excludedEdge
+          ? EDGE_KEYS.filter((edge) => edge !== excludedEdge)
+          : EDGE_KEYS;
+        const edge = edges[Math.floor(Math.random() * edges.length)];
+        return {
+          edge,
+          point: getEdgePoint(edge, outside),
+        };
       };
 
-      const chooseEndCorner = (startCorner) => {
-        const choices = OPPOSITE_CORNERS[startCorner] || CORNER_KEYS;
-        return choices[Math.floor(Math.random() * choices.length)];
-      };
-
-      const createPath = (startCorner) => {
+      const createPath = () => {
         const outside = 120;
         const yMin = 6;
         const yMax = Math.max(16, height - 10);
-        const endCorner = chooseEndCorner(startCorner);
-        const startPoint = getCornerPoint(startCorner, outside);
-        const endPoint = getCornerPoint(endCorner, outside);
+        const start = getRandomPerimeterPoint(outside);
+        const end = getRandomPerimeterPoint(outside, start.edge);
+        const startPoint = start.point;
+        const endPoint = end.point;
         const startY = startPoint.y;
         const endY = endPoint.y;
         const c1Y = clamp(startY + randomBetween(-height * 0.35, height * 0.3), yMin, yMax);
@@ -370,7 +375,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       const resetPlane = (plane, now) => {
-        plane.path = createPath(plane.startCorner);
+        plane.path = createPath();
         plane.duration = randomBetween(11000, 18000);
         plane.dotInterval = randomBetween(70, 120);
         plane.lastDotAt = now;
@@ -412,7 +417,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const plane = {
           el,
           path: null,
-          startCorner: CORNER_KEYS[i % CORNER_KEYS.length],
           duration: 0,
           dotInterval: randomBetween(70, 150),
           startAt: performance.now() - randomBetween(0, 12000) - (i * 800),
@@ -857,6 +861,7 @@ if (scrollElements.length > 0) {
   initRayonScrollPerfMode();
   optimizeRayonImages();
   initRayonCardsFlip();
+  initExportContactForm();
 
   // ---------- COOKIES ----------
   const banner = document.getElementById("cookie-banner");
@@ -1398,6 +1403,126 @@ if (scrollElements.length > 0) {
     cardAromaticHerbsVarieties: "Herb Varieties",
     cardEdibleFlowersTitle: "Edible Flowers",
     cardEdibleFlowersVarieties: "Edible Flower Varieties",
+    cardBananasItem1: "Banana",
+    cardBananasItem2: "Frecinette",
+    cardBananasItem3: "Green banana",
+    cardBananasItem4: "Organic banana",
+    cardApplesItem1: "Pink Lady",
+    cardApplesItem2: "Golden Delicious",
+    cardApplesItem3: "Granny Smith",
+    cardApplesItem4: "Fuji",
+    cardPearsItem1: "Comice",
+    cardPearsItem2: "Williams",
+    cardPearsItem3: "Conference",
+    cardKiwisItem1: "Green",
+    cardKiwisItem2: "Gold",
+    cardKiwisItem3: "Red",
+    cardMelonsItem1: "Philibon",
+    cardMelonsItem2: "Charentais",
+    cardMelonsItem3: "Honeydew",
+    cardCitrusItem1: "Lemon",
+    cardCitrusItem2: "Orange",
+    cardCitrusItem3: "Clementine",
+    cardCitrusItem4: "Grapefruit",
+    cardBerriesItem1: "Strawberry",
+    cardBerriesItem2: "Raspberry",
+    cardBerriesItem3: "Blueberry",
+    cardBerriesItem4: "Blackberry",
+    cardGrapesItem1: "Black grape",
+    cardGrapesItem2: "Pink grape",
+    cardGrapesItem3: "White grape",
+    cardStoneFruitItem1: "Apricot",
+    cardStoneFruitItem2: "Flat peach",
+    cardStoneFruitItem3: "Nectarine",
+    cardStoneFruitItem4: "Peach",
+    cardTomatoesItem1: "Beefsteak",
+    cardTomatoesItem2: "Black",
+    cardTomatoesItem3: "Pineapple",
+    cardTomatoesItem4: "Cherry",
+    cardRatatouilleItem1: "Eggplant",
+    cardRatatouilleItem2: "Bell pepper",
+    cardRatatouilleItem3: "Zucchini",
+    cardRatatouilleItem4: "Cucumber",
+    cardRootsBulbsItem1: "Beetroot",
+    cardRootsBulbsItem2: "Turnip",
+    cardRootsBulbsItem3: "Carrot",
+    cardRootsBulbsItem4: "Radish",
+    cardRootsBulbsItem5: "Endive",
+    cardBroccoliArtichokeItem1: "Broccoli",
+    cardBroccoliArtichokeItem2: "Artichoke",
+    cardCabbagesItem1: "Cauliflower",
+    cardCabbagesItem2: "White cabbage",
+    cardCabbagesItem3: "Red cabbage",
+    cardCabbagesItem4: "Brussels sprouts",
+    cardCabbagesItem5: "Romanesco",
+    cardSaladsItem1: "Batavia lettuce",
+    cardSaladsItem2: "Lettuce",
+    cardSaladsItem3: "Red leaf lettuce",
+    cardSaladsItem4: "Oak leaf lettuce",
+    cardSaladsItem5: "Lollo Rossa",
+    cardPumpkinsItem1: "Pumpkin",
+    cardPumpkinsItem2: "Red kuri squash",
+    cardPumpkinsItem3: "Butternut",
+    cardOtherVegetablesItem1: "Leeks",
+    cardOtherVegetablesItem2: "Fennel",
+    cardOtherVegetablesItem3: "Celery stalk",
+    cardMiniVegetablesItem1: "Carrots",
+    cardMiniVegetablesItem2: "Beetroots",
+    cardMiniVegetablesItem3: "Fennel",
+    cardMiniVegetablesItem4: "Leeks",
+    cardPotatoesItem1: "Charlotte",
+    cardPotatoesItem2: "Agata",
+    cardPotatoesItem3: "Ratte",
+    cardOnionsItem1: "Yellow",
+    cardOnionsItem2: "Red",
+    cardOnionsItem3: "White",
+    cardOnionsItem4: "Shallot",
+    cardGarlicItem1: "White",
+    cardGarlicItem2: "Pink",
+    cardGarlicItem3: "Purple",
+    cardAvocadosItem1: "Ripe avocado",
+    cardAvocadosItem2: "Firm avocado",
+    cardAvocadosItem3: "Tropical avocado",
+    cardMushroomsItem1: "Button mushroom",
+    cardMushroomsItem2: "Shiitake",
+    cardMushroomsItem3: "Oyster mushroom",
+    cardMushroomsItem4: "Morels",
+    cardAsparagusItem1: "White",
+    cardAsparagusItem2: "Green",
+    cardAsparagusItem3: "Wild",
+    cardAsparagusItem4: "Violet",
+    cardMangoesItem1: "Kent",
+    cardMangoesItem2: "Bateau",
+    cardDragonFruitItem1: "Yellow flesh",
+    cardDragonFruitItem2: "Red flesh",
+    cardDragonFruitItem3: "White flesh",
+    cardPassionFruitItem1: "Purple",
+    cardPassionFruitItem2: "Yellow",
+    cardEggplantsItem1: "Violet",
+    cardEggplantsItem2: "Mini white",
+    cardEggplantsItem3: "Mini graffiti",
+    cardEggplantsItem4: "Mini black",
+    cardPineapplesItem1: "Bateau",
+    cardPineapplesItem2: "Sugarloaf",
+    cardPineapplesItem3: "Premium",
+    cardPineapplesItem4: "Victoria",
+    cardBabyLeavesItem1: "Mesclun",
+    cardBabyLeavesItem2: "Arugula",
+    cardBabyLeavesItem3: "Lamb's lettuce",
+    cardBabyLeavesItem4: "Gourmet mix",
+    cardSproutsItem1: "Beetroot",
+    cardSproutsItem2: "Alfalfa",
+    cardSproutsItem3: "Lentils",
+    cardSproutsItem4: "Radish",
+    cardAromaticHerbsItem1: "Bay leaf",
+    cardAromaticHerbsItem2: "Thyme",
+    cardAromaticHerbsItem3: "Parsley",
+    cardAromaticHerbsItem4: "Basil",
+    cardAromaticHerbsItem5: "Dill",
+    cardEdibleFlowersItem1: "Mixed pansies",
+    cardEdibleFlowersItem2: "Alysse",
+    cardEdibleFlowersItem3: "Pink petal",
+    cardEdibleFlowersItem4: "Borage",
     cardMoreItems: "And many more...",
     rayonText1: "In our fruit department, we offer a wide range of fresh products carefully selected for quality and freshness. Sourced from local and international growers, our fruits are chosen with rigor to guarantee taste, maturity, and variety throughout the year. We meet professionals’ expectations with products perfectly adapted to market needs.",
     rayonText2: "In our vegetable department, we offer a broad variety of fresh products selected to meet the highest quality standards. We ensure freshness, traceability, and compliance with health standards. This allows us to serve diverse customers, from local shops to food service.",
@@ -1628,6 +1753,126 @@ if (scrollElements.length > 0) {
     cardAromaticHerbsVarieties: "Variedades de hierbas",
     cardEdibleFlowersTitle: "Flores comestibles",
     cardEdibleFlowersVarieties: "Variedades de flores comestibles",
+    cardBananasItem1: "Banana",
+    cardBananasItem2: "Frecinette",
+    cardBananasItem3: "Banana verde",
+    cardBananasItem4: "Banana ecológica",
+    cardApplesItem1: "Pink Lady",
+    cardApplesItem2: "Golden Delicious",
+    cardApplesItem3: "Granny Smith",
+    cardApplesItem4: "Fuji",
+    cardPearsItem1: "Comice",
+    cardPearsItem2: "Williams",
+    cardPearsItem3: "Conference",
+    cardKiwisItem1: "Verde",
+    cardKiwisItem2: "Gold",
+    cardKiwisItem3: "Rojo",
+    cardMelonsItem1: "Philibon",
+    cardMelonsItem2: "Charentais",
+    cardMelonsItem3: "Melón honeydew",
+    cardCitrusItem1: "Limón",
+    cardCitrusItem2: "Naranja",
+    cardCitrusItem3: "Clementina",
+    cardCitrusItem4: "Pomelo",
+    cardBerriesItem1: "Fresa",
+    cardBerriesItem2: "Frambuesa",
+    cardBerriesItem3: "Arándano",
+    cardBerriesItem4: "Mora",
+    cardGrapesItem1: "Uva negra",
+    cardGrapesItem2: "Uva rosada",
+    cardGrapesItem3: "Uva blanca",
+    cardStoneFruitItem1: "Albaricoque",
+    cardStoneFruitItem2: "Paraguayo",
+    cardStoneFruitItem3: "Nectarina",
+    cardStoneFruitItem4: "Melocotón",
+    cardTomatoesItem1: "Corazón de buey",
+    cardTomatoesItem2: "Negra",
+    cardTomatoesItem3: "Piña",
+    cardTomatoesItem4: "Cereza",
+    cardRatatouilleItem1: "Berenjena",
+    cardRatatouilleItem2: "Pimiento",
+    cardRatatouilleItem3: "Calabacín",
+    cardRatatouilleItem4: "Pepino",
+    cardRootsBulbsItem1: "Remolacha",
+    cardRootsBulbsItem2: "Nabo",
+    cardRootsBulbsItem3: "Zanahoria",
+    cardRootsBulbsItem4: "Rábano",
+    cardRootsBulbsItem5: "Endibia",
+    cardBroccoliArtichokeItem1: "Brócoli",
+    cardBroccoliArtichokeItem2: "Alcachofa",
+    cardCabbagesItem1: "Coliflor",
+    cardCabbagesItem2: "Col blanca",
+    cardCabbagesItem3: "Col roja",
+    cardCabbagesItem4: "Coles de Bruselas",
+    cardCabbagesItem5: "Romanesco",
+    cardSaladsItem1: "Lechuga batavia",
+    cardSaladsItem2: "Lechuga",
+    cardSaladsItem3: "Lechuga roja",
+    cardSaladsItem4: "Hoja de roble",
+    cardSaladsItem5: "Lollo Rossa",
+    cardPumpkinsItem1: "Calabaza",
+    cardPumpkinsItem2: "Calabaza hokkaido",
+    cardPumpkinsItem3: "Butternut",
+    cardOtherVegetablesItem1: "Puerros",
+    cardOtherVegetablesItem2: "Hinojo",
+    cardOtherVegetablesItem3: "Apio en rama",
+    cardMiniVegetablesItem1: "Zanahorias",
+    cardMiniVegetablesItem2: "Remolachas",
+    cardMiniVegetablesItem3: "Hinojo",
+    cardMiniVegetablesItem4: "Puerros",
+    cardPotatoesItem1: "Charlotte",
+    cardPotatoesItem2: "Agata",
+    cardPotatoesItem3: "Ratte",
+    cardOnionsItem1: "Amarillo",
+    cardOnionsItem2: "Rojo",
+    cardOnionsItem3: "Blanco",
+    cardOnionsItem4: "Chalota",
+    cardGarlicItem1: "Blanco",
+    cardGarlicItem2: "Rosa",
+    cardGarlicItem3: "Violeta",
+    cardAvocadosItem1: "Aguacate maduro",
+    cardAvocadosItem2: "Aguacate firme",
+    cardAvocadosItem3: "Aguacate tropical",
+    cardMushroomsItem1: "Champiñón de París",
+    cardMushroomsItem2: "Shiitake",
+    cardMushroomsItem3: "Seta de ostra",
+    cardMushroomsItem4: "Colmenillas",
+    cardAsparagusItem1: "Blanca",
+    cardAsparagusItem2: "Verde",
+    cardAsparagusItem3: "Salvaje",
+    cardAsparagusItem4: "Violeta",
+    cardMangoesItem1: "Kent",
+    cardMangoesItem2: "Bateau",
+    cardDragonFruitItem1: "Pulpa amarilla",
+    cardDragonFruitItem2: "Pulpa roja",
+    cardDragonFruitItem3: "Pulpa blanca",
+    cardPassionFruitItem1: "Púrpura",
+    cardPassionFruitItem2: "Amarillo",
+    cardEggplantsItem1: "Violeta",
+    cardEggplantsItem2: "Mini blanca",
+    cardEggplantsItem3: "Mini grafiti",
+    cardEggplantsItem4: "Mini negra",
+    cardPineapplesItem1: "Bateau",
+    cardPineapplesItem2: "Pan de azúcar",
+    cardPineapplesItem3: "Premium",
+    cardPineapplesItem4: "Victoria",
+    cardBabyLeavesItem1: "Mesclun",
+    cardBabyLeavesItem2: "Rúcula",
+    cardBabyLeavesItem3: "Canónigos",
+    cardBabyLeavesItem4: "Mezcla gourmet",
+    cardSproutsItem1: "Remolacha",
+    cardSproutsItem2: "Alfalfa",
+    cardSproutsItem3: "Lentejas",
+    cardSproutsItem4: "Rábano",
+    cardAromaticHerbsItem1: "Laurel",
+    cardAromaticHerbsItem2: "Tomillo",
+    cardAromaticHerbsItem3: "Perejil",
+    cardAromaticHerbsItem4: "Albahaca",
+    cardAromaticHerbsItem5: "Eneldo",
+    cardEdibleFlowersItem1: "Pensamientos mixtos",
+    cardEdibleFlowersItem2: "Alysse",
+    cardEdibleFlowersItem3: "Pétalo rosa",
+    cardEdibleFlowersItem4: "Borraja",
     cardMoreItems: "Y muchos más...",
     rayonText1: "En la sección de frutas, ofrecemos una amplia selección de productos frescos, cuidadosamente elegidos por su calidad y frescura. Procedentes de productores locales e internacionales, seleccionamos nuestras frutas con rigor para garantizar sabor, madurez y diversidad durante todo el año.",
     rayonText2: "En la sección de verduras, ofrecemos una gran variedad de productos frescos, seleccionados rigurosamente para cumplir con los estándares de calidad más exigentes. Garantizamos frescura, trazabilidad y conformidad sanitaria para atender a una clientela diversa.",
@@ -1856,6 +2101,126 @@ if (scrollElements.length > 0) {
     cardAromaticHerbsVarieties: "Kräutersorten",
     cardEdibleFlowersTitle: "Essbare Blüten",
     cardEdibleFlowersVarieties: "Sorten essbarer Blüten",
+    cardBananasItem1: "Banane",
+    cardBananasItem2: "Frecinette",
+    cardBananasItem3: "Grüne Banane",
+    cardBananasItem4: "Bio-Banane",
+    cardApplesItem1: "Pink Lady",
+    cardApplesItem2: "Golden Delicious",
+    cardApplesItem3: "Granny Smith",
+    cardApplesItem4: "Fuji",
+    cardPearsItem1: "Comice",
+    cardPearsItem2: "Williams",
+    cardPearsItem3: "Conference",
+    cardKiwisItem1: "Grün",
+    cardKiwisItem2: "Gold",
+    cardKiwisItem3: "Rot",
+    cardMelonsItem1: "Philibon",
+    cardMelonsItem2: "Charentais",
+    cardMelonsItem3: "Honigmelone",
+    cardCitrusItem1: "Zitrone",
+    cardCitrusItem2: "Orange",
+    cardCitrusItem3: "Clementine",
+    cardCitrusItem4: "Grapefruit",
+    cardBerriesItem1: "Erdbeere",
+    cardBerriesItem2: "Himbeere",
+    cardBerriesItem3: "Heidelbeere",
+    cardBerriesItem4: "Brombeere",
+    cardGrapesItem1: "Schwarze Traube",
+    cardGrapesItem2: "Rosa Traube",
+    cardGrapesItem3: "Weiße Traube",
+    cardStoneFruitItem1: "Aprikose",
+    cardStoneFruitItem2: "Plattpfirsich",
+    cardStoneFruitItem3: "Nektarine",
+    cardStoneFruitItem4: "Pfirsich",
+    cardTomatoesItem1: "Ochsenherz",
+    cardTomatoesItem2: "Schwarz",
+    cardTomatoesItem3: "Ananas",
+    cardTomatoesItem4: "Kirsche",
+    cardRatatouilleItem1: "Aubergine",
+    cardRatatouilleItem2: "Paprika",
+    cardRatatouilleItem3: "Zucchini",
+    cardRatatouilleItem4: "Gurke",
+    cardRootsBulbsItem1: "Rote Bete",
+    cardRootsBulbsItem2: "Steckrübe",
+    cardRootsBulbsItem3: "Karotte",
+    cardRootsBulbsItem4: "Radieschen",
+    cardRootsBulbsItem5: "Endivie",
+    cardBroccoliArtichokeItem1: "Brokkoli",
+    cardBroccoliArtichokeItem2: "Artischocke",
+    cardCabbagesItem1: "Blumenkohl",
+    cardCabbagesItem2: "Weißkohl",
+    cardCabbagesItem3: "Rotkohl",
+    cardCabbagesItem4: "Rosenkohl",
+    cardCabbagesItem5: "Romanesco",
+    cardSaladsItem1: "Bataviasalat",
+    cardSaladsItem2: "Kopfsalat",
+    cardSaladsItem3: "Rotsalat",
+    cardSaladsItem4: "Eichblattsalat",
+    cardSaladsItem5: "Lollo Rossa",
+    cardPumpkinsItem1: "Kürbis",
+    cardPumpkinsItem2: "Hokkaido-Kürbis",
+    cardPumpkinsItem3: "Butternut",
+    cardOtherVegetablesItem1: "Lauch",
+    cardOtherVegetablesItem2: "Fenchel",
+    cardOtherVegetablesItem3: "Stangensellerie",
+    cardMiniVegetablesItem1: "Karotten",
+    cardMiniVegetablesItem2: "Rote Beten",
+    cardMiniVegetablesItem3: "Fenchel",
+    cardMiniVegetablesItem4: "Lauch",
+    cardPotatoesItem1: "Charlotte",
+    cardPotatoesItem2: "Agata",
+    cardPotatoesItem3: "Ratte",
+    cardOnionsItem1: "Gelb",
+    cardOnionsItem2: "Rot",
+    cardOnionsItem3: "Weiß",
+    cardOnionsItem4: "Schalotte",
+    cardGarlicItem1: "Weiß",
+    cardGarlicItem2: "Rosa",
+    cardGarlicItem3: "Violett",
+    cardAvocadosItem1: "Reife Avocado",
+    cardAvocadosItem2: "Feste Avocado",
+    cardAvocadosItem3: "Tropische Avocado",
+    cardMushroomsItem1: "Champignon",
+    cardMushroomsItem2: "Shiitake",
+    cardMushroomsItem3: "Austernpilz",
+    cardMushroomsItem4: "Morcheln",
+    cardAsparagusItem1: "Weiße",
+    cardAsparagusItem2: "Grüne",
+    cardAsparagusItem3: "Wild",
+    cardAsparagusItem4: "Violett",
+    cardMangoesItem1: "Kent",
+    cardMangoesItem2: "Bateau",
+    cardDragonFruitItem1: "Gelbes Fruchtfleisch",
+    cardDragonFruitItem2: "Rotes Fruchtfleisch",
+    cardDragonFruitItem3: "Weißes Fruchtfleisch",
+    cardPassionFruitItem1: "Purpur",
+    cardPassionFruitItem2: "Gelb",
+    cardEggplantsItem1: "Violett",
+    cardEggplantsItem2: "Mini-Weiße",
+    cardEggplantsItem3: "Mini-Graffiti",
+    cardEggplantsItem4: "Mini-Schwarze",
+    cardPineapplesItem1: "Bateau",
+    cardPineapplesItem2: "Zuckerhut",
+    cardPineapplesItem3: "Premium",
+    cardPineapplesItem4: "Victoria",
+    cardBabyLeavesItem1: "Mesclun",
+    cardBabyLeavesItem2: "Rucola",
+    cardBabyLeavesItem3: "Feldsalat",
+    cardBabyLeavesItem4: "Gourmet-Mix",
+    cardSproutsItem1: "Rote Bete",
+    cardSproutsItem2: "Alfalfa",
+    cardSproutsItem3: "Linsen",
+    cardSproutsItem4: "Radieschen",
+    cardAromaticHerbsItem1: "Lorbeer",
+    cardAromaticHerbsItem2: "Thymian",
+    cardAromaticHerbsItem3: "Petersilie",
+    cardAromaticHerbsItem4: "Basilikum",
+    cardAromaticHerbsItem5: "Dill",
+    cardEdibleFlowersItem1: "Stiefmütterchen-Mix",
+    cardEdibleFlowersItem2: "Alysse",
+    cardEdibleFlowersItem3: "Rosa Blütenblatt",
+    cardEdibleFlowersItem4: "Borretsch",
     cardMoreItems: "Und viele mehr...",
     rayonText1: "In unserer Obstabteilung bieten wir eine breite Auswahl frischer Produkte, sorgfältig nach Qualität und Frische ausgewählt. Wir wählen unser Obst mit großer Sorgfalt, um Geschmack, Reife und Vielfalt das ganze Jahr über zu garantieren.",
     rayonText2: "In unserer Gemüseabteilung bieten wir eine große Vielfalt frischer Produkte, die nach höchsten Qualitätsstandards ausgewählt werden. Wir achten auf Frische, Rückverfolgbarkeit und die Einhaltung gesundheitlicher Standards.",
@@ -1950,281 +2315,199 @@ if (scrollElements.length > 0) {
     },
   };
 
-  const cardListItemsByLang = {
-    EN: {
-      "Abricot": "Apricot",
-      "Ananas": "Pineapple",
-      "Aneth": "Dill",
-      "Artichaut": "Artichoke",
-      "Aubergine": "Eggplant",
-      "Avocat ferme": "Firm avocado",
-      "Avocat tournant": "Ripe avocado",
-      "Avocat tropical": "Tropical avocado",
-      "Banane": "Banana",
-      "Banane Bio": "Organic banana",
-      "Banane verte": "Green banana",
-      "Basilic": "Basil",
-      "Batavia": "Batavia lettuce",
-      "Betterave": "Beetroot",
-      "betteraves": "Beetroots",
-      "Blanc": "White",
-      "Blanche": "White",
-      "Boule de miel": "Honeydew",
-      "Bourrache": "Borage",
-      "Brocoli": "Broccoli",
-      "Carotte": "Carrot",
-      "Carottes": "Carrots",
-      "celeri branche": "Celery stalk",
-      "Cerise": "Cherry",
-      "chair jaune": "Yellow flesh",
-      "chaire blanche": "White flesh",
-      "chaire rouge": "Red flesh",
-      "Champignon de Paris": "Button mushroom",
-      "Chou blanc": "White cabbage",
-      "Chou de Bruxelles": "Brussels sprouts",
-      "Chou rouge": "Red cabbage",
-      "Chou-fleur": "Cauliflower",
-      "Citron": "Lemon",
-      "Clémentine": "Clementine",
-      "Coeur de boeif": "Beefsteak",
-      "Concombre": "Cucumber",
-      "Courgette": "Zucchini",
-      "Échalote": "Shallot",
-      "Endive": "Endive",
-      "Fenouil": "Fennel",
-      "Feuille de chêne": "Oak leaf lettuce",
-      "Fraise": "Strawberry",
-      "Framboise": "Raspberry",
-      "Jaune": "Yellow",
-      "Laitue": "Lettuce",
-      "Laurier": "Bay leaf",
-      "Lentilles": "Lentils",
-      "Luzerne": "Alfalfa",
-      "Mâche": "Lamb's lettuce",
-      "Mélange gourmand": "Gourmet mix",
-      "Mini-blanche": "Mini white",
-      "Mini-graphiti": "Mini graffiti",
-      "Mini-noire": "Mini black",
-      "Morilles": "Morels",
-      "Mûre": "Blackberry",
-      "Myrtille": "Blueberry",
-      "Navet": "Turnip",
-      "Nectarine": "Nectarine",
-      "Noire": "Black",
-      "Orange": "Orange",
-      "Pain de sucre": "Sugarloaf",
-      "Pamplemousse": "Grapefruit",
-      "Pêche": "Peach",
-      "Pêche plate": "Flat peach",
-      "Pensées mixte": "Mixed pansies",
-      "Persil": "Parsley",
-      "Pétale rose": "Pink petal",
-      "Pleurote": "Oyster mushroom",
-      "Poireaux": "Leeks",
-      "Poivron": "Bell pepper",
-      "Potimarron": "Red kuri squash",
-      "Potiron": "Pumpkin",
-      "Pourpre": "Purple",
-      "Radis": "Radish",
-      "Raisin blanc": "White grape",
-      "Raisin noir": "Black grape",
-      "Raisin rose": "Pink grape",
-      "Roquette": "Arugula",
-      "Rose": "Pink",
-      "Rouge": "Red",
-      "Rougette": "Red leaf lettuce",
-      "Sauvage": "Wild",
-      "Thym": "Thyme",
-      "vert": "Green",
-      "Verte": "Green",
-      "Violet": "Purple",
-      "Violette": "Violet"
-    },
-    ES: {
-      "Abricot": "Albaricoque",
-      "Ananas": "Piña",
-      "Aneth": "Eneldo",
-      "Artichaut": "Alcachofa",
-      "Aubergine": "Berenjena",
-      "Avocat ferme": "Aguacate firme",
-      "Avocat tournant": "Aguacate maduro",
-      "Avocat tropical": "Aguacate tropical",
-      "Banane": "Banana",
-      "Banane Bio": "Banana ecológica",
-      "Banane verte": "Banana verde",
-      "Basilic": "Albahaca",
-      "Batavia": "Lechuga batavia",
-      "Betterave": "Remolacha",
-      "betteraves": "Remolachas",
-      "Blanc": "Blanco",
-      "Blanche": "Blanca",
-      "Boule de miel": "Melón honeydew",
-      "Bourrache": "Borraja",
-      "Brocoli": "Brócoli",
-      "Carotte": "Zanahoria",
-      "Carottes": "Zanahorias",
-      "celeri branche": "Apio en rama",
-      "Cerise": "Cereza",
-      "chair jaune": "Pulpa amarilla",
-      "chaire blanche": "Pulpa blanca",
-      "chaire rouge": "Pulpa roja",
-      "Champignon de Paris": "Champiñón de París",
-      "Chou blanc": "Col blanca",
-      "Chou de Bruxelles": "Coles de Bruselas",
-      "Chou rouge": "Col roja",
-      "Chou-fleur": "Coliflor",
-      "Citron": "Limón",
-      "Clémentine": "Clementina",
-      "Coeur de boeif": "Corazón de buey",
-      "Concombre": "Pepino",
-      "Courgette": "Calabacín",
-      "Échalote": "Chalota",
-      "Endive": "Endibia",
-      "Fenouil": "Hinojo",
-      "Feuille de chêne": "Hoja de roble",
-      "Fraise": "Fresa",
-      "Framboise": "Frambuesa",
-      "Jaune": "Amarillo",
-      "Laitue": "Lechuga",
-      "Laurier": "Laurel",
-      "Lentilles": "Lentejas",
-      "Luzerne": "Alfalfa",
-      "Mâche": "Canónigos",
-      "Mélange gourmand": "Mezcla gourmet",
-      "Mini-blanche": "Mini blanca",
-      "Mini-graphiti": "Mini grafiti",
-      "Mini-noire": "Mini negra",
-      "Morilles": "Colmenillas",
-      "Mûre": "Mora",
-      "Myrtille": "Arándano",
-      "Navet": "Nabo",
-      "Nectarine": "Nectarina",
-      "Noire": "Negra",
-      "Orange": "Naranja",
-      "Pain de sucre": "Pan de azúcar",
-      "Pamplemousse": "Pomelo",
-      "Pêche": "Melocotón",
-      "Pêche plate": "Paraguayo",
-      "Pensées mixte": "Pensamientos mixtos",
-      "Persil": "Perejil",
-      "Pétale rose": "Pétalo rosa",
-      "Pleurote": "Seta de ostra",
-      "Poireaux": "Puerros",
-      "Poivron": "Pimiento",
-      "Potimarron": "Calabaza hokkaido",
-      "Potiron": "Calabaza",
-      "Pourpre": "Púrpura",
-      "Radis": "Rábano",
-      "Raisin blanc": "Uva blanca",
-      "Raisin noir": "Uva negra",
-      "Raisin rose": "Uva rosada",
-      "Roquette": "Rúcula",
-      "Rose": "Rosa",
-      "Rouge": "Rojo",
-      "Rougette": "Lechuga roja",
-      "Sauvage": "Salvaje",
-      "Thym": "Tomillo",
-      "vert": "Verde",
-      "Verte": "Verde",
-      "Violet": "Violeta",
-      "Violette": "Violeta"
-    },
-    DE: {
-      "Abricot": "Aprikose",
-      "Ananas": "Ananas",
-      "Aneth": "Dill",
-      "Artichaut": "Artischocke",
-      "Aubergine": "Aubergine",
-      "Avocat ferme": "Feste Avocado",
-      "Avocat tournant": "Reife Avocado",
-      "Avocat tropical": "Tropische Avocado",
-      "Banane": "Banane",
-      "Banane Bio": "Bio-Banane",
-      "Banane verte": "Grüne Banane",
-      "Basilic": "Basilikum",
-      "Batavia": "Bataviasalat",
-      "Betterave": "Rote Bete",
-      "betteraves": "Rote Beten",
-      "Blanc": "Weiß",
-      "Blanche": "Weiße",
-      "Boule de miel": "Honigmelone",
-      "Bourrache": "Borretsch",
-      "Brocoli": "Brokkoli",
-      "Carotte": "Karotte",
-      "Carottes": "Karotten",
-      "celeri branche": "Stangensellerie",
-      "Cerise": "Kirsche",
-      "chair jaune": "Gelbes Fruchtfleisch",
-      "chaire blanche": "Weißes Fruchtfleisch",
-      "chaire rouge": "Rotes Fruchtfleisch",
-      "Champignon de Paris": "Champignon",
-      "Chou blanc": "Weißkohl",
-      "Chou de Bruxelles": "Rosenkohl",
-      "Chou rouge": "Rotkohl",
-      "Chou-fleur": "Blumenkohl",
-      "Citron": "Zitrone",
-      "Clémentine": "Clementine",
-      "Coeur de boeif": "Ochsenherz",
-      "Concombre": "Gurke",
-      "Courgette": "Zucchini",
-      "Échalote": "Schalotte",
-      "Endive": "Endivie",
-      "Fenouil": "Fenchel",
-      "Feuille de chêne": "Eichblattsalat",
-      "Fraise": "Erdbeere",
-      "Framboise": "Himbeere",
-      "Jaune": "Gelb",
-      "Laitue": "Kopfsalat",
-      "Laurier": "Lorbeer",
-      "Lentilles": "Linsen",
-      "Luzerne": "Alfalfa",
-      "Mâche": "Feldsalat",
-      "Mélange gourmand": "Gourmet-Mix",
-      "Mini-blanche": "Mini-Weiße",
-      "Mini-graphiti": "Mini-Graffiti",
-      "Mini-noire": "Mini-Schwarze",
-      "Morilles": "Morcheln",
-      "Mûre": "Brombeere",
-      "Myrtille": "Heidelbeere",
-      "Navet": "Steckrübe",
-      "Nectarine": "Nektarine",
-      "Noire": "Schwarz",
-      "Orange": "Orange",
-      "Pain de sucre": "Zuckerhut",
-      "Pamplemousse": "Grapefruit",
-      "Pêche": "Pfirsich",
-      "Pêche plate": "Plattpfirsich",
-      "Pensées mixte": "Stiefmütterchen-Mix",
-      "Persil": "Petersilie",
-      "Pétale rose": "Rosa Blütenblatt",
-      "Pleurote": "Austernpilz",
-      "Poireaux": "Lauch",
-      "Poivron": "Paprika",
-      "Potimarron": "Hokkaido-Kürbis",
-      "Potiron": "Kürbis",
-      "Pourpre": "Purpur",
-      "Radis": "Radieschen",
-      "Raisin blanc": "Weiße Traube",
-      "Raisin noir": "Schwarze Traube",
-      "Raisin rose": "Rosa Traube",
-      "Roquette": "Rucola",
-      "Rose": "Rosa",
-      "Rouge": "Rot",
-      "Rougette": "Rotsalat",
-      "Sauvage": "Wild",
-      "Thym": "Thymian",
-      "vert": "Grün",
-      "Verte": "Grüne",
-      "Violet": "Violett",
-      "Violette": "Violett"
-    }
-  };
-
   // Langue courante (persistée en localStorage)
   let currentLang = localStorage.getItem("lang") || "FR";
   // ---------- Fonctions pour le formulaire (placeholders + bouton) ----------
   function setFormLanguage(lang) {
     const t = translations[lang];
+    if (!t) return;
+
+    const placeholders = {
+      exportNom: t.nom,
+      exportPrenom: t.prenom,
+      exportEmail: t.email,
+      exportTelephone: t.telephone,
+      exportObjet: t.objet,
+      exportMessage: t.message,
+    };
+
+    Object.entries(placeholders).forEach(([id, text]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.placeholder = text || "";
+    });
+  }
+
+  function initExportContactForm() {
+    const form = document.getElementById("contactExportForm");
+    if (!form || form.dataset.initialized === "1") return;
+
+    form.dataset.initialized = "1";
+
+    const fields = {
+      nom: document.getElementById("exportNom"),
+      prenom: document.getElementById("exportPrenom"),
+      email: document.getElementById("exportEmail"),
+      telephone: document.getElementById("exportTelephone"),
+      objet: document.getElementById("exportObjet"),
+      message: document.getElementById("exportMessage"),
+    };
+
+    const formMsg = document.getElementById("formMsg");
+    const errorEls = Array.from(form.querySelectorAll(".error-msg"));
+    const fieldContainers = new Map(
+      Object.entries(fields)
+        .filter(([, field]) => field)
+        .map(([key, field]) => [key, field.closest(".form-field")])
+    );
+
+    const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,30}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    const phoneRegex = /^\+?[0-9][0-9\s().-]{7,19}$/;
+    const htmlTagRegex = /<[^>]+>/;
+    const scriptRegex = /<\s*script\b/i;
+
+    const setFieldError = (fieldName, errorKey = "") => {
+      const errorEl = form.querySelector(`.error-msg[data-field="${fieldName}"]`);
+      const container = fieldContainers.get(fieldName);
+      const field = fields[fieldName];
+      const hasValue = Boolean(field && field.value.trim());
+
+      if (container) {
+        container.classList.toggle("has-error", Boolean(errorKey));
+        container.classList.toggle("has-valid", !errorKey && hasValue);
+      }
+
+      if (!errorEl) return;
+      errorEl.dataset.key = errorKey;
+      errorEl.textContent = errorKey
+        ? (translations[currentLang]?.formErrors?.[errorKey] || "")
+        : "";
+    };
+
+    const clearFormStatus = () => {
+      if (!formMsg) return;
+      formMsg.textContent = "";
+      formMsg.dataset.key = "";
+      formMsg.classList.remove("is-error", "is-success");
+    };
+
+    const setFormStatus = (errorKey, mode) => {
+      if (!formMsg) return;
+      formMsg.dataset.key = errorKey;
+      formMsg.textContent = translations[currentLang]?.formErrors?.[errorKey] || "";
+      formMsg.classList.remove("is-error", "is-success");
+      if (mode) formMsg.classList.add(mode);
+    };
+
+    const validateField = (fieldName) => {
+      const field = fields[fieldName];
+      if (!field) return true;
+
+      const value = field.value.trim();
+
+      if (value && scriptRegex.test(value)) {
+        setFieldError(fieldName, "noScript");
+        return false;
+      }
+
+      if (value && htmlTagRegex.test(value)) {
+        setFieldError(fieldName, "noTags");
+        return false;
+      }
+
+      if (fieldName === "nom" || fieldName === "prenom") {
+        const errorKey = nameRegex.test(value) ? "" : fieldName;
+        setFieldError(fieldName, errorKey);
+        return !errorKey;
+      }
+
+      if (fieldName === "email") {
+        const errorKey = emailRegex.test(value) ? "" : "email";
+        setFieldError(fieldName, errorKey);
+        return !errorKey;
+      }
+
+      if (fieldName === "telephone") {
+        const normalized = value.replace(/[\s().-]/g, "");
+        const errorKey = phoneRegex.test(value) && normalized.length >= 8 ? "" : "telephone";
+        setFieldError(fieldName, errorKey);
+        return !errorKey;
+      }
+
+      if (fieldName === "objet") {
+        let errorKey = "";
+        if (value.length < 2) errorKey = "objet";
+        setFieldError(fieldName, errorKey);
+        return !errorKey;
+      }
+
+      if (fieldName === "message") {
+        let errorKey = "";
+        if (!value) errorKey = "messageVide";
+        else if (value.length < 20) errorKey = "messageCourt";
+        setFieldError(fieldName, errorKey);
+        return !errorKey;
+      }
+
+      return true;
+    };
+
+    Object.entries(fields).forEach(([fieldName, field]) => {
+      if (!field) return;
+      field.addEventListener("input", () => {
+        validateField(fieldName);
+        clearFormStatus();
+      });
+      field.addEventListener("blur", () => {
+        validateField(fieldName);
+      });
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const hasErrors = Object.keys(fields)
+        .map((fieldName) => validateField(fieldName))
+        .some((isValid) => !isValid);
+
+      if (hasErrors) {
+        setFormStatus("errorSend", "is-error");
+        return;
+      }
+
+      const payload = {
+        nom: fields.nom.value.trim(),
+        prenom: fields.prenom.value.trim(),
+        email: fields.email.value.trim(),
+        telephone: fields.telephone.value.trim(),
+        objet: fields.objet.value.trim(),
+        message: fields.message.value.trim(),
+      };
+
+      const subject = `Export - ${payload.objet}`;
+      const body = [
+        `Nom : ${payload.nom}`,
+        `Prénom : ${payload.prenom}`,
+        `Email : ${payload.email}`,
+        `Téléphone : ${payload.telephone}`,
+        "",
+        payload.message,
+      ].join("\n");
+
+      const mailtoUrl = `mailto:lbouzeau@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailtoUrl;
+      setFormStatus("success", "is-success");
+      form.reset();
+      errorEls.forEach((errorEl) => {
+        errorEl.textContent = "";
+        errorEl.dataset.key = "";
+      });
+      fieldContainers.forEach((container) => {
+        if (container) container.classList.remove("has-error", "has-valid");
+      });
+    });
   }
 
   // ---------- setLanguage : applique toutes les traductions ----------
@@ -2248,16 +2531,14 @@ if (scrollElements.length > 0) {
     }
 
     const moreItemsText = tObj.cardMoreItems || "";
-    document.querySelectorAll(".jsTranslateMoreItems").forEach((el) => {
-      el.textContent = moreItemsText;
+    document.querySelectorAll('#rayons-section em[id$="MoreItems"]').forEach((el) => {
+      el.textContent = moreItemsText || el.textContent;
     });
 
-    const cardListTranslations = cardListItemsByLang[lang] || {};
-    document.querySelectorAll(".carte-back ul li").forEach((li) => {
-      if (li.querySelector(".jsTranslateMoreItems")) return;
+    document.querySelectorAll("#rayons-section .carte-back ul li[id]").forEach((li) => {
       const baseText = (li.dataset.baseText || li.textContent || "").trim();
       if (!li.dataset.baseText) li.dataset.baseText = baseText;
-      li.textContent = cardListTranslations[baseText] || baseText;
+      li.textContent = tObj[li.id] || baseText;
     });
 
     setFormLanguage(lang);
@@ -2289,9 +2570,9 @@ if (scrollElements.length > 0) {
 
     const formMsg = document.getElementById("formMsg");
     if (formMsg && formMsg.dataset.key) {
-    const formMessages = translations[currentLang].formMessages || {};
     const key = formMsg.dataset.key;
-    if (key && formMessages[key]) formMsg.textContent = formMessages[key];
+    const formTexts = translations[currentLang].formErrors || {};
+    if (key && formTexts[key]) formMsg.textContent = formTexts[key];
     }
   }
 
