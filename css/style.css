@@ -959,9 +959,20 @@ body.home-page nav {
   transform: rotateY(180deg);
 }
 
+.carte.is-flipped .carte-front,
+.carte:focus-visible .carte-front {
+  opacity: 0;
+  visibility: hidden;
+}
+
 @media (min-width: 769px) {
   .carte:hover .carte-inner {
     transform: rotateY(180deg);
+  }
+
+  .carte:hover .carte-front {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -979,7 +990,9 @@ body.home-page nav {
 }
 
 .carte-front {
-  transition: var(--transition);
+  opacity: 1;
+  visibility: visible;
+  transition: var(--transition), opacity 0.25s ease, visibility 0.25s ease;
   background: rgba(255, 255, 255, 0.75);
   border: 2px solid var(--vert);
   backdrop-filter: blur(10px);
