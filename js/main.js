@@ -2354,6 +2354,7 @@ if (scrollElements.length > 0) {
     };
 
     const formMsg = document.getElementById("formMsg");
+    const formEndpoint = form.getAttribute("action") || "";
     const errorEls = Array.from(form.querySelectorAll(".error-msg"));
     const fieldContainers = new Map(
       Object.entries(fields)
@@ -2464,7 +2465,7 @@ if (scrollElements.length > 0) {
       });
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const hasErrors = Object.keys(fields)
@@ -2485,28 +2486,49 @@ if (scrollElements.length > 0) {
         message: fields.message.value.trim(),
       };
 
-      const subject = `Export - ${payload.objet}`;
-      const body = [
-        `Nom : ${payload.nom}`,
-        `Prénom : ${payload.prenom}`,
-        `Email : ${payload.email}`,
-        `Téléphone : ${payload.telephone}`,
-        "",
-        payload.message,
-      ].join("\n");
+      const submitBtn = form.querySelector("button[type='submit']");
+      if (submitBtn) submitBtn.disabled = true;
 
-      const mailtoUrl = `mailto:lbouzeau@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      try {
+        if (!formEndpoint || formEndpoint.includes("REPLACE_WITH_YOUR_FORMSPREE_ID")) {
+          throw new Error("errorSend");
+        }
 
-      window.location.href = mailtoUrl;
-      setFormStatus("success", "is-success");
-      form.reset();
-      errorEls.forEach((errorEl) => {
-        errorEl.textContent = "";
-        errorEl.dataset.key = "";
-      });
-      fieldContainers.forEach((container) => {
-        if (container) container.classList.remove("has-error", "has-valid");
-      });
+        const response = await fetch(formEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            ...payload,
+            _subject: `Export - ${payload.objet}`,
+          }),
+        });
+
+        const result = await response.json().catch(() => ({}));
+        const isSuccess = result.success === true || result.success === "true";
+        if (!response.ok || !isSuccess) {
+          throw new Error(result.errorKey || "errorSend");
+        }
+
+        setFormStatus("success", "is-success");
+        form.reset();
+        errorEls.forEach((errorEl) => {
+          errorEl.textContent = "";
+          errorEl.dataset.key = "";
+        });
+        fieldContainers.forEach((container) => {
+          if (container) container.classList.remove("has-error", "has-valid");
+        });
+      } catch (error) {
+        const key = error && error.message && translations[currentLang]?.formErrors?.[error.message]
+          ? error.message
+          : "errorSend";
+        setFormStatus(key, "is-error");
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 
