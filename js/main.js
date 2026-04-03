@@ -842,7 +842,7 @@ if (scrollElements.length > 0) {
         else {
         // Valeur finale
         if (counter.id === "compteurProduits") counter.textContent = "+1000";
-        else if (counter.id === "compteurExpertise") counter.textContent = "43 ans";
+        else if (counter.id === "compteurExpertise") counter.textContent = "128 ans";
         else counter.textContent = target;
         }
       }
@@ -1068,7 +1068,7 @@ if (scrollElements.length > 0) {
 
     //PAGE INDEX
     titre: "Cruchaudet",
-    heroKicker: "Grossiste fruits & légumes depuis 1983",
+    heroKicker: "Grossiste fruits & légumes depuis 1898",
     phrase1: "Des fruits et légumes frais, chaque jour.",
     phrase2: "Au départ de <span class='Rungis'>Rungis</span>.",
     heroBtnStory: "Découvrir notre histoire",
@@ -1091,7 +1091,7 @@ if (scrollElements.length > 0) {
     titreBio1: 'Début',
     titreBio2: 'Evolution',
     titreBio3: 'Présent',
-    histoireText1: "Notre histoire commence en 1983, portée par une ambition claire : offrir des produits de qualité en nous appuyant sur un savoir-faire exigeant. Dès nos débuts, nous avons évolué dans un environnement où tradition et précision sont essentielles. Nous avons toujours placé la rigueur au cœur de notre travail et la satisfaction de nos premiers clients au premier plan, construisant ainsi des fondations solides et durables.",
+    histoireText1: "Notre histoire commence en 1898, portée par une ambition claire : offrir des produits de qualité en nous appuyant sur un savoir-faire exigeant. Dès nos débuts, nous avons évolué dans un environnement où tradition et précision sont essentielles. Nous avons toujours placé la rigueur au cœur de notre travail et la satisfaction de nos premiers clients au premier plan, construisant ainsi des fondations solides et durables.",
     histoireText2: "Au fil des années, nous avons connu une croissance progressive en nous adaptant aux évolutions du marché et aux nouvelles attentes des consommateurs. Tout en restant fidèles à nos valeurs d’origine, nous avons su diversifier nos activités, développer notre expertise et renforcer notre réputation grâce à la qualité constante de nos produits. Cette période s’est distinguée par une forte dynamique d’innovation, des investissements soutenus et un élargissement continu de notre clientèle.",
     histoireText3: "Aujourd’hui, nous nous imposons comme une entreprise reconnue dans notre domaine et faisons partie des piliers du MIN de Rungis, en alliant tradition et modernité. Nous continuons de valoriser notre héritage tout en intégrant de nouveaux produits afin de rester compétitifs. Forts de notre expérience, nous répondons aux exigences actuelles en proposant des solutions adaptées, tout en maintenant un haut niveau de qualité et de professionnalisme.",
     titreChiffresGeneral: "Quelques chiffres",
@@ -1297,7 +1297,7 @@ if (scrollElements.length > 0) {
 
     //PAGE INDEX
     titre: "Cruchaudet",
-    heroKicker: "Fruit & vegetable wholesaler since 1983",
+    heroKicker: "Fruit & vegetable wholesaler since 1898",
     phrase1: "Fresh fruits and vegetables, every day.",
     phrase2: "Departing from <span class='Rungis'>Rungis</span>.",
     heroBtnStory: "Discover our story",
@@ -1320,7 +1320,7 @@ if (scrollElements.length > 0) {
     titreBio1: "Beginning",
     titreBio2: "Evolution",
     titreBio3: "Present",
-    histoireText1: "Our story began in 1983, driven by a clear ambition: offering quality products supported by demanding expertise. From the start, we grew in an environment where tradition and precision are essential. We have always placed rigor at the heart of our work and customer satisfaction first, building strong and lasting foundations.",
+    histoireText1: "Our story began in 1898, driven by a clear ambition: offering quality products supported by demanding expertise. From the start, we grew in an environment where tradition and precision are essential. We have always placed rigor at the heart of our work and customer satisfaction first, building strong and lasting foundations.",
     histoireText2: "Over the years, we grew steadily by adapting to market changes and new consumer expectations. While staying true to our core values, we diversified our activities, developed our expertise, and strengthened our reputation through consistent product quality. This period was marked by strong innovation, sustained investment, and continuous growth of our client base.",
     histoireText3: "Today, we are recognized as a key company in our field and as one of the pillars of the Rungis International Market, combining tradition and modernity. We continue to value our heritage while integrating new products to remain competitive. With our experience, we meet today’s requirements through tailored solutions while maintaining high standards of quality and professionalism.",
     titreChiffresGeneral: "Some figures",
@@ -1648,7 +1648,7 @@ if (scrollElements.length > 0) {
 
     //PAGE INDEX
     titre: "Cruchaudet",
-    heroKicker: "Mayorista de frutas y verduras desde 1983",
+    heroKicker: "Mayorista de frutas y verduras desde 1898",
     phrase1: "Frutas y verduras frescas, cada día.",
     phrase2: "Desde <span class='Rungis'>Rungis</span>.",
     heroBtnStory: "Descubrir nuestra historia",
@@ -1671,7 +1671,7 @@ if (scrollElements.length > 0) {
     titreBio1: "Inicio",
     titreBio2: "Evolución",
     titreBio3: "Presente",
-    histoireText1: "Nuestra historia comienza en 1983, impulsada por una ambición clara: ofrecer productos de calidad con un saber hacer exigente. Desde nuestros inicios evolucionamos en un entorno donde tradición y precisión son esenciales. Siempre hemos puesto el rigor en el centro del trabajo y la satisfacción del cliente en primer plano.",
+    histoireText1: "Nuestra historia comienza en 1898, impulsada por una ambición clara: ofrecer productos de calidad con un saber hacer exigente. Desde nuestros inicios evolucionamos en un entorno donde tradición y precisión son esenciales. Siempre hemos puesto el rigor en el centro del trabajo y la satisfacción del cliente en primer plano.",
     histoireText2: "Con los años, crecimos progresivamente adaptándonos a la evolución del mercado y a las nuevas expectativas de los consumidores. Manteniéndonos fieles a nuestros valores de origen, diversificamos actividades, desarrollamos nuestra experiencia y reforzamos nuestra reputación gracias a la calidad constante de nuestros productos.",
     histoireText3: "Hoy somos una empresa reconocida en nuestro sector y uno de los pilares del MIN de Rungis, combinando tradición y modernidad. Seguimos valorizando nuestro legado e integrando nuevos productos para mantenernos competitivos y responder a las exigencias actuales con soluciones adaptadas.",
     titreChiffresGeneral: "Algunos números",
@@ -1997,7 +1997,7 @@ if (scrollElements.length > 0) {
 
     //PAGE INDEX
     titre: "Cruchaudet",
-    heroKicker: "Obst- und Gemüsegroßhandel seit 1983",
+    heroKicker: "Obst- und Gemüsegroßhandel seit 1898",
     phrase1: "Frisches Obst und Gemüse, jeden Tag.",
     phrase2: "Abfahrt von <span class='Rungis'>Rungis</span>.",
     heroBtnStory: "Unsere Geschichte entdecken",
@@ -2020,7 +2020,7 @@ if (scrollElements.length > 0) {
     titreBio1: "Anfang",
     titreBio2: "Entwicklung",
     titreBio3: "Gegenwart",
-    histoireText1: "Unsere Geschichte beginnt 1983 mit einem klaren Ziel: Qualitätsprodukte auf Basis anspruchsvoller Fachkompetenz. Von Anfang an entwickelten wir uns in einem Umfeld, in dem Tradition und Präzision wesentlich sind.",
+    histoireText1: "Unsere Geschichte beginnt 1898 mit einem klaren Ziel: Qualitätsprodukte auf Basis anspruchsvoller Fachkompetenz. Von Anfang an entwickelten wir uns in einem Umfeld, in dem Tradition und Präzision wesentlich sind.",
     histoireText2: "Im Laufe der Jahre sind wir stetig gewachsen, indem wir uns an Marktveränderungen und neue Erwartungen angepasst haben. Gleichzeitig blieben wir unseren Werten treu und stärkten unsere Reputation durch konstant hohe Produktqualität.",
     histoireText3: "Heute sind wir ein anerkanntes Unternehmen in unserem Bereich und eine tragende Säule des MIN Rungis. Wir verbinden Tradition und Moderne und bieten passende Lösungen bei gleichbleibend hohem Qualitäts- und Professionalitätsniveau.",
     titreChiffresGeneral: "Einige Zahlen",

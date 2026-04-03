@@ -1583,7 +1583,23 @@ body.home-page nav {
   background-position: center center;
   }
 }
+/* Parallax2 */
+.parallax2 {
+  height: 400px;
+  background-image: url("/img/present.png");
+  background-attachment: fixed;
+  background-position: top center; /* montre le haut de l'image */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+/* Téléphone */
+@media (max-width: 768px) {
+  .parallax {
+  background-attachment: scroll;
+  background-position: center center;
+  }
+}
 /*témoignage*/
 #temoignage {
   width: 100%;
