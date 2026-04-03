@@ -105,8 +105,18 @@ body {
   opacity: 0;
 }
 
-.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible:not(:hover):not(.is-flipped):not(:focus-visible) .carte-front-logo {
+.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
+  opacity: 1;
+}
+
+.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible:not(:hover):not(.is-flipped):not(.is-returning-front):not(:focus-visible) .carte-front-logo {
   animation: seasonalFruitPop 0.32s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+
+.rayon-page #rayons-section .carte.is-returning-front .carte-front-logo {
+  animation: none !important;
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* Mode performance dedie a la page rayon */
@@ -976,6 +986,28 @@ body.home-page nav {
   transform: scale(0.62);
   opacity: 0;
   animation: none;
+}
+
+/* Mobile/touch: prevent sticky focus state from keeping the card on back side */
+@media (hover: none) {
+  .carte:focus-visible .carte-inner {
+    transform: none;
+  }
+
+  .carte:focus-visible .carte-front {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .carte:focus-visible .carte-back {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .carte:focus-visible .carte-front .carte-front-logo {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 @media (min-width: 769px) {

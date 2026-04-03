@@ -735,6 +735,11 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => {
             card.classList.remove("is-returning-front");
           }, 560);
+
+          // On mobile/touch, remove lingering focus so front logo can reappear immediately.
+          if (document.activeElement === card) {
+            card.blur();
+          }
         }
       });
 
