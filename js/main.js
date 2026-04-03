@@ -2364,7 +2364,7 @@ if (scrollElements.length > 0) {
 
     const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,30}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    const phoneRegex = /^\+?[0-9][0-9\s().-]{7,19}$/;
+    const phoneRegex = /^[+0-9\s().\-/]{4,30}$/;
     const htmlTagRegex = /<[^>]+>/;
     const scriptRegex = /<\s*script\b/i;
 
@@ -2430,8 +2430,12 @@ if (scrollElements.length > 0) {
       }
 
       if (fieldName === "telephone") {
-        const normalized = value.replace(/[\s().-]/g, "");
-        const errorKey = phoneRegex.test(value) && normalized.length >= 8 ? "" : "telephone";
+        const normalized = value.replace(/[^0-9+]/g, "");
+        const hasSingleLeadingPlus = normalized.indexOf("+") <= 0 && (normalized.match(/\+/g) || []).length <= 1;
+        const digitCount = normalized.replace(/\+/g, "").length;
+        const errorKey = phoneRegex.test(value) && hasSingleLeadingPlus && digitCount >= 4 && digitCount <= 15
+          ? ""
+          : "telephone";
         setFieldError(fieldName, errorKey);
         return !errorKey;
       }
@@ -2507,8 +2511,9 @@ if (scrollElements.length > 0) {
         });
 
         const result = await response.json().catch(() => ({}));
-        const isSuccess = result.success === true || result.success === "true";
-        if (!response.ok || !isSuccess) {
+        const hasFormspreeErrors = Array.isArray(result.errors) && result.errors.length > 0;
+        const isSuccess = response.ok && !hasFormspreeErrors && result.error !== "true";
+        if (!isSuccess) {
           throw new Error(result.errorKey || "errorSend");
         }
 
