@@ -110,7 +110,7 @@ body {
 }
 
 .rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
-  animation: seasonalFruitPop 0.32s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+  animation: seasonalFruitPop 1s cubic-bezier(0.2, 0.85, 0.25, 1) both;
   animation-delay: var(--rayon-stagger-delay, 0ms);
 }
 
