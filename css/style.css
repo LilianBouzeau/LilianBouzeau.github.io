@@ -1586,7 +1586,7 @@ body.home-page nav {
 /* Parallax2 */
 .parallax2 {
   height: 400px;
-  background-image: url("/img/logov3.png");
+  background-image: url("/img/logoV3.png");
   background-attachment: fixed;
   background-position: top center; /* montre le haut de l'image */
   background-repeat: no-repeat;
