@@ -967,7 +967,8 @@ body.home-page nav {
 
 .carte.is-flipped .carte-front .carte-front-logo,
 .carte:focus-visible .carte-front .carte-front-logo {
-  opacity: 0;
+  opacity: 0 !important;
+  animation: none !important;
 }
 
 @media (min-width: 769px) {
@@ -981,7 +982,8 @@ body.home-page nav {
   }
 
   .carte:hover .carte-front .carte-front-logo {
-    opacity: 0;
+    opacity: 0 !important;
+    animation: none !important;
   }
 }
 
