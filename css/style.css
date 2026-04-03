@@ -102,11 +102,11 @@ body {
 }
 
 .rayon-page #rayons-section .carte.scroll-animate-opacity .carte-front-logo {
-  opacity: 0;
+  opacity: 1;
 }
 
 .rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
-  animation: seasonalFruitPop 0.55s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+  animation: none;
 }
 
 /* Mode performance dedie a la page rayon */
@@ -922,24 +922,24 @@ body.home-page nav {
 /*Cartes Rayons*/
 .cartes-groupe {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
   justify-items: center;
-  gap: 20px;
+  gap: 14px;
   margin: 0 auto;
   margin-top: 20px;
   width: 100%;
-  max-width: 900px;
+  max-width: 760px;
 }
 
 /* Animation d'apparition */
 
 .carte {
-  border-radius: var(--radius);
-  padding: 15px;
+  border-radius: 12px;
+  padding: 0;
   text-align: center;
   transition: var(--transition);
-  width: 250px;
-  height: 300px;
+  width: 100%;
+  height: 245px;
   cursor: pointer;
   perspective: 1000px;
 }
@@ -950,7 +950,7 @@ body.home-page nav {
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1); /* flip plus lent et smooth */
+  transition: transform 0.7s ease;
   transform-style: preserve-3d;
 }
 
@@ -993,25 +993,21 @@ body.home-page nav {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: var(--radius);
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 14px;
 }
 
 .carte-front {
   opacity: 1;
-  visibility: visible;
+  transition: opacity 0.2s ease;
   transition: var(--transition), opacity 0.25s ease, visibility 0.25s ease;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.9);
   border: 2px solid var(--vert);
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border-radius: 12px;
-
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -1024,17 +1020,8 @@ body.home-page nav {
   backface-visibility: hidden;
 }
 
-.carte:hover .carte-front div,
-.carte:hover .carte-front .carte-front-logo {
-  transform: scale(1.1);
-}
-.carte-front:hover {
-  background: rgba(255, 255, 255, 0.85);
-
-}
-
 .carte-back {
-  background: rgba(255, 255, 255, 0.85);
+  background: #fff;
   transform: rotateY(180deg);
   color: var(--noir);
   border: 2px solid var(--orange);
@@ -1052,28 +1039,21 @@ body.home-page nav {
 }
 
 .carte img.carte-front-logo {
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   object-fit: contain;
 }
 
-@media (min-width: 769px) {
-  .carte img.carte-front-logo {
-    width: 220px;
-    height: 220px;
-  }
-}
-
 .carte-front h4 {
-  font-size: 1.2rem;
-  color: var(--vert);
+  font-size: 1.1rem;
+  color: var(--accent);
   margin: 0;
 }
 
 .carte-back h4 {
   font-size: 1.1rem;
   margin-bottom: 10px;
-  color: var(--vert);
+  color: var(--accent);
   margin: 0;
 }
 
@@ -1084,12 +1064,19 @@ body.home-page nav {
 }
 
 .carte-back li {
-  font-size: 1rem; /* ou ajuste selon ton besoin */
-  margin: 5px 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 4px 0;
   color: var(--orange);
   transition: var(--transition);
   cursor: pointer;
-  font-weight: 700; /* rend le texte plus épais */
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .cartes-groupe {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
 }
 
 
@@ -1097,19 +1084,19 @@ body.home-page nav {
 @media (max-width: 768px) {
 .cartes-groupe {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
+  gap: 14px;
   justify-items: center;
 }
   .carte {
-    width: 150px;
-    height: 200px;
-    padding: 10px;
+    width: 100%;
+    height: 220px;
+    padding: 0;
   }
 
-  .carte img {
-    width: 80px;
-    height: 80px;
+  .carte img.carte-front-logo {
+    width: 110px;
+    height: 110px;
   }
 
   .carte h4 {
@@ -1121,7 +1108,7 @@ body.home-page nav {
   }
 
   .carte-back li {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 
 
