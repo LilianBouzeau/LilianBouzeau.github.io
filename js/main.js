@@ -1254,11 +1254,12 @@ if (scrollElements.length > 0) {
     temoignageAuthor2: "Bernard - Commerçant",
     temoignageAuthor3: "Élodie - Restauratrice",
     //PAGE ENGAGEMENT
-    titrepageEngagement: 'Nos engagements',
-    titreEngagements1: 'Qualité',
-    titreEngagements2: 'Service',
-    engagementText1: "Implantés sur le Marché International de Rungis, nous accordons une importance primordiale à la qualité de nos fruits et légumes. Nous sélectionnons rigoureusement nos produits auprès de producteurs fiables, en France comme à l’international, afin de garantir fraîcheur, traçabilité. Cette exigence nous permet de proposer des produits répondant aux standards les plus élevés du marché.",
-    engagementText2: "Le service est également au cœur de notre activité. Grâce à une logistique efficace et à une grande réactivité, nous répondons rapidement aux demandes d’importation et d’exportation. Nous mettons un point d’honneur à satisfaire nos clients en nous adaptant à leurs besoins spécifiques, tout en développant des relations de confiance durables avec nos partenaires professionnels.",
+    titrepageEngagement: 'Nos engagements 🤝',
+    engagementIntro: "Chez Cruchaudet, nos engagements ne sont pas de simples promesses. Ils guident chaque commande, de la sélection produit au départ de Rungis. Nous accompagnons les professionnels avec une exigence claire : proposer des fruits et légumes fiables, frais et conformes à leurs attentes, avec un suivi rigoureux et une réponse rapide.",
+    titreEngagements1: 'Sélection & qualité ✅',
+    titreEngagements2: 'Service & réactivité ⚡',
+    engagementText1: "Chaque produit est choisi avec rigueur selon sa fraîcheur, sa tenue, sa régularité et son origine. Nous travaillons avec des producteurs et partenaires reconnus, en France comme à l'international, afin de garantir une offre adaptée aux exigences des grossistes, commerçants et restaurateurs. Notre implantation à Rungis nous permet d'assurer un approvisionnement réactif, une traçabilité maîtrisée et un niveau de qualité constant tout au long de l'année.",
+    engagementText2: "Nous savons que vos contraintes sont opérationnelles : délais serrés, besoins spécifiques, volumes variables et attentes précises selon les marchés. C'est pourquoi nous privilégions un accompagnement direct, des réponses rapides et une logistique fiable. De la préparation des commandes à l'import-export, nous mettons tout en œuvre pour sécuriser vos approvisionnements et construire une relation durable fondée sur la confiance, la clarté et la régularité.",
     //COOKIES
     cookiesP: '🍪 Nous utilisons des cookies pour améliorer votre expérience sur notre site.',
     cookiesA: 'En savoir plus',
@@ -1603,11 +1604,12 @@ if (scrollElements.length > 0) {
     temoignageAuthor3: "Elodie - Restaurateur",
 
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Our Commitments",
-    titreEngagements1: "Quality",
-    titreEngagements2: "Service",
-    engagementText1: "Based at the Rungis International Market, we place top priority on the quality of our fruits and vegetables. We rigorously select our products from reliable growers in France and internationally to guarantee freshness and traceability. This requirement allows us to offer products that meet the market’s highest standards.",
-    engagementText2: "Service is also central to our activity. Thanks to efficient logistics and strong responsiveness, we quickly answer import and export requests. We are committed to satisfying clients by adapting to specific needs while developing long-lasting trusted relationships with professional partners.",
+    titrepageEngagement: "Our Commitments 🤝",
+    engagementIntro: "At Cruchaudet, our commitments are not empty promises. They guide every order, from product selection to dispatch from Rungis. We support professionals with one clear standard: reliable, fresh fruits and vegetables that meet expectations, backed by careful follow-up and fast response times.",
+    titreEngagements1: "Selection & Quality ✅",
+    titreEngagements2: "Service & Responsiveness ⚡",
+    engagementText1: "Each product is selected with care based on freshness, shelf life, consistency, and origin. We work with trusted growers and partners in France and abroad to provide an offer tailored to the needs of wholesalers, retailers, and restaurateurs. Our presence at Rungis allows us to ensure responsive sourcing, controlled traceability, and consistent quality throughout the year.",
+    engagementText2: "We understand that your constraints are operational: tight deadlines, specific needs, changing volumes, and market-driven expectations. That is why we focus on direct support, quick answers, and reliable logistics. From order preparation to import-export flows, we do everything possible to secure your supply and build a lasting relationship based on trust, clarity, and consistency.",
     //COOKIES
     cookiesP: '🍪 We use cookies to improve your experience on our website.',
     cookiesA: 'Learn more',
@@ -1952,11 +1954,12 @@ if (scrollElements.length > 0) {
     temoignageAuthor2: "Bernard - Comerciante",
     temoignageAuthor3: "Elodie - Restauradora",
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Nuestros compromisos",
-    titreEngagements1: "Calidad",
-    titreEngagements2: "Servicio",
-    engagementText1: "Ubicados en el Mercado Internacional de Rungis, damos máxima importancia a la calidad de nuestras frutas y verduras. Seleccionamos rigurosamente productos de productores fiables en Francia y en el extranjero para garantizar frescura y trazabilidad.",
-    engagementText2: "El servicio también está en el centro de nuestra actividad. Gracias a una logística eficaz y gran capacidad de respuesta, atendemos rápidamente las solicitudes de importación y exportación, adaptándonos a necesidades específicas.",
+    titrepageEngagement: "Nuestros compromisos 🤝",
+    engagementIntro: "En Cruchaudet, nuestros compromisos no son promesas vacías. Guían cada pedido, desde la selección del producto hasta su salida desde Rungis. Acompañamos a los profesionales con una exigencia clara: ofrecer frutas y verduras fiables, frescas y conformes a sus expectativas, con un seguimiento riguroso y una respuesta rápida.",
+    titreEngagements1: "Selección y calidad ✅",
+    titreEngagements2: "Servicio y rapidez ⚡",
+    engagementText1: "Cada producto se selecciona con rigor según su frescura, su conservación, su regularidad y su origen. Trabajamos con productores y socios reconocidos, en Francia y en el extranjero, para garantizar una oferta adaptada a las exigencias de mayoristas, comerciantes y restauradores. Nuestra implantación en Rungis nos permite asegurar un abastecimiento ágil, una trazabilidad controlada y una calidad constante durante todo el año.",
+    engagementText2: "Sabemos que sus limitaciones son operativas: plazos ajustados, necesidades específicas, volúmenes variables y expectativas precisas según los mercados. Por eso priorizamos un acompañamiento directo, respuestas rápidas y una logística fiable. Desde la preparación de los pedidos hasta la importación y exportación, hacemos todo lo posible para asegurar su abastecimiento y construir una relación duradera basada en la confianza, la claridad y la regularidad.",
     //COOKIES
     cookiesP: '🍪 Utilizamos cookies para mejorar su experiencia en nuestro sitio web.',
     cookiesA: 'Saber más',
@@ -2301,11 +2304,12 @@ if (scrollElements.length > 0) {
     temoignageAuthor3: "Elodie - Gastronomin",
 
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Unsere Verpflichtungen",
-    titreEngagements1: "Qualität",
-    titreEngagements2: "Service",
-    engagementText1: "Am Internationalen Markt von Rungis legen wir größten Wert auf die Qualität unseres Obstes und Gemüses. Wir wählen unsere Produkte bei zuverlässigen Erzeugern in Frankreich und international sorgfältig aus.",
-    engagementText2: "Service steht ebenfalls im Mittelpunkt unserer Tätigkeit. Dank effizienter Logistik und hoher Reaktionsfähigkeit beantworten wir Import- und Exportanfragen schnell und zuverlässig.",
+    titrepageEngagement: "Unsere Verpflichtungen 🤝",
+    engagementIntro: "Bei Cruchaudet sind unsere Verpflichtungen keine leeren Versprechen. Sie prägen jeden Auftrag, von der Produktauswahl bis zum Versand ab Rungis. Wir begleiten Fachkunden mit einem klaren Anspruch: zuverlässiges, frisches Obst und Gemüse, das den Erwartungen entspricht, mit sorgfältiger Betreuung und schneller Reaktion.",
+    titreEngagements1: "Auswahl & Qualität ✅",
+    titreEngagements2: "Service & Reaktionsfähigkeit ⚡",
+    engagementText1: "Jedes Produkt wird sorgfältig nach Frische, Haltbarkeit, Konstanz und Herkunft ausgewählt. Wir arbeiten mit anerkannten Erzeugern und Partnern in Frankreich und international zusammen, um ein Angebot bereitzustellen, das auf die Anforderungen von Großhändlern, Einzelhändlern und Gastronomen zugeschnitten ist. Unsere Präsenz in Rungis ermöglicht eine reaktionsschnelle Beschaffung, kontrollierte Rückverfolgbarkeit und eine gleichbleibend hohe Qualität das ganze Jahr über.",
+    engagementText2: "Wir wissen, dass Ihre Anforderungen operativ sind: enge Fristen, spezifische Bedürfnisse, schwankende Mengen und marktbezogene Erwartungen. Deshalb setzen wir auf direkte Betreuung, schnelle Antworten und eine zuverlässige Logistik. Von der Auftragsvorbereitung bis zu Import-Export-Abläufen tun wir alles, um Ihre Versorgung zu sichern und eine langfristige Beziehung aufzubauen, die auf Vertrauen, Klarheit und Beständigkeit beruht.",
 
     //COOKIES
     cookiesP: "🍪 Wir verwenden Cookies, um deine Erfahrung auf unserer Website zu verbessern.",
@@ -2368,6 +2372,25 @@ if (scrollElements.length > 0) {
     const htmlTagRegex = /<[^>]+>/;
     const scriptRegex = /<\s*script\b/i;
 
+    const getMarkupErrorKey = (value) => {
+      if (!value) return "";
+      if (scriptRegex.test(value)) return "noScript";
+      if (htmlTagRegex.test(value) || value.includes("<") || value.includes(">")) return "noTags";
+      return "";
+    };
+
+    const blockMarkupInsertion = (fieldName, incomingText) => {
+      const field = fields[fieldName];
+      if (!field) return false;
+
+      const markupErrorKey = getMarkupErrorKey(incomingText);
+      if (!markupErrorKey) return false;
+
+      setFieldError(fieldName, markupErrorKey);
+      clearFormStatus();
+      return true;
+    };
+
     const setFieldError = (fieldName, errorKey = "") => {
       const errorEl = form.querySelector(`.error-msg[data-field="${fieldName}"]`);
       const container = fieldContainers.get(fieldName);
@@ -2407,13 +2430,9 @@ if (scrollElements.length > 0) {
 
       const value = field.value.trim();
 
-      if (value && scriptRegex.test(value)) {
-        setFieldError(fieldName, "noScript");
-        return false;
-      }
-
-      if (value && htmlTagRegex.test(value)) {
-        setFieldError(fieldName, "noTags");
+      const markupErrorKey = getMarkupErrorKey(value);
+      if (markupErrorKey) {
+        setFieldError(fieldName, markupErrorKey);
         return false;
       }
 
@@ -2460,6 +2479,19 @@ if (scrollElements.length > 0) {
 
     Object.entries(fields).forEach(([fieldName, field]) => {
       if (!field) return;
+      field.addEventListener("beforeinput", (event) => {
+        const insertedText = event.data || "";
+        if (!insertedText) return;
+        if (blockMarkupInsertion(fieldName, insertedText)) {
+          event.preventDefault();
+        }
+      });
+      field.addEventListener("paste", (event) => {
+        const pastedText = event.clipboardData?.getData("text") || "";
+        if (blockMarkupInsertion(fieldName, pastedText)) {
+          event.preventDefault();
+        }
+      });
       field.addEventListener("input", () => {
         validateField(fieldName);
         clearFormStatus();
