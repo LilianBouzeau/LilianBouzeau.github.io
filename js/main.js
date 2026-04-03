@@ -729,12 +729,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const wasFlipped = card.classList.contains("is-flipped");
         card.classList.toggle("is-flipped");
         if (wasFlipped) {
-          const logo = card.querySelector(".carte-front-logo");
-          if (logo) {
-            logo.style.animation = "none";
-            logo.offsetHeight; // force reflow
-            logo.style.animation = "";
-          }
+          card.classList.remove("is-returning-front");
+          void card.offsetWidth;
+          card.classList.add("is-returning-front");
+          setTimeout(() => {
+            card.classList.remove("is-returning-front");
+          }, 560);
         }
       });
 
@@ -744,12 +744,12 @@ document.addEventListener("DOMContentLoaded", () => {
           const wasFlipped = card.classList.contains("is-flipped");
           card.classList.toggle("is-flipped");
           if (wasFlipped) {
-            const logo = card.querySelector(".carte-front-logo");
-            if (logo) {
-              logo.style.animation = "none";
-              logo.offsetHeight;
-              logo.style.animation = "";
-            }
+            card.classList.remove("is-returning-front");
+            void card.offsetWidth;
+            card.classList.add("is-returning-front");
+            setTimeout(() => {
+              card.classList.remove("is-returning-front");
+            }, 560);
           }
         }
       });
