@@ -720,13 +720,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll("#rayons-section .carte");
     if (cards.length === 0) return;
 
+    let activeMobileCard = null;
+    const isTouchMode = () => window.matchMedia("(hover: none)").matches;
+
     cards.forEach((card) => {
       if (!card.hasAttribute("tabindex")) {
         card.setAttribute("tabindex", "0");
       }
 
       card.addEventListener("click", () => {
+        if (isTouchMode() && activeMobileCard && activeMobileCard !== card) {
+          activeMobileCard.classList.remove("is-flipped");
+        }
+
         card.classList.toggle("is-flipped");
+
+        if (isTouchMode()) {
+          activeMobileCard = card.classList.contains("is-flipped") ? card : null;
+        }
+
         // On mobile/touch, remove lingering focus to avoid sticky focus styles.
         if (document.activeElement === card) {
           card.blur();
@@ -753,7 +765,7 @@ if (isRayonPage) {
   document.querySelectorAll("#rayons-section .cartes-groupe").forEach((group) => {
     const groupCards = group.querySelectorAll(".carte.scroll-animate-opacity");
     groupCards.forEach((card, index) => {
-      card.style.setProperty("--rayon-stagger-delay", `${index * 90}ms`);
+      card.style.setProperty("--rayon-stagger-delay", `${(index + 1) * 90}ms`);
     });
   });
 }
