@@ -749,6 +749,15 @@ const scrollElements = document.querySelectorAll(
   '.scroll-animate, .scroll-animateG, .scroll-animateD, .scroll-animate-opacity'
 );
 
+if (isRayonPage) {
+  document.querySelectorAll("#rayons-section .cartes-groupe").forEach((group) => {
+    const groupCards = group.querySelectorAll(".carte.scroll-animate-opacity");
+    groupCards.forEach((card, index) => {
+      card.style.setProperty("--rayon-stagger-delay", `${index * 90}ms`);
+    });
+  });
+}
+
 if (scrollElements.length > 0) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
