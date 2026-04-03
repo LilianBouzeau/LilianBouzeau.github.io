@@ -105,7 +105,7 @@ body {
   opacity: 0;
 }
 
-.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible .carte-front-logo {
+.rayon-page #rayons-section .carte.scroll-animate-opacity.scroll-visible:not(:hover):not(.is-flipped):not(:focus-visible) .carte-front-logo {
   animation: seasonalFruitPop 0.55s cubic-bezier(0.2, 0.85, 0.25, 1) both;
 }
 
@@ -961,6 +961,12 @@ body.home-page nav {
 
 .carte.is-flipped .carte-front,
 .carte:focus-visible .carte-front {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.carte.is-flipped .carte-back,
+.carte:focus-visible .carte-back {
   opacity: 1;
   visibility: visible;
 }
@@ -969,6 +975,7 @@ body.home-page nav {
 .carte:focus-visible .carte-front .carte-front-logo {
   transform: scale(0.62);
   opacity: 0;
+  animation: none;
 }
 
 @media (min-width: 769px) {
@@ -977,6 +984,11 @@ body.home-page nav {
   }
 
   .carte:hover .carte-front {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .carte:hover .carte-back {
     opacity: 1;
     visibility: visible;
   }
@@ -984,6 +996,7 @@ body.home-page nav {
   .carte:hover .carte-front .carte-front-logo {
     transform: scale(0.62);
     opacity: 0;
+    animation: none;
   }
 }
 
@@ -1034,6 +1047,9 @@ body.home-page nav {
 }
 
 .carte-back {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
   background: rgba(255, 255, 255, 0.85);
   transform: rotateY(180deg);
   color: var(--noir);
@@ -1110,6 +1126,11 @@ body.home-page nav {
   .carte img {
     width: 80px;
     height: 80px;
+  }
+
+  .carte img.carte-front-logo {
+    width: 140px;
+    height: 140px;
   }
 
   .carte h4 {
