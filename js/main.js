@@ -1270,10 +1270,10 @@ if (scrollElements.length > 0) {
     temoignageAuthor2: "Bernard - Commerçant",
     temoignageAuthor3: "Élodie - Restauratrice",
     //PAGE ENGAGEMENT
-    titrepageEngagement: 'Nos engagements 🤝',
+    titrepageEngagement: 'Nos engagements',
     engagementIntro: "Chez Cruchaudet, nos engagements ne sont pas de simples promesses. Ils guident chaque commande, de la sélection produit au départ de Rungis. Nous accompagnons les professionnels avec une exigence claire : proposer des fruits et légumes fiables, frais et conformes à leurs attentes, avec un suivi rigoureux et une réponse rapide.",
-    titreEngagements1: 'Sélection & qualité ✅',
-    titreEngagements2: 'Service & réactivité ⚡',
+    titreEngagements1: 'Sélection & qualité',
+    titreEngagements2: 'Service & réactivité',
     engagementText1: "Chaque produit est choisi avec rigueur selon sa fraîcheur, sa tenue, sa régularité et son origine. Nous travaillons avec des producteurs et partenaires reconnus, en France comme à l'international, afin de garantir une offre adaptée aux exigences des grossistes, commerçants et restaurateurs. Notre implantation à Rungis nous permet d'assurer un approvisionnement réactif, une traçabilité maîtrisée et un niveau de qualité constant tout au long de l'année.",
     engagementText2: "Nous savons que vos contraintes sont opérationnelles : délais serrés, besoins spécifiques, volumes variables et attentes précises selon les marchés. C'est pourquoi nous privilégions un accompagnement direct, des réponses rapides et une logistique fiable. De la préparation des commandes à l'import-export, nous mettons tout en œuvre pour sécuriser vos approvisionnements et construire une relation durable fondée sur la confiance, la clarté et la régularité.",
     //COOKIES
@@ -1621,10 +1621,10 @@ if (scrollElements.length > 0) {
     temoignageAuthor3: "Elodie - Restaurateur",
 
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Our Commitments 🤝",
+  titrepageEngagement: "Our Commitments",
     engagementIntro: "At Cruchaudet, our commitments are not empty promises. They guide every order, from product selection to dispatch from Rungis. We support professionals with one clear standard: reliable, fresh fruits and vegetables that meet expectations, backed by careful follow-up and fast response times.",
-    titreEngagements1: "Selection & Quality ✅",
-    titreEngagements2: "Service & Responsiveness ⚡",
+  titreEngagements1: "Selection & Quality",
+  titreEngagements2: "Service & Responsiveness",
     engagementText1: "Each product is selected with care based on freshness, shelf life, consistency, and origin. We work with trusted growers and partners in France and abroad to provide an offer tailored to the needs of wholesalers, retailers, and restaurateurs. Our presence at Rungis allows us to ensure responsive sourcing, controlled traceability, and consistent quality throughout the year.",
     engagementText2: "We understand that your constraints are operational: tight deadlines, specific needs, changing volumes, and market-driven expectations. That is why we focus on direct support, quick answers, and reliable logistics. From order preparation to import-export flows, we do everything possible to secure your supply and build a lasting relationship based on trust, clarity, and consistency.",
     //COOKIES
@@ -1972,10 +1972,10 @@ if (scrollElements.length > 0) {
     temoignageAuthor2: "Bernard - Comerciante",
     temoignageAuthor3: "Elodie - Restauradora",
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Nuestros compromisos 🤝",
+    titrepageEngagement: "Nuestros compromisos",
     engagementIntro: "En Cruchaudet, nuestros compromisos no son promesas vacías. Guían cada pedido, desde la selección del producto hasta su salida desde Rungis. Acompañamos a los profesionales con una exigencia clara: ofrecer frutas y verduras fiables, frescas y conformes a sus expectativas, con un seguimiento riguroso y una respuesta rápida.",
-    titreEngagements1: "Selección y calidad ✅",
-    titreEngagements2: "Servicio y rapidez ⚡",
+    titreEngagements1: "Selección y calidad",
+    titreEngagements2: "Servicio y rapidez",
     engagementText1: "Cada producto se selecciona con rigor según su frescura, su conservación, su regularidad y su origen. Trabajamos con productores y socios reconocidos, en Francia y en el extranjero, para garantizar una oferta adaptada a las exigencias de mayoristas, comerciantes y restauradores. Nuestra implantación en Rungis nos permite asegurar un abastecimiento ágil, una trazabilidad controlada y una calidad constante durante todo el año.",
     engagementText2: "Sabemos que sus limitaciones son operativas: plazos ajustados, necesidades específicas, volúmenes variables y expectativas precisas según los mercados. Por eso priorizamos un acompañamiento directo, respuestas rápidas y una logística fiable. Desde la preparación de los pedidos hasta la importación y exportación, hacemos todo lo posible para asegurar su abastecimiento y construir una relación duradera basada en la confianza, la claridad y la regularidad.",
     //COOKIES
@@ -2323,10 +2323,10 @@ if (scrollElements.length > 0) {
     temoignageAuthor3: "Elodie - Gastronomin",
 
     //PAGE ENGAGEMENT
-    titrepageEngagement: "Unsere Verpflichtungen 🤝",
+  titrepageEngagement: "Unsere Verpflichtungen",
     engagementIntro: "Bei Cruchaudet sind unsere Verpflichtungen keine leeren Versprechen. Sie prägen jeden Auftrag, von der Produktauswahl bis zum Versand ab Rungis. Wir begleiten Fachkunden mit einem klaren Anspruch: zuverlässiges, frisches Obst und Gemüse, das den Erwartungen entspricht, mit sorgfältiger Betreuung und schneller Reaktion.",
-    titreEngagements1: "Auswahl & Qualität ✅",
-    titreEngagements2: "Service & Reaktionsfähigkeit ⚡",
+  titreEngagements1: "Auswahl & Qualität",
+  titreEngagements2: "Service & Reaktionsfähigkeit",
     engagementText1: "Jedes Produkt wird sorgfältig nach Frische, Haltbarkeit, Konstanz und Herkunft ausgewählt. Wir arbeiten mit anerkannten Erzeugern und Partnern in Frankreich und international zusammen, um ein Angebot bereitzustellen, das auf die Anforderungen von Großhändlern, Einzelhändlern und Gastronomen zugeschnitten ist. Unsere Präsenz in Rungis ermöglicht eine reaktionsschnelle Beschaffung, kontrollierte Rückverfolgbarkeit und eine gleichbleibend hohe Qualität das ganze Jahr über.",
     engagementText2: "Wir wissen, dass Ihre Anforderungen operativ sind: enge Fristen, spezifische Bedürfnisse, schwankende Mengen und marktbezogene Erwartungen. Deshalb setzen wir auf direkte Betreuung, schnelle Antworten und eine zuverlässige Logistik. Von der Auftragsvorbereitung bis zu Import-Export-Abläufen tun wir alles, um Ihre Versorgung zu sichern und eine langfristige Beziehung aufzubauen, die auf Vertrauen, Klarheit und Beständigkeit beruht.",
 
