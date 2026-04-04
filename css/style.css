@@ -1599,6 +1599,10 @@ body.home-page nav {
   background-attachment: scroll;
   background-position: center center;
   }
+  .parallax2 {
+  background-attachment: scroll;
+  background-position: center center;
+  }
 }
 /*témoignage*/
 #temoignage {
