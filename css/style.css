@@ -1919,6 +1919,7 @@ body.home-page nav {
 .export-points {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 8px;
   padding: 0 0.7rem 0.5rem;
 }
