@@ -1576,28 +1576,21 @@ body.home-page nav {
   background-size: cover;
 }
 
-/* Téléphone */
-@media (max-width: 768px) {
-  .parallax {
-  background-attachment: scroll;
-  background-position: center center;
-  }
-}
 /* Parallax2 */
 .parallax2 {
   height: 400px;
-  background-image: url("/img/present.png");
+  background-image: url("/img/parallax2.png");
   background-attachment: fixed;
   background-position: top center; /* montre le haut de l'image */
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 /* Téléphone */
 @media (max-width: 768px) {
-  .parallax {
-  background-attachment: scroll;
-  background-position: center center;
+  .parallax,
+  .parallax2 {
+  background-attachment: fixed;
+  background-position: top center;
   }
 }
 /*témoignage*/
