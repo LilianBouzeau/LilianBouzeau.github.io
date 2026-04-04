@@ -1576,6 +1576,13 @@ body.home-page nav {
   background-size: cover;
 }
 
+/* Téléphone */
+@media (max-width: 768px) {
+  .parallax {
+  background-attachment: scroll;
+  background-position: center center;
+  }
+}
 /* Parallax2 */
 .parallax2 {
   height: 400px;
@@ -1585,12 +1592,12 @@ body.home-page nav {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 /* Téléphone */
 @media (max-width: 768px) {
-  .parallax,
-  .parallax2 {
-  background-attachment: fixed;
-  background-position: top center;
+  .parallax {
+  background-attachment: scroll;
+  background-position: center center;
   }
 }
 /*témoignage*/
