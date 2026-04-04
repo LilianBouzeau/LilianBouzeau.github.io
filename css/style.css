@@ -1934,6 +1934,12 @@ body.home-page nav {
   border: 1px solid rgba(46, 125, 50, 0.18);
 }
 
+.engagement-points {
+  justify-content: center;
+  max-width: 1000px;
+  padding: 0 0.7rem 1.2rem;
+}
+
 .export-card-media {
   display: grid;
   place-items: center;
@@ -2177,6 +2183,10 @@ body.home-page nav {
 
   .export-points {
   padding: 0 0.45rem 0.3rem;
+  }
+
+  .engagement-points {
+  padding: 0 0.45rem 1rem;
   }
 
   .export-form-shell {
