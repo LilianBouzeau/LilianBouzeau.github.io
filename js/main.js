@@ -812,6 +812,29 @@ if (scrollElements.length > 0) {
   });
 }
   // ---------- Compteur ----------
+  function formatCounterText(counter, value) {
+    const lang = typeof currentLang === "string" ? currentLang : "FR";
+    const tObj = translations[lang] || translations.FR || {};
+
+    if (counter.id === "compteurProduits") {
+    return "+" + value;
+    }
+
+    if (counter.id === "compteurExpertise") {
+    return value + " " + (tObj.compteurExpertiseSuffix || "ans");
+    }
+
+    return String(value);
+  }
+
+  function refreshCompletedCounters() {
+    document.querySelectorAll(".counter[data-counter-complete='1']").forEach((counter) => {
+    const target = parseInt(counter.dataset.target, 10);
+    if (Number.isNaN(target)) return;
+    counter.textContent = formatCounterText(counter, target);
+    });
+  }
+
   function animateCounters() {
     const counters = document.querySelectorAll(".counter");
 
@@ -829,21 +852,13 @@ if (scrollElements.length > 0) {
         const progress = Math.min(elapsed / duration, 1);
         let value = Math.floor(progress * target);
 
-        // Ajoute un "+" pour le compteur des produits
-        if (counter.id === "compteurProduits") {
-        counter.textContent = "+" + value;
-        } else if (counter.id === "compteurExpertise") {
-        counter.textContent = value + " ans";
-        } else {
-        counter.textContent = value;
-        }
+        counter.textContent = formatCounterText(counter, value);
 
         if (progress < 1) requestAnimationFrame(update);
         else {
         // Valeur finale
-        if (counter.id === "compteurProduits") counter.textContent = "+1000";
-        else if (counter.id === "compteurExpertise") counter.textContent = "128 ans";
-        else counter.textContent = target;
+        counter.dataset.counterComplete = "1";
+        counter.textContent = formatCounterText(counter, target);
         }
       }
 
@@ -1094,10 +1109,11 @@ if (scrollElements.length > 0) {
     histoireText1: "Notre histoire commence en 1898, portée par une ambition claire : offrir des produits de qualité en nous appuyant sur un savoir-faire exigeant. Dès nos débuts, nous avons évolué dans un environnement où tradition et précision sont essentielles. Nous avons toujours placé la rigueur au cœur de notre travail et la satisfaction de nos premiers clients au premier plan, construisant ainsi des fondations solides et durables.",
     histoireText2: "Au fil des années, nous avons connu une croissance progressive en nous adaptant aux évolutions du marché et aux nouvelles attentes des consommateurs. Tout en restant fidèles à nos valeurs d’origine, nous avons su diversifier nos activités, développer notre expertise et renforcer notre réputation grâce à la qualité constante de nos produits. Cette période s’est distinguée par une forte dynamique d’innovation, des investissements soutenus et un élargissement continu de notre clientèle.",
     histoireText3: "Aujourd’hui, nous nous imposons comme une entreprise reconnue dans notre domaine et faisons partie des piliers du MIN de Rungis, en alliant tradition et modernité. Nous continuons de valoriser notre héritage tout en intégrant de nouveaux produits afin de rester compétitifs. Forts de notre expérience, nous répondons aux exigences actuelles en proposant des solutions adaptées, tout en maintenant un haut niveau de qualité et de professionnalisme.",
-    titreChiffresGeneral: "Quelques chiffres",
+    titreChiffres: "Quelques chiffres",
     titreChiffresCreation: "Création",
     titreChiffresExpertise: "Expertise",
     titreChiffresProduits: "Produits",
+    compteurExpertiseSuffix: "ans",
 
     //PAGE RAYON
     titrepageRayons: 'Les rayons',
@@ -1323,10 +1339,11 @@ if (scrollElements.length > 0) {
     histoireText1: "Our story began in 1898, driven by a clear ambition: offering quality products supported by demanding expertise. From the start, we grew in an environment where tradition and precision are essential. We have always placed rigor at the heart of our work and customer satisfaction first, building strong and lasting foundations.",
     histoireText2: "Over the years, we grew steadily by adapting to market changes and new consumer expectations. While staying true to our core values, we diversified our activities, developed our expertise, and strengthened our reputation through consistent product quality. This period was marked by strong innovation, sustained investment, and continuous growth of our client base.",
     histoireText3: "Today, we are recognized as a key company in our field and as one of the pillars of the Rungis International Market, combining tradition and modernity. We continue to value our heritage while integrating new products to remain competitive. With our experience, we meet today’s requirements through tailored solutions while maintaining high standards of quality and professionalism.",
-    titreChiffresGeneral: "Some figures",
+    titreChiffres: "Some figures",
     titreChiffresCreation: "Founded",
     titreChiffresExpertise: "Expertise",
     titreChiffresProduits: "Products",
+    compteurExpertiseSuffix: "years",
 
     //PAGE RAYON
     titrepageRayons: "Departments",
@@ -1674,10 +1691,11 @@ if (scrollElements.length > 0) {
     histoireText1: "Nuestra historia comienza en 1898, impulsada por una ambición clara: ofrecer productos de calidad con un saber hacer exigente. Desde nuestros inicios evolucionamos en un entorno donde tradición y precisión son esenciales. Siempre hemos puesto el rigor en el centro del trabajo y la satisfacción del cliente en primer plano.",
     histoireText2: "Con los años, crecimos progresivamente adaptándonos a la evolución del mercado y a las nuevas expectativas de los consumidores. Manteniéndonos fieles a nuestros valores de origen, diversificamos actividades, desarrollamos nuestra experiencia y reforzamos nuestra reputación gracias a la calidad constante de nuestros productos.",
     histoireText3: "Hoy somos una empresa reconocida en nuestro sector y uno de los pilares del MIN de Rungis, combinando tradición y modernidad. Seguimos valorizando nuestro legado e integrando nuevos productos para mantenernos competitivos y responder a las exigencias actuales con soluciones adaptadas.",
-    titreChiffresGeneral: "Algunos números",
+    titreChiffres: "Algunos números",
     titreChiffresCreation: "Creación",
     titreChiffresExpertise: "Experiencia",
     titreChiffresProduits: "Productos",
+    compteurExpertiseSuffix: "años",
 
     //PAGE RAYON
     titrepageRayons: "Secciones",
@@ -2023,10 +2041,11 @@ if (scrollElements.length > 0) {
     histoireText1: "Unsere Geschichte beginnt 1898 mit einem klaren Ziel: Qualitätsprodukte auf Basis anspruchsvoller Fachkompetenz. Von Anfang an entwickelten wir uns in einem Umfeld, in dem Tradition und Präzision wesentlich sind.",
     histoireText2: "Im Laufe der Jahre sind wir stetig gewachsen, indem wir uns an Marktveränderungen und neue Erwartungen angepasst haben. Gleichzeitig blieben wir unseren Werten treu und stärkten unsere Reputation durch konstant hohe Produktqualität.",
     histoireText3: "Heute sind wir ein anerkanntes Unternehmen in unserem Bereich und eine tragende Säule des MIN Rungis. Wir verbinden Tradition und Moderne und bieten passende Lösungen bei gleichbleibend hohem Qualitäts- und Professionalitätsniveau.",
-    titreChiffresGeneral: "Einige Zahlen",
+    titreChiffres: "Einige Zahlen",
     titreChiffresCreation: "Gründung",
     titreChiffresExpertise: "Erfahrung",
     titreChiffresProduits: "Produkte",
+    compteurExpertiseSuffix: "Jahre",
 
     //PAGE RAYON
     titrepageRayons: "Abteilungen",
@@ -2633,6 +2652,8 @@ if (scrollElements.length > 0) {
     const formTexts = translations[currentLang].formErrors || {};
     if (key && formTexts[key]) formMsg.textContent = formTexts[key];
     }
+
+    refreshCompletedCounters();
   }
 
   function attachLangButtonsListeners() {
