@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const planeShape = document.createElementNS(ns, "path");
       planeShape.setAttribute("d", PLANE_D);
       planeShape.setAttribute("transform", "translate(-12 -12) scale(1.2)");
-      planeShape.style.fill = "#FF8F00";
+      planeShape.style.fill = "#FF2D20";
       plane.appendChild(planeShape);
       overlay.appendChild(plane);
 

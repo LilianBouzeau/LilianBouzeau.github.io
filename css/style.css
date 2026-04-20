@@ -14,8 +14,8 @@ html {
 
 :root {
   /* Couleurs principales */
-  --vert: #4CAF50;    /* vert principal (CTA, titres) */
-  --accent: #2E7D32;    /* vert foncé (hover, important) */
+ --principal: #2F6BFF;    /* vert principal (CTA, titres) */
+  --accent: #1A3EA1;    /* vert foncé (hover, important) */
 
   /* Fonds */
   --beige: #F5F1E6;     /* fond naturel */
@@ -26,8 +26,8 @@ html {
   --noir: #1B1B1B;
 
   /* Bonus (tu peux utiliser si besoin) */
-  --orange: #FF8F00;    /* promo / bouton important */
-  --rouge: #E53935;     /* alerte / fruits rouges */
+  --vif:#FF2D20;      /* promo / bouton important */
+  --rouge: #D9382E;     /* alerte / fruits rouges */
 
   /* UI */
   --transition: all 0.3s ease;
@@ -174,7 +174,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--vert);
+  color: var(--principal);
 }
 
 a {
@@ -184,7 +184,7 @@ a {
 }
 
 a:hover {
-  color: var(--vert);
+  color: var(--principal);
 }
 
 p {
@@ -395,7 +395,7 @@ p {
   border-radius: 999px;
   font-size: 0.92rem;
   font-weight: 700;
-  border: 1px solid transparent;
+  border: 1px solid transparent ;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
@@ -404,27 +404,24 @@ p {
 }
 
 .hero-btn-primary {
-  background-color: var(--orange);
+  background-color: var(--rouge);
   color: #fff;
-  border-color: var(--orange);
 }
 
 .hero-btn-primary:hover {
-    background-color: var(--orange);
-      color: #fff;
-    border-color: rgba(255, 255, 255, 0.55);
+    background-color: var(--vif);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 .hero-btn-secondary {
-  background-color: var(--vert);
-  border-color: var(--vert);
+  background-color: var(--principal);
   color: #fff;
 }
 
 .hero-btn-secondary:hover {
   color: #fff;
   background-color: var(--accent);
-  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .hero-scroll-indicator {
@@ -435,7 +432,7 @@ p {
   width: 28px;
   height: 48px;
   border-radius: 999px;
-  border: 2px solid var(--vert);
+  border: 2px solid var(--principal);
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -446,7 +443,7 @@ p {
   width: 6px;
   height: 11px;
   border-radius: 999px;
-  background: var(--orange);
+  background: var(--rouge);
   animation: heroScrollMove 1.6s ease-in-out infinite;
 }
 
@@ -465,7 +462,7 @@ p {
 }
 
 .Rungis {
-  color: var(--orange);
+  color: var(--rouge);
   font-weight: 600;
   animation: blink 2s ease-in-out infinite;
   transition: var(--transition);
@@ -473,7 +470,7 @@ p {
 
 @keyframes blink {
   0%, 100% {
-    color: var(--orange);
+    color: var(--rouge);
   }
   50% {
     color: var(--accent);
@@ -569,7 +566,7 @@ body.home-page nav {
 }
 
 .deroulant>a .caret {
-  color: var(--orange);
+  color: var(--rouge);
   margin-left: 6px;
   display: inline-block;
   vertical-align: middle;
@@ -614,8 +611,8 @@ body.home-page nav {
 }
 #nav-menu a:hover {
   transform: translateY(-1px);
-  background-color: rgba(76, 175, 80, 0.14);
-  box-shadow: inset 0 -2px 0 rgba(46, 125, 50, 0.35);
+  background-color: rgba(255, 59, 48, 0.1);
+    box-shadow: inset 0 -3px 0 var(--accent);
 }
 
 #nav-menu a:hover,
@@ -624,12 +621,12 @@ body.home-page nav {
 }
 
 #nav-menu > li > a.active {
-  background-color: rgba(46, 125, 50, 0.18);
+  background-color: rgba(255, 59, 48, 0.1);
   box-shadow: inset 0 -3px 0 var(--accent);
 }
 
 #nav-menu a:focus-visible {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--rouge);
   outline-offset: 2px;
 }
 
@@ -647,7 +644,7 @@ body.home-page nav {
 
 .sous li a:hover {
   background-color: var(--blanc);
-  color: var(--vert);
+  color: var(--principal);
 }
 
 .sous.active {
@@ -1045,7 +1042,7 @@ body.home-page nav {
   visibility: visible;
   transition: var(--transition), opacity 0.25s ease, visibility 0.25s ease;
   background: rgba(255, 255, 255, 0.75);
-  border: 2px solid var(--vert);
+  border: 2px solid var(--principal);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
@@ -1080,7 +1077,7 @@ body.home-page nav {
   background: rgba(255, 255, 255, 0.85);
   transform: rotateY(180deg);
   color: var(--noir);
-  border: 2px solid var(--orange);
+  border: 2px solid var(--rouge);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
@@ -1109,7 +1106,7 @@ body.home-page nav {
 
 .carte-front h4,
 .carte-back h4 {
-  color: var(--vert);
+  color: var(--principal);
   margin: 0;
 }
 
@@ -1131,7 +1128,7 @@ body.home-page nav {
 .carte-back li {
   font-size: 1rem; /* ou ajuste selon ton besoin */
   margin: 5px 0;
-  color: var(--orange);
+  color: var(--rouge);
   transition: var(--transition);
   cursor: pointer;
   font-weight: 700; /* rend le texte plus épais */
@@ -1280,7 +1277,7 @@ body.home-page nav {
 
 .nom {
   font-size: 2.5rem;
-  color: var(--vert);
+  color: var(--principal);
   margin-bottom: 1rem;
   text-align: center;
 }
@@ -1497,7 +1494,7 @@ body.home-page nav {
 /* Icones */
 .iconeCompteur {
   font-size: 4.8rem;
-  color: var(--vert);
+  color: var(--principal);
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   text-shadow: 1px 2px 5px rgba(0,0,0,0.26);
 }
@@ -1505,7 +1502,7 @@ body.home-page nav {
 .iconeCompteur:hover {
   transform: scale(1.08);
   cursor: pointer;
-  color: var(--orange);
+  color: var(--rouge);
   text-shadow: 2px 4px 10px rgba(0,0,0,0.38);
 }
 
@@ -1513,7 +1510,7 @@ body.home-page nav {
 .counter {
   font-size: clamp(2rem, 3.6vw, 2.6rem);
   font-weight: bold;
-  color: var(--orange);
+  color: var(--rouge);
   margin: 10px 0 6px;
   line-height: 1.05;
 }
@@ -1683,7 +1680,7 @@ body.home-page nav {
 .slide span {
   display: inline-block;
   margin-top: 15px;
-  color: var(--orange);
+  color: var(--principal);
   font-weight: bold;
   padding: 4px 10px;
   border-radius: 4px;
@@ -1708,7 +1705,12 @@ body.home-page nav {
   bottom: 6px;
   height: 4px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 143, 0, 0.12), rgba(255, 143, 0, 0.6), rgba(255, 143, 0, 0.12));
+background: linear-gradient(
+  90deg,
+  rgba(255, 59, 48, 0.12),
+  rgba(255, 59, 48, 0.6),
+  rgba(255, 59, 48, 0.12)
+);
   pointer-events: none;
 }
 
@@ -1718,13 +1720,13 @@ body.home-page nav {
   border: none;
   font-size: 50px;
   cursor: pointer;
-  color: var(--vert);
+  color: var(--principal);
   transition: color 0.35s ease;
 }
 
 .prev:hover,
 .next:hover {
-  color: var(--orange);
+  color: var(--rouge);
 }
 
 /*slider fournisseur*/
@@ -1895,7 +1897,6 @@ body.home-page nav {
 
 .export-grid {
   display: grid;
-  grid-template-columns: 1.5fr 0.5fr;
   gap: 16px;
   align-items: stretch;
   border: none;
@@ -1931,7 +1932,8 @@ body.home-page nav {
   font-size: 0.86rem;
   font-weight: 700;
   color: var(--accent);
-  background: rgba(76, 175, 80, 0.13);
+  background: rgba(47, 107, 255, 0.10);
+  box-shadow: inset 0 -2px 0 rgba(47, 107, 255, 0.6);
   border: 1px solid rgba(46, 125, 50, 0.18);
 }
 
@@ -1980,12 +1982,14 @@ body.home-page nav {
   overflow: hidden;
   padding: 28px;
   border-radius: 28px;
-  background:
-    radial-gradient(circle at top right, rgba(255, 143, 0, 0.16), transparent 34%),
-    radial-gradient(circle at bottom left, rgba(76, 175, 80, 0.2), transparent 32%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 246, 0.96));
-  border: 1px solid rgba(46, 125, 50, 0.12);
-  box-shadow: 0 18px 48px rgba(46, 125, 50, 0.12);
+background:
+  radial-gradient(circle at top right, rgba(47, 107, 255, 0.22), transparent 40%),
+  radial-gradient(circle at bottom left, rgba(255, 59, 48, 0.18), transparent 35%),
+  linear-gradient(145deg, #F5F1E6, #F5F1E6);
+border: 1px solid rgba(255, 59, 48, 0.18);
+box-shadow:
+  0 18px 48px rgba(47, 107, 255, 0.2),
+  0 0 20px rgba(255, 59, 48, 0.1);
 }
 
 .export-form-shell::before {
@@ -2115,7 +2119,7 @@ body.home-page nav {
   border: none;
   border-radius: 999px;
   padding: 14px 22px;
-  background: linear-gradient(135deg, var(--accent), var(--vert));
+  background: linear-gradient(135deg, var(--accent), var(--principal));
   color: var(--blanc);
   font-size: 0.98rem;
   font-weight: 800;
@@ -2164,7 +2168,6 @@ body.home-page nav {
   }
 
   .export-grid {
-  grid-template-columns: 1fr;
   gap: 12px;
   margin: 0;
   }
@@ -2247,7 +2250,7 @@ body.home-page nav {
 /* Styles de base pour les pays */
 path {
   fill: white;
-  stroke: var(--vert);
+  stroke: var(--principal);
   stroke-width: 1;
   transition: all 1s ease;
   cursor: pointer;
@@ -2260,9 +2263,9 @@ path:hover {
 
 /* Pays d'exportation */
 .PaysExport {
-  stroke: var(--orange);
+  stroke: var(--rouge);
   stroke-width: 1;
-  fill: var(--vert);
+  fill: var(--principal);
   animation: bouncePaysExport 2s infinite;
   transition: all 1s ease;
 }
@@ -2297,7 +2300,7 @@ path:hover {
 }
 /* Effet au survol */
 .PaysExport:hover {
-  fill: var(--orange);
+  fill: var(--rouge);
   stroke-width: 3;
   transform: scale(1.001);
   animation: bouncePaysExport none;
@@ -2309,7 +2312,7 @@ path:hover {
 
 .map-flight-path {
   fill: none;
-  stroke: var(--orange);
+  stroke: var(--rouge);
   stroke-width: 1.7;
   opacity: 0.55;
   stroke-linecap: round;
@@ -2320,7 +2323,7 @@ path:hover {
 }
 
 .map-flight-plane {
-  fill: var(--orange) !important;
+  fill: var(--rouge) !important;
   opacity: 0.95;
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
   transition: opacity 0.18s linear;
@@ -2363,11 +2366,11 @@ path:hover {
   border: 1px solid #ccc;
 }
 
-/* Couleur vert--verte pour les pays d’export */
+/* Couleur vert--principle pour les pays d’export */
 .legend-blue {
   animation: bouncePaysExport 2s infinite;
-  background: var(--vert);
-  border: 1px solid var(--orange);
+  background: var(--principal);
+  border: 1px solid var(--rouge);
 }
 
 @media (max-width: 768px) {
@@ -2482,7 +2485,7 @@ path:hover {
   /* s'adapte à la largeur du texte */
   margin-top: 1rem;
   padding: 0.7rem 1rem;
-  background-color: var(--vert);
+  background-color: var(--principal);
   color: var(--blanc);
   font-weight: 500;
   border-radius: var(--radius);
@@ -2552,7 +2555,7 @@ path:hover {
 
 .icone2 {
   font-size: 1.6rem;
-  color: var(--vert);
+  color: var(--principal);
   transition: var(--transition);
 }
 
@@ -2602,7 +2605,7 @@ path:hover {
   animation-delay: 0.4s;
 }
 .reseauxSociaux a:hover {
-  background-color: var(--orange);
+  background-color: var(--rouge);
   transform: translateY(-3px);
 }
 
@@ -2634,11 +2637,12 @@ h1#contact {
 }
 .contactCase2>iframe{
   transition: var(--transition);
-   border: 2px solid var(--vert);
+   border: 2px solid var(--principa
+l);
   filter: invert(90%) hue-rotate(180deg) brightness(90%) contrast(90%);
 }
 .contactCase2>iframe:hover{
-   border: 2px solid var(--orange);
+   border: 2px solid var(--rouge);
 }
 .contactCase {
   display: flex;
@@ -2669,7 +2673,7 @@ h1#contact {
 }
 
 .ligneContact:hover {
-  background-color: var(--orange);
+  background-color: var(--rouge);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
@@ -2681,7 +2685,7 @@ h1#contact {
 
 .icone {
   font-size: 1.6rem;
-  color: var(--vert);
+  color: var(--principal);
   transition: var(--transition);
 }
 
@@ -2696,7 +2700,7 @@ h1#contact {
 
 /* Pied de page */
 footer {
-  background-color: var(--vert);
+  background-color: var(--principal);
   color: var(--blanc);
   text-align: center;
   padding: 1rem;
@@ -2786,7 +2790,7 @@ footer iframe {
 #cguFooter:hover {
   text-decoration: underline 1px white;
   transform: scale(1.05);
-  color: var(--orange);
+  color: var(--rouge);
 }
 
 /* ================================
@@ -2833,23 +2837,23 @@ COOKIES
 }
 
 .cookie-btn.accept {
-  background-color: var(--vert);
+  background-color: var(--principal);
   color: var(--blanc);
   border: 2px var(--blanc) solid;
 }
 
 .cookie-btn.accept:hover {
-  border: 2px var(--vert) solid;
+  border: 2px var(--principal) solid;
 }
 
 .cookie-btn.decline {
-  background-color: var(--orange);
+  background-color: var(--rouge);
   color: var(--blanc);
   border: 2px var(--blanc) solid;
 }
 
 .cookie-btn.decline:hover {
-  border: 2px var(--orange) solid;
+  border: 2px var(--rouge) solid;
 }
 
 @media (max-width:768px) {
@@ -2887,7 +2891,7 @@ COOKIES
 }
 
 .titreCgu {
-  color: var(--vert);
+  color: var(--principal);
 }
 
 .pCgu {
@@ -2895,7 +2899,7 @@ COOKIES
 }
 
 .lienCgu {
-  color: var(--orange);
+  color: var(--rouge);
   text-decoration: none;
 }
 
@@ -2958,7 +2962,7 @@ COOKIES
 .btn-home {
   display: inline-block;
   padding: 12px 30px;
-  background-color: var(--orange);
+  background-color: var(--rouge);
   color: var(--blanc);
   text-decoration: none;
   font-weight: 600;
@@ -2972,6 +2976,7 @@ COOKIES
   background-color: var(--accent);
   color: var(--blanc);
   transform: translateY(-5px);
+  transition: var(--transition);
 }
 
 /* ================================
@@ -2983,7 +2988,7 @@ COOKIES
   right: 25px;
   width: 45px;
   height: 45px;
-  background-color: var(--vert);
+  background-color: var(--principal);
   color: var(--blanc);
   border-radius: 50%;
   font-size: 1.5rem;
@@ -2997,10 +3002,10 @@ COOKIES
 }
 
 #btnTop:hover {
-  background-color: var(--orange);
+  background-color: var(--rouge);
   color: var(--blanc);
   transform: translateY(-3px) scale(1.1);
-  border:2px solid var(--orange);
+  border:2px solid var(--rouge);
 }
 
 #btnTop.show {
@@ -3043,7 +3048,7 @@ COOKIES
   position: relative;
   width: min(980px, 100%);
   background: linear-gradient(180deg, #fffdf5 0%, #f8f3df 100%);
-  border: 2px solid var(--vert);
+  border: 2px solid var(--principal);
   border-radius: 18px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
   padding: 24px 24px 20px;
@@ -3099,7 +3104,7 @@ COOKIES
   height: 38px;
   border: 0;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--rouge);
   color: var(--blanc);
   font-size: 1rem;
   cursor: pointer;
@@ -3108,7 +3113,7 @@ COOKIES
 
 .seasonal-popup-close:hover {
   transform: scale(1.08);
-  background: var(--orange);
+  background: var(--rouge);
 }
 
 .seasonal-cards {
@@ -3161,7 +3166,7 @@ COOKIES
 
 .seasonal-card-front {
   background: rgba(255, 255, 255, 0.9);
-  border: 2px solid var(--vert);
+  border: 2px solid var(--principal);
 }
 
 .seasonal-card-front img {
@@ -3215,7 +3220,7 @@ COOKIES
 
 .seasonal-card-back {
   background: #fff;
-  border: 2px solid var(--orange);
+  border: 2px solid var(--rouge);
   transform: rotateY(180deg);
 }
 
@@ -3233,7 +3238,7 @@ COOKIES
   right: 100px;
   border: none;
   border-radius: 999px;
-  background: var(--orange);
+  background: var(--rouge);
   color: var(--blanc);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
   padding: 10px 15px;
@@ -3299,7 +3304,7 @@ body.seasonal-popup-open {
 .btnLang {
   width: 45px;
   height: 45px;
-  background-color: var(--vert);
+  background-color: var(--principal);
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -3309,7 +3314,7 @@ body.seasonal-popup-open {
   display: flex;
   align-items: center;
   justify-content: center;
-  border:2px solid#8fdc8f;
+  border:2px solid var(--principal);
 }
 
 .btnLang:not(:last-child) {
@@ -3319,7 +3324,7 @@ body.seasonal-popup-open {
 .btnLang:hover {
   background-color: var(--blanc);
   transform: translateY(-3px) scale(1.1);
-  border:2px solid var(--orange);
+  border:2px solid var(--rouge);
 }
 
 .btnLang img {
