@@ -765,7 +765,7 @@ body.home-page nav {
   }
 
   #nav-menu > li > a.active {
-  background-color: rgba(46, 125, 50, 0.14);
+  background-color: rgba(255, 59, 48, 0.1);
   box-shadow: inset 4px 0 0 var(--accent);
   }
 
